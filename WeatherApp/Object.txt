@@ -1,0 +1,48 @@
+Rain : {
+        colors:["#00C6FB","#005BEA"],
+        title : "비가 내려요",
+        subtitle : "우산을 챙기세요",
+        icon : "weather-pouring"
+    },
+    Clear : {
+        colors:["#FEF253","#FF7300"],
+        title : "맑은 날입니다",
+        subtitle : "산책을 해보는 건 어떨까요?",
+        icon : "weather-sunny"
+    },
+    Thunderstorm : {
+        colors:["#00ECBC","#007ADF"],
+        title : "번개가 쳐요",
+        subtitle : "토르가 올건가 봐요",
+        icon : "weather-lightning"
+    },
+    Clouds : {
+        colors:["#D7D2CC","#304352"],
+        title : "오늘은 흐려요",
+        subtitle : "그래도 우울해지지 마세요",
+        icon : "weather-cloudy"
+    },
+    Snow : {
+        colors:["#7DE2FC","#0986E5"],
+        title : "눈이 내려요",
+        subtitle : "Do you want to build a snowman?",
+        icon : "weather-snowy"
+    },
+    Drizzle : {
+        colors:["#89F7FE","#66A6FF"],
+        title : "이슬비가 내려요",
+        subtitle : "비 같은 비 아닌 비 같은 너",
+        icon : "weather-hail"
+    },
+    Haze : {
+        colors:["#D7D2CC","#304352"],
+        title : "안개가 꼈어요",
+        subtitle : "앞을 보고 싶다",
+        icon : "weather-fog"
+    },
+    Mist : {
+        colors:["#D7D2CC","#304352"],
+        title : "습해요",
+        subtitle : "찝찝하다",
+        icon : "weather-rainy"
+    }
