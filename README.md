@@ -32,3 +32,8 @@
 - React To Do List
     To Do List (REACT, REACT HOOK)<br>
     Color List를 생성하여 To Do 색상 적용
+
+- simple_diary
+    사진 한 장을 이용한 다이어리 (PHP, JAVASCRIPT, CSS, MYSQL)<br>
+    다이어리 게시글 등록 시 사진 파일 미리보기 가능<br>
+    회원가입 시 비밀번호 암호화(BCRYPT, HASH)
