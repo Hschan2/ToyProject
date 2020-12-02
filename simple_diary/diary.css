@@ -1,0 +1,372 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+.main {
+	width: 100%;
+	height: 80px;
+	border-bottom: 1px solid #EAEAEA;
+	text-align: center;
+	background: linear-gradient(to bottom, #EAEAEA, #FFFFFF);
+	margin-bottom: 20px;
+}
+
+.menu {
+	display: inline-block;
+	width: 70%;
+	height: 80px;
+}
+
+.logo {
+	width: 300px;
+	height: 80px;
+	margin-bottom: 60px;
+	margin-left: 15px;
+	display: inline-block;
+	text-decoration: none;
+}
+
+.logo a {
+	text-decoration: none;
+}
+
+.insert {
+	width: 20px;
+	height: 20px;
+	float: right;
+	margin-top: 30px;
+	display: inline-block;
+	text-decoration: none;
+}
+
+.login {
+	width: 80px;
+	height: 20px;
+	float: right;
+	margin-top: 30px;
+	margin-right: 5px;
+	display: inline-block;
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+}
+
+.login a {
+	color: black;
+	text-decoration: none;
+}
+
+.back {
+	width: 20px;
+	height: 20px;
+	float: left;
+	margin-top: 30px;
+	display: inline-block;
+	text-decoration: none;
+}
+
+.major {
+	width: 70%;
+	height: 150px;
+	margin-bottom: 10px;
+	background-color: #FFFFFF;
+	margin-left: auto;
+	margin-right: auto;
+	border: solid 1px black;
+	border-radius: 5px;
+}
+
+.not_login {
+	width: 750px;
+	height: 750px;
+	background-color: #F6F6F6;
+	margin-left: auto;
+	margin-right: auto;
+	background-image: url("img/not_login.png");
+}
+
+.picture {
+	width: 150px;
+	height: 150px;
+	text-align: center;
+	background: #FFFFFF;
+	float: left;
+	margin-right: 35px;
+	border-radius: 5px;
+}
+
+.picture img {
+	width: 180px;
+	height: 150px;
+	background: #FFFFFF;
+	float: left;
+	border-radius: 5px;
+}
+
+.picture video {
+	width: 180px;
+	height: 150px;
+	background: #FFFFFF;
+	float: left;
+	margin-right: 5px;
+	border-radius: 5px;
+}
+
+.date {
+	float: left;
+}
+
+.delete {
+	width: 15px;
+	height: 15px;
+	float: right;
+	margin-top: 3px;
+	margin-right: 3px;
+	text-decoration: none;
+}
+
+.delete button {
+	background: transparent;
+	border: none;
+}
+
+.i_major {
+	width: 350px;
+	height: 535px;
+	border: 1px solid black;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.i_picture {
+	width: 350px;
+	height: 350px;
+	margin-right: 5px;
+	background-color: gray;
+	border-radius: 10px;
+}
+
+.titlebox {
+	width: 100%;
+	height: 20px;
+	border-style: none;
+}
+
+.contentbox {
+	border-style: none;
+	margin-top: 5px;
+	width: 100%;
+	height: 125px;
+}
+
+.img_btn {
+	border-radius: 5px;
+}
+
+.insert_btn {
+	width: 100%;
+	padding: 5px 10px;
+	background: white;
+	border-style: none;
+	border: 1px solid black;
+	border-radius: 4px;
+}
+
+.insert_btn:hover {
+	width: 100%;
+	padding: 5px 10px;
+	color: white;
+	background: black;
+	border-style: none;
+	border: 1px solid black;
+	border-radius: 4px;
+	transition-duration: 0.3s;
+}
+
+.inputfile label {
+	margin-top: 1px;
+	text-align: center;
+	width: 95%;
+	display: inline-block;
+	padding: .2em .5em;
+	color: #000;
+	font-size: inherit;
+	line-height: normal;
+	vertical-align: middle;
+	background-color: #fff;
+	border: 1px solid black;
+	cursor: pointer;
+	border-radius: .25em;
+	-webkit-transition: background-color 0.2s;
+	transition: background-color 0.2s;
+}
+
+.inputfile label:hover {
+  background-color: #000;
+  color: #fff;
+  transition-duration: 0.3s;
+}
+
+
+.inputfile label:active {
+  background-color: #efefef;
+  color: black;
+}
+
+.inputfile input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.regi_table {
+	width: 400px;
+	height: 250px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background-color: #efefef;
+}
+
+.regi_table .box {
+	width: 200px;
+	height: 50px;
+	border-radius: 10px;
+	border: 1px solid #000;
+	padding: 0 0 0 10px;
+}
+
+
+.regi_table .box::placeholder {
+	color: black;
+}
+
+.regi_table .regi_button {
+	width: 210px;
+	background-color: #000;
+	color: #fff;
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 3px 5px;
+}
+
+.regi_table .regi_button:hover {
+	width: 210px;
+	background-color: #fff;
+	color: #000;
+	border: 1px solid white;
+	border-radius: 5px;
+	padding: 3px 5px;
+	transition-duration: 0.3s;
+}
+
+.regi_table .btn_check {
+	margin-left: -100px;
+	height: 50px;
+	width: 70px;
+	background-color: #000;
+	color: #fff;
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 3px 5px;
+}
+
+.regi_table .btn_check:hover {
+	margin-left: -100px;
+	height: 50px;
+	width: 70px;
+	background-color: #fff;
+	color: #000;
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 3px 5px;
+	transition-duration: 0.3s;
+}
+
+.regi_table .btn_check:active {
+	margin-left: -100px;
+	height: 50px;
+	width: 70px;
+	background-color: #fff;
+	color: #000;
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 3px 5px;
+}
+
+.login_table {
+	width: 400px;
+	height: 220px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background-color: #efefef;
+}
+
+.login_table .box {
+	width: 200px;
+	height: 50px;
+	border-radius: 10px;
+	border: 1px solid #000;
+	padding: 0 0 0 10px;
+}
+
+
+.login_table .box::placeholder {
+	color: black;
+}
+
+.login_table .login_button {
+	margin-bottom: -30px;
+	width: 210px;
+	background-color: #000;
+	color: #fff;
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 3px 5px;
+}
+
+.login_table .login_button:hover {
+	margin-bottom: -30px;
+	width: 210px;
+	background-color: #fff;
+	color: #000;
+	border: 1px solid white;
+	border-radius: 5px;
+	padding: 3px 5px;
+	transition-duration: 0.3s;
+}
+
+.login_table .regi_go_button {
+	margin-top: -30px;
+	width: 210px;
+	background-color: #000;
+	color: #fff;
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 3px 5px;
+}
+
+.login_table .regi_go_button:hover {
+	margin-top: -30px;
+	width: 210px;
+	background-color: #fff;
+	color: #000;
+	border: 1px solid white;
+	border-radius: 5px;
+	padding: 3px 5px;
+	transition-duration: 0.3s;
+}
+
+.img_btn {
+	background: url("img/delete.png") no-repeat;
+	width: 20px;
+	height: 20px;
+	border: none;
+}
