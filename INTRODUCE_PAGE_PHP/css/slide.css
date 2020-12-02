@@ -1,0 +1,137 @@
+*{margin:0;padding:0;}
+	ul,li{list-style:none;}
+
+  /* 슬라이드 1 */
+	.slide1 {
+      width: 400px;
+      height: 600px;
+      overflow: hidden;
+      position: relative;
+      margin: 0 auto;
+    }
+    .slide1 ul {
+      width: 5000px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: 0;
+    }
+    .slide1 ul li {
+      display: inline-block;
+    }
+	.slidetitle1 {
+		font-size: 20px;
+		font-weight: bold;
+		color: black; 
+		margin-top: 10px;
+		margin-left: 30px;
+	}
+	.slidesubtitle1 {
+		margin-top: 10px;
+		margin-left: 35px;
+	}
+
+  .slide1 #back1 {
+      position: absolute;
+      top: 250px;
+      left: 0;
+      cursor: pointer;
+      z-index: 1;
+    }
+  .slide1 #next1 {
+      position: absolute;
+      top: 250px;
+      right: 0;
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    /* 슬라이드2 */
+    .slide2 {
+      width: 400px;
+      height: 600px;
+      overflow: hidden;
+      position: relative;
+      margin: 0 auto;
+    }
+    .slide2 ul {
+      width: 5000px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: 0;
+    }
+    .slide2 ul li {
+      display: inline-block;
+    }
+  .slidetitle2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: black; 
+    margin-top: 10px;
+    margin-left: 30px;
+  }
+  .slidesubtitle2 {
+    margin-top: 10px;
+    margin-left: 35px;
+  }
+
+  .slide2 #back2 {
+      position: absolute;
+      top: 250px;
+      left: 0;
+      cursor: pointer;
+      z-index: 1;
+    }
+  .slide2 #next2 {
+      position: absolute;
+      top: 250px;
+      right: 0;
+      cursor: pointer;
+      z-index: 1;
+    }
+
+/* 슬라이드3 */
+.slide3 {
+      width: 400px;
+      height: 600px;
+      overflow: hidden;
+      position: relative;
+      margin: 0 auto;
+    }
+    .slide3 ul {
+      width: 5000px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: 0;
+    }
+    .slide3 ul li {
+      display: inline-block;
+    }
+  .slidetitle3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: black; 
+    margin-top: 10px;
+    margin-left: 30px;
+  }
+  .slidesubtitle3 {
+    margin-top: 10px;
+    margin-left: 35px;
+  }
+
+  .slide3 #back3 {
+      position: absolute;
+      top: 250px;
+      left: 0;
+      cursor: pointer;
+      z-index: 1;
+    }
+  .slide3 #next3 {
+      position: absolute;
+      top: 250px;
+      right: 0;
+      cursor: pointer;
+      z-index: 1;
+    }
