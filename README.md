@@ -23,3 +23,10 @@
     게시글 댓글 작성, 댓글에 댓글 작성 가능<br>
     게시글 검색
 
+- KakaoMAP
+    집 주변 공공기관 (HTML, JAVASCRIPT, CSS, KAKAO MAP API)<br>
+    검색한 위치 이동하기<br>
+    현재 위치로 이동하기 (Animation 포함)<br>
+    표시할 장소 배열에 오브젝트 배열에 저장
+
+
