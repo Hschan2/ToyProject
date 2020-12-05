@@ -4,7 +4,6 @@ import {observer} from 'mobx-react';
 import userStore from './Components/userStore';
 import loginForm from './Components/loginForm';
 import submitButton from './Components/submitButton';
-import inputField from './Components/inputField';
 
 class App extends Component {
   async componentDidMount() {
@@ -13,7 +12,7 @@ class App extends Component {
         method: 'post',
         headers: {
           'Accept': 'application/json',
-          'Content-type': 'application/json',
+          'Content-Type': 'application/json',
         }
       });
 
@@ -79,7 +78,7 @@ class App extends Component {
               />
             </div>
           </div>
-        )
+        );
       }
 
       return (
@@ -88,7 +87,7 @@ class App extends Component {
             <loginForm />
           </div>
         </div>
-      )
+      );
     }
   }
 }
