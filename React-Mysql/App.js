@@ -1,6 +1,19 @@
 const express = require('express');
+const mysql = require('mysql');
 
 const app = express();
+
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '111111',
+    database: 'reactboard',
+});
+
+db.connect((err) => {
+    if(err) console.log(err);
+    else console.log("Mysql Connected");
+});
 
 app.get("/", (req, res) => {
     res.send("<h1>Home Page</h1>");
