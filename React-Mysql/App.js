@@ -21,7 +21,13 @@ const db = mysql.createConnection({
 const publicDirectory = path.join(__dirname, './public');
 app.use(express.static(publicDirectory));
 
-// View 연결
+// Parse Url-Encoded Bodies (sent by HTML forms)
+app.use(express.urlencoded({ extended: false }));
+
+// Parse JSON bodies (as sent by API clients)
+app.use(express.json());
+
+// View 연결 (.hbs Files)
 app.set('view engine', 'hbs');
 
 // Mysql 연결
@@ -30,11 +36,22 @@ db.connect((err) => {
     else console.log("Mysql Connected");
 });
 
-// 출력
-app.get("/", (req, res) => {
-    // res.send("<h1>Home Page</h1>");
-    res.render("index");
-});
+
+// Router 사용하기 전
+
+// index.hbs 출력
+// app.get("/", (req, res) => {
+//     // res.send("<h1>Home Page</h1>");
+//     res.render("index");
+// });
+
+// app.get("/register", (req, res) => {
+//     res.render("register");
+// });
+
+// Router 사용한 후
+app.use('/', require('./routes/pages'));
+app.use('/auth', require('./routes/auth'));
 
 // 서버 연결
 app.listen(5000, () => {
