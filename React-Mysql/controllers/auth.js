@@ -9,6 +9,47 @@ const db = mysql.createConnection({
     database: process.env.DATABASE,
 });
 
+exports.login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        if(!email || !password) { // email or password 데이터가 없을 때
+            return res.status(400).render('login', {
+                message: '이메일과 비밀번호를 입력해주세요.'
+            })
+        }
+
+        db.query('SELECT * FROM users WHERE email = ?', [email], async (error, results) => {
+            if( !results || !(await bcrypt.compare(password, results[0].password)) ) {
+                res.status(401).render('login', {
+                    message: '이메일과 비밀번호가 틀립니다.'
+                })
+            } else {
+                const id = results[0].id;
+
+                // 쿠키와 세션 대신 토큰 기반 인증 방식
+                const token = jwt.sign({ id }, process.env.JWT_SECRET, {
+                    expiresIn: process.env.JWT_EXPIRES_IN
+                });
+
+                console.log(token);
+
+                const cookieOptions = {
+                    expires: new Date(
+                        Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
+                    ),
+                    httpOnly: true
+                }
+
+                res.cookie('jwt', token, cookieOptions);
+                res.status(200).redirect("/"); // index.hbs로
+            }
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 exports.register = (req, res) => {
     console.log(req.body);
 
