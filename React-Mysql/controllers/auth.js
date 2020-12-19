@@ -1,54 +1,45 @@
-const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-
-const db = mysql.createConnection({
-    host: process.env.DATABASE_HOST,
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE,
-});
+const db = require('../model/db');
 
 exports.login = async (req, res) => {
-    try {
-        const { email, password } = req.body;
+    const { email, password } = req.body;
 
-        if(!email || !password) { // email or password 데이터가 없을 때
-            return res.status(400).render('login', {
-                message: '이메일과 비밀번호를 입력해주세요.'
-            })
-        }
-
-        db.query('SELECT * FROM users WHERE email = ?', [email], async (error, results) => {
-            if( !results || !(await bcrypt.compare(password, results[0].password)) ) {
-                res.status(401).render('login', {
-                    message: '이메일과 비밀번호가 틀립니다.'
-                })
-            } else {
-                const id = results[0].id;
-
-                // 쿠키와 세션 대신 토큰 기반 인증 방식
-                const token = jwt.sign({ id }, process.env.JWT_SECRET, {
-                    expiresIn: process.env.JWT_EXPIRES_IN
-                });
-
-                console.log(token);
-
-                const cookieOptions = {
-                    expires: new Date(
-                        Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
-                    ),
-                    httpOnly: true
-                }
-
-                res.cookie('jwt', token, cookieOptions);
-                res.status(200).redirect("/"); // index.hbs로
-            }
+    if(!email || !password) { // email or password 데이터가 없을 때
+        return res.status(400).render('login', {
+            message: '이메일과 비밀번호를 입력해주세요.'
         })
-    } catch (error) {
-        console.log(error)
     }
-}
+
+    db.start.query('SELECT * FROM users WHERE email = ?', [email], async (error, results) => {
+        const isMatch = await bcrypt.compare(password, results[0].password);
+
+        if( !results || !isMatch ) {
+            res.status(401).render('login', {
+                message: '이메일과 비밀번호가 틀립니다.'
+            })
+        } else {
+            const id = results[0].id;
+
+            // 쿠키와 세션 대신 토큰 기반 인증 방식
+            const token = jwt.sign({ id }, process.env.JWT_SECRET, {
+                expiresIn: process.env.JWT_EXPIRES_IN
+            });
+
+            console.log(token);
+
+            const cookieOptions = {
+                expires: new Date(
+                    Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
+                ),
+                httpOnly: true
+            }
+
+            res.cookie('jwt', token, cookieOptions);
+            res.status(200).redirect("/"); // index.hbs로
+        }
+    });
+};
 
 exports.register = (req, res) => {
     console.log(req.body);
@@ -61,7 +52,7 @@ exports.register = (req, res) => {
     // 위를 간단하게
     const { name, email, password, passwordConfirm } = req.body;
 
-    db.query('SELECT email FROM users WHERE email = ?', [email], async (error, results) => {
+    db.start.query('SELECT email FROM users WHERE email = ?', [email], async (error, results) => {
         if(error) console.log(error);
 
         if(results.length > 0) { // 이메일이 이미 존재할 때
@@ -76,7 +67,7 @@ exports.register = (req, res) => {
 
         let hashedPassword = await bcrypt.hash(password, 8);
 
-        db.query('INSERT INTO users SET ?', {name: name, email: email, password: hashedPassword}, (error, results) => {
+        db.start.query('INSERT INTO users SET ?', {name: name, email: email, password: hashedPassword}, (error, results) => {
             if(error) {
                 console.log(error);
             } else {
