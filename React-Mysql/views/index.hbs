@@ -11,8 +11,13 @@
     <nav>
         <ul>
             <li><a href="/">HOME</a></li>
-            <li><a href="/login">LOGIN</a></li>
-            <li><a href="/register">REGISTER</a></li>
+            {{#if user}}
+                <li><a href="/profile">PROFILE</a></li>
+                <li><a href="/auth/logout">LOGOUT</a></li>
+            {{else}}
+                <li><a href="/login">LOGIN</a></li>
+                <li><a href="/register">REGISTER</a></li>
+            {{/if}}
         </ul>
     </nav>
 

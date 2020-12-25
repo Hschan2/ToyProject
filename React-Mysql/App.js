@@ -11,7 +11,7 @@ dotenv.config({
 // 데이터 베이스 설정
 const db = require('./model/db');
 
-// Css
+// 자바스크립트, CSS 등 정적 파일 설정
 const publicDirectory = path.join(__dirname, './public');
 app.use(express.static(publicDirectory));
 
@@ -26,7 +26,7 @@ app.use(cookieParser());
 app.set('view engine', 'hbs');
 
 // Mysql 연결
-db.connect((err) => {
+db.start.connect((err) => {
     if(err) console.log(err);
     else console.log("Mysql Connected");
 });
@@ -44,7 +44,7 @@ db.connect((err) => {
 //     res.render("register");
 // });
 
-// Router 사용한 후
+// Router 설정
 app.use('/', require('./routes/pages'));
 app.use('/auth', require('./routes/auth'));
 

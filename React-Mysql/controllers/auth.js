@@ -71,13 +71,67 @@ exports.register = (req, res) => {
             if(error) {
                 console.log(error);
             } else {
-                return res.render('register', {
-                    message: '회원가입 성공'
+                // return res.render('register', {
+                //     message: '회원가입 성공'
+                // });
+
+                db.start.query('SELECT id FROM users WHERE email = ?', [email], (email, result) => {
+                    const id = result[0].id;
+                    const token = jwt.sign({id}, process.env.JWT_SECRET, {
+                        expiresIn: process.env.JWT_EXPIRES_IN
+                    });
+
+                    // httpOnly => 쿠키를 훔쳐가는 행위를 막는 방법
+                    const cookieOptions = {
+                        expires: new Date(
+                            Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 *1000
+                        ),
+                        httpOnly: true
+                    };
+                    res.cookie('jwt', token, cookieOptions);
+                    res.status(201).redirect('/');
                 });
             }
         })
-
     });
 
     // res.send('Form Submitted'); => 응답하는 것. 버튼을 누르면 결과로 실행 (에러가 발생 유무 상관 없이)
-}
+};
+
+// Render Pages
+exports.isLoggedIn = async (req, res, next) => {
+    console.log(req.cookies);
+
+    if(req.cookies.jwt) {
+        try {
+            // Token 확인
+            const decoded = await promisify(jwt.verify)(
+                req.cookies.jwt,
+                process.env.JWT_SECRET
+            );
+
+            // 유저가 여전히 존재하는지 확인
+            db.start.query('SELECT * FROM users WHERE = ?', [decoded.id], (err, result) => {
+                if(!result) return next();
+                
+                // 로그인한 사용자가 있을 때
+                req.user = result[0];
+
+                return next();
+            });
+        } catch(err) {
+            return next();
+        }
+    } else {
+        next();
+    }
+};
+
+// 로그아웃
+exports.logout = (req, res) => {
+    res.cookie('jwt', 'loggedout', {
+        expires: new Date(Date.now() + 10 * 1000),
+        httpOnly: true
+    });
+    res.status(200).redirect('/');
+};
