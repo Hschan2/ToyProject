@@ -1,8 +1,9 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('../model/db');
+const {promisify} = require('util');
 
-exports.login = async (req, res) => {
+exports.login = async (req, res, next) => {
     const { email, password } = req.body;
 
     if(!email || !password) { // email or password 데이터가 없을 때
@@ -33,7 +34,7 @@ exports.login = async (req, res) => {
                     Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
                 ),
                 httpOnly: true
-            }
+            };
 
             res.cookie('jwt', token, cookieOptions);
             res.status(200).redirect("/"); // index.hbs로
@@ -111,7 +112,7 @@ exports.isLoggedIn = async (req, res, next) => {
             );
 
             // 유저가 여전히 존재하는지 확인
-            db.start.query('SELECT * FROM users WHERE = ?', [decoded.id], (err, result) => {
+            db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], (err, result) => {
                 if(!result) return next();
                 
                 // 로그인한 사용자가 있을 때
