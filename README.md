@@ -62,5 +62,5 @@ To Do List (REACT, REACT HOOK)
 React 게시판 (React, Node.js, Mysql, Bootstrap)
     회원가입 (비밀번호 암호화 - bcrypt)
     로그인 (토큰 - jsonwebtoken)
-    Facebook Login ...ing
+    회원수정 및 탈퇴 개발중...
 ```
