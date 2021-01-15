@@ -33,4 +33,10 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
+router.get('/withdrawal', authController.isLoggedIn, (req, res) => {
+    res.render('withdrawal', {
+        user: req.user,
+    });
+});
+
 module.exports = router;

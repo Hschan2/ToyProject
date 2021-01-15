@@ -136,3 +136,48 @@ exports.logout = (req, res) => {
     });
     res.status(200).redirect('/');
 };
+
+exports.withdrawal = async (req, res, next) => {
+    const { email, password } = req.body;
+
+    // 비밀번호 입력 안했을 시
+    if(!password) {
+        return res.status(400).render('withdrawal', {
+            message: '비밀번호를 입력해주세요.'
+        })
+    } else {
+        if(req.cookies.jwt) {
+            try {
+                // Token 확인
+                const decoded = await promisify(jwt.verify)(
+                    req.cookies.jwt,
+                    process.env.JWT_SECRET
+                );
+    
+                db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], async (err, result) => {
+                    if(!result) {
+                        return next();
+                    }
+                    else {
+                        const isMatch = await bcrypt.compare(password, result[0].password);
+
+                        if(!isMatch) {
+                            res.status(401).render('withdrawal', {
+                                message: '비밀번호가 틀립니다.'
+                            })
+                        } else {
+                            db.start.query('DELETE FROM users WHERE id = ?', [result[0].id], (err, result) => {
+                                res.status(200).redirect('/');
+                            });
+                        }
+                    }
+                });
+            } catch(err) {
+                return next();
+            }
+        } else {
+            next();
+        }
+    }
+    
+};
