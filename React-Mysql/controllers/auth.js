@@ -167,6 +167,11 @@ exports.withdrawal = async (req, res, next) => {
                             })
                         } else {
                             db.start.query('DELETE FROM users WHERE id = ?', [result[0].id], (err, result) => {
+                                res.cookie('jwt', 'loggedout', {
+                                    expires: new Date(Date.now() + 10 * 1000),
+                                    httpOnly: true
+                                });
+                                
                                 res.status(200).redirect('/');
                             });
                         }
