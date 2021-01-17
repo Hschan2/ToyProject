@@ -138,7 +138,7 @@ exports.logout = (req, res) => {
 };
 
 exports.withdrawal = async (req, res, next) => {
-    const { email, password } = req.body;
+    const { password } = req.body;
 
     // 비밀번호 입력 안했을 시
     if(!password) {
