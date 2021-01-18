@@ -14,4 +14,7 @@ router.get('/logout', authController.logout);
 // 'auth/Withdrawal'
 router.post('/withdrawal', authController.withdrawal);
 
+// 'auth/update'
+router.post('/update', authController.update);
+
 module.exports = router;

@@ -137,6 +137,44 @@ exports.logout = (req, res) => {
     res.status(200).redirect('/');
 };
 
+exports.update = async (req, res, next) => {
+    const { name, password } = req.body;
+
+    // 비밀번호 입력 안했을 시
+    if(!name || !password) {
+        return res.status(400).render('update', {
+            message: '이름과 비밀번호를 입력해주세요.'
+        })
+    } else {
+        if(req.cookies.jwt) {
+            let hashedPassword = await bcrypt.hash(password, 8);
+
+            try {
+                // Token 확인
+                const decoded = await promisify(jwt.verify)(
+                    req.cookies.jwt,
+                    process.env.JWT_SECRET
+                );
+    
+                db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], async (err, result) => {
+                    if(!result) {
+                        return next();
+                    } else {
+                        db.start.query('UPDATE users SET name = ?, password = ?', [name, hashedPassword], async (err, result) => {
+                            res.status(200).redirect('/profile');
+                        });
+                    }
+                });
+            } catch(err) {
+                return next();
+            }
+        } else {
+            next();
+        }
+    }
+    
+};
+
 exports.withdrawal = async (req, res, next) => {
     const { password } = req.body;
 
@@ -157,8 +195,7 @@ exports.withdrawal = async (req, res, next) => {
                 db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], async (err, result) => {
                     if(!result) {
                         return next();
-                    }
-                    else {
+                    } else {
                         const isMatch = await bcrypt.compare(password, result[0].password);
 
                         if(!isMatch) {

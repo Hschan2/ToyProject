@@ -39,4 +39,10 @@ router.get('/withdrawal', authController.isLoggedIn, (req, res) => {
     });
 });
 
+router.get('/update', authController.isLoggedIn, (req, res) => {
+    res.render('update', {
+        user: req.user,
+    });
+});
+
 module.exports = router;
