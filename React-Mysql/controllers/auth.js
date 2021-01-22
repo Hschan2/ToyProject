@@ -138,12 +138,14 @@ exports.logout = (req, res) => {
 };
 
 exports.update = async (req, res, next) => {
-    const { name, password } = req.body;
+    const { name, email, password } = req.body;
 
     // 비밀번호 입력 안했을 시
     if(!name || !password) {
         return res.status(400).render('update', {
-            message: '이름과 비밀번호를 입력해주세요.'
+            message: '이름과 비밀번호를 입력해주세요.',
+            name: name,
+            email: email,
         })
     } else {
         if(req.cookies.jwt) {
