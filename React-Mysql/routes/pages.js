@@ -1,6 +1,7 @@
 const express = require('express');
 const authController = require('../controllers/auth');
 const router = express.Router();
+const passport = require('passport');
 
 // router.get('/', authController.isLoggedIn, (req, res) => {
 //   console.log("inside");
@@ -44,5 +45,13 @@ router.get('/update', authController.isLoggedIn, (req, res) => {
         user: req.user,
     });
 });
+
+router.get('/auth/facebook', passport.authenticate('facebook', {
+    scope: ['public_profile', 'email']
+}));
+
+router.get('/auth/facebook/callback', passport.authenticate('facebook', {
+    successRedirect: '/',
+}));
 
 module.exports = router;

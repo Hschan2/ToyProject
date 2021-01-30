@@ -2,7 +2,13 @@ const express = require('express');
 const path = require('path');
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const app = express();
+
+// For A oAuth
+const passport = require('passport');
+const FacebookStrategy = require('passport-facebook').Strategy;
+const config = require('./model/oAuth');
 
 dotenv.config({
     path: './.env'
@@ -22,6 +28,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 
+app.use(session({
+    resave: false,
+    saveUninitialized: true,
+    secret: 'SECRET'
+}));
+
 // View 연결 (.hbs Files)
 app.set('view engine', 'hbs');
 
@@ -31,6 +43,26 @@ db.start.connect((err) => {
     else console.log("Mysql Connected");
 });
 
+// oAuth
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(function (user, cb) {
+    cb(null, user);
+});
+
+passport.deserializeUser(function (obj, cb) {
+    cb(null, obj);
+});
+
+passport.use(new FacebookStrategy({
+    clientID: config.facebookAuth.clientID,
+    clientSecret: config.facebookAuth.clientSecret,
+    callbackURL: config.facebookAuth.callbackURL
+    }, function(accessToken, refreshToken, profile, done) {
+        return done(null, profile);
+    }
+));
 
 // Router 사용하기 전
 
