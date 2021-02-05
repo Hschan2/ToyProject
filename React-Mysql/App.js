@@ -8,6 +8,7 @@ const app = express();
 // For A oAuth
 const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const config = require('./model/oAuth');
 
 dotenv.config({
@@ -47,20 +48,93 @@ db.start.connect((err) => {
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser(function (user, cb) {
-    cb(null, user);
+passport.serializeUser((user, done) => {
+    console.log('serializeUser', user);
+    done(null, user.authid);
 });
 
-passport.deserializeUser(function (obj, cb) {
-    cb(null, obj);
+passport.deserializeUser((id, done) => {
+    console.log('deserializeUser', id); // id 불러오는지 확인
+    
+    db.start.query('SELECT * FROM users WHERE authid = ?', [id], (err, results) => {
+        if(err) {
+            console.log(err);
+            done('회원정보가 없습니다.');
+        } else {
+            done(null, results[0]);
+        }
+    });
 });
 
 passport.use(new FacebookStrategy({
     clientID: config.facebookAuth.clientID,
     clientSecret: config.facebookAuth.clientSecret,
-    callbackURL: config.facebookAuth.callbackURL
-    }, function(accessToken, refreshToken, profile, done) {
-        return done(null, profile);
+    callbackURL: config.facebookAuth.callbackURL,
+    profileFields: ['id', 'email', 'name', 'displayName'],
+    }, function (accessToken, refreshToken, profile, done) {
+       console.log(profile);
+
+       const authId = 'facebook' + profile.id;
+
+       db.start.query('SELECT * FROM users WHERE authid = ?', [authId], (err, results) => {
+            if(results.length > 0) {
+                done(null, results[0]);
+            } else {
+                const newUser = {
+                    'authId': authId,
+                    'name': profile.displayName,
+                    'email':profile.emails[0].value,
+                    'password': null,
+                }
+
+                db.start.query('INSERT INTO users SET ?', { authid: newUser.authId, name: newUser.name, email:newUser.email, password: newUser.password }, (err, results) => {
+                    if(err) {
+                        console.log(err);
+                        done('Error');
+                    } else {
+                        done(null, newUser);
+                    }
+                })
+            }
+       });
+    }
+
+    // function(accessToken, refreshToken, profile, done) {
+    //     return done(null, profile);
+    // }
+));
+
+passport.use(new GoogleStrategy({
+    clientID: config.googleAuth.clientID,
+    clientSecret: config.googleAuth.clientSecret,
+    callbackURL: config.googleAuth.callbackURL,
+    passReqToCallback: true,
+    }, function (req, accessToken, refreshToken, profile, done) {
+       console.log(profile);
+
+       const authId = 'google' + profile.id;
+
+       db.start.query('SELECT * FROM users WHERE authid = ?', [authId], (err, results) => {
+            if(results.length > 0) {
+                done(null, results[0]);
+            } else {
+                const newUser = {
+                    'authId': authId,
+                    'name': profile.displayName,
+                    'email':profile.emails[0].value,
+                    'password': null,
+                }
+
+                db.start.query('INSERT INTO users SET ?', { authid: newUser.authId, name: newUser.name, email:newUser.email, password: newUser.password }, (err, results) => {
+                    if(err) {
+                        console.log(err);
+                        done('Error');
+                    } else {
+                        done(null, newUser);
+                    }
+                })
+            }
+       });
     }
 ));
 

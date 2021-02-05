@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('../model/db');
 const {promisify} = require('util');
+const { emit } = require('process');
 
 exports.login = async (req, res, next) => {
     const { email, password } = req.body;
@@ -174,7 +175,6 @@ exports.update = async (req, res, next) => {
             next();
         }
     }
-    
 };
 
 exports.withdrawal = async (req, res, next) => {
@@ -210,7 +210,7 @@ exports.withdrawal = async (req, res, next) => {
                                     expires: new Date(Date.now() + 10 * 1000),
                                     httpOnly: true
                                 });
-                                
+
                                 res.status(200).redirect('/');
                             });
                         }
@@ -223,5 +223,4 @@ exports.withdrawal = async (req, res, next) => {
             next();
         }
     }
-    
 };
