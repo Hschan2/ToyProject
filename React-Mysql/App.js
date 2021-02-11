@@ -9,6 +9,8 @@ const app = express();
 const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const NaverStrategy = require('passport-naver').Strategy;
+const KakaoStrategy = require('passport-kakao').Strategy;
 const config = require('./model/oAuth');
 
 dotenv.config({
@@ -113,6 +115,71 @@ passport.use(new GoogleStrategy({
        console.log(profile);
 
        const authId = 'google' + profile.id;
+
+       db.start.query('SELECT * FROM users WHERE authid = ?', [authId], (err, results) => {
+            if(results.length > 0) {
+                done(null, results[0]);
+            } else {
+                const newUser = {
+                    'authId': authId,
+                    'name': profile.displayName,
+                    'email':profile.emails[0].value,
+                    'password': null,
+                }
+
+                db.start.query('INSERT INTO users SET ?', { authid: newUser.authId, name: newUser.name, email:newUser.email, password: newUser.password }, (err, results) => {
+                    if(err) {
+                        console.log(err);
+                        done('Error');
+                    } else {
+                        done(null, newUser);
+                    }
+                })
+            }
+       });
+    }
+));
+
+passport.use(new NaverStrategy({
+    clientID: config.naverAuth.clientID,
+    clientSecret: config.naverAuth.clientSecret,
+    callbackURL: config.naverAuth.callbackURL,
+    }, function (req, accessToken, refreshToken, profile, done) {
+       console.log(profile);
+
+       const authId = 'naver' + profile.id;
+
+       db.start.query('SELECT * FROM users WHERE authid = ?', [authId], (err, results) => {
+            if(results.length > 0) {
+                done(null, results[0]);
+            } else {
+                const newUser = {
+                    'authId': authId,
+                    'name': profile.displayName,
+                    'email':profile.emails[0].value,
+                    'password': null,
+                }
+
+                db.start.query('INSERT INTO users SET ?', { authid: newUser.authId, name: newUser.name, email:newUser.email, password: newUser.password }, (err, results) => {
+                    if(err) {
+                        console.log(err);
+                        done('Error');
+                    } else {
+                        done(null, newUser);
+                    }
+                })
+            }
+       });
+    }
+));
+
+passport.use(new KakaoStrategy({
+    clientID: config.kakaoAuth.clientID,
+    callbackURL: config.kakaoAuth.callbackURL,
+    }, function (req, accessToken, refreshToken, profile, done) {
+       console.log(profile);
+
+       const authId = 'kakao' + profile.id;
 
        db.start.query('SELECT * FROM users WHERE authid = ?', [authId], (err, results) => {
             if(results.length > 0) {

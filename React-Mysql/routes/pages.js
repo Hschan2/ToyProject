@@ -106,4 +106,52 @@ router.get('/auth/google/callback', passport.authenticate('google', { failureRed
     }
 );
 
+router.get('/auth/naver', passport.authenticate('naver', {
+    scope: ['profile', 'email']
+}));
+
+router.get('/auth/naver/callback', passport.authenticate('naver', { failureRedirect: '/login' }),
+    (req, res) => {
+        const id = req.user.id;
+
+        const token = jwt.sign({id}, process.env.JWT_SECRET, {
+            expiresIn: process.env.JWT_EXPIRES_IN
+        });
+
+        const cookieOptions = {
+            expires: new Date(
+                Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 *1000
+            ),
+            httpOnly: true
+        };
+
+        res.cookie('jwt', token, cookieOptions);
+        res.status(201).redirect('/');
+    }
+);
+
+router.get('/auth/kakao', passport.authenticate('kakao', {
+    scope: ['profile', 'email']
+}));
+
+router.get('/auth/kakao/callback', passport.authenticate('kakao', { failureRedirect: '/login' }),
+    (req, res) => {
+        const id = req.user.id;
+
+        const token = jwt.sign({id}, process.env.JWT_SECRET, {
+            expiresIn: process.env.JWT_EXPIRES_IN
+        });
+
+        const cookieOptions = {
+            expires: new Date(
+                Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 *1000
+            ),
+            httpOnly: true
+        };
+
+        res.cookie('jwt', token, cookieOptions);
+        res.status(201).redirect('/');
+    }
+);
+
 module.exports = router;
