@@ -10,8 +10,8 @@ module.exports = {
         'callbackURL': 'http://localhost:5000/auth/google/callback'
     },
     'naverAuth': {
-        'clientID': 'bcRfOZdMPZx3cyTxaOR_',
-        'clientSecret': '6DSe0N9Wx4',
+        'clientID': 'Gy6q6xauFiXmb805ORRa',
+        'clientSecret': 'rxOP_N8Ioc',
         'callbackURL': 'http://localhost:5000/auth/naver/callback'
     },
     'kakaoAuth': {

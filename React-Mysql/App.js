@@ -52,17 +52,20 @@ app.use(passport.session());
 
 passport.serializeUser((user, done) => {
     console.log('serializeUser', user);
+    console.log('서리얼라이즈유저');
     done(null, user.authid);
 });
 
-passport.deserializeUser((id, done) => {
-    console.log('deserializeUser', id); // id 불러오는지 확인
+passport.deserializeUser((authId, done) => {
+    console.log('deserializeUser', authId); // id 불러오는지 확인
+    console.log('디저리얼라이즈유저');
     
-    db.start.query('SELECT * FROM users WHERE authid = ?', [id], (err, results) => {
+    db.start.query('SELECT * FROM users WHERE authid = ?', [authId], (err, results) => {
         if(err) {
             console.log(err);
             done('회원정보가 없습니다.');
         } else {
+            console.log("회원정보가 있습니다.");
             done(null, results[0]);
         }
     });
@@ -156,7 +159,7 @@ passport.use(new NaverStrategy({
                 const newUser = {
                     'authId': authId,
                     'name': profile.displayName,
-                    'email':profile.emails[0].value,
+                    'email': profile.emails[0].value,
                     'password': null,
                 }
 

@@ -72,6 +72,7 @@ router.get('/auth/facebook/callback', passport.authenticate('facebook', { failur
             httpOnly: true
         };
 
+        console.log('페이스북 로그인');
         res.cookie('jwt', token, cookieOptions);
         res.status(201).redirect('/');
     }
@@ -107,7 +108,7 @@ router.get('/auth/google/callback', passport.authenticate('google', { failureRed
 );
 
 router.get('/auth/naver', passport.authenticate('naver', {
-    scope: ['profile', 'email']
+    scope: ['profile', 'email', 'displayName']
 }));
 
 router.get('/auth/naver/callback', passport.authenticate('naver', { failureRedirect: '/login' }),
