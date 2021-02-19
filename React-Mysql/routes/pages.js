@@ -132,7 +132,7 @@ router.get('/auth/naver/callback', passport.authenticate('naver', { failureRedir
 );
 
 router.get('/auth/kakao', passport.authenticate('kakao', {
-    scope: ['profile', 'email']
+    scope: ['account_email profile', 'gender profile', 'age_range profile', 'birthday profile']
 }));
 
 router.get('/auth/kakao/callback', passport.authenticate('kakao', { failureRedirect: '/login' }),

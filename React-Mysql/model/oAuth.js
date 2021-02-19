@@ -15,7 +15,7 @@ module.exports = {
         'callbackURL': 'http://localhost:5000/auth/naver/callback'
     },
     'kakaoAuth': {
-        'clientID': '8954425c8bc7309aac544f99e2db2ee5',
+        'clientID': 'd55a279d5ed0e2155f1943ec20b61471',
         'callbackURL': 'http://localhost:5000/auth/kakao/callback'
     },
 }

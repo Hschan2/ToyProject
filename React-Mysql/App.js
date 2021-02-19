@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const app = express();
+const bcrypt = require('bcryptjs');
 
 // For A oAuth
 const passport = require('passport');
@@ -56,11 +57,11 @@ passport.serializeUser((user, done) => {
     done(null, user.authid);
 });
 
-passport.deserializeUser((authId, done) => {
-    console.log('deserializeUser', authId); // id 불러오는지 확인
+passport.deserializeUser((authid, done) => {
+    console.log('deserializeUser', authid); // id 불러오는지 확인
     console.log('디저리얼라이즈유저');
     
-    db.start.query('SELECT * FROM users WHERE authid = ?', [authId], (err, results) => {
+    db.start.query('SELECT * FROM users WHERE authid = ?', [authid], (err, results) => {
         if(err) {
             console.log(err);
             done('회원정보가 없습니다.');
@@ -79,20 +80,22 @@ passport.use(new FacebookStrategy({
     }, function (accessToken, refreshToken, profile, done) {
        console.log(profile);
 
-       const authId = 'facebook' + profile.id;
+       const authid = 'facebook' + profile.id;
 
-       db.start.query('SELECT * FROM users WHERE authid = ?', [authId], (err, results) => {
+       db.start.query('SELECT * FROM users WHERE authid = ?', [authid], async (err, results) => {
             if(results.length > 0) {
                 done(null, results[0]);
             } else {
+                let hashedPassword = await bcrypt.hash(authid, 8);
+
                 const newUser = {
-                    'authId': authId,
+                    'authid': authid,
                     'name': profile.displayName,
-                    'email':profile.emails[0].value,
-                    'password': null,
+                    'email': profile.emails[0].value,
+                    'password': hashedPassword,
                 }
 
-                db.start.query('INSERT INTO users SET ?', { authid: newUser.authId, name: newUser.name, email:newUser.email, password: newUser.password }, (err, results) => {
+                db.start.query('INSERT INTO users SET ?', { authid: newUser.authid, name: newUser.name, email:newUser.email, password: newUser.password }, (err, results) => {
                     if(err) {
                         console.log(err);
                         done('Error');
@@ -117,20 +120,22 @@ passport.use(new GoogleStrategy({
     }, function (req, accessToken, refreshToken, profile, done) {
        console.log(profile);
 
-       const authId = 'google' + profile.id;
+       const authid = 'google' + profile.id;
 
-       db.start.query('SELECT * FROM users WHERE authid = ?', [authId], (err, results) => {
+       db.start.query('SELECT * FROM users WHERE authid = ?', [authid], async (err, results) => {
             if(results.length > 0) {
                 done(null, results[0]);
             } else {
+                let hashedPassword = await bcrypt.hash(authid, 8);
+
                 const newUser = {
-                    'authId': authId,
+                    'authid': authid,
                     'name': profile.displayName,
-                    'email':profile.emails[0].value,
-                    'password': null,
+                    'email': profile.emails[0].value,
+                    'password': hashedPassword,
                 }
 
-                db.start.query('INSERT INTO users SET ?', { authid: newUser.authId, name: newUser.name, email:newUser.email, password: newUser.password }, (err, results) => {
+                db.start.query('INSERT INTO users SET ?', { authid: newUser.authid, name: newUser.name, email:newUser.email, password: newUser.password }, (err, results) => {
                     if(err) {
                         console.log(err);
                         done('Error');
@@ -150,20 +155,22 @@ passport.use(new NaverStrategy({
     }, function (req, accessToken, refreshToken, profile, done) {
        console.log(profile);
 
-       const authId = 'naver' + profile.id;
+       const authid = 'naver' + profile.id;
 
-       db.start.query('SELECT * FROM users WHERE authid = ?', [authId], (err, results) => {
+       db.start.query('SELECT * FROM users WHERE authid = ?', [authid], async (err, results) => {
             if(results.length > 0) {
                 done(null, results[0]);
             } else {
+                let hashedPassword = await bcrypt.hash(authid, 8);
+                
                 const newUser = {
-                    'authId': authId,
+                    'authid': authid,
                     'name': profile.displayName,
                     'email': profile.emails[0].value,
-                    'password': null,
+                    'password': hashedPassword,
                 }
 
-                db.start.query('INSERT INTO users SET ?', { authid: newUser.authId, name: newUser.name, email:newUser.email, password: newUser.password }, (err, results) => {
+                db.start.query('INSERT INTO users SET ?', { authid: newUser.authid, name: newUser.name, email:newUser.email, password: newUser.password }, (err, results) => {
                     if(err) {
                         console.log(err);
                         done('Error');
@@ -182,20 +189,22 @@ passport.use(new KakaoStrategy({
     }, function (req, accessToken, refreshToken, profile, done) {
        console.log(profile);
 
-       const authId = 'kakao' + profile.id;
+       const authid = 'kakao' + profile.id;
 
-       db.start.query('SELECT * FROM users WHERE authid = ?', [authId], (err, results) => {
+       db.start.query('SELECT * FROM users WHERE authid = ?', [authid], async (err, results) => {
             if(results.length > 0) {
                 done(null, results[0]);
             } else {
+                let hashedPassword = await bcrypt.hash(authid, 8);
+
                 const newUser = {
-                    'authId': authId,
+                    'authid': authid,
                     'name': profile.displayName,
-                    'email':profile.emails[0].value,
-                    'password': null,
+                    'email': profile._raw.kakao_account.email,
+                    'password': hashedPassword,
                 }
 
-                db.start.query('INSERT INTO users SET ?', { authid: newUser.authId, name: newUser.name, email:newUser.email, password: newUser.password }, (err, results) => {
+                db.start.query('INSERT INTO users SET ?', { authid: newUser.authid, name: newUser.name, email:newUser.email, password: newUser.password }, (err, results) => {
                     if(err) {
                         console.log(err);
                         done('Error');
