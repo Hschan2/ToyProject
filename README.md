@@ -66,6 +66,6 @@ React 게시판 (React, Node.js, Mysql, Bootstrap)
     회원탈퇴
     페이스북 로그인, 데이터 베이스 연동
     구글 로그인, 데이터 베이스 연동
-    네이버 로그인, 데이터 베이스 연동중 (Internal Server Error 수정중)
-    카카오 로그인, 데이터 베이스 연동중
+    네이버 로그인, 데이터 베이스 연동
+    카카오 로그인, 데이터 베이스 연동중 (email value = NULL 문제 해결 중)
 ```
