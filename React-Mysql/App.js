@@ -200,7 +200,7 @@ passport.use(new KakaoStrategy({
                 const newUser = {
                     'authid': authid,
                     'name': profile.displayName,
-                    'email': profile._raw.kakao_account.email,
+                    'email': profile._json.kakao_account.email,
                     'password': hashedPassword,
                 }
 
