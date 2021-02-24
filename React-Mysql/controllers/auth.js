@@ -159,16 +159,20 @@ exports.update = async (req, res, next) => {
                     req.cookies.jwt,
                     process.env.JWT_SECRET
                 );
-    
-                db.start.query('SELECT * FROM users WHERE email = ?', [decoded.id], async (err, result) => {
-                    if(!result) {
-                        return next();
-                    } else {
-                        db.start.query('UPDATE users SET name = ?, password = ? WHERE id = ? ', [name, hashedPassword, decoded.id], async (err, result) => {
-                            res.status(200).redirect('/profile');
-                        });
-                    }
+
+                db.start.query('UPDATE users SET name = ?, password = ? WHERE id = ? ', [name, hashedPassword, decoded.id], async (err, result) => {
+                    res.status(200).redirect('/profile');
                 });
+    
+                // db.start.query('SELECT * FROM users WHERE email = ?', [decoded.id], async (err, result) => {
+                //     if(!result) {
+                //         return next();
+                //     } else {
+                //         db.start.query('UPDATE users SET name = ?, password = ? WHERE id = ? ', [name, hashedPassword, decoded.id], async (err, result) => {
+                //             res.status(200).redirect('/profile');
+                //         });
+                //     }
+                // });
             } catch(err) {
                 return next();
             }
