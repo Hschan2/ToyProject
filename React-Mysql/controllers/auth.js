@@ -160,11 +160,11 @@ exports.update = async (req, res, next) => {
                     process.env.JWT_SECRET
                 );
     
-                db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], async (err, result) => {
+                db.start.query('SELECT * FROM users WHERE email = ?', [decoded.id], async (err, result) => {
                     if(!result) {
                         return next();
                     } else {
-                        db.start.query('UPDATE users SET name = ?, password = ?', [name, hashedPassword], async (err, result) => {
+                        db.start.query('UPDATE users SET name = ?, password = ? WHERE id = ? ', [name, hashedPassword, decoded.id], async (err, result) => {
                             res.status(200).redirect('/profile');
                         });
                     }
