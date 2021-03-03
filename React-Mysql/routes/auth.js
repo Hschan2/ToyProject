@@ -18,6 +18,9 @@ router.post('/withdrawal', authController.withdrawal);
 // 'auth/update'
 router.post('/update', authController.update);
 
+// 'auth/boardList'
+router.post('/boardList', authController.boardList);
+
 // 'auth/facebook'
 // router.post('/facebook', passport.authenticate('facebook', { session: false }), authController.facebook);
 

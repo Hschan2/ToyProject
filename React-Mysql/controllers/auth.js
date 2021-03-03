@@ -229,3 +229,11 @@ exports.withdrawal = async (req, res, next) => {
         }
     }
 };
+
+exports.boardList = async (req, res, next) => {
+    db.start.query('SELECT * FROM board', (error, results) => {
+        req.board = results;
+
+        res.status(201).redirect('/boardList');
+    });
+}

@@ -12,6 +12,7 @@
         <ul>
             <li><a href="/">메인</a></li>
             {{#if user}}
+                <li><a href="/boardList">게시판</a></li>
                 <li><a href="/profile">내 정보</a></li>
                 <li><a href="/auth/logout">로그아웃</a></li>
             {{else}}
@@ -28,7 +29,7 @@
             <hr class="my-4">
             <p>메인화면입니다.</p>
             <p class="lead">
-                <a class="btn btn-primary btn-lg" href="#" role="button">더 보기</a>
+                <a class="btn btn-primary pull-right" href="#" role="button">더 보기</a>
             </p>
         </div>
     </div>
