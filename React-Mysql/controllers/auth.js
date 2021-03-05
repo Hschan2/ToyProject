@@ -240,8 +240,7 @@ exports.boardList = async (req, res, next) => {
 
 exports.boardWrite = async (req, res, next) => {
     const { title, password, content } = req.body;
-    const today = new Date();
-    const now = today.toLocaleString();
+    const date = Date.now()
 
     if(req.cookies.jwt) {
 
@@ -257,7 +256,7 @@ exports.boardWrite = async (req, res, next) => {
                 userId = result[0].id;
                 userName = result[0].name;
 
-                db.start.query('INSERT INTO board SET ?', {userid: userId, name: userName, title: title, content: content, password: password, date: now}, async (err, result) => {
+                db.start.query('INSERT INTO board SET ?', {userid: userId, name: userName, title: title, content: content, password: password}, async (err, result) => {
                     if(err) console.log(err);
                     
                     else res.status(201).redirect('/boardList');
