@@ -21,6 +21,9 @@ router.post('/update', authController.update);
 // 'auth/boardList'
 router.post('/boardList', authController.boardList);
 
+// 'auth/boardList'
+router.post('/boardWrite', authController.boardWrite);
+
 // 'auth/facebook'
 // router.post('/facebook', passport.authenticate('facebook', { session: false }), authController.facebook);
 

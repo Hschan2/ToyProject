@@ -54,6 +54,12 @@ router.get('/boardList', authController.isLoggedIn, (req, res) => {
     });
 });
 
+router.get('/boardWrite', authController.isLoggedIn, (req, res) => {
+    res.render('boardWrite', {
+        user: req.user,
+    });
+});
+
 router.get('/auth/facebook', passport.authenticate('facebook', {
     scope: ['public_profile', 'email']
 }));

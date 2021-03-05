@@ -237,3 +237,34 @@ exports.boardList = async (req, res, next) => {
         res.status(201).redirect('/boardList');
     });
 }
+
+exports.boardWrite = async (req, res, next) => {
+    const { title, password, content } = req.body;
+    const today = new Date();
+    const now = today.toLocaleString();
+
+    if(req.cookies.jwt) {
+
+        try {
+            const decoded = await promisify(jwt.verify)(
+                req.cookies.jwt,
+                process.env.JWT_SECRET
+            );
+
+            db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], async (err, result) => {
+                if(err) console.log(err);
+
+                userId = result[0].id;
+                userName = result[0].name;
+
+                db.start.query('INSERT INTO board SET ?', {userid: userId, name: userName, title: title, content: content, password: password, date: now}, async (err, result) => {
+                    if(err) console.log(err);
+                    
+                    else res.status(201).redirect('/boardList');
+                });
+            });
+        } catch(err) {
+            return next();
+        }
+    }
+}
