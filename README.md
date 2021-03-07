@@ -68,6 +68,7 @@ React 게시판 (React, Node.js, Mysql, Bootstrap)
     구글 로그인, 데이터 베이스 연동
     네이버 로그인, 데이터 베이스 연동
     카카오 로그인, 데이터 베이스 연동
-    serializeUser Error 수정중...
-    게시판 리스트 페이지 생성
+    oAuth 로그인 버튼 두 번 눌러야 하는 오류 해결 중 (serializeUser Error)
+    게시판 리스트 (데이터 베이스에서 불러오기 에러)
+    게시판 글 쓰기
 ```
