@@ -88,3 +88,14 @@ nav li a:hover {
     font-weight: bold;
     color: white;
 }
+
+.readA {
+    text-decoration: none;
+    color: black;
+    transition: 0.5s;
+}
+
+.readA:hover {
+    transition: 0.5s;
+    color: dimgrey;
+}

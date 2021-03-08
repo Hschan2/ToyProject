@@ -112,6 +112,12 @@ exports.isLoggedIn = async (req, res, next) => {
                 process.env.JWT_SECRET
             );
 
+            db.start.query('SELECT * FROM board', (err, result) => {
+                if(!result) return next();
+
+                req.board = result;
+            });
+
             // 유저가 여전히 존재하는지 확인
             db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], (err, result) => {
                 if(!result) return next();
@@ -230,17 +236,8 @@ exports.withdrawal = async (req, res, next) => {
     }
 };
 
-exports.boardList = async (req, res, next) => {
-    db.start.query('SELECT * FROM board', (error, results) => {
-        req.board = results;
-
-        res.status(201).redirect('/boardList');
-    });
-}
-
 exports.boardWrite = async (req, res, next) => {
     const { title, password, content } = req.body;
-    const date = Date.now()
 
     if(req.cookies.jwt) {
 
