@@ -49,6 +49,7 @@ router.get('/update', authController.isLoggedIn, (req, res) => {
 
 router.get('/boardList', authController.boardList, (req, res) => {
     res.render('boardList', {
+        user: req.user,
         board: req.board,
     });
 });

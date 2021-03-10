@@ -232,14 +232,32 @@ exports.withdrawal = async (req, res, next) => {
 
 exports.boardList = async (req, res, next) => {
 
-    db.start.query('SELECT * FROM board', (err, result) => {
-        if(!result) return next();
-        if(err) console.log(err);
+    if(req.cookies.jwt) {
+        try {
+            const decoded = await promisify(jwt.verify)(
+                req.cookies.jwt,
+                process.env.JWT_SECRET
+            );
 
-        req.board = result;
+            db.start.query('SELECT * FROM board', (err, result) => {
+                if(!result) return next();
+        
+                req.board = result;
+            });
 
-        return next();
-    });
+            db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], (err, result) => {
+                if(!result) return next();
+
+                req.user = result[0];
+
+                return next();
+            });
+        } catch(err) {
+            return next();
+        }
+    } else {
+        next();
+    }
 }
 
 exports.boardWrite = async (req, res, next) => {
@@ -273,7 +291,6 @@ exports.boardWrite = async (req, res, next) => {
 
 exports.boardRead = async (req, res, next) => {
     const { id } = req.body;
-    console.log(id);
 
     if(req.cookies.jwt) {
         try {
@@ -284,15 +301,14 @@ exports.boardRead = async (req, res, next) => {
 
             db.start.query('SELECT * FROM board WHERE id = ?', [id], (err, result) => {
                 if(!result) return next();
-                if(err) console.log(err);
-
+        
                 req.board = result[0];
                 console.log(req.board);
-
+        
                 const updateCount = result[0].count + 1;
-
-                db.start.query('UPDATE board SET count = ? WHERE id = ? ', [updateCount, id], async (err, results) => {
-                    if(err) console.log(err);
+        
+                db.start.query('UPDATE board SET count = ? WHERE id = ? ', [updateCount, id], async (err, result) => {
+                    if(!result) return next();
                 });
             });
 
@@ -301,7 +317,7 @@ exports.boardRead = async (req, res, next) => {
 
                 req.user = result[0];
 
-                res.status(201).redirect('/boardRead');
+                return next();
             });
         } catch(err) {
             return next();
