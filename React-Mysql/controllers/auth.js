@@ -112,12 +112,6 @@ exports.isLoggedIn = async (req, res, next) => {
                 process.env.JWT_SECRET
             );
 
-            db.start.query('SELECT * FROM board', (err, result) => {
-                if(!result) return next();
-
-                req.board = result;
-            });
-
             // 유저가 여전히 존재하는지 확인
             db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], (err, result) => {
                 if(!result) return next();
@@ -236,6 +230,18 @@ exports.withdrawal = async (req, res, next) => {
     }
 };
 
+exports.boardList = async (req, res, next) => {
+
+    db.start.query('SELECT * FROM board', (err, result) => {
+        if(!result) return next();
+        if(err) console.log(err);
+
+        req.board = result;
+
+        return next();
+    });
+}
+
 exports.boardWrite = async (req, res, next) => {
     const { title, password, content } = req.body;
 
@@ -262,5 +268,45 @@ exports.boardWrite = async (req, res, next) => {
         } catch(err) {
             return next();
         }
+    }
+}
+
+exports.boardRead = async (req, res, next) => {
+    const { id } = req.body;
+    console.log(id);
+
+    if(req.cookies.jwt) {
+        try {
+            const decoded = await promisify(jwt.verify)(
+                req.cookies.jwt,
+                process.env.JWT_SECRET
+            );
+
+            db.start.query('SELECT * FROM board WHERE id = ?', [id], (err, result) => {
+                if(!result) return next();
+                if(err) console.log(err);
+
+                req.board = result[0];
+                console.log(req.board);
+
+                const updateCount = result[0].count + 1;
+
+                db.start.query('UPDATE board SET count = ? WHERE id = ? ', [updateCount, id], async (err, results) => {
+                    if(err) console.log(err);
+                });
+            });
+
+            db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], (err, result) => {
+                if(!result) return next();
+
+                req.user = result[0];
+
+                res.status(201).redirect('/boardRead');
+            });
+        } catch(err) {
+            return next();
+        }
+    } else {
+        next();
     }
 }

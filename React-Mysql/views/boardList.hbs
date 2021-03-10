@@ -39,7 +39,10 @@
                         {{#each board}}
                             <tr>
                                 <td>{{this.id}}</td>
-                                <td><a href="/boardRead/{{this.id}}" class="readA">{{this.title}}</a></td>
+                                <form action="/auth/boardRead" method="POST">
+                                    <input type="hidden" class="form-control" id="id" name="id" value={{this.id}}>
+                                    <td><button type="submit" class="readA">{{this.title}}</button></td>
+                                </form>
                                 <td>{{this.name}}</td>
                                 <td>{{this.count}}</td>
                             </tr>

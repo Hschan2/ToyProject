@@ -47,9 +47,8 @@ router.get('/update', authController.isLoggedIn, (req, res) => {
     });
 });
 
-router.get('/boardList', authController.isLoggedIn, (req, res) => {
+router.get('/boardList', authController.boardList, (req, res) => {
     res.render('boardList', {
-        user: req.user,
         board: req.board,
     });
 });
@@ -57,6 +56,13 @@ router.get('/boardList', authController.isLoggedIn, (req, res) => {
 router.get('/boardWrite', authController.isLoggedIn, (req, res) => {
     res.render('boardWrite', {
         user: req.user,
+    });
+});
+
+router.get('/boardRead', authController.boardRead, (req, res) => {
+    res.render('boardRead', {
+        user: req.user,
+        board: req.board,
     });
 });
 

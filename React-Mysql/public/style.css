@@ -92,10 +92,21 @@ nav li a:hover {
 .readA {
     text-decoration: none;
     color: black;
-    transition: 0.5s;
+    transition: 0.3s;
+    border: none;
+    background-color: transparent;
+}
+
+.readA:focus {
+    border: none;
+    outline: none;
 }
 
 .readA:hover {
-    transition: 0.5s;
+    transition: 0.3s;
     color: dimgrey;
+}
+
+.content {
+    height: 150px;
 }
