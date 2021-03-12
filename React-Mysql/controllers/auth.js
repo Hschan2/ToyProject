@@ -277,6 +277,8 @@ exports.boardWrite = async (req, res, next) => {
                 userId = result[0].id;
                 userName = result[0].name;
 
+                const now = Date.now();
+
                 db.start.query('INSERT INTO board SET ?', {userid: userId, name: userName, title: title, content: content, password: password}, async (err, result) => {
                     if(err) console.log(err);
                     
@@ -291,6 +293,8 @@ exports.boardWrite = async (req, res, next) => {
 
 exports.boardRead = async (req, res, next) => {
     const { id } = req.body;
+
+    console.log(id);
 
     if(req.cookies.jwt) {
         try {
