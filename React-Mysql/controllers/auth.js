@@ -5,6 +5,7 @@ const {promisify} = require('util');
 const { emit } = require('process');
 
 exports.login = async (req, res, next) => {
+    // form, submit으로 넘겨진 Parameter 값 받기 (req.body)
     const { email, password } = req.body;
 
     if(!email || !password) { // email or password 데이터가 없을 때
@@ -292,9 +293,8 @@ exports.boardWrite = async (req, res, next) => {
 }
 
 exports.boardRead = async (req, res, next) => {
-    const { id } = req.body;
-
-    console.log(id);
+    // a 태그로 Parameter 넘겨진 값 받기 (req.query)
+    let { id } = req.query;
 
     if(req.cookies.jwt) {
         try {
@@ -307,7 +307,6 @@ exports.boardRead = async (req, res, next) => {
                 if(!result) return next();
         
                 req.board = result[0];
-                console.log(req.board);
         
                 const updateCount = result[0].count + 1;
         
