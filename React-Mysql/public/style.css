@@ -110,3 +110,15 @@ nav li a:hover {
 .content {
     height: 150px;
 }
+
+.direction {
+    display: flex;
+}
+
+.readName {
+    width: 60%;
+}
+
+.readDate {
+    width: 40%;
+}

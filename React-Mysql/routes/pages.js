@@ -61,10 +61,10 @@ router.get('/boardWrite', authController.isLoggedIn, (req, res) => {
 });
 
 router.get('/boardRead', authController.boardRead, (req, res) => {
-
     res.render('boardRead', {
         user: req.user,
         board: req.board,
+        id: req.id,
     });
 });
 

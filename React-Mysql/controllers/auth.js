@@ -3,6 +3,8 @@ const bcrypt = require('bcryptjs');
 const db = require('../model/db');
 const {promisify} = require('util');
 const { emit } = require('process');
+const { format } = require('path');
+const moment = require('moment-timezone');
 
 exports.login = async (req, res, next) => {
     // form, submit으로 넘겨진 Parameter 값 받기 (req.body)
@@ -306,8 +308,11 @@ exports.boardRead = async (req, res, next) => {
             db.start.query('SELECT * FROM board WHERE id = ?', [id], (err, result) => {
                 if(!result) return next();
         
+                // result[0].date = result[0].date.toLocaleDateString() + " " + result[0].date.toLocaleTimeString();
+                result[0].date = moment(result[0].date).format("YYYY년 M월 D일 HH시 mm분");
                 req.board = result[0];
-        
+                checkBoard = result[0].userid;
+
                 const updateCount = result[0].count + 1;
         
                 db.start.query('UPDATE board SET count = ? WHERE id = ? ', [updateCount, id], async (err, result) => {
@@ -319,6 +324,10 @@ exports.boardRead = async (req, res, next) => {
                 if(!result) return next();
 
                 req.user = result[0];
+                checkUser = result[0].id;
+
+                if(checkBoard === checkUser) req.id = true;
+                else req.id = false;
 
                 return next();
             });
