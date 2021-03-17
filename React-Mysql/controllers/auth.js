@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('../model/db');
-const {promisify} = require('util');
+const { promisify } = require('util');
 const { emit } = require('process');
 const { format } = require('path');
 const moment = require('moment-timezone');
@@ -233,7 +233,12 @@ exports.withdrawal = async (req, res, next) => {
     }
 };
 
+// boardRead 페이지에서 새로고침할 때, 조회수 증가하는 문제 방지 변수
+let refreshCheck = false;
+
 exports.boardList = async (req, res, next) => {
+    // 조회수 중복 증가 방지, false는 조회수 증가 가능
+    refreshCheck = false;
 
     if(req.cookies.jwt) {
         try {
@@ -313,8 +318,14 @@ exports.boardRead = async (req, res, next) => {
                 req.board = result[0];
                 checkBoard = result[0].userid;
 
-                const updateCount = result[0].count + 1;
-        
+                let updateCount = result[0].count;
+
+                // 조회수 증가
+                if(refreshCheck === false) updateCount = result[0].count + 1;
+                
+                // 조회수 중복 증가 방지, true면 조회수 증가 X
+                refreshCheck = true;
+
                 db.start.query('UPDATE board SET count = ? WHERE id = ? ', [updateCount, id], async (err, result) => {
                     if(!result) return next();
                 });
