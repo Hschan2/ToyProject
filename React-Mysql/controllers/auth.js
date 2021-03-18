@@ -233,6 +233,37 @@ exports.withdrawal = async (req, res, next) => {
     }
 };
 
+exports.boardData = async (req, res, next) => {
+
+
+    if(req.cookies.jwt) {
+        try {
+            const decoded = await promisify(jwt.verify)(
+                req.cookies.jwt,
+                process.env.JWT_SECRET
+            );
+
+            db.start.query('SELECT * FROM board', (err, result) => {
+                if(!result) return next();
+        
+                req.board = result;
+            });
+
+            db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], (err, result) => {
+                if(!result) return next();
+
+                req.user = result[0];
+
+                return next();
+            });
+        } catch(err) {
+            return next();
+        }
+    } else {
+        next();
+    }
+}
+
 // boardRead 페이지에서 새로고침할 때, 조회수 증가하는 문제 방지 변수
 let refreshCheck = false;
 
@@ -379,7 +410,7 @@ exports.boardUpdate = async (req, res, next) => {
                 return next();
             });
 
-            res.status(201).redirect('/boardList');
+            res.status(201).redirect('/boardRead?id=' + id);
         } catch(err) {
             return next();
         }
