@@ -53,13 +53,11 @@ app.use(passport.session());
 
 passport.serializeUser((user, done) => {
     console.log('serializeUser', user);
-    console.log('서리얼라이즈유저');
     done(null, user.authid);
 });
 
 passport.deserializeUser((authid, done) => {
     console.log('deserializeUser', authid); // id 불러오는지 확인
-    console.log('디저리얼라이즈유저');
     
     db.start.query('SELECT * FROM users WHERE authid = ?', [authid], (err, results) => {
         if(err) {

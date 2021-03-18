@@ -27,6 +27,9 @@ router.post('/boardWrite', authController.boardWrite);
 // 'auth/boardRead'
 router.post('/boardRead', authController.boardRead);
 
+// 'auth/boardUpdate'
+router.post('/boardUpdate', authController.boardUpdate);
+
 // 'auth/facebook'
 // router.post('/facebook', passport.authenticate('facebook', { session: false }), authController.facebook);
 

@@ -285,8 +285,6 @@ exports.boardWrite = async (req, res, next) => {
                 userId = result[0].id;
                 userName = result[0].name;
 
-                const now = Date.now();
-
                 db.start.query('INSERT INTO board SET ?', {userid: userId, name: userName, title: title, content: content, password: password}, async (err, result) => {
                     if(err) console.log(err);
                     
@@ -337,11 +335,51 @@ exports.boardRead = async (req, res, next) => {
                 req.user = result[0];
                 checkUser = result[0].id;
 
-                if(checkBoard === checkUser) req.id = true;
-                else req.id = false;
+                if(checkBoard === checkUser) req.userid = true;
+                else req.userid = false;
 
                 return next();
             });
+        } catch(err) {
+            return next();
+        }
+    } else {
+        next();
+    }
+}
+
+exports.boardUpdate = async (req, res, next) => {
+    const { id, title, content } = req.body;
+    console.log(id, title, content);
+
+    if(req.cookies.jwt) {
+        try {
+            const decoded = await promisify(jwt.verify)(
+                req.cookies.jwt,
+                process.env.JWT_SECRET
+            );
+
+            db.start.query('SELECT * FROM board WHERE id = ?', [id], (err, result) => {
+                if(!result) return next();
+
+                let dateUpdate = new Date();
+                dateUpdate = moment(dateUpdate).format("YYYY-MM-DD HH:mm:ss");
+
+                db.start.query('UPDATE board SET title = ?, content = ?, date = ? WHERE id = ? ', [title, content, dateUpdate, id], async (err, result) => {
+                    if(!result) return next();
+
+                });
+            });
+
+            db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], (err, result) => {
+                if(!result) return next();
+
+                req.user = result[0];
+
+                return next();
+            });
+
+            res.status(201).redirect('/boardList');
         } catch(err) {
             return next();
         }

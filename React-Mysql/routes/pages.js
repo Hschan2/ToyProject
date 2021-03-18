@@ -64,7 +64,14 @@ router.get('/boardRead', authController.boardRead, (req, res) => {
     res.render('boardRead', {
         user: req.user,
         board: req.board,
-        id: req.id,
+        userid: req.userid,
+    });
+});
+
+router.get('/boardUpdate', authController.boardRead, (req, res) => {
+    res.render('boardUpdate', {
+        user: req.user,
+        board: req.board,
     });
 });
 
