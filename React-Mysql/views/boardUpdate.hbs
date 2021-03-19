@@ -29,7 +29,8 @@
             <hr class="my-4">
             <form action="/auth/boardUpdate" method="POST">
                 <input type="hidden" class="form-control mb-2" name="id" value={{board.id}}>
-                <input type="text" class="form-control mb-2" name="title" value={{board.title}}>
+                {{!-- value="{{board.title}}"로 한 이유 - ""를 빼면 글자가 잘려서 출력 --}}
+                <input type="text" class="form-control mb-2" name="title" value="{{board.title}}">
                 <div class="form-group">
                     <textarea class="form-control" rows="10" name="content" spellcheck="false" style="ime-mode: active;" placeholder="내용을 입력해주세요" required>{{board.content}}</textarea>
                 </div>
