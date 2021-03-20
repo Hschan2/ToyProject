@@ -6,6 +6,15 @@
     <link rel="shortcut icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Samsung_Internet_logo.svg/1024px-Samsung_Internet_logo.svg.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="/style.css">
+    <script>
+        function delete_Check(boardId) {
+            if(confirm("정말로 삭제하시겠습니까?") == true) {
+                alert(boardId);
+            } else {
+                return;
+            }
+        }
+    </script>
     <title>{{board.title}}</title>
 </head>
 <body>
@@ -37,7 +46,7 @@
             </div>
             {{#if userid}}
                 <a href="/boardUpdate?id={{board.id}}" class="btn btn-secondary mb-3">글 수정</a>
-                <a href="/boardDelete?id={{board.id}}" class="btn btn-secondary mb-3">글 삭제</a>
+                <button class="btn btn-secondary mb-3" onclick="delete_Check({{board.id}});">글 삭제</button>
             {{/if}}
         </div>
     </div>
