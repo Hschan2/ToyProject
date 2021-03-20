@@ -233,43 +233,11 @@ exports.withdrawal = async (req, res, next) => {
     }
 };
 
-exports.boardData = async (req, res, next) => {
-
-
-    if(req.cookies.jwt) {
-        try {
-            const decoded = await promisify(jwt.verify)(
-                req.cookies.jwt,
-                process.env.JWT_SECRET
-            );
-
-            db.start.query('SELECT * FROM board', (err, result) => {
-                if(!result) return next();
-        
-                req.board = result;
-            });
-
-            db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], (err, result) => {
-                if(!result) return next();
-
-                req.user = result[0];
-
-                return next();
-            });
-        } catch(err) {
-            return next();
-        }
-    } else {
-        next();
-    }
-}
-
 // boardRead 페이지에서 새로고침할 때, 조회수 증가하는 문제 방지 변수
 let refreshCheck = false;
 
-exports.boardList = async (req, res, next) => {
-    // 조회수 중복 증가 방지, false는 조회수 증가 가능
-    refreshCheck = false;
+exports.boardData = async (req, res, next) => {
+    const { id } = req.query;
 
     if(req.cookies.jwt) {
         try {
@@ -278,16 +246,48 @@ exports.boardList = async (req, res, next) => {
                 process.env.JWT_SECRET
             );
 
-            db.start.query('SELECT * FROM board', (err, result) => {
-                if(!result) return next();
-        
-                req.board = result;
-            });
+            if(!id) {
+                refreshCheck = false;
+
+                db.start.query('SELECT * FROM board', (err, result) => {
+                    if(!result) return next();
+            
+                    req.board = result;
+                });
+            } else {
+                db.start.query('SELECT * FROM board WHERE id = ?', [id], (err, result) => {
+                    if(!result) return next();
+            
+                    // result[0].date = result[0].date.toLocaleDateString() + " " + result[0].date.toLocaleTimeString();
+                    result[0].date = moment(result[0].date).format("YYYY년 M월 D일 HH시 mm분");
+                    req.board = result[0];
+                    checkBoard = result[0].userid;
+    
+                    let updateCount = result[0].count;
+    
+                    // 조회수 증가
+                    if(refreshCheck === false) updateCount = result[0].count + 1;
+                    
+                    // 조회수 중복 증가 방지, true면 조회수 증가 X
+                    refreshCheck = true;
+    
+                    db.start.query('UPDATE board SET count = ? WHERE id = ? ', [updateCount, id], async (err, result) => {
+                        if(!result) return next();
+                    });
+                });
+            }
 
             db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], (err, result) => {
                 if(!result) return next();
 
                 req.user = result[0];
+
+                if(id) {
+                    checkUser = result[0].id;
+
+                    if(checkBoard === checkUser) req.userid = true;
+                    else req.userid = false;
+                }
 
                 return next();
             });
@@ -298,12 +298,43 @@ exports.boardList = async (req, res, next) => {
         next();
     }
 }
+
+// exports.boardList = async (req, res, next) => {
+//     // 조회수 중복 증가 방지, false는 조회수 증가 가능
+//     refreshCheck = false;
+
+//     if(req.cookies.jwt) {
+//         try {
+//             const decoded = await promisify(jwt.verify)(
+//                 req.cookies.jwt,
+//                 process.env.JWT_SECRET
+//             );
+
+//             db.start.query('SELECT * FROM board', (err, result) => {
+//                 if(!result) return next();
+        
+//                 req.board = result;
+//             });
+
+//             db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], (err, result) => {
+//                 if(!result) return next();
+
+//                 req.user = result[0];
+
+//                 return next();
+//             });
+//         } catch(err) {
+//             return next();
+//         }
+//     } else {
+//         next();
+//     }
+// }
 
 exports.boardWrite = async (req, res, next) => {
     const { title, password, content } = req.body;
 
     if(req.cookies.jwt) {
-
         try {
             const decoded = await promisify(jwt.verify)(
                 req.cookies.jwt,
@@ -328,93 +359,68 @@ exports.boardWrite = async (req, res, next) => {
     }
 }
 
-exports.boardRead = async (req, res, next) => {
-    // a 태그로 Parameter 넘겨진 값 받기 (req.query)
-    let { id } = req.query;
+// exports.boardRead = async (req, res, next) => {
+//     // a 태그로 Parameter 넘겨진 값 받기 (req.query)
+//     let { id } = req.query;
 
-    if(req.cookies.jwt) {
-        try {
-            const decoded = await promisify(jwt.verify)(
-                req.cookies.jwt,
-                process.env.JWT_SECRET
-            );
+//     if(req.cookies.jwt) {
+//         try {
+//             const decoded = await promisify(jwt.verify)(
+//                 req.cookies.jwt,
+//                 process.env.JWT_SECRET
+//             );
 
-            db.start.query('SELECT * FROM board WHERE id = ?', [id], (err, result) => {
-                if(!result) return next();
+//             db.start.query('SELECT * FROM board WHERE id = ?', [id], (err, result) => {
+//                 if(!result) return next();
         
-                // result[0].date = result[0].date.toLocaleDateString() + " " + result[0].date.toLocaleTimeString();
-                result[0].date = moment(result[0].date).format("YYYY년 M월 D일 HH시 mm분");
-                req.board = result[0];
-                checkBoard = result[0].userid;
+//                 // result[0].date = result[0].date.toLocaleDateString() + " " + result[0].date.toLocaleTimeString();
+//                 result[0].date = moment(result[0].date).format("YYYY년 M월 D일 HH시 mm분");
+//                 req.board = result[0];
+//                 checkBoard = result[0].userid;
 
-                let updateCount = result[0].count;
+//                 let updateCount = result[0].count;
 
-                // 조회수 증가
-                if(refreshCheck === false) updateCount = result[0].count + 1;
+//                 // 조회수 증가
+//                 if(refreshCheck === false) updateCount = result[0].count + 1;
                 
-                // 조회수 중복 증가 방지, true면 조회수 증가 X
-                refreshCheck = true;
+//                 // 조회수 중복 증가 방지, true면 조회수 증가 X
+//                 refreshCheck = true;
 
-                db.start.query('UPDATE board SET count = ? WHERE id = ? ', [updateCount, id], async (err, result) => {
-                    if(!result) return next();
-                });
-            });
+//                 db.start.query('UPDATE board SET count = ? WHERE id = ? ', [updateCount, id], async (err, result) => {
+//                     if(!result) return next();
+//                 });
+//             });
 
-            db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], (err, result) => {
-                if(!result) return next();
+//             db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], (err, result) => {
+//                 if(!result) return next();
 
-                req.user = result[0];
-                checkUser = result[0].id;
+//                 req.user = result[0];
+//                 checkUser = result[0].id;
 
-                if(checkBoard === checkUser) req.userid = true;
-                else req.userid = false;
+//                 if(checkBoard === checkUser) req.userid = true;
+//                 else req.userid = false;
 
-                return next();
-            });
-        } catch(err) {
-            return next();
-        }
-    } else {
-        next();
-    }
+//                 return next();
+//             });
+//         } catch(err) {
+//             return next();
+//         }
+//     } else {
+//         next();
+//     }
+// }
+
+exports.boardUpdate = async (req, res) => {
+    const { id, title, content } = req.body;
+
+    let dateUpdate = new Date();
+    dateUpdate = moment(dateUpdate).format("YYYY-MM-DD HH:mm:ss");
+
+    db.start.query('UPDATE board SET title = ?, content = ?, date = ? WHERE id = ? ', [title, content, dateUpdate, id], async (err, result) => {
+        res.status(201).redirect('/boardRead?id=' + id);
+    });
 }
 
-exports.boardUpdate = async (req, res, next) => {
-    const { id, title, content } = req.body;
-    console.log(id, title, content);
+exports.boardDelete = async (req, res) => {
 
-    if(req.cookies.jwt) {
-        try {
-            const decoded = await promisify(jwt.verify)(
-                req.cookies.jwt,
-                process.env.JWT_SECRET
-            );
-
-            db.start.query('SELECT * FROM board WHERE id = ?', [id], (err, result) => {
-                if(!result) return next();
-
-                let dateUpdate = new Date();
-                dateUpdate = moment(dateUpdate).format("YYYY-MM-DD HH:mm:ss");
-
-                db.start.query('UPDATE board SET title = ?, content = ?, date = ? WHERE id = ? ', [title, content, dateUpdate, id], async (err, result) => {
-                    if(!result) return next();
-
-                });
-            });
-
-            db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], (err, result) => {
-                if(!result) return next();
-
-                req.user = result[0];
-
-                return next();
-            });
-
-            res.status(201).redirect('/boardRead?id=' + id);
-        } catch(err) {
-            return next();
-        }
-    } else {
-        next();
-    }
 }

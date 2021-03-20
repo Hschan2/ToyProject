@@ -47,20 +47,20 @@ router.get('/update', authController.isLoggedIn, (req, res) => {
     });
 });
 
-router.get('/boardList', authController.boardList, (req, res) => {
+router.get('/boardList', authController.boardData, (req, res) => {
     res.render('boardList', {
         user: req.user,
         board: req.board,
     });
 });
 
-router.get('/boardWrite', authController.isLoggedIn, (req, res) => {
+router.get('/boardWrite', authController.boardData, (req, res) => {
     res.render('boardWrite', {
         user: req.user,
     });
 });
 
-router.get('/boardRead', authController.boardRead, (req, res) => {
+router.get('/boardRead', authController.boardData, (req, res) => {
     res.render('boardRead', {
         user: req.user,
         board: req.board,
@@ -68,7 +68,7 @@ router.get('/boardRead', authController.boardRead, (req, res) => {
     });
 });
 
-router.get('/boardUpdate', authController.boardRead, (req, res) => {
+router.get('/boardUpdate', authController.boardData, (req, res) => {
     res.render('boardUpdate', {
         user: req.user,
         board: req.board,
