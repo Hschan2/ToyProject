@@ -9,7 +9,19 @@
     <script>
         function delete_Check(boardId) {
             if(confirm("정말로 삭제하시겠습니까?") == true) {
-                alert(boardId);
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '/auth/boardDelete';
+
+                const hiddenValue = document.createElement('input');
+                hiddenValue.type = 'hidden';
+                hiddenValue.name = 'id';
+                hiddenValue.value = boardId;
+
+                form.appendChild(hiddenValue);
+
+                document.body.appendChild(form);
+                form.submit();
             } else {
                 return;
             }

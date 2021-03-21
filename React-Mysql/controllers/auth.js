@@ -164,7 +164,7 @@ exports.update = async (req, res, next) => {
                 );
 
                 db.start.query('UPDATE users SET name = ?, password = ? WHERE id = ? ', [name, hashedPassword, decoded.id], async (err, result) => {
-                    res.status(200).redirect('/profile');
+                    res.status(201).redirect('/profile');
                 });
     
                 // db.start.query('SELECT * FROM users WHERE email = ?', [decoded.id], async (err, result) => {
@@ -219,7 +219,7 @@ exports.withdrawal = async (req, res, next) => {
                                     httpOnly: true
                                 });
 
-                                res.status(200).redirect('/');
+                                res.status(201).redirect('/');
                             });
                         }
                     }
@@ -422,5 +422,11 @@ exports.boardUpdate = async (req, res) => {
 }
 
 exports.boardDelete = async (req, res) => {
+    const { id } = req.body;
 
+    db.start.query('DELETE FROM board WHERE id = ?', [id], async (err, result) => {
+        if(err) console.log(err);
+
+        res.status(201).redirect('/boardList');
+    });
 }
