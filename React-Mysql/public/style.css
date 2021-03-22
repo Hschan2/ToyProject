@@ -122,3 +122,7 @@ nav li a:hover {
 .readDate {
     width: 40%;
 }
+
+.korean {
+    -ms-ime-mode: active;
+}

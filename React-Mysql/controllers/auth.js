@@ -2,8 +2,6 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('../model/db');
 const { promisify } = require('util');
-const { emit } = require('process');
-const { format } = require('path');
 const moment = require('moment-timezone');
 
 exports.login = async (req, res, next) => {
