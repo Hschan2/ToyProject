@@ -19,6 +19,15 @@
                 else self.name = '';
             }
         }
+
+        const now_URL = document.URL;
+        const check_Url = new URL(now_URL);
+        let check_param = check_Url.searchParams.get("check");
+        
+        if(check_param === "true") {
+            alert("글 삭제가 완료되었습니다.");
+            window.location.href = '/boardList/';
+        }
     </script>
     <title>게시판</title>
 </head>
@@ -66,8 +75,12 @@
                     {{/if}}
                 </tbody>
             </table>
-            <div>
-                <a class="btn btn-primary" href="/boardWrite">글쓰기</a>
+            <div class="listButtons">
+                <a class="btn btn-primary left listHeight" href="/boardWrite">글쓰기</a>
+                <form action="/auth/boardSearch" method="POST" class="left">
+                    <input type="text" class="form-control shortBox left" name="search" required>
+                    <button type="submit" class="btn btn-primary listHeight">검색</button>
+                </form>
             </div>
         </div>
     </div>

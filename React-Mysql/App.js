@@ -62,10 +62,13 @@ passport.deserializeUser((authid, done) => {
     db.start.query('SELECT * FROM users WHERE authid = ?', [authid], (err, results) => {
         if(err) {
             console.log(err);
-            done('회원정보가 없습니다.');
+            return done(err, false);
         } else {
-            console.log("회원정보가 있습니다.");
-            done(null, results[0]);
+            if(!results[0]) {
+                return done(err, results[0]);
+            } else {
+                return done(null, results[0]);
+            }
         }
     });
 });

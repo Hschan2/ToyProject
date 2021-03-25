@@ -425,6 +425,6 @@ exports.boardDelete = async (req, res) => {
     db.start.query('DELETE FROM board WHERE id = ?', [id], async (err, result) => {
         if(err) console.log(err);
 
-        res.status(201).redirect('/boardList');
+        res.status(201).redirect('/boardList?check=true');
     });
 }

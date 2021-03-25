@@ -124,5 +124,28 @@ nav li a:hover {
 }
 
 .korean {
+    ime-mode: active;
     -ms-ime-mode: active;
+}
+
+.listButtons {
+    margin-top: -5px;
+    width: 100%;
+}
+
+.shortBox {
+    width: 200px;
+    margin-left: 15px;
+}
+
+.searchBox {
+    display: inline-block;
+}
+
+.left {
+    display: inline-block;
+}
+
+.listHeight {
+    margin-top: -3px;
 }
