@@ -50,7 +50,8 @@ router.get('/update', authController.isLoggedIn, (req, res) => {
 router.get('/boardList', authController.boardData, (req, res) => {
     res.render('boardList', {
         user: req.user,
-        board: req.board,
+        board: req.boards,
+        search: req.search,
     });
 });
 

@@ -33,6 +33,9 @@ router.post('/boardUpdate', authController.boardUpdate);
 // 'auth/boardDelete'
 router.post('/boardDelete', authController.boardDelete);
 
+// 'auth/boardSearch'
+router.post('/boardSearch', authController.boardSearch);
+
 // 'auth/facebook'
 // router.post('/facebook', passport.authenticate('facebook', { session: false }), authController.facebook);
 

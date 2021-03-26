@@ -59,19 +59,36 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{#if board}}
-                        {{#each board}}
+                    {{#if searchSuccess}}
+                        {{#if search}}
+                            {{#each search}}
+                                <tr>
+                                    <td>{{this.id}}</td>
+                                    <td><a href="/boardRead?id={{this.id}}" class="readA">{{this.title}}</a></td>
+                                    <td>{{this.name}}</td>
+                                    <td>{{this.count}}</td>
+                                </tr>
+                            {{/each}}
+                        {{else}}
                             <tr>
-                                <td>{{this.id}}</td>
-                                <td><a href="/boardRead?id={{this.id}}" class="readA">{{this.title}}</a></td>
-                                <td>{{this.name}}</td>
-                                <td>{{this.count}}</td>
+                                <td colspan="4">게시글이 없습니다.</td>
                             </tr>
-                        {{/each}}
+                        {{/if}}
                     {{else}}
-                        <tr>
-                            <td colspan="4">게시글이 없습니다.</td>
-                        </tr>
+                        {{#if board}}
+                            {{#each board}}
+                                <tr>
+                                    <td>{{this.id}}</td>
+                                    <td><a href="/boardRead?id={{this.id}}" class="readA">{{this.title}}</a></td>
+                                    <td>{{this.name}}</td>
+                                    <td>{{this.count}}</td>
+                                </tr>
+                            {{/each}}
+                        {{else}}
+                            <tr>
+                                <td colspan="4">게시글이 없습니다.</td>
+                            </tr>
+                        {{/if}}
                     {{/if}}
                 </tbody>
             </table>

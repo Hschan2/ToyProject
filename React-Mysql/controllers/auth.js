@@ -247,10 +247,10 @@ exports.boardData = async (req, res, next) => {
             if(!id) {
                 refreshCheck = false;
 
-                db.start.query('SELECT * FROM board', (err, result) => {
+                db.start.query('SELECT * FROM board ORDER BY date DESC', (err, result) => {
                     if(!result) return next();
             
-                    req.board = result;
+                    req.boards = result;
                 });
             } else {
                 db.start.query('SELECT * FROM board WHERE id = ?', [id], (err, result) => {
@@ -426,5 +426,17 @@ exports.boardDelete = async (req, res) => {
         if(err) console.log(err);
 
         res.status(201).redirect('/boardList?check=true');
+    });
+}
+
+exports.boardSearch = async (req, res) => {
+    const { search } = req.body;
+
+    db.start.query("SELECT * FROM board WHERE title LIKE '%" + '?' + "%'ORDER BY date DESC", [search], (err, result) => {
+        if(err) console.log(err);
+
+        req.search = result;
+
+        res.status(201).redirect('/boardList');
     });
 }
