@@ -86,4 +86,6 @@ React 게시판 (React, Node.js, Mysql, Bootstrap)
         - Confirm으로 삭제 확인
         - 글 삭제 후, Alert으로 삭제 확인
         - 데이터 베이스에서 완전 삭제로 작성
+    6. 글 검색
+        - POST 에러 수정중...
 ```
