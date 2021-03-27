@@ -6,29 +6,6 @@
     <link rel="shortcut icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Samsung_Internet_logo.svg/1024px-Samsung_Internet_logo.svg.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="/style.css">
-    <script>
-        window.onpageshow = function(event) {
-            if(event.persisted || (window.performance && window.performance.navigation.type == 2)) {
-                self.name = '';
-                
-                if (self.name != 'reload') {
-                    self.name = 'reload';
-                    self.location.reload(true);
-                    self.name = '';
-                }
-                else self.name = '';
-            }
-        }
-
-        const now_URL = document.URL;
-        const check_Url = new URL(now_URL);
-        let check_param = check_Url.searchParams.get("check");
-        
-        if(check_param === "true") {
-            alert("글 삭제가 완료되었습니다.");
-            window.location.href = '/boardList/';
-        }
-    </script>
     <title>게시판</title>
 </head>
 <body>
@@ -60,8 +37,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{#if board}}
-                        {{#each board}}
+                    {{#if search}}
+                        {{#each search}}
                             <tr>
                                 <td>{{this.id}}</td>
                                 <td><a href="/boardRead?id={{this.id}}" class="readA">{{this.title}}</a></td>

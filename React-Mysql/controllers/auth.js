@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const db = require('../model/db');
 const { promisify } = require('util');
 const moment = require('moment-timezone');
+const { connect } = require('http2');
 
 exports.login = async (req, res, next) => {
     // form, submit으로 넘겨진 Parameter 값 받기 (req.body)
@@ -429,14 +430,33 @@ exports.boardDelete = async (req, res) => {
     });
 }
 
-exports.boardSearch = async (req, res) => {
+exports.boardSearch = async (req, res, next) => {
     const { search } = req.body;
 
-    db.start.query("SELECT * FROM board WHERE title LIKE '%" + '?' + "%'ORDER BY date DESC", [search], (err, result) => {
-        if(err) console.log(err);
+    if(req.cookies.jwt) {
+        try {
+            const decoded = await promisify(jwt.verify)(
+                req.cookies.jwt,
+                process.env.JWT_SECRET
+            );
 
-        req.search = result;
+            db.start.query('SELECT * FROM board WHERE title LIKE ? ORDER BY date DESC', ['%'+search+'%'], (err, result) => {
+                if(!result) return next();
+        
+                req.searchResult = result;
+            });
 
-        res.status(201).redirect('/boardList');
-    });
+            db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], (err, result) => {
+                if(!result) return next();
+
+                req.user = result[0];
+
+                return next();
+            });
+        } catch(err) {
+            return next();
+        }
+    } else {
+        next();
+    }
 }

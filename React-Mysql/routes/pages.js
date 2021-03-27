@@ -51,7 +51,6 @@ router.get('/boardList', authController.boardData, (req, res) => {
     res.render('boardList', {
         user: req.user,
         board: req.boards,
-        search: req.search,
     });
 });
 
@@ -73,6 +72,13 @@ router.get('/boardUpdate', authController.boardData, (req, res) => {
     res.render('boardUpdate', {
         user: req.user,
         board: req.board,
+    });
+});
+
+router.get('/boardSearch', authController.boardSearch, (req, res) => {
+    res.render('boardSearch', {
+        user: req.user,
+        search: req.searchResult,
     });
 });
 
