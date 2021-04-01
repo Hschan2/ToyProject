@@ -126,6 +126,7 @@ nav li a:hover {
 .korean {
     ime-mode: active;
     -ms-ime-mode: active;
+    resize: none;
 }
 
 .listButtons {

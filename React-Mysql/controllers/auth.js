@@ -480,3 +480,13 @@ exports.boardDelete = async (req, res) => {
         res.status(201).redirect('/boardList?check=true');
     });
 }
+
+exports.boardComment = async (req, res) => {
+    const { boardId, userId, userName, comment  } = req.body;
+
+    db.start.query('INSERT INTO comment SET ?', {boardid: boardId, userid: userId, name: userName, comment: comment}, async (err, result) => {
+        if(err) console.log(err);
+
+        res.status(201).redirect('/boardRead?id=' + boardId);
+    });
+}

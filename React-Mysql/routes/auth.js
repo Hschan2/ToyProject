@@ -37,4 +37,8 @@ router.post('/boardDelete', authController.boardDelete);
 // 'auth/boardData'
 router.post('/boardData', authController.boardData);
 
+// For Comment
+// 'auth/boardComment'
+router.post('/boardComment', authController.boardComment);
+
 module.exports = router;
