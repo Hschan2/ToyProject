@@ -26,6 +26,7 @@
             <div class="card-body">
                 <form action="/auth/update" method="POST">
                     <div class="form-group">
+                        <input type="hidden" name="authid" value="{{user.authid}}">
                         <label for="name">이름</label>
                         {{#if name}}
                             <input type="text" class="form-control" id="name" name="name" value="{{name}}" required>
