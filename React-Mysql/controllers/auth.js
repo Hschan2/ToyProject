@@ -142,7 +142,7 @@ exports.logout = (req, res) => {
 };
 
 exports.update = async (req, res, next) => {
-    const { name, email, password } = req.body;
+    const { authid, name, email, password } = req.body;
 
     // 비밀번호 입력 안했을 시
     if(!name || !password) {
@@ -156,25 +156,34 @@ exports.update = async (req, res, next) => {
             let hashedPassword = await bcrypt.hash(password, 8);
 
             try {
-                // Token 확인
                 const decoded = await promisify(jwt.verify)(
                     req.cookies.jwt,
                     process.env.JWT_SECRET
                 );
 
-                db.start.query('UPDATE users SET name = ?, password = ? WHERE id = ? ', [name, hashedPassword, decoded.id], async (err, result) => {
-                    res.status(201).redirect('/profile');
+                db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], async (err, result) => {
+                    if(!result) return next();
+        
+                    const isMatch = await bcrypt.compare(password, result[0].password);
+        
+                    if(authid) {
+                        db.start.query('UPDATE users SET name = ?, password = ? WHERE id = ?', [name, hashedPassword, decoded.id], async (err, result) => {
+                            res.status(201).redirect('/profile');
+                        });
+                    } else {
+                        if(isMatch) {
+                            res.status(400).render('update', {
+                                message: '이전 비밀번호와 같습니다.',
+                                name: name,
+                                email: email,
+                            })
+                        } else {
+                            db.start.query('UPDATE users SET name = ?, password = ? WHERE id = ?', [name, hashedPassword, decoded.id], async (err, result) => {
+                                res.status(201).redirect('/profile');
+                            });
+                        }
+                    }
                 });
-    
-                // db.start.query('SELECT * FROM users WHERE email = ?', [decoded.id], async (err, result) => {
-                //     if(!result) {
-                //         return next();
-                //     } else {
-                //         db.start.query('UPDATE users SET name = ?, password = ? WHERE id = ? ', [name, hashedPassword, decoded.id], async (err, result) => {
-                //             res.status(200).redirect('/profile');
-                //         });
-                //     }
-                // });
             } catch(err) {
                 return next();
             }
@@ -185,9 +194,8 @@ exports.update = async (req, res, next) => {
 };
 
 exports.withdrawal = async (req, res, next) => {
-    const { password } = req.body;
+    const { id, password } = req.body;
 
-    // 비밀번호 입력 안했을 시
     if(!password) {
         return res.status(400).render('withdrawal', {
             message: '비밀번호를 입력해주세요.'
@@ -195,34 +203,32 @@ exports.withdrawal = async (req, res, next) => {
     } else {
         if(req.cookies.jwt) {
             try {
-                // Token 확인
                 const decoded = await promisify(jwt.verify)(
                     req.cookies.jwt,
                     process.env.JWT_SECRET
                 );
-    
+
                 db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], async (err, result) => {
-                    if(!result) {
-                        return next();
+                    if(!result) return next();
+        
+                    const isMatch = await bcrypt.compare(password, result[0].password);
+        
+                    if(!isMatch) {
+                        res.status(401).render('withdrawal', {
+                            message: '비밀번호가 틀립니다.'
+                        })
                     } else {
-                        const isMatch = await bcrypt.compare(password, result[0].password);
-
-                        if(!isMatch) {
-                            res.status(401).render('withdrawal', {
-                                message: '비밀번호가 틀립니다.'
-                            })
-                        } else {
-                            db.start.query('DELETE FROM users WHERE id = ?', [result[0].id], (err, result) => {
-                                res.cookie('jwt', 'loggedout', {
-                                    expires: new Date(Date.now() + 10 * 1000),
-                                    httpOnly: true
-                                });
-
-                                res.status(201).redirect('/');
+                        db.start.query('DELETE FROM users WHERE id = ?', [result[0].id], (err, result) => {
+                            res.cookie('jwt', 'loggedout', {
+                                expires: new Date(Date.now() + 10 * 1000),
+                                httpOnly: true
                             });
-                        }
+        
+                            res.status(201).redirect('/');
+                        });
                     }
                 });
+
             } catch(err) {
                 return next();
             }
@@ -265,8 +271,20 @@ exports.boardData = async (req, res, next) => {
                     // 조회수 중복 증가 방지, true면 조회수 증가 X
                     refreshCheck = true;
     
-                    db.start.query('UPDATE board SET count = ? WHERE id = ? ', [updateCount, id], async (err, result) => {
+                    db.start.query('UPDATE board SET count = ? WHERE id = ?', [updateCount, id], async (err, result) => {
                         if(!result) return next();
+                    });
+
+                    boardId = result[0].id;
+                    boardUserId = result[0].userid;
+                    req.commentCheck = false;
+
+                    db.start.query('SELECT * FROM comment WHERE boardid = ?', [boardId], async (err, result) => {
+                        if(!result) return next();
+
+                        req.comment = result;
+
+                        console.log(req.comment);
                     });
                 });
             }
@@ -295,38 +313,6 @@ exports.boardData = async (req, res, next) => {
                 });
             }
 
-            // if(!id) {
-            //     refreshCheck = false;
-
-            //     db.start.query('SELECT * FROM board ORDER BY date DESC', (err, result) => {
-            //         if(!result) return next();
-            
-            //         req.boards = result;
-            //     });
-            // } else {
-            //     db.start.query('SELECT * FROM board WHERE id = ?', [id], (err, result) => {
-            //         if(!result) return next();
-            
-            //         // result[0].date = result[0].date.toLocaleDateString() + " " + result[0].date.toLocaleTimeString();
-            //         // 게시글 읽기 때, 가져올 DATE 값 format
-            //         result[0].date = moment(result[0].date).format("YYYY년 M월 D일 HH시 mm분");
-            //         req.board = result[0];
-            //         checkBoard = result[0].userid;
-    
-            //         let updateCount = result[0].count;
-    
-            //         // 조회수 증가
-            //         if(refreshCheck === false) updateCount = result[0].count + 1;
-                    
-            //         // 조회수 중복 증가 방지, true면 조회수 증가 X
-            //         refreshCheck = true;
-    
-            //         db.start.query('UPDATE board SET count = ? WHERE id = ? ', [updateCount, id], async (err, result) => {
-            //             if(!result) return next();
-            //         });
-            //     });
-            // }
-
             db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], (err, result) => {
                 if(!result) return next();
 
@@ -348,38 +334,6 @@ exports.boardData = async (req, res, next) => {
         next();
     }
 }
-
-// exports.boardList = async (req, res, next) => {
-//     // 조회수 중복 증가 방지, false는 조회수 증가 가능
-//     refreshCheck = false;
-
-//     if(req.cookies.jwt) {
-//         try {
-//             const decoded = await promisify(jwt.verify)(
-//                 req.cookies.jwt,
-//                 process.env.JWT_SECRET
-//             );
-
-//             db.start.query('SELECT * FROM board', (err, result) => {
-//                 if(!result) return next();
-        
-//                 req.board = result;
-//             });
-
-//             db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], (err, result) => {
-//                 if(!result) return next();
-
-//                 req.user = result[0];
-
-//                 return next();
-//             });
-//         } catch(err) {
-//             return next();
-//         }
-//     } else {
-//         next();
-//     }
-// }
 
 exports.boardWrite = async (req, res, next) => {
     const { title, password, content } = req.body;
@@ -409,64 +363,13 @@ exports.boardWrite = async (req, res, next) => {
     }
 }
 
-// exports.boardRead = async (req, res, next) => {
-//     // a 태그로 Parameter 넘겨진 값 받기 (req.query)
-//     let { id } = req.query;
-
-//     if(req.cookies.jwt) {
-//         try {
-//             const decoded = await promisify(jwt.verify)(
-//                 req.cookies.jwt,
-//                 process.env.JWT_SECRET
-//             );
-
-//             db.start.query('SELECT * FROM board WHERE id = ?', [id], (err, result) => {
-//                 if(!result) return next();
-        
-//                 // result[0].date = result[0].date.toLocaleDateString() + " " + result[0].date.toLocaleTimeString();
-//                 result[0].date = moment(result[0].date).format("YYYY년 M월 D일 HH시 mm분");
-//                 req.board = result[0];
-//                 checkBoard = result[0].userid;
-
-//                 let updateCount = result[0].count;
-
-//                 // 조회수 증가
-//                 if(refreshCheck === false) updateCount = result[0].count + 1;
-                
-//                 // 조회수 중복 증가 방지, true면 조회수 증가 X
-//                 refreshCheck = true;
-
-//                 db.start.query('UPDATE board SET count = ? WHERE id = ? ', [updateCount, id], async (err, result) => {
-//                     if(!result) return next();
-//                 });
-//             });
-
-//             db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], (err, result) => {
-//                 if(!result) return next();
-
-//                 req.user = result[0];
-//                 checkUser = result[0].id;
-
-//                 if(checkBoard === checkUser) req.userid = true;
-//                 else req.userid = false;
-
-//                 return next();
-//             });
-//         } catch(err) {
-//             return next();
-//         }
-//     } else {
-//         next();
-//     }
-// }
-
 exports.boardUpdate = async (req, res) => {
     const { id, title, content } = req.body;
 
     let dateUpdate = new Date();
     dateUpdate = moment(dateUpdate).format("YYYY-MM-DD HH:mm:ss");
 
-    db.start.query('UPDATE board SET title = ?, content = ?, date = ? WHERE id = ? ', [title, content, dateUpdate, id], async (err, result) => {
+    db.start.query('UPDATE board SET title = ?, content = ?, date = ? WHERE id = ?', [title, content, dateUpdate, id], async (err, result) => {
         res.status(201).redirect('/boardRead?id=' + id);
     });
 }
