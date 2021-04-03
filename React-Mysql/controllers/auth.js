@@ -194,46 +194,56 @@ exports.update = async (req, res, next) => {
 };
 
 exports.withdrawal = async (req, res, next) => {
-    const { id, password } = req.body;
+    const { authid, password } = req.body;
 
-    if(!password) {
-        return res.status(400).render('withdrawal', {
-            message: '비밀번호를 입력해주세요.'
-        })
+    if(authid) {
+        db.start.query('DELETE FROM users WHERE authid = ?', [authid], (err, result) => {
+            res.cookie('jwt', 'loggedout', {
+                expires: new Date(Date.now() + 10 * 1000),
+                httpOnly: true
+            });
+
+            res.status(201).redirect('/');
+        });
     } else {
-        if(req.cookies.jwt) {
-            try {
-                const decoded = await promisify(jwt.verify)(
-                    req.cookies.jwt,
-                    process.env.JWT_SECRET
-                );
-
-                db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], async (err, result) => {
-                    if(!result) return next();
-        
-                    const isMatch = await bcrypt.compare(password, result[0].password);
-        
-                    if(!isMatch) {
-                        res.status(401).render('withdrawal', {
-                            message: '비밀번호가 틀립니다.'
-                        })
-                    } else {
-                        db.start.query('DELETE FROM users WHERE id = ?', [result[0].id], (err, result) => {
-                            res.cookie('jwt', 'loggedout', {
-                                expires: new Date(Date.now() + 10 * 1000),
-                                httpOnly: true
-                            });
-        
-                            res.status(201).redirect('/');
-                        });
-                    }
-                });
-
-            } catch(err) {
-                return next();
-            }
+        if(!password) {
+            return res.status(400).render('withdrawal', {
+                message: '비밀번호를 입력해주세요.'
+            })
         } else {
-            next();
+            if(req.cookies.jwt) {
+                try {
+                    const decoded = await promisify(jwt.verify)(
+                        req.cookies.jwt,
+                        process.env.JWT_SECRET
+                    );
+    
+                    db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], async (err, result) => {
+                        if(!result) return next();
+            
+                        const isMatch = await bcrypt.compare(password, result[0].password);
+            
+                        if(!isMatch) {
+                            res.status(401).render('withdrawal', {
+                                message: '비밀번호가 틀립니다.'
+                            })
+                        } else {
+                            db.start.query('DELETE FROM users WHERE id = ?', [result[0].id], (err, result) => {
+                                res.cookie('jwt', 'loggedout', {
+                                    expires: new Date(Date.now() + 10 * 1000),
+                                    httpOnly: true
+                                });
+            
+                                res.status(201).redirect('/');
+                            });
+                        }
+                    });
+                } catch(err) {
+                    return next();
+                }
+            } else {
+                next();
+            }
         }
     }
 };
