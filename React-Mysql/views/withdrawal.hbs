@@ -21,15 +21,25 @@
     <div class="container mt-4">
         <div class="card">
             <div class="card-header">
-                비밀번호 확인
+                {{#if user.authid}}
+                    회원 탈퇴 확인
+                {{else}}
+                    비밀번호 확인
+                {{/if}}
             </div>
             <div class="card-body">
                 <form action="/auth/withdrawal" method="POST">
-
-                    <div class="form-group">
-                        <label for="password">비밀번호</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
-                    </div>
+                    {{#if user.authid}}
+                        <div class="form-group">
+                            <label for="Check" style="margin-bottom: 10px;">정말로 탈퇴하시겠습니까?</label>
+                            <input type="hidden" name="authid" value="{{user.authid}}">
+                        </div>
+                    {{else}}
+                        <div class="form-group">
+                            <label for="password">비밀번호</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
+                        </div>
+                    {{/if}}
 
                     <button type="submit" class="btn btn-primary">회원탈퇴</button>
                 </form>
