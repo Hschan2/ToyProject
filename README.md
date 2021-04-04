@@ -62,8 +62,8 @@ To Do List (REACT, REACT HOOK)
 React 게시판 (React, Node.js, Mysql, Bootstrap)
     회원가입 (비밀번호 암호화 - bcrypt)
     로그인 (토큰 - jsonwebtoken)
-    회원수정
-    회원탈퇴
+    회원수정 (일반 회원, oAuth 회원마다 다르게)
+    회원탈퇴 (일반 회원, oAuth 회원마다 다르게)
     페이스북 로그인, 데이터 베이스 연동
     구글 로그인, 데이터 베이스 연동
     네이버 로그인, 데이터 베이스 연동
