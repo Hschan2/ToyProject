@@ -3,8 +3,8 @@ const bcrypt = require('bcryptjs');
 const db = require('../model/db');
 const { promisify } = require('util');
 const moment = require('moment-timezone');
-const { connect } = require('http2');
 
+/* 회원 로그인 */
 exports.login = async (req, res, next) => {
     // form, submit으로 넘겨진 Parameter 값 받기 (req.body)
     const { email, password } = req.body;
@@ -45,15 +45,10 @@ exports.login = async (req, res, next) => {
     });
 };
 
+/* 회원 가입 */
 exports.register = (req, res) => {
     console.log(req.body);
 
-    // const name = req.body.name;
-    // const email = req.body.email;
-    // const password = req.body.password;
-    // const passwordConfirm = req.body.passwordConfirm;
-
-    // 위를 간단하게
     const { name, email, password, passwordConfirm } = req.body;
 
     db.start.query('SELECT email FROM users WHERE email = ?', [email], async (error, results) => {
@@ -75,10 +70,6 @@ exports.register = (req, res) => {
             if(error) {
                 console.log(error);
             } else {
-                // return res.render('register', {
-                //     message: '회원가입 성공'
-                // });
-
                 db.start.query('SELECT id FROM users WHERE email = ?', [email], (email, result) => {
                     const id = result[0].id;
                     const token = jwt.sign({id}, process.env.JWT_SECRET, {
@@ -102,7 +93,7 @@ exports.register = (req, res) => {
     // res.send('Form Submitted'); => 응답하는 것. 버튼을 누르면 결과로 실행 (에러가 발생 유무 상관 없이)
 };
 
-// Render Pages
+/* 회원 로그인 유지 */
 exports.isLoggedIn = async (req, res, next) => {
     console.log(req.cookies);
 
@@ -131,7 +122,7 @@ exports.isLoggedIn = async (req, res, next) => {
     }
 };
 
-// 로그아웃
+/* 회원 로그아웃 */
 exports.logout = (req, res) => {
     res.cookie('jwt', 'loggedout', {
         expires: new Date(Date.now() + 10 * 1000),
@@ -141,6 +132,7 @@ exports.logout = (req, res) => {
     res.status(200).redirect('/');
 };
 
+/* 회원 수정 */
 exports.update = async (req, res, next) => {
     const { authid, name, email, password } = req.body;
 
@@ -193,6 +185,7 @@ exports.update = async (req, res, next) => {
     }
 };
 
+/* 회원 탈퇴 */
 exports.withdrawal = async (req, res, next) => {
     const { authid, password } = req.body;
 
@@ -248,7 +241,8 @@ exports.withdrawal = async (req, res, next) => {
     }
 };
 
-// boardRead 페이지에서 새로고침할 때, 조회수 증가하는 문제 방지 변수
+/* 게시글 목록, 읽기, 검색 => 리팩토링 필수 */
+/* 게시물 읽기 페이지에서 새로고침할 때, 조회수 증가하는 문제 방지 변수 */
 let refreshCheck = false;
 
 exports.boardData = async (req, res, next) => {
@@ -264,44 +258,43 @@ exports.boardData = async (req, res, next) => {
 
             // id 값이 있을 경우
             if(id) {
-                db.start.query('SELECT * FROM board WHERE id = ?', [id], (err, result) => {
+                db.start.query('SELECT * FROM board WHERE id = ?', [id], async (err, result) => {
                     if(!result) return next();
             
-                    // result[0].date = result[0].date.toLocaleDateString() + " " + result[0].date.toLocaleTimeString();
                     // 게시글 읽기 때, 가져올 DATE 값 format
                     result[0].date = moment(result[0].date).format("YYYY년 M월 D일 HH시 mm분");
+                    // 해당 게시글 가져오기
                     req.board = result[0];
+                    // 해당 게시글의 유저 아이디
                     checkBoard = result[0].userid;
-    
-                    let updateCount = result[0].count;
+                    // 조회수 체크 변수
+                    updateCount = result[0].count;
     
                     // 조회수 증가
                     if(refreshCheck === false) updateCount = result[0].count + 1;
                     
                     // 조회수 중복 증가 방지, true면 조회수 증가 X
                     refreshCheck = true;
-    
-                    db.start.query('UPDATE board SET count = ? WHERE id = ?', [updateCount, id], async (err, result) => {
-                        if(!result) return next();
-                    });
 
-                    boardId = result[0].id;
-                    boardUserId = result[0].userid;
-                    req.commentCheck = false;
-
-                    db.start.query('SELECT * FROM comment WHERE boardid = ?', [boardId], async (err, result) => {
+                    db.start.query('SELECT * FROM comment WHERE boardid = ?', [id], async (err, result) => {
                         if(!result) return next();
 
                         req.comment = result;
+                        req.commentCount = result.length;
 
                         console.log(req.comment);
+                        console.log(req.commentCount);
+                    });
+
+                    db.start.query('UPDATE board SET count = ? WHERE id = ?', [updateCount, id], async (err, result) => {
+                        if(!result) return next();
                     });
                 });
             }
 
             // search 값이 있을 경우
             if(search) {
-                db.start.query('SELECT * FROM board WHERE title LIKE ? ORDER BY date DESC', ['%'+search+'%'], (err, result) => {
+                db.start.query('SELECT * FROM board WHERE title LIKE ? ORDER BY date DESC', ['%'+search+'%'], async (err, result) => {
                     if(err) console.log(err);
                     if(!result) return next();
 
@@ -316,14 +309,14 @@ exports.boardData = async (req, res, next) => {
             if(!id && !search) {
                 refreshCheck = false;
 
-                db.start.query('SELECT * FROM board ORDER BY date DESC', (err, result) => {
+                db.start.query('SELECT * FROM board ORDER BY date DESC', async (err, result) => {
                     if(!result) return next();
             
                     req.boards = result;
                 });
             }
 
-            db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], (err, result) => {
+            db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], async (err, result) => {
                 if(!result) return next();
 
                 req.user = result[0];
@@ -345,6 +338,7 @@ exports.boardData = async (req, res, next) => {
     }
 }
 
+/* 게시글 작성 */
 exports.boardWrite = async (req, res, next) => {
     const { title, password, content } = req.body;
 
@@ -373,6 +367,7 @@ exports.boardWrite = async (req, res, next) => {
     }
 }
 
+/* 게시글 수정 */
 exports.boardUpdate = async (req, res) => {
     const { id, title, content } = req.body;
 
@@ -384,6 +379,7 @@ exports.boardUpdate = async (req, res) => {
     });
 }
 
+/* 게시글 삭제 */
 exports.boardDelete = async (req, res) => {
     const { id } = req.body;
 
@@ -394,6 +390,7 @@ exports.boardDelete = async (req, res) => {
     });
 }
 
+/* 게시글 댓글 */
 exports.boardComment = async (req, res) => {
     const { boardId, userId, userName, comment  } = req.body;
 
