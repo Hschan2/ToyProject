@@ -70,3 +70,7 @@
 
 ## 구글 확장 프로그램 [Link](https://hschan2.github.io/ToyProject/GoogleExtendProgram/index.html)
 * 검색으로 네이버 웹툰으로 이동하기, 1단계 작업   
+
+## Lotto (2017)
+* 로또 번호 뽑기
+* 로또 번호마다 몇 번 뽑혔는지 체크 기능 만들 것
