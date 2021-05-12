@@ -47,11 +47,10 @@ router.get('/update', authController.isLoggedIn, (req, res) => {
     });
 });
 
-router.get('/boardList', authController.boardData, (req, res) => {
+router.get('/boardList', authController.boardList, (req, res) => {
     res.render('boardList', {
         user: req.user,
         board: req.boards,
-        search: req.search,
     });
 });
 

@@ -4,12 +4,15 @@ const db = require('../model/db');
 const { promisify } = require('util');
 const moment = require('moment-timezone');
 
+/* 클린 코드: 짧은 코드 X, 하나의 한 개의 기능 O, 쉽게 알아볼 수 있게 O */
+
 /* 회원 로그인 */
 exports.login = async (req, res, next) => {
-    // form, submit으로 넘겨진 Parameter 값 받기 (req.body)
+    /* form, submit으로 넘겨진 Parameter 값 받기 (req.body) */
     const { email, password } = req.body;
 
-    if(!email || !password) { // email or password 데이터가 없을 때
+    /* email or password 데이터가 없을 때 */
+    if(!email || !password) {
         return res.status(400).render('login', {
             message: '이메일과 비밀번호를 입력해주세요.'
         })
@@ -25,7 +28,7 @@ exports.login = async (req, res, next) => {
         } else {
             const id = results[0].id;
 
-            // 쿠키와 세션 대신 토큰 기반 인증 방식
+            /* 쿠키와 세션 대신 토큰 기반 인증 방식 */
             const token = jwt.sign({ id }, process.env.JWT_SECRET, {
                 expiresIn: process.env.JWT_EXPIRES_IN
             });
@@ -54,11 +57,12 @@ exports.register = (req, res) => {
     db.start.query('SELECT email FROM users WHERE email = ?', [email], async (error, results) => {
         if(error) console.log(error);
 
-        if(results.length > 0) { // 이메일이 이미 존재할 때
+        /* 이메일이 이미 존재할 때 */
+        if(results.length > 0) {
             return res.render('register', {
                 message: '이미 사용한 이메일입니다.'
             });
-        } else if(password != passwordConfirm) { // 패스워드와 확인 패스워드가 다를 때
+        } else if(password != passwordConfirm) { /* 패스워드와 확인 패스워드가 다를 때 */
             return res.render('register', {
                 message: '패스워드가 같지 않습니다.'
             });
@@ -76,7 +80,7 @@ exports.register = (req, res) => {
                         expiresIn: process.env.JWT_EXPIRES_IN
                     });
 
-                    // httpOnly => 쿠키를 훔쳐가는 행위를 막는 방법
+                    /* httpOnly => 쿠키를 훔쳐가는 행위를 막는 방법 */
                     const cookieOptions = {
                         expires: new Date(
                             Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 *1000
@@ -90,7 +94,8 @@ exports.register = (req, res) => {
         })
     });
 
-    // res.send('Form Submitted'); => 응답하는 것. 버튼을 누르면 결과로 실행 (에러가 발생 유무 상관 없이)
+    /* 응답하는 것. 버튼을 누르면 결과로 실행 (에러가 발생 유무 상관 없이) */
+    // res.send('Form Submitted');
 };
 
 /* 회원 로그인 유지 */
@@ -99,17 +104,17 @@ exports.isLoggedIn = async (req, res, next) => {
 
     if(req.cookies.jwt) {
         try {
-            // Token 확인
+            /* Token 확인 */
             const decoded = await promisify(jwt.verify)(
                 req.cookies.jwt,
                 process.env.JWT_SECRET
             );
 
-            // 유저가 여전히 존재하는지 확인
+            /* 유저가 여전히 존재하는지 확인 */
             db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], (err, result) => {
                 if(!result) return next();
                 
-                // 로그인한 사용자가 있을 때
+                /* 로그인한 사용자가 있을 때 */
                 req.user = result[0];
 
                 return next();
@@ -241,10 +246,11 @@ exports.withdrawal = async (req, res, next) => {
     }
 };
 
-/* 게시글 목록, 읽기, 검색 => 리팩토링 필수 */
-/* 게시물 읽기 페이지에서 새로고침할 때, 조회수 증가하는 문제 방지 변수 */
+/* 읽기 페이지에서 새로고침 시, 조회수 중복 방지 변수 */
 let refreshCheck = false;
 
+/* 게시글 목록, 읽기, 검색 => 리팩토링 필수 */
+/* 게시물 읽기 페이지에서 새로고침할 때, 조회수 증가하는 문제 방지 변수 */
 exports.boardData = async (req, res, next) => {
     const { id } = req.query;
     const { search } = req.body;
@@ -256,24 +262,24 @@ exports.boardData = async (req, res, next) => {
                 process.env.JWT_SECRET
             );
 
-            // id 값이 있을 경우
+            /* 게시판 id가 있을 경우, 게시물들 불러오기 */
             if(id) {
                 db.start.query('SELECT * FROM board WHERE id = ?', [id], async (err, result) => {
                     if(!result) return next();
             
-                    // 게시글 읽기 때, 가져올 DATE 값 format
+                    /* 게시글 읽기 때, 가져올 DATE 값 format */
                     result[0].date = moment(result[0].date).format("YYYY년 M월 D일 HH시 mm분");
-                    // 해당 게시글 가져오기
+                    /* 해당 게시글 가져오기 */
                     req.board = result[0];
-                    // 해당 게시글의 유저 아이디
+                    /* 해당 게시글의 유저 아이디 */
                     checkBoard = result[0].userid;
-                    // 조회수 체크 변수
+                    /* 조회수 체크 변수 */
                     updateCount = result[0].count;
     
-                    // 조회수 증가
+                    /* 조회수 증가 */
                     if(refreshCheck === false) updateCount = result[0].count + 1;
                     
-                    // 조회수 중복 증가 방지, true면 조회수 증가 X
+                    /* 조회수 중복 증가 방지, true면 조회수 증가 X */
                     refreshCheck = true;
 
                     db.start.query('SELECT * FROM comment WHERE boardid = ?', [id], async (err, result) => {
@@ -292,7 +298,7 @@ exports.boardData = async (req, res, next) => {
                 });
             }
 
-            // search 값이 있을 경우
+            /* search 값이 있을 경우 */
             if(search) {
                 db.start.query('SELECT * FROM board WHERE title LIKE ? ORDER BY date DESC', ['%'+search+'%'], async (err, result) => {
                     if(err) console.log(err);
@@ -305,7 +311,7 @@ exports.boardData = async (req, res, next) => {
                 });
             }
 
-            // id값과 search 값이 둘 다 없을 경우
+            /* id값과 search 값이 둘 다 없을 경우 */
             if(!id && !search) {
                 refreshCheck = false;
 
@@ -336,6 +342,41 @@ exports.boardData = async (req, res, next) => {
     } else {
         next();
     }
+}
+
+/* 게시글 목록 */
+exports.boardList = async (req, res, next) => {
+    if(req.cookies.jwt) {
+        try {
+            const decoded = await promisify(jwt.verify)(
+                req.cookies.jwt,
+                process.env.JWT_SECRET
+            );
+
+            db.start.query('SELECT * FROM board ORDER BY date DESC', async (err, result) => {
+                if(!result) return next();
+            
+                req.boards = result;
+            });
+            
+            db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], async (err, result) => {
+                if(!result) return next();
+
+                req.user = result[0];
+
+                return next();
+            });
+        } catch(err) {
+            return next();
+        }
+    } else {
+        next();
+    }
+}
+
+/* 게시글 읽기 */
+exports.boardRead = async (req, res, next) => {
+
 }
 
 /* 게시글 작성 */
@@ -388,6 +429,11 @@ exports.boardDelete = async (req, res) => {
 
         res.status(201).redirect('/boardList?check=true');
     });
+}
+
+/* 게시글 검색 */
+exports.boardSearch = async (req, res, next) => {
+
 }
 
 /* 게시글 댓글 */
