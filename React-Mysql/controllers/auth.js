@@ -246,9 +246,6 @@ exports.withdrawal = async (req, res, next) => {
     }
 };
 
-/* 읽기 페이지에서 새로고침 시, 조회수 중복 방지 변수 */
-let refreshCheck = false;
-
 /* 게시글 목록, 읽기, 검색 => 리팩토링 필수 */
 /* 게시물 읽기 페이지에서 새로고침할 때, 조회수 증가하는 문제 방지 변수 */
 exports.boardData = async (req, res, next) => {
@@ -374,9 +371,72 @@ exports.boardList = async (req, res, next) => {
     }
 }
 
+/* 읽기 페이지에서 새로고침 시, 조회수 중복 방지 변수 */
+let refreshCheck = false;
+
 /* 게시글 읽기 */
 exports.boardRead = async (req, res, next) => {
+    const { id } = req.query;
 
+    if(req.cookies.jwt) {
+        try {
+            const decoded = await promisify(jwt.verify)(
+                req.cookies.jwt,
+                process.env.JWT_SECRET
+            );
+
+            db.start.query('SELECT * FROM board WHERE id = ?', [id], async (err, result) => {
+                if(!result) return next();
+            
+                /* 게시글 읽기 때, 가져올 DATE 값 format */
+                result[0].date = moment(result[0].date).format("YYYY년 M월 D일 HH시 mm분");
+                /* 해당 게시글 가져오기 */
+                req.board = result[0];
+                /* 해당 게시글의 유저 아이디 */
+                checkBoard = result[0].userid;
+                /* 조회수 체크 변수 */
+                updateCount = result[0].count;
+    
+                /* 조회수 증가 */
+                if(refreshCheck === false) updateCount = result[0].count + 1;
+                    
+                /* 조회수 중복 증가 방지, true면 조회수 증가 X */
+                refreshCheck = true;
+
+                db.start.query('UPDATE board SET count = ? WHERE id = ?', [updateCount, id], async (err, result) => {
+                        if(!result) return next();
+                });
+            });
+
+            db.start.query('SELECT * FROM comment WHERE boardid = ?', [id], async (err, result) => {
+                if(!result) return next();
+
+                req.comment = result;
+                req.commentCount = result.length;
+
+                console.log(req.comment);
+            });
+
+            db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], async (err, result) => {
+                if(!result) return next();
+
+                req.user = result[0];
+
+                if(id) {
+                    checkUser = result[0].id;
+
+                    if(checkBoard === checkUser) req.userid = true;
+                    else req.userid = false;
+                }
+
+                return next();
+            });
+        } catch(err) {
+            return next();
+        }
+    } else {
+        next();
+    }
 }
 
 /* 게시글 작성 */

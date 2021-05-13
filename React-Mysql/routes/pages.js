@@ -60,7 +60,7 @@ router.get('/boardWrite', authController.boardData, (req, res) => {
     });
 });
 
-router.get('/boardRead', authController.boardData, (req, res) => {
+router.get('/boardRead', authController.boardRead, (req, res) => {
     res.render('boardRead', {
         user: req.user,
         board: req.board,
