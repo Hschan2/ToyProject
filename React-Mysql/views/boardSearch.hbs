@@ -62,8 +62,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{#if board}}
-                        {{#each board}}
+                    {{#if search}}
+                        {{#each search}}
                             <tr>
                                 <td>{{this.id}}</td>
                                 <td><a href="/boardRead?id={{this.id}}" class="readA">{{this.title}}</a></td>
@@ -80,7 +80,7 @@
             </table>
             <div class="listButtons">
                 <a class="btn btn-primary left listHeight" href="/boardWrite">글쓰기</a>
-                <form action="/auth/boardSearch" method="POST" class="left">
+                <form action="/auth/boardData" method="POST" class="left">
                     <input type="text" class="form-control shortBox left" name="search" required>
                     <button type="submit" class="btn btn-primary listHeight">검색</button>
                 </form>

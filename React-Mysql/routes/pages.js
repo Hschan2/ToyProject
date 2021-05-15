@@ -77,6 +77,13 @@ router.get('/boardUpdate', authController.boardData, (req, res) => {
     });
 });
 
+router.get('/boardSearch', authController.boardSearch, (req, res) => {
+    res.render('boardSearch', {
+        user: req.user,
+        search: req.search,
+    });
+});
+
 router.get('/auth/facebook', passport.authenticate('facebook', {
     scope: ['public_profile', 'email']
 }));

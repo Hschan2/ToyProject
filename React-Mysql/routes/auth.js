@@ -33,12 +33,14 @@ router.post('/boardUpdate', authController.boardUpdate);
 // 'auth/boardDelete'
 router.post('/boardDelete', authController.boardDelete);
 
-// For search
 // 'auth/boardData'
 router.post('/boardData', authController.boardData);
 
 // For Comment
 // 'auth/boardComment'
 router.post('/boardComment', authController.boardComment);
+
+// 'auth/boardSearch'
+router.post('/boardSearch', authController.boardSearch);
 
 module.exports = router;

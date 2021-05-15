@@ -246,11 +246,9 @@ exports.withdrawal = async (req, res, next) => {
     }
 };
 
-/* 게시글 목록, 읽기, 검색 => 리팩토링 필수 */
-/* 게시물 읽기 페이지에서 새로고침할 때, 조회수 증가하는 문제 방지 변수 */
+/* Board, User 값 불러오기 */
 exports.boardData = async (req, res, next) => {
     const { id } = req.query;
-    const { search } = req.body;
 
     if(req.cookies.jwt) {
         try {
@@ -259,77 +257,16 @@ exports.boardData = async (req, res, next) => {
                 process.env.JWT_SECRET
             );
 
-            /* 게시판 id가 있을 경우, 게시물들 불러오기 */
-            if(id) {
-                db.start.query('SELECT * FROM board WHERE id = ?', [id], async (err, result) => {
-                    if(!result) return next();
+            db.start.query('SELECT * FROM board WHERE id = ?', [id], async (err, result) => {
+                if(!result) return next();
             
-                    /* 게시글 읽기 때, 가져올 DATE 값 format */
-                    result[0].date = moment(result[0].date).format("YYYY년 M월 D일 HH시 mm분");
-                    /* 해당 게시글 가져오기 */
-                    req.board = result[0];
-                    /* 해당 게시글의 유저 아이디 */
-                    checkBoard = result[0].userid;
-                    /* 조회수 체크 변수 */
-                    updateCount = result[0].count;
-    
-                    /* 조회수 증가 */
-                    if(refreshCheck === false) updateCount = result[0].count + 1;
-                    
-                    /* 조회수 중복 증가 방지, true면 조회수 증가 X */
-                    refreshCheck = true;
-
-                    db.start.query('SELECT * FROM comment WHERE boardid = ?', [id], async (err, result) => {
-                        if(!result) return next();
-
-                        req.comment = result;
-                        req.commentCount = result.length;
-
-                        console.log(req.comment);
-                        console.log(req.commentCount);
-                    });
-
-                    db.start.query('UPDATE board SET count = ? WHERE id = ?', [updateCount, id], async (err, result) => {
-                        if(!result) return next();
-                    });
-                });
-            }
-
-            /* search 값이 있을 경우 */
-            if(search) {
-                db.start.query('SELECT * FROM board WHERE title LIKE ? ORDER BY date DESC', ['%'+search+'%'], async (err, result) => {
-                    if(err) console.log(err);
-                    if(!result) return next();
-
-                    console.log(result);
-                    console.log(err);
-
-                    req.search = result;
-                });
-            }
-
-            /* id값과 search 값이 둘 다 없을 경우 */
-            if(!id && !search) {
-                refreshCheck = false;
-
-                db.start.query('SELECT * FROM board ORDER BY date DESC', async (err, result) => {
-                    if(!result) return next();
-            
-                    req.boards = result;
-                });
-            }
+                req.board = result[0];
+            });
 
             db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], async (err, result) => {
                 if(!result) return next();
 
                 req.user = result[0];
-
-                if(id) {
-                    checkUser = result[0].id;
-
-                    if(checkBoard === checkUser) req.userid = true;
-                    else req.userid = false;
-                }
 
                 return next();
             });
@@ -453,6 +390,8 @@ exports.boardWrite = async (req, res, next) => {
             db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], async (err, result) => {
                 if(err) console.log(err);
 
+                req.user = result[0];
+
                 userId = result[0].id;
                 userName = result[0].name;
 
@@ -493,7 +432,34 @@ exports.boardDelete = async (req, res) => {
 
 /* 게시글 검색 */
 exports.boardSearch = async (req, res, next) => {
+    const { search } = req.body;
 
+    if(req.cookies.jwt) {
+        try {
+            const decoded = await promisify(jwt.verify)(
+                req.cookies.jwt,
+                process.env.JWT_SECRET
+            );
+
+            db.start.query('SELECT * FROM board ORDER BY date DESC title LIKE ?', [search], async (err, result) => {
+                if(!result) return next();
+            
+                req.search = result;
+            });
+            
+            db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], async (err, result) => {
+                if(!result) return next();
+
+                req.user = result[0];
+
+                return next();
+            });
+        } catch(err) {
+            return next();
+        }
+    } else {
+        next();
+    }
 }
 
 /* 게시글 댓글 */
