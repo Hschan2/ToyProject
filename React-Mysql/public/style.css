@@ -93,13 +93,7 @@ nav li a:hover {
     text-decoration: none;
     color: black;
     transition: 0.3s;
-    border: none;
-    background-color: transparent;
-}
-
-.readA:focus {
-    border: none;
-    outline: none;
+    max-width: 350px;
 }
 
 .readA:hover {
