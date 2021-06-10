@@ -93,7 +93,6 @@ nav li a:hover {
     text-decoration: none;
     color: black;
     transition: 0.3s;
-    max-width: 350px;
 }
 
 .readA:hover {
@@ -143,4 +142,42 @@ nav li a:hover {
 
 .listHeight {
     margin-top: -3px;
+}
+
+
+/* For 반응형 웹 */
+@media screen and (max-width: 1050px) {
+    .readA {
+        max-width: 650px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .readA {
+        max-width: 600px;
+    }
+}
+
+@media screen and (max-width: 995px) {
+    .readA {
+        max-width: 410px;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .readA {
+        max-width: 400px;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .readA {
+        max-width: 200px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .readA {
+        max-width: 100px;
+    }
 }
