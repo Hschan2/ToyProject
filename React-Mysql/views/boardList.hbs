@@ -25,7 +25,7 @@
         const now_URL = document.URL;
         const check_Url = new URL(now_URL);
         let check_param = check_Url.searchParams.get("check");
-        
+
         if(check_param === "true") {
             alert("글 삭제가 완료되었습니다.");
             window.location.href = '/boardList/';
@@ -63,7 +63,7 @@
                         <th scope="col">조회수</th>
                     </tr>
                 </thead>
-                <tbody class="left-align">
+                <tbody class="fontSize">
                     {{#if board}}
                         {{#each board}}
                             <tr>
@@ -91,5 +91,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="../public/index.js"></script>
 </body>
 </html>
