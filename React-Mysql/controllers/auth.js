@@ -311,7 +311,7 @@ exports.boardList = async (req, res, next) => {
 /* 읽기 페이지에서 새로고침 시, 조회수 중복 방지 변수 */
 let refreshCheck = false;
 
-/* 게시글 읽기 */
+/* 게시글 읽기, 값 불러오는 것이 많아서 따로 분리 */
 exports.boardRead = async (req, res, next) => {
     const { id } = req.query;
 
