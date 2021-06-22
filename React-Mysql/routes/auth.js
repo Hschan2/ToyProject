@@ -1,7 +1,6 @@
 const express = require('express');
 const authController = require('../controllers/auth');
 const router = express.Router();
-const passport = require('passport');
 
 // 'auth/register'
 router.post('/register', authController.register);
@@ -18,14 +17,8 @@ router.post('/withdrawal', authController.withdrawal);
 // 'auth/update'
 router.post('/update', authController.update);
 
-// 'auth/boardList'
-// router.post('/boardList', authController.boardList);
-
 // 'auth/boardWrite'
 router.post('/boardWrite', authController.boardWrite);
-
-// 'auth/boardRead'
-// router.post('/boardRead', authController.boardRead);
 
 // 'auth/boardUpdate'
 router.post('/boardUpdate', authController.boardUpdate);
@@ -36,7 +29,6 @@ router.post('/boardDelete', authController.boardDelete);
 // 'auth/boardData'
 router.post('/boardData', authController.boardData);
 
-// For Comment
 // 'auth/boardComment'
 router.post('/boardComment', authController.boardComment);
 
