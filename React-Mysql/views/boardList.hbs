@@ -64,8 +64,8 @@
                     </tr>
                 </thead>
                 <tbody class="fontSize">
-                    {{#if board}}
-                        {{#each board}}
+                    {{#if boards}}
+                        {{#each boards}}
                             <tr>
                                 <td>{{this.id}}</td>
                                 <td><a href="/boardRead?id={{this.id}}" class="readA d-inline-block text-truncate">{{this.title}}</a></td>
