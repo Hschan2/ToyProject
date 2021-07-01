@@ -6,6 +6,8 @@ const moment = require('moment-timezone');
 
 /* 클린 코드: 짧은 코드 X, 하나의 한 개의 기능 O, 쉽게 알아볼 수 있게 O */
 
+
+
 /* 회원 로그인 */
 exports.login = async (req, res, next) => {
     /* form, submit으로 넘겨진 Parameter 값 받기 (req.body) */
@@ -246,40 +248,10 @@ exports.withdrawal = async (req, res, next) => {
     }
 };
 
-/* Board, User 값 불러오기 */
-exports.boardData = async (req, res, next) => {
-    const { id } = req.query;
-
-    if(req.cookies.jwt) {
-        try {
-            const decoded = await promisify(jwt.verify)(
-                req.cookies.jwt,
-                process.env.JWT_SECRET
-            );
-
-            db.start.query('SELECT * FROM board WHERE id = ?', [id], async (err, result) => {
-                if(!result) return next();
-            
-                req.board = result[0];
-            });
-
-            db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], async (err, result) => {
-                if(!result) return next();
-
-                req.user = result[0];
-
-                return next();
-            });
-        } catch(err) {
-            return next();
-        }
-    } else {
-        next();
-    }
-}
-
 /* 게시글 목록 */
 exports.boardList = async (req, res, next) => {
+    const { search } = req.body; // 검색 단어
+
     if(req.cookies.jwt) {
         try {
             const decoded = await promisify(jwt.verify)(
@@ -428,38 +400,6 @@ exports.boardDelete = async (req, res) => {
 
         res.status(201).redirect('/boardList?check=true');
     });
-}
-
-/* 게시글 검색 */
-exports.boardSearch = async (req, res, next) => {
-    const { search } = req.body;
-
-    if(req.cookies.jwt) {
-        try {
-            const decoded = await promisify(jwt.verify)(
-                req.cookies.jwt,
-                process.env.JWT_SECRET
-            );
-
-            db.start.query('SELECT * FROM board ORDER BY date DESC title LIKE ?', [search], async (err, result) => {
-                if(!result) return next();
-            
-                req.search = result;
-            });
-            
-            db.start.query('SELECT * FROM users WHERE id = ?', [decoded.id], async (err, result) => {
-                if(!result) return next();
-
-                req.user = result[0];
-
-                return next();
-            });
-        } catch(err) {
-            return next();
-        }
-    } else {
-        next();
-    }
 }
 
 /* 게시글 댓글 */
