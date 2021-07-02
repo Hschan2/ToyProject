@@ -161,3 +161,7 @@ nav li a:hover {
 .listHeight {
     margin-top: -3px;
 }
+
+.commentStyle {
+    font-size: 15px;
+}
