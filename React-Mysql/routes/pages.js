@@ -54,7 +54,7 @@ router.get('/boardList', authController.boardList, (req, res) => {
     });
 });
 
-router.get('/boardWrite', authController.boardData, (req, res) => {
+router.get('/boardWrite', authController.boardWrite, (req, res) => {
     res.render('boardWrite', {
         user: req.user,
     });
@@ -70,17 +70,10 @@ router.get('/boardRead', authController.boardRead, (req, res) => {
     });
 });
 
-router.get('/boardUpdate', authController.boardData, (req, res) => {
+router.get('/boardUpdate', authController.boardRead, (req, res) => {
     res.render('boardUpdate', {
         user: req.user,
         board: req.board,
-    });
-});
-
-router.get('/boardSearch', authController.boardSearch, (req, res) => {
-    res.render('boardSearch', {
-        user: req.user,
-        search: req.search,
     });
 });
 

@@ -17,6 +17,9 @@ router.post('/withdrawal', authController.withdrawal);
 // 'auth/update'
 router.post('/update', authController.update);
 
+// 'auth/boardList'
+router.post('/boardList', authController.boardList);
+
 // 'auth/boardWrite'
 router.post('/boardWrite', authController.boardWrite);
 
@@ -26,13 +29,7 @@ router.post('/boardUpdate', authController.boardUpdate);
 // 'auth/boardDelete'
 router.post('/boardDelete', authController.boardDelete);
 
-// 'auth/boardData'
-router.post('/boardData', authController.boardData);
-
 // 'auth/boardComment'
 router.post('/boardComment', authController.boardComment);
-
-// 'auth/boardSearch'
-router.post('/boardSearch', authController.boardSearch);
 
 module.exports = router;
