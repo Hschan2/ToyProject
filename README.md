@@ -38,7 +38,9 @@
     * 회원가입 시 비밀번호 암호화(BCRYPT, HASH)
 
 ## React-Mysql [Link](https://hschan2.github.io/ToyProject/React-Mysql/views/index.hbs)
-* React 페이지 (React, Node.js, Mysql, Bootstrap) - 반응형 제거   
+* React 페이지 (React, Node.js, Mysql, Bootstrap)
+    * Bootstrap 반응형 제거 (min-width 적용)
+    * Let's Encrypt를 이용하여 HTTPS 적용중
     * 로그인
         * 회원가입 (비밀번호 암호화 - bcrypt)
         * 로그인 (토큰 - jsonwebtoken)
