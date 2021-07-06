@@ -11,8 +11,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@sweetalert2/themes": "^4.0.3",
-    "alert": "^5.0.10",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.5",
     "dialog": "^0.3.1",
@@ -29,7 +27,6 @@
     "passport-facebook": "^3.0.0",
     "passport-google-oauth20": "^2.0.0",
     "passport-kakao": "^1.0.0",
-    "passport-naver": "^1.0.6",
-    "sweetalert2": "^10.15.6"
+    "passport-naver": "^1.0.6"
   }
 }
