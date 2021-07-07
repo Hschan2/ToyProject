@@ -5,6 +5,8 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const app = express();
 const bcrypt = require('bcryptjs');
+const https = require('https');
+const fs = require('fs');
 
 // For A oAuth
 const passport = require('passport');
@@ -233,6 +235,25 @@ passport.use(new KakaoStrategy({
 // Router 설정
 app.use('/', require('./routes/pages'));
 app.use('/auth', require('./routes/auth'));
+
+// SSL Server for HTTPS
+// const sslServer = https.createServer({
+//     key: '',
+//     cert: '',
+// }, app);
+
+// Server Connection
+// sslServer.listen(5000, () => {
+//     console.log("Server started on Port 5000")
+// });
+
+// Greenlock-express를 활용한 HTTPS
+require('greenlock-express').init({
+    packageRoot: __dirname,
+    configDir: './greenlock.d',
+    maintainerEmail: 'seongchan_@naver.com',
+  })
+    .serve(app);
 
 // 서버 연결
 app.listen(5000, () => {
