@@ -5,6 +5,9 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const app = express();
 const bcrypt = require('bcryptjs');
+
+// For HTTPS
+const greenlock = require('greenlock-express');
 const https = require('https');
 const fs = require('fs');
 
@@ -255,7 +258,7 @@ require('greenlock-express').init({
   })
     .serve(app);
 
-// 서버 연결
+// HTTP 서버 연결
 app.listen(5000, () => {
     console.log("Server started on Port 5000")
 });
