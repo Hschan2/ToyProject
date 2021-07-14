@@ -162,6 +162,11 @@ nav li a:hover {
     margin-top: -3px;
 }
 
-.commentStyle {
+.commentFont {
     font-size: 12px;
+}
+
+.commentDeleteBtn {
+    width: 3px;
+    height: 3px;
 }
