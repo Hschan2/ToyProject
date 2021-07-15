@@ -40,7 +40,7 @@
 ## React-Mysql [Link](https://hschan2.github.io/ToyProject/React-Mysql/views/index.hbs)
 * React 페이지 (React, Node.js, Mysql, Bootstrap)
     * Bootstrap 반응형 제거 (min-width 적용)
-    * Let's Encrypt를 이용하여 HTTPS 적용중
+    * Let's Encrypt를 이용하여 HTTPS 적용중 (Greenlock-express 사용 X)
     * 로그인
         * 회원가입 (비밀번호 암호화 - bcrypt)
         * 로그인 (토큰 - jsonwebtoken)
@@ -61,6 +61,7 @@
             * 작성자만 수정, 삭제 버튼 보기
             * 댓글 작성
             * 댓글 불러오기
+            * 댓글 삭제 개발 중
         * 글 수정
             * Datestamp 값은 글 수정 날짜로 변경
         * 글 삭제
