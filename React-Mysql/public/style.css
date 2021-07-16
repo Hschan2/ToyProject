@@ -18,10 +18,10 @@ html, body {
 }
 
 nav {
-    min-width: var(--min-width);
-    background-color: #563d7c;
-    padding: 30px 0px;
     display: var(--display-flex);
+    min-width: var(--min-width);
+    padding: 30px 0px;
+    background-color: #563d7c;
 }
 
 nav ul {
@@ -34,10 +34,10 @@ nav li {
 }
 
 nav li a {
+    padding: 5px 10px;
     color: var(--white-font);
     text-decoration: var(--deco-none);
     font-weight: var(--font-bold);
-    padding: 5px 10px;
 }
 
 nav li a:hover {
@@ -60,10 +60,10 @@ nav li a:hover {
 }
 
 .jumbotron {
-    margin-left: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
     max-width: 39rem;
+    margin-left: 10px;
     padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .form-control {
@@ -75,13 +75,13 @@ nav li a:hover {
 }
 
 .fa {
-    padding: 10px;
-    font-size: 10px;
     width: 30px;
-    text-align: var(--align-center);
-    text-decoration: var(--deco-none);
+    padding: 10px;
     margin: 5px 2px;
     border-radius: var(--radius-round);
+    font-size: 10px;
+    text-align: var(--align-center);
+    text-decoration: var(--deco-none);
 }
   
 .fa:hover {
@@ -101,14 +101,14 @@ nav li a:hover {
 
 .fa-naver {
     background: #2db400;
-    font-weight: var(--font-bold);
     color: var(--white-font);
+    font-weight: var(--font-bold);
 }
 
 .fa-kakao {
     background: #f7e600;
-    font-weight: var(--font-bold);
     color: var(--white-font);
+    font-weight: var(--font-bold);
 }
 
 .fontSize {
@@ -117,15 +117,15 @@ nav li a:hover {
 
 .readA {
     width: 860px;
+    color: black;
     text-align: left;
     text-decoration: var(--deco-none);
-    color: black;
     transition: 0.3s;
 }
 
 .readA:hover {
-    transition: 0.3s;
     color: dimgrey;
+    transition: 0.3s;
 }
 
 .content {
@@ -151,8 +151,8 @@ nav li a:hover {
 }
 
 .listButtons {
-    margin-top: -5px;
     width: 100%;
+    margin-top: -5px;
 }
 
 .shortBox {
