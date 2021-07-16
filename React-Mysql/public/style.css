@@ -1,3 +1,15 @@
+@charset "UTF-8";
+
+:root {
+    --min-width: 1200px;
+    --white-font: #fff;
+    --radius-round: 15%;
+    --font-bold: bold;
+    --display-flex: flex;
+    --deco-none: none;
+    --align-center: center;
+}
+
 html, body {
     width: 100%;
     height: 100%;
@@ -6,33 +18,31 @@ html, body {
 }
 
 nav {
-    min-width: 1200px;
+    min-width: var(--min-width);
     background-color: #563d7c;
     padding: 30px 0px;
-    display: flex;
-    /* justify-content: space-between; */
+    display: var(--display-flex);
 }
 
 nav ul {
-    display: flex;
-    /* justify-content: space-around; */
-    align-items: center;
+    display: var(--display-flex);
+    align-items: var(--align-center);
 }
 
 nav li {
-    list-style: none;
+    list-style: var(--deco-none);
 }
 
 nav li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
+    color: var(--white-font);
+    text-decoration: var(--deco-none);
+    font-weight: var(--font-bold);
     padding: 5px 10px;
 }
 
 nav li a:hover {
     color: goldenrod;
-    text-decoration: none;
+    text-decoration: var(--deco-none);
 }
 
 .container {
@@ -68,37 +78,37 @@ nav li a:hover {
     padding: 10px;
     font-size: 10px;
     width: 30px;
-    text-align: center;
-    text-decoration: none;
+    text-align: var(--align-center);
+    text-decoration: var(--deco-none);
     margin: 5px 2px;
-    border-radius: 15%;
+    border-radius: var(--radius-round);
 }
   
 .fa:hover {
-    color: white;
+    color: var(--white-font);
     opacity: 0.8;
 }
 
 .fa-facebook {
     background: #3B5998;
-    color: white;
+    color: var(--white-font);
 }
 
 .fa-google {
     background: #dd4b39;
-    color: white;
+    color: var(--white-font);
 }
 
 .fa-naver {
     background: #2db400;
-    font-weight: bold;
-    color: white;
+    font-weight: var(--font-bold);
+    color: var(--white-font);
 }
 
 .fa-kakao {
     background: #f7e600;
-    font-weight: bold;
-    color: white;
+    font-weight: var(--font-bold);
+    color: var(--white-font);
 }
 
 .fontSize {
@@ -108,7 +118,7 @@ nav li a:hover {
 .readA {
     width: 860px;
     text-align: left;
-    text-decoration: none;
+    text-decoration: var(--deco-none);
     color: black;
     transition: 0.3s;
 }
@@ -123,7 +133,7 @@ nav li a:hover {
 }
 
 .direction {
-    display: flex;
+    display: var(--display-flex);
 }
 
 .readName {
@@ -137,7 +147,7 @@ nav li a:hover {
 .korean {
     ime-mode: active;
     -ms-ime-mode: active;
-    resize: none;
+    resize: var(--deco-none);
 }
 
 .listButtons {
