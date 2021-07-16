@@ -412,3 +412,13 @@ exports.boardComment = async (req, res) => {
         res.status(201).redirect('/boardRead?id=' + boardId);
     });
 }
+
+exports.CommentDelete = async (req, res) => {
+    const { commentId, boardId } = req.body;
+
+    db.start.query('DELETE FROM comment WHERE id = ?', [commentId], async (err, result) => {
+        if(err) console.log(err);
+
+        res.status(201).redirect('/boardRead?' + boardId);
+    });
+}

@@ -67,6 +67,7 @@ router.get('/boardRead', authController.boardRead, (req, res) => {
         userid: req.userid,
         comment: req.comment,
         commentCount: req.commentCount,
+        commentid: req.commentIdCheck,
     });
 });
 

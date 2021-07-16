@@ -6,12 +6,11 @@ const session = require('express-session');
 const app = express();
 const bcrypt = require('bcryptjs');
 
-// For HTTPS
-const greenlock = require('greenlock-express');
+// For Https
 const https = require('https');
 const fs = require('fs');
 
-// For A oAuth
+// For oAuth
 const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
@@ -249,14 +248,6 @@ app.use('/auth', require('./routes/auth'));
 // sslServer.listen(5000, () => {
 //     console.log("Server started on Port 5000")
 // });
-
-// Greenlock-express를 활용한 HTTPS
-require('greenlock-express').init({
-    packageRoot: __dirname,
-    configDir: './greenlock.d',
-    maintainerEmail: 'seongchan_@naver.com',
-  })
-    .serve(app);
 
 // HTTP 서버 연결
 app.listen(5000, () => {
