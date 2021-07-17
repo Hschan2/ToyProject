@@ -63,7 +63,7 @@
                         <th scope="col">조회수</th>
                     </tr>
                 </thead>
-                <tbody class="fontSize">
+                <tbody class="smallSizeFont">
                     {{#if boards}}
                         {{#each boards}}
                             <tr>
@@ -80,17 +80,16 @@
                     {{/if}}
                 </tbody>
             </table>
-            <div class="listButtons">
-                <a class="btn btn-primary left listHeight" href="/boardWrite">글쓰기</a>
-                <form action="/auth/boardList" method="POST" class="left">
-                    <input type="text" class="form-control shortBox left" name="search" required>
-                    <button type="submit" class="btn btn-primary listHeight">검색</button>
+            <div class="writeSearchBox">
+                <a class="btn btn-primary rowAlign buttonLineUp" href="/boardWrite">글쓰기</a>
+                <form action="/auth/boardList" method="POST" class="rowAlign">
+                    <input type="text" class="form-control shortBox rowAlign" name="search" required>
+                    <button type="submit" class="btn btn-primary buttonLineUp">검색</button>
                 </form>
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-    <script src="../public/index.js"></script>
 </body>
 </html>
