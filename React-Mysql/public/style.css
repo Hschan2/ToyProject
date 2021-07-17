@@ -50,10 +50,6 @@ nav li a:hover {
     max-width: none!important;
 }
 
-.row {
-    margin-top: 80px;
-}
-
 .card {
     width: 18rem;
     margin-left: 50px;
@@ -111,7 +107,7 @@ nav li a:hover {
     font-weight: var(--font-bold);
 }
 
-.fontSize {
+.smallSizeFont {
     font-size: 12px;
 }
 
@@ -128,29 +124,29 @@ nav li a:hover {
     transition: 0.3s;
 }
 
-.content {
+.readContentHeight {
     height: 150px;
 }
 
-.direction {
+.flex {
     display: var(--display-flex);
 }
 
-.readName {
+.readNameWidth {
     width: 60%;
 }
 
-.readDate {
+.readDateWidth {
     width: 40%;
 }
 
-.korean {
+.startKorean {
     ime-mode: active;
     -ms-ime-mode: active;
     resize: var(--deco-none);
 }
 
-.listButtons {
+.writeSearchBox {
     width: 100%;
     margin-top: -5px;
 }
@@ -164,16 +160,12 @@ nav li a:hover {
     display: inline-block;
 }
 
-.left {
+.rowAlign {
     display: inline-block;
 }
 
-.listHeight {
+.buttonLineUp {
     margin-top: -3px;
-}
-
-.commentFont {
-    font-size: 12px;
 }
 
 .commentDeleteBtn {
