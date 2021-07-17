@@ -1,3 +1,4 @@
+/* 기본 설정 및 변수 선언 */
 @charset "UTF-8";
 
 :root {
@@ -17,6 +18,16 @@ html, body {
     padding: 0;
 }
 
+/* 폰트 고정 크기 및 화면 설정 */
+.flex {
+    display: var(--display-flex);
+}
+
+.smallSizeFont {
+    font-size: 12px;
+}
+
+/* 메뉴바 */
 nav {
     display: var(--display-flex);
     min-width: var(--min-width);
@@ -45,6 +56,7 @@ nav li a:hover {
     text-decoration: var(--deco-none);
 }
 
+/* 본 내용 뼈대 */
 .container {
     width: 1200px;
     max-width: none!important;
@@ -62,11 +74,13 @@ nav li a:hover {
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+/* Form 스타일 조정 */
 .form-control {
     margin: 10px 0px;
 }
 
-.auth {
+/* oAuth 스타일 설정 */
+.oAuthBox {
     margin-top: 10px;
 }
 
@@ -107,11 +121,9 @@ nav li a:hover {
     font-weight: var(--font-bold);
 }
 
-.smallSizeFont {
-    font-size: 12px;
-}
-
-.readA {
+/* 게시판 목록 (boardList) */
+/* 제목 클릭 스타일 */
+.clickTitle {
     width: 860px;
     color: black;
     text-align: left;
@@ -119,17 +131,36 @@ nav li a:hover {
     transition: 0.3s;
 }
 
-.readA:hover {
+.clickTitle:hover {
     color: dimgrey;
     transition: 0.3s;
 }
 
-.readContentHeight {
-    height: 150px;
+/* 게시판 검색 스타일 */
+.searchBox {
+    width: 100%;
+    margin-top: -5px;
 }
 
-.flex {
-    display: var(--display-flex);
+/* 게시판 검색 짧은 Input */
+.shortInputBox {
+    width: 200px;
+    margin-left: 15px;
+}
+
+/* 게시판 검색 Input, Button 가로 정렬 */
+.rowAlign {
+    display: inline-block;
+}
+
+.buttonLineUp {
+    margin-top: -3px;
+}
+
+/* 게시판 읽기 (boardRead) */
+/* 게시물 내용 스타일 조정 */
+.readContentHeight {
+    height: 150px;
 }
 
 .readNameWidth {
@@ -140,35 +171,16 @@ nav li a:hover {
     width: 40%;
 }
 
+/* 댓글 삭제 버튼 스타일 */
+.commentDeleteBtn {
+    width: 3px;
+    height: 3px;
+}
+
+/* 게시판 쓰기 (boardWrite) */
+/* Textarea에서 작성 시 한글로 시작 */
 .startKorean {
     ime-mode: active;
     -ms-ime-mode: active;
     resize: var(--deco-none);
-}
-
-.writeSearchBox {
-    width: 100%;
-    margin-top: -5px;
-}
-
-.shortBox {
-    width: 200px;
-    margin-left: 15px;
-}
-
-.searchBox {
-    display: inline-block;
-}
-
-.rowAlign {
-    display: inline-block;
-}
-
-.buttonLineUp {
-    margin-top: -3px;
-}
-
-.commentDeleteBtn {
-    width: 3px;
-    height: 3px;
 }
