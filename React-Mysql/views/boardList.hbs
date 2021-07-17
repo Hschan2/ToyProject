@@ -68,7 +68,7 @@
                         {{#each boards}}
                             <tr>
                                 <td>{{this.id}}</td>
-                                <td><a href="/boardRead?id={{this.id}}" class="readA d-inline-block text-truncate">{{this.title}}</a></td>
+                                <td><a href="/boardRead?id={{this.id}}" class="clickTitle d-inline-block text-truncate">{{this.title}}</a></td>
                                 <td>{{this.name}}</td>
                                 <td>{{this.count}}</td>
                             </tr>
@@ -80,10 +80,10 @@
                     {{/if}}
                 </tbody>
             </table>
-            <div class="writeSearchBox">
+            <div class="searchBox">
                 <a class="btn btn-primary rowAlign buttonLineUp" href="/boardWrite">글쓰기</a>
                 <form action="/auth/boardList" method="POST" class="rowAlign">
-                    <input type="text" class="form-control shortBox rowAlign" name="search" required>
+                    <input type="text" class="form-control shortInputBox rowAlign" name="search" required>
                     <button type="submit" class="btn btn-primary buttonLineUp">검색</button>
                 </form>
             </div>
