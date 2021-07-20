@@ -39,15 +39,29 @@
 
 ## React-Mysql [Link](https://hschan2.github.io/ToyProject/React-Mysql/views/index.hbs)
 * React 페이지 (React, Node.js, Mysql, Bootstrap)
-    * Bootstrap 반응형 제거 (min-width 적용)
-    * Let's Encrypt를 이용하여 HTTPS 적용중 (Greenlock-express 사용 X)
+    * Bootstrap 반응형 제거
+        * min-width으로 폭 고정
+    * Let's Encrypt를 이용하여 HTTPS 적용중
+        * Greenlock-express 사용 안함
     * 로그인
-        * 회원가입 (비밀번호 암호화 - bcrypt)
-        * 로그인 (토큰 - jsonwebtoken)
-        * 회원수정 (일반 회원 - 이름, 비밀번호, 이메일 | oAuth - 이름, 비밀번호)
-        * 회원탈퇴 (일반 회원 - 비밀번호 입력 | oAuth - 비밀번호 입력 X)
-        * 소셜 미디어 로그인 (카카오, 네이버, 페이스북, 구글), 데이터 베이스 연동
-        * oAuth 로그인 버튼 두 번 눌러야 로그인되는 문제 (serializeUser Error)   
+        * 회원가입
+            * 비밀번호 암호화 - bcrypt
+        * 로그인
+            * Token - jsonwebtoken
+        * 회원수정
+            * 일반 회원 - 이름, 비밀번호, 이메일 수정
+            * oAuth - 이름, 비밀번호 수정
+        * 회원탈퇴
+            * 일반 회원 - 비밀번호 입력으로 탈퇴
+            * oAuth - 비밀번호 입력 X
+        * 소셜 미디어 로그인
+            * 카카오
+            * 네이버
+            * 페이스북
+            * 구글
+            * 데이터 베이스 연동
+        * oAuth 로그인 버튼 두 번 눌러야 로그인되는 문
+            * serializeUser Error   
 
     * 게시판
         * 글 리스트
