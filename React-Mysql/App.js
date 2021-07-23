@@ -238,18 +238,17 @@ passport.use(new KakaoStrategy({
 app.use('/', require('./routes/pages'));
 app.use('/auth', require('./routes/auth'));
 
-// SSL Server for HTTPS
-// const sslServer = https.createServer({
-//     key: '',
-//     cert: '',
-// }, app);
+// Connect Https Server
+const options = {
+    key: fs.readFileSync('./cert/private.pem'),
+    cert: fs.readFileSync('./cert/public.pem')
+};
 
-// Server Connection
-// sslServer.listen(5000, () => {
-//     console.log("Server started on Port 5000")
-// });
+https.createServer(options, app).listen(5000, function() {
+    console.log("Server started on Port 5000");
+});
 
 // HTTP 서버 연결
-app.listen(5000, () => {
-    console.log("Server started on Port 5000")
-});
+// app.listen(5000, () => {
+//     console.log("Server started on Port 5000")
+// });
