@@ -11,7 +11,7 @@ const Contents = () => {
     useEffect(() => {
         const fetchEvents = async () => {
             const res = await axios.get("https://api.covid19api.com/total/dayone/country/kr")
-            makeData(res.data)
+            makeData(res.data);
         }
 
         const makeData = (items) => {
@@ -88,6 +88,7 @@ const Contents = () => {
         }
 
         fetchEvents();
+        setInterval(fetchEvents, 60000);
     }, [])
 
     return (
