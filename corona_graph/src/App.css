@@ -21,6 +21,20 @@ section {
   padding: 0.5rem;
 }
 
+.choiceCountry {
+  display: flex;
+  padding: 0.5rem 1rem;
+  align-items: center;
+}
+
+.choiceCountry select {
+  height: 30px;
+  width: 100px;
+  border-radius: 5px;
+  border: 1px solid;
+  margin-left: 15px;
+}
+
 .contents {
   display: grid;
   grid-template-columns: 1fr 1fr;
