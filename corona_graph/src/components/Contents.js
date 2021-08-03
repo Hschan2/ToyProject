@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Bar, Doughnut, Line } from 'react-chartjs-2';
 import axios from 'axios';
+import Select from './Select'
 
 const Contents = () => {
-
+    
     const [confirmedData, setConfirmedData] = useState({})
     const [quarantinedData, setQuarantinedData] = useState({})
     const [comparedData, setComparedData] = useState({})
@@ -48,7 +49,7 @@ const Contents = () => {
             const labels = arr.map(a => `${a.month + 1}월`);
 
             setConfirmedData({
-                labels, 
+                labels,
                 datasets: [
                     {
                         label: "국내 누적 확진자",
@@ -93,7 +94,11 @@ const Contents = () => {
 
     return (
         <section>
-            <h2>국내 코로나 현황</h2>
+            <div className="choiceCountry">
+                <h2>국내 코로나 현황</h2>
+                <Select></Select>
+            </div>
+
             <div className="contents">
                 <div>
                     <Bar data={confirmedData} options={
