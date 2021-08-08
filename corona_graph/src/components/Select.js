@@ -2,16 +2,16 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { Options } from './Options'
 
-const Select = () => {
-    const [country, setCountry] = useState("kr");
+const Select = ({ country, getCountry }) => {
+    // const [country, setCountry] = useState("kr");
 
     const changeCountry = e => {
-        setCountry(e.target.value)
+        getCountry(e.target.value)
     }
 
-    useEffect(() => {
-        console.log(country)
-    }, [country])
+    // useEffect(() => {
+    //     console.log(country)
+    // }, [country])
 
     return (
         <>

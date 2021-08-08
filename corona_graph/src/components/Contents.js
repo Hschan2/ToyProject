@@ -1,17 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { Bar, Doughnut, Line } from 'react-chartjs-2';
 import axios from 'axios';
 import Select from './Select'
+import RefreshButton from './refreshButton'
 
 const Contents = () => {
     
     const [confirmedData, setConfirmedData] = useState({})
     const [quarantinedData, setQuarantinedData] = useState({})
     const [comparedData, setComparedData] = useState({})
+    const [country, setCountry] = useState("kr");
+    
+    const getCountry = (country) => {
+        setCountry(country);
+    }
 
     useEffect(() => {
         const fetchEvents = async () => {
-            const res = await axios.get("https://api.covid19api.com/total/dayone/country/kr")
+            const res = await axios.get(`https://api.covid19api.com/total/dayone/country/${country}`)
             makeData(res.data);
         }
 
@@ -89,14 +95,14 @@ const Contents = () => {
         }
 
         fetchEvents();
-        setInterval(fetchEvents, 60000);
-    }, [])
+    }, [country])
 
     return (
         <section>
-            <div className="choiceCountry">
+            <div className="Menu">
                 <h2>국내 코로나 현황</h2>
-                <Select></Select>
+                <Select country={country} getCountry={getCountry}></Select>
+                <RefreshButton></RefreshButton>
             </div>
 
             <div className="contents">
