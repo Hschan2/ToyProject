@@ -1,12 +1,12 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+// import { useState, useEffect } from 'react'
 import { Options } from './Options'
 
-const Select = ({ country, getCountry }) => {
+const Select = ({setCountry}) => {
     // const [country, setCountry] = useState("kr");
 
-    const changeCountry = e => {
-        getCountry(e.target.value)
+    const changeCountry = (e) => {
+        setCountry(e.target.value)
     }
 
     // useEffect(() => {
@@ -24,4 +24,4 @@ const Select = ({ country, getCountry }) => {
     )
 }
 
-export default Select
+export default React.memo(Select)

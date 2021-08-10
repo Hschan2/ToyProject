@@ -1,8 +1,8 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { Bar, Doughnut, Line } from 'react-chartjs-2';
 import axios from 'axios';
 import Select from './Select'
-import RefreshButton from './refreshButton'
+import RefreshButton from './RefreshButton'
 
 const Contents = () => {
     
@@ -10,12 +10,10 @@ const Contents = () => {
     const [quarantinedData, setQuarantinedData] = useState({})
     const [comparedData, setComparedData] = useState({})
     const [country, setCountry] = useState("kr");
-    
-    const getCountry = (country) => {
-        setCountry(country);
-    }
 
     useEffect(() => {
+        console.log(country);
+
         const fetchEvents = async () => {
             const res = await axios.get(`https://api.covid19api.com/total/dayone/country/${country}`)
             makeData(res.data);
@@ -88,6 +86,7 @@ const Contents = () => {
                         backgroundColor: ["#ff3d67", "#059bff", "#ffc233"],
                         borderColor: ["#ff3d67", "#059bff", "#ffc233"],
                         fill: false,
+                        // API에서 recovered가 0으로 기록되어 있기 때문에 화면에도 0으로 출력
                         data: [last.confirmed, last.recovered, last.death]
                     },
                 ]
@@ -101,7 +100,7 @@ const Contents = () => {
         <section>
             <div className="Menu">
                 <h2>국내 코로나 현황</h2>
-                <Select country={country} getCountry={getCountry}></Select>
+                <Select setCountry={setCountry}></Select>
                 <RefreshButton></RefreshButton>
             </div>
 
