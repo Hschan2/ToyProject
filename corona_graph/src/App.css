@@ -12,9 +12,8 @@
   align-items: center;
 }
 
-.header h3 {
-  height: 30px;
-  width: 60px;
+.header h1 {
+  font-size: 3vmin;
 }
 
 section {
@@ -43,6 +42,16 @@ section {
   border: 1px solid;
   margin-left: 15px;
   cursor: pointer;
+}
+
+.Loading {
+  width: 250px;
+  height: 250px;
+  display: grid;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-20%, -20%);
 }
 
 .contents {
