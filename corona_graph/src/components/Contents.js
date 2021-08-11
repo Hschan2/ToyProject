@@ -1,19 +1,19 @@
+import React from 'react'
+import { GridLoader } from 'react-spinners'
 import { useEffect, useState } from 'react';
-import { Bar, Doughnut, Line } from 'react-chartjs-2';
 import axios from 'axios';
+import Graph from './Graph'
 import Select from './Select'
 import RefreshButton from './RefreshButton'
 
 const Contents = () => {
-    
     const [confirmedData, setConfirmedData] = useState({})
     const [quarantinedData, setQuarantinedData] = useState({})
     const [comparedData, setComparedData] = useState({})
     const [country, setCountry] = useState("kr");
+    const [contentLoading, setContentLoading] = useState(true);
 
     useEffect(() => {
-        console.log(country);
-
         const fetchEvents = async () => {
             const res = await axios.get(`https://api.covid19api.com/total/dayone/country/${country}`)
             makeData(res.data);
@@ -93,6 +93,7 @@ const Contents = () => {
             });
         }
 
+        setContentLoading(false);
         fetchEvents();
     }, [country])
 
@@ -104,28 +105,12 @@ const Contents = () => {
                 <RefreshButton></RefreshButton>
             </div>
 
-            <div className="contents">
-                <div>
-                    <Bar data={confirmedData} options={
-                        { title: { display: true, text: "누적 확진자 추이", fontSize: 16 } },
-                        { legend: { display: true, position: "bottom" } }
-                    } />
-                </div>
-                <div>
-                    <Line data={quarantinedData} options={
-                        { title: { display: true, text: "월별 격리자 현황", fontSize: 16 } },
-                        { legend: { display: true, position: "bottom" } }
-                    } />
-                </div>
-                <div>
-                    <Doughnut data={comparedData} options={
-                        { title: { display: true, text: `누적 확진, 해제, 사망 (${new Date().getMonth() + 1}월)`, fontSize: 16 } },
-                        { legend: { display: true, position: "bottom" } }
-                    } />
-                </div>
-            </div>
+            {contentLoading
+            ? <div className="Loading"><GridLoader size={20} color='#3b5998' loading /></div>
+            : <Graph confirmedData={confirmedData} quarantinedData={quarantinedData} comparedData={comparedData}  />
+            }
         </section>
     )
 }
 
-export default Contents
+export default React.memo(Contents)
