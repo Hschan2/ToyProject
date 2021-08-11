@@ -1,3 +1,4 @@
+import React from 'react'
 import './App.css';
 import Header from './components/Header';
 import Contents from './components/Contents';
@@ -11,4 +12,4 @@ function App() {
   );
 }
 
-export default App;
+export default React.memo(App);
