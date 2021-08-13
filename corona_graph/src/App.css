@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap');
+
+:root {
+  --noto-font-family: 'Noto Sans KR', sans-serif;
+}
+
 .App {
   display: flex;
   flex-direction: column;
@@ -5,7 +11,7 @@
 
 .header {
   padding: 1rem 2rem;
-  background: #3b5998;
+  background: #16599C;
   color: #fff;
   display: flex;
   justify-content: space-between;
@@ -13,6 +19,7 @@
 }
 
 .header h1 {
+  font-family: var(--noto-font-family);
   font-size: 3vmin;
 }
 
@@ -24,6 +31,10 @@ section {
   display: flex;
   padding: 0.5rem 1rem;
   align-items: center;
+}
+
+.Menu h2 {
+  font-family: var(--noto-font-family);
 }
 
 .Menu select {
