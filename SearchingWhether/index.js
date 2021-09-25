@@ -1,5 +1,6 @@
 const apiKey = "a03004bf971234fd4cb532f6df20b7af";
 
+const body = document.getElementById('body');
 const main = document.getElementById('main');
 const form = document.getElementById('form');
 const search = document.getElementById('search');
@@ -12,6 +13,8 @@ const mist_ids = [701, 711, 721, 731, 741, 751, 761, 762, 771, 781];
 const clear_ids = [800, 801, 802, 803, 804];
 const wind_ids = [900, 901, 902, 903, 904, 905, 906, 951, 952, 953, 954, 955, 956, 957, 958, 959, 960, 961, 962];
 const weather_ids = cloud_ids.concat(shower_ids, rain_ids, snow_ids, mist_ids, clear_ids, wind_ids);
+
+const enLocation = [];
 
 const weather_ids_kr = ["가벼운 비를 동반한 천둥구름","비를 동반한 천둥구름","폭우를 동반한 천둥구름","약한 천둥구름",
     "천둥구름","강한 천둥구름","불규칙적 천둥구름","약한 연무를 동반한 천둥구름","연무를 동반한 천둥구름",
@@ -40,7 +43,7 @@ async function getWeatherByLocation(city) {
 function addWeatherToPage(data) {
     const temp = Ktoc(data.main.temp);
     const weatherKrName = weatherKorean(data);
-    const weatherBG = backgroundVideos(data);
+    const BgImages = backgroundImages(data);
 
     const weather = document.createElement('div')
     weather.classList.add('weather');
@@ -53,6 +56,8 @@ function addWeatherToPage(data) {
     // 검색된 날씨 출력
     main.innerHTML = "";
     main.appendChild(weather);
+
+    document.body.style.background = `url(${BgImages})`;
 };
 
 function Ktoc(k) {
@@ -69,16 +74,16 @@ function weatherKorean(data) {
     }
 }
 
-function backgroundVideos(data) {
+function backgroundImages(data) {
     const weatherId = data.weather[0].id;
 
-    if (cloud_ids.includes(weatherId)) return "./videos/cloud.mp4";
-    else if (shower_ids.includes(weatherId)) return "./videos/shower.mp4";
-    else if (rain_ids.includes(weatherId)) return "./videos/rain.mp4";
-    else if (snow_ids.includes(weatherId)) return "./videos/snow_hori.mp4";
-    else if (mist_ids.includes(weatherId)) return "./videos/mist.mp4";
-    else if (clear_ids.includes(weatherId)) return "./videos/clear.mp4";
-    else if (wind_ids.includes(weatherId)) return "./videos/wind.mp4";
+    if (cloud_ids.includes(weatherId)) return "./images/cloudy_1.jpg";
+    else if (shower_ids.includes(weatherId)) return "./images/shower.jpg";
+    else if (rain_ids.includes(weatherId)) return "./images/rain.jpg";
+    else if (snow_ids.includes(weatherId)) return "./images/snow.jpg";
+    else if (mist_ids.includes(weatherId)) return "./images/mist.jpg";
+    else if (clear_ids.includes(weatherId)) return "./images/clear_1.jpg";
+    else if (wind_ids.includes(weatherId)) return "./images/wind_1.jpg";
 }
 
 form.addEventListener('submit', (e) => {

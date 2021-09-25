@@ -36,6 +36,7 @@ input:focus {
 }
 
 .weather {
+    color: #fff;
     text-align: center;
     font-size: 2rem;
 }
