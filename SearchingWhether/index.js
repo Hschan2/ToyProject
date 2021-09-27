@@ -14,7 +14,8 @@ const clear_ids = [800, 801, 802, 803, 804];
 const wind_ids = [900, 901, 902, 903, 904, 905, 906, 951, 952, 953, 954, 955, 956, 957, 958, 959, 960, 961, 962];
 const weather_ids = cloud_ids.concat(shower_ids, rain_ids, snow_ids, mist_ids, clear_ids, wind_ids);
 
-const enLocation = [];
+const enLocation = ['Seoul', 'Busan', 'Daegu', 'Daejeon', 'Gwangju', 'Incheon', 'Ulsan', 'Gyeonggi-do', 'Gyeongsangbuk-do', 'Gyeongsangnam-do', 'Jeollabuk-do', 'Jeollanam-do', 'Chungcheongbuk-do', 'Chungcheongnam-do', 'Gangwon-do', 'Jeju', 'Sejong'];
+const krLocation = ['서울', '부산', '대구', '대전', '광주', '인천', '울산', '경기', '경북', '경남', '전북', '전남', '충북', '충남', '강원', '제주', '세종'];
 
 const weather_ids_kr = ["가벼운 비를 동반한 천둥구름","비를 동반한 천둥구름","폭우를 동반한 천둥구름","약한 천둥구름",
     "천둥구름","강한 천둥구름","불규칙적 천둥구름","약한 연무를 동반한 천둥구름","연무를 동반한 천둥구름",
@@ -38,6 +39,14 @@ async function getWeatherByLocation(city) {
     const respData = await resp.json();
 
     addWeatherToPage(respData);
+}
+
+function exchangeLang(city) {
+    for (let i = 0; i < enLocation.length; i++) {
+        if (krLocation[i] == city) {
+            getWeatherByLocation(enLocation[i]);
+        }
+    }
 }
 
 function addWeatherToPage(data) {
@@ -92,6 +101,6 @@ form.addEventListener('submit', (e) => {
     const city = search.value;
 
     if (city) {
-        getWeatherByLocation(city);
+        exchangeLang(city);
     }
 });

@@ -42,7 +42,25 @@ input:focus {
 }
 
 .weather h2 {
-    margin-bottom: 0;
+    margin-bottom: 0px;
     display: flex;
     align-items: center;
+}
+
+.weather h2 img {
+    animation: motion 1s linear 0s infinite alternate;
+    -webkit-animation: motion 1s linear 0s infinite alternate;
+    position: relative;
+    left: 0;
+    bottom: -5;
+}
+
+@keyframes motion {
+    0%, 100% {
+        bottom: -5px;
+    }
+
+    50% {
+        bottom: 5px;
+    }
 }
