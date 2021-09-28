@@ -41,18 +41,19 @@ input:focus {
     font-size: 2rem;
 }
 
-.weather h2 {
-    margin-bottom: 0px;
-    display: flex;
-    align-items: center;
-}
-
-.weather h2 img {
+.weather h4 img {
+    width: 150px;
+    height: 150px;
     animation: motion 1s linear 0s infinite alternate;
     -webkit-animation: motion 1s linear 0s infinite alternate;
     position: relative;
-    left: 0;
     bottom: -5;
+    margin-top: -20px;
+}
+
+.weather h2 {
+    text-align: center;
+    margin: -40px 0 0 -10px;
 }
 
 @keyframes motion {
