@@ -89,7 +89,7 @@ function backgroundImages(data) {
     const showerColor = ['#85857E', '#62625D'];
     const rainColor = ['#41413E', '#232322'];
     const snowColor = ['#AEAEAE', '#EEECF1'];
-    const mistColor = ['#FAF8F6', '#F3EDE7'];
+    const mistColor = ['#B0B8B2', '#838D8F'];
     const clearColor = ['#B4D9EF', '#88AED0'];
     const windColor = ['#CFEBF7', '#87CEEB'];
 
@@ -109,5 +109,6 @@ form.addEventListener('submit', (e) => {
 
     if (city) {
         exchangeLang(city);
+        setInterval(exchangeLang(city), 30000);
     }
 });
