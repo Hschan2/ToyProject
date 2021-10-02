@@ -3,6 +3,8 @@ const apiKey = "a03004bf971234fd4cb532f6df20b7af";
 const main = document.getElementById('main');
 const form = document.getElementById('form');
 const search = document.getElementById('search');
+// 30초마다 새로 고침 변수
+let interval = null;
 
 const cloud_ids = [201, 200, 202, 210, 211, 212, 221, 230, 231, 232];
 const shower_ids = [300, 301, 302, 310, 311, 312, 313, 314, 321];
@@ -109,6 +111,10 @@ form.addEventListener('submit', (e) => {
 
     if (city) {
         exchangeLang(city);
-        setInterval(exchangeLang(city), 30000);
+        clearInterval(interval);
+        interval = setInterval(() => {
+            exchangeLang(city);
+            console.log("실행 중");
+        }, 60000);
     }
 });
