@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Popiins:wght@200;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
 
 * {
     box-sizing: border-box;
@@ -6,7 +6,7 @@
 
 body {
     margin: 0;
-    font-family: "Poppins", sans-serif;
+    font-family: 'Black Han Sans', sans-serif;
     background: linear-gradient(300deg, #E9E0CF, #E9CEB9);
     background-repeat: no-repeat;
     display: flex;
