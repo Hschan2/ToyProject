@@ -24,7 +24,7 @@ const Contents = () => {
 
         setContentLoading(false);
         fetchEvents();
-    }, [])
+    }, [country])
 
     return (
         <section>

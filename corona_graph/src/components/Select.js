@@ -24,4 +24,4 @@ const Select = ({setCountry}) => {
     )
 }
 
-export default React.memo(Select)
+export default Select
