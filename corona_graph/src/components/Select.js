@@ -1,17 +1,18 @@
 import React from 'react'
-// import { useState, useEffect } from 'react'
 import { Options } from './Options'
 
-const Select = ({setCountry}) => {
-    // const [country, setCountry] = useState("kr");
+const Select = ({ setCountry, setTitle }) => {
 
     const changeCountry = (e) => {
-        setCountry(e.target.value)
-    }
+        e.preventDefault();
+        setCountry(e.target.value);
 
-    // useEffect(() => {
-    //     console.log(country)
-    // }, [country])
+        Options.map((obj) => {
+            if (obj.country === e.target.value) {
+                setTitle(obj.title);
+            }
+        });
+    };
 
     return (
         <>

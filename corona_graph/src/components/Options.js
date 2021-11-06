@@ -13,4 +13,4 @@ const Options = [
     },
 ];
 
-export {Options};
+export { Options };

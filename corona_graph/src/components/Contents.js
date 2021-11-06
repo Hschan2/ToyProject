@@ -12,6 +12,7 @@ const Contents = () => {
     const [quarantinedData, setQuarantinedData] = useState({})
     const [comparedData, setComparedData] = useState({})
     const [country, setCountry] = useState("kr");
+    const [title, setTitle] = useState("국내");
     const [contentLoading, setContentLoading] = useState(true);
 
     useEffect(() => {
@@ -29,14 +30,15 @@ const Contents = () => {
     return (
         <section>
             <div className="Menu">
-                <h2>국내 코로나 현황</h2>
-                <Select setCountry={setCountry}></Select>
+                <h2>{title} 코로나 현황</h2>
+                <Select setCountry={setCountry} setTitle={setTitle}></Select>
                 <RefreshButton></RefreshButton>
             </div>
 
-            {contentLoading
-            ? <div className="Loading"><GridLoader size={20} color='#3b5998' loading /></div>
-            : <Graph confirmedData={confirmedData} quarantinedData={quarantinedData} comparedData={comparedData}  />
+            {contentLoading ?
+                (<div className="Loading"><GridLoader size={20} color='#3b5998' loading /></div>)
+            :
+                (confirmedData ? <Graph confirmedData={confirmedData} quarantinedData={quarantinedData} comparedData={comparedData}/> : <Graph confirmedData={0} quarantinedData={0} comparedData={0} />)
             }
         </section>
     )
