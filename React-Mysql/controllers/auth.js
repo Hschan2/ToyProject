@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const db = require('../model/db');
 const { promisify } = require('util');
 const moment = require('moment-timezone');
+const errorHandle = require('./error');
 
 /* 클린 코드: 짧은 코드 X, 하나의 한 개의 기능 O, 쉽게 알아볼 수 있게 O */
 
@@ -251,6 +252,8 @@ exports.withdrawal = async (req, res, next) => {
 /* 게시글 목록 */
 exports.boardList = async (req, res, next) => {
     const { search } = req.body; // 검색 단어
+
+    errorHandle("에러 처리 테스트");
 
     if(req.cookies.jwt) {
         try {
