@@ -11,27 +11,29 @@ const Contents = () => {
     const [confirmedData, setConfirmedData] = useState({})
     const [quarantinedData, setQuarantinedData] = useState({})
     const [comparedData, setComparedData] = useState({})
-    const [country, setCountry] = useState("kr");
-    const [title, setTitle] = useState("국내");
+    const [country, setCountry] = useState({
+        country: "kr",
+        title: "국내"
+    });
     const [contentLoading, setContentLoading] = useState(true);
 
     useEffect(() => {
-        console.log(country);
+        console.log(country.country);
 
         const fetchEvents = async () => {
-            const res = await axios.get(`https://api.covid19api.com/total/dayone/country/${country}`)
+            const res = await axios.get(`https://api.covid19api.com/total/dayone/country/${country.country}`)
             GraphData(res.data, setConfirmedData, setQuarantinedData, setComparedData);
         }
 
         setContentLoading(false);
         fetchEvents();
-    }, [country])
+    }, [country.country])
 
     return (
         <section>
             <div className="Menu">
-                <h2>{title} 코로나 현황</h2>
-                <Select setCountry={setCountry} setTitle={setTitle}></Select>
+                <h2>{country.title} 코로나 현황</h2>
+                <Select setCountry={setCountry}></Select>
                 <RefreshButton></RefreshButton>
             </div>
 

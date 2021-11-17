@@ -1,15 +1,14 @@
 import React from 'react'
 import { Options } from './Options'
 
-const Select = ({ setCountry, setTitle }) => {
+const Select = ({ setCountry }) => {
 
     const changeCountry = (e) => {
         e.preventDefault();
-        setCountry(e.target.value);
-
-        Options.map((obj) => {
-            if (obj.country === e.target.value) {
-                setTitle(obj.title);
+        
+        Options.map((option) => {
+            if (option.country === e.target.value) {
+                setCountry((prevState) => ({ ...prevState, ...option }));
             }
         });
     };
@@ -17,8 +16,8 @@ const Select = ({ setCountry, setTitle }) => {
     return (
         <>
             <select onChange={changeCountry}>
-                {Options.map((country, index) => (
-                    <option value={country.country} key={index}>{country.title}</option>
+                {Options.map((obj) => (
+                    <option value={obj.country} key={obj.country}>{obj.title}</option>
                 ))}
             </select>
         </>
