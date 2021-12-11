@@ -1,7 +1,10 @@
 import React from 'react'
 
 const refreshButton = () => {
-    const refreshPage = () => {
+
+    const refreshPage = (e) => {
+        e.preventDefault();
+
         window.location.reload();
     }
 

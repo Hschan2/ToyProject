@@ -6,9 +6,11 @@ const Select = ({ setCountry }) => {
     const changeCountry = (e) => {
         e.preventDefault();
         
-        Options.map((option) => {
+        Options.forEach((option) => {
             if (option.country === e.target.value) {
                 setCountry((prevState) => ({ ...prevState, ...option }));
+                window.localStorage.setItem('country', option.country);
+                window.localStorage.setItem('title', option.title);
             }
         });
     };

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Graph from './Graph'
 import Select from './Select'
+import { Totals } from './Totals'
 import RefreshButton from './RefreshButton'
 import { GraphData } from './GraphData'
 
@@ -12,13 +13,12 @@ const Contents = () => {
     const [quarantinedData, setQuarantinedData] = useState({})
     const [comparedData, setComparedData] = useState({})
     const [country, setCountry] = useState({
-        country: "kr",
-        title: "국내"
+        country: window.localStorage.getItem('country') || "kr",
+        title: window.localStorage.getItem('title') || "국내"
     });
     const [contentLoading, setContentLoading] = useState(true);
 
     useEffect(() => {
-        console.log(country.country);
 
         const fetchEvents = async () => {
             const res = await axios.get(`https://api.covid19api.com/total/dayone/country/${country.country}`)
@@ -27,6 +27,8 @@ const Contents = () => {
 
         setContentLoading(false);
         fetchEvents();
+
+        console.log(Totals);
     }, [country.country])
 
     return (
