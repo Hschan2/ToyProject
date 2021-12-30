@@ -13,9 +13,14 @@ const Contents = () => {
     const [quarantinedData, setQuarantinedData] = useState({})
     const [comparedData, setComparedData] = useState({})
     const [country, setCountry] = useState({
-        country: window.localStorage.getItem('country') || "kr",
-        title: window.localStorage.getItem('title') || "국내"
+        country: window.sessionStorage.getItem('country') || "kr",
+        title: window.sessionStorage.getItem('title') || "국내"
     });
+    const [totalCorona, setTotalCorona] = useState({
+        totalConfirmed: 0,
+        totalDeaths: 0,
+        totalRecovered: 0
+    })
     const [contentLoading, setContentLoading] = useState(true);
 
     useEffect(() => {
@@ -25,18 +30,28 @@ const Contents = () => {
             GraphData(res.data, setConfirmedData, setQuarantinedData, setComparedData);
         }
 
+        const fetchTotalEvents = async () => {
+            const res = await axios.get(`https://api.covid19api.com/world/total`)
+            Totals(res.data, setTotalCorona);
+
+        }
+
         setContentLoading(false);
         fetchEvents();
+        fetchTotalEvents();
 
-        console.log(Totals);
-    }, [country.country])
+        window.sessionStorage.setItem("title", country.title);
+    }, [country])
 
     return (
         <section>
             <div className="Menu">
                 <h2>{country.title} 코로나 현황</h2>
-                <Select setCountry={setCountry}></Select>
+                <Select country={country.country} setCountry={setCountry}></Select>
                 <RefreshButton></RefreshButton>
+                <div className="totalCorona">
+                    세계 총 감염자: {totalCorona.totalConfirmed}명 &nbsp;|&nbsp; 세계 총 사망자: {totalCorona.totalDeaths}명 &nbsp;|&nbsp; 세계 완전 회복: {totalCorona.totalRecovered}명(데이터 없음)
+                </div>
             </div>
 
             {contentLoading ?

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Options } from './Options'
 
-const Select = ({ setCountry }) => {
+const Select = ({ country, setCountry }) => {
 
     const changeCountry = (e) => {
         e.preventDefault();
@@ -9,8 +9,8 @@ const Select = ({ setCountry }) => {
         Options.forEach((option) => {
             if (option.country === e.target.value) {
                 setCountry((prevState) => ({ ...prevState, ...option }));
-                window.localStorage.setItem('country', option.country);
-                window.localStorage.setItem('title', option.title);
+                window.sessionStorage.setItem('country', option.country);
+                window.sessionStorage.setItem('title', option.title);
             }
         });
     };
@@ -19,7 +19,7 @@ const Select = ({ setCountry }) => {
         <>
             <select onChange={changeCountry}>
                 {Options.map((obj) => (
-                    <option value={obj.country} key={obj.country}>{obj.title}</option>
+                    <option value={obj.country} key={obj.country} selected={obj.country == country ? 'selected' : ""}>{obj.title}</option>
                 ))}
             </select>
         </>
