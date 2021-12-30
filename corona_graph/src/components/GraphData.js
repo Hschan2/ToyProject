@@ -58,7 +58,7 @@ export const GraphData = (items, setConfirmedData, setQuarantinedData, setCompar
     const last = arr[arr.length - 1];
 
     setComparedData({
-        labels: ["확진자", "격리 해제", "사망"],
+        labels: ["확진자", "격리 해제(일시 제외)", "사망"],
         datasets: [
             {
                 label: "누적 확진, 해제, 사망 비율",
