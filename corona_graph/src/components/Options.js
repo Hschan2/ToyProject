@@ -199,10 +199,6 @@ const Options = [
         country: "hu",
         title: "헝가리"
     },
-    {
-        country: "hk",
-        title: "홍콩"
-    },
 ];
 
 export { Options };
