@@ -4,8 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./images/repeat-outline.svg" rel="shortcut icon" type="image/x-icon">
     <link rel="stylesheet" href="./style.css" />
-    <title>환전</title>
+    <title>환전 계산</title>
   </head>
   <body>
 
@@ -19,8 +20,9 @@
         </div>
       </div>
       <div>
-        <input type="number" class="fullWidth" />
-        <div>달러</div>
+        <!-- onkeyup => 변경이 감지될 때마다 업데이트 -->
+        <input type="number" class="fullWidth" id="from-input" onkeyup="convert()" placeholder="금액을 입력하세요." />
+        <div id="from-currency">달러</div>
       </div>
     </div>
 
@@ -36,8 +38,8 @@
           </div>
         </div>
         <div>
-          <input type="number" class="fullWidth" />
-          <div>달러</div>
+          <input type="number" class="fullWidth" id="to-input" readonly />
+          <div id="to-currency">달러</div>
         </div>
       </div>
 
