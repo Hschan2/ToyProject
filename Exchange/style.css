@@ -1,57 +1,88 @@
-.exchange-box {
-  border: 1px solid black;
-  width: 400px;
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url('https://media.istockphoto.com/vectors/currency-exchange-dollar-sign-and-circle-arrow-fast-loan-financial-vector-id1190840209?k=20&m=1190840209&s=612x612&w=0&h=TUq_XBajwtIDMy698CLPunhoXhYUzxhma8Xp1m9G8Vw=');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
-.fullWidth {
+.currency-box {
+  width: 300px;
+  background-color: #fff;
+}
+
+/* 드롭다운 버튼 스타일 */
+.dropbtn {
+  border: 1px solid #dcdcde;
+  border-width: 1px 1px 0;
+  background-color: #fcfcfc;
+  cursor: pointer;
   width: 100%;
 }
 
-/* Style The Dropdown Button */
-.dropbtn {
-  background-color: #4caf50;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
+/* 드롭다운 리스트 스타일 */
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 160px;
+  width: 100%;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
-/* Links inside the dropdown */
-.dropdown-content a {
-  color: black;
+/* 드롭다운 li 스타일 */
+.dropdown-content li {
+  color: #000;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
 
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-  background-color: #f1f1f1;
+.dropdown-content li:hover {
+  background-color: #95afcb;
 }
 
-/* Show the dropdown menu on hover */
+/* 마우스 올렸을 때 리스트 보이기 */
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-  background-color: #3e8e41;
+/* 금액 출력 박스 스타일 */
+.amount-box {
+  width: 100%;
+  border: none;
+  text-align: right;
+}
+
+.amount-box:focus {
+  outline: none;
+}
+
+/* 국가 이미지 스타일 */
+.flag-img {
+  width: 18px;
+  height: 12px;
+}
+
+/* 글자 입력 스타일 */
+.input-box {
+  border: 1px solid #dcdcde;
+}
+
+/* 금액 출력 스타일 */
+.korean-num {
+  height: 50px;
+  text-align: right;
+}
+
+/* = 스타일 */
+.same-icon {
+  font-size: 2rem;
+  color: #000;
+  font-weight: 900;
+  text-align: center;
 }
