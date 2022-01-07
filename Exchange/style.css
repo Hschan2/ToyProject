@@ -4,7 +4,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-image: url('https://media.istockphoto.com/vectors/currency-exchange-dollar-sign-and-circle-arrow-fast-loan-financial-vector-id1190840209?k=20&m=1190840209&s=612x612&w=0&h=TUq_XBajwtIDMy698CLPunhoXhYUzxhma8Xp1m9G8Vw=');
+  background-image: url('./images/5631.jpg');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -71,6 +71,7 @@ body {
 /* 글자 입력 스타일 */
 .input-box {
   border: 1px solid #dcdcde;
+  height: 55px;
 }
 
 /* 금액 출력 스타일 */

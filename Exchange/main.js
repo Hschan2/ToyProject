@@ -27,7 +27,7 @@ let currencyRatio = {
 const unitWords = ["", "만", "억", "조", "경"];
 const splitUnit = 10000;
 let fromCurrency = 'KRW'; // 현재 나라 환율 기본값
-let toCurrency = 'KRW'; // 바꾸고 싶은 나라의 환율 기본값
+let toCurrency = 'USD'; // 바꾸고 싶은 나라의 환율 기본값
 let fromButton = document.getElementById("from-button");
 let toButton = document.getElementById("to-button");
 
@@ -50,19 +50,19 @@ document.querySelectorAll("#to-currency-list li").forEach((menu) =>
     })
 );
 
-// 압룍 값 변경 감지 시 실시간 업데이트
+// 입력 값 변경 감지 시 실시간 업데이트
 function convert(type) {
     let amount = 0;
 
     if (type == 'from') {
         amount = document.getElementById('fromAmount').value;
         let convertedAmount = amount * currencyRatio[fromCurrency][toCurrency];
-        document.getElementById('toAmount').value = convertedAmount;
+        document.getElementById('toAmount').value = comma(unComma(convertedAmount));
         renderKoreanNumber(amount, convertedAmount);
     } else {
         amount = document.getElementById('toAmount').value;
         let convertedAmount = amount * currencyRatio[toCurrency][fromCurrency];
-        document.getElementById('fromAmount').value = convertedAmount;
+        document.getElementById('fromAmount').value = comma(unComma(convertedAmount));
         renderKoreanNumber(convertedAmount, amount);
     }
 }
@@ -90,4 +90,14 @@ function readNum(num) {
     }
 
     return resultString;
+}
+
+function comma(num) {
+    num = String(num);
+    return num.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}
+
+function unComma(str) {
+    str = String(str);
+    return str.replace(/[^\d]+/g, '');
 }
