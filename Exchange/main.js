@@ -1,3 +1,5 @@
+// API 호출
+
 // 환율 정보
 let currencyRatio = {
     USD: {
@@ -50,17 +52,18 @@ document.querySelectorAll("#to-currency-list li").forEach((menu) =>
     })
 );
 
-// 입력 값 변경 감지 시 실시간 업데이트
+// 입력 값 변경 감지 시 실시간 업데이트, 천 단위 설정
 function convert(type) {
     let amount = 0;
 
     if (type == 'from') {
-        amount = document.getElementById('fromAmount').value;
+        document.getElementById('fromAmount').value = comma(unComma(document.getElementById('fromAmount').value));
+        amount = document.getElementById('fromAmount').value.replace(/,/g, "");
         let convertedAmount = amount * currencyRatio[fromCurrency][toCurrency];
         document.getElementById('toAmount').value = comma(unComma(convertedAmount));
         renderKoreanNumber(amount, convertedAmount);
     } else {
-        amount = document.getElementById('toAmount').value;
+        amount = document.getElementById('toAmount').value.replace(/,/g, "");
         let convertedAmount = amount * currencyRatio[toCurrency][fromCurrency];
         document.getElementById('fromAmount').value = comma(unComma(convertedAmount));
         renderKoreanNumber(convertedAmount, amount);
@@ -97,7 +100,15 @@ function comma(num) {
     return num.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 }
 
+// function comma(num) {
+//     return num.toLocaleString();
+// }
+
 function unComma(str) {
     str = String(str);
     return str.replace(/[^\d]+/g, '');
+}
+
+function removeComma(num) {
+    return num.replace(/,/g, "");
 }
