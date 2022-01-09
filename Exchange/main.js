@@ -53,29 +53,23 @@ document.querySelectorAll("#to-currency-list li").forEach((menu) =>
 );
 
 // 입력 값 변경 감지 시 실시간 업데이트, 천 단위 설정
-function convert(type) {
+function convert(obj) {
     let amount = 0;
 
-    if (type == 'from') {
-        document.getElementById('fromAmount').value = comma(unComma(document.getElementById('fromAmount').value));
-        amount = document.getElementById('fromAmount').value.replace(/,/g, "");
-        let convertedAmount = amount * currencyRatio[fromCurrency][toCurrency];
-        document.getElementById('toAmount').value = comma(unComma(convertedAmount));
-        renderKoreanNumber(amount, convertedAmount);
-    } else {
-        amount = document.getElementById('toAmount').value.replace(/,/g, "");
-        let convertedAmount = amount * currencyRatio[toCurrency][fromCurrency];
-        document.getElementById('fromAmount').value = comma(unComma(convertedAmount));
-        renderKoreanNumber(convertedAmount, amount);
-    }
+    obj.value = comma(unComma(obj.value));
+    amount = document.getElementById('fromAmount').value.replace(/,/g, "");
+    let convertedAmount = amount * currencyRatio[fromCurrency][toCurrency];
+    document.getElementById('toAmount').value = toComma(convertedAmount);
+    renderKoreanNumber(amount, convertedAmount);
 }
 
+// 만, 억, 조, 경 출력
 function renderKoreanNumber(from, to) {
     document.getElementById('fromNumToKorea').textContent = readNum(from) + currencyRatio[fromCurrency].unit;
     document.getElementById('toNumToKorea').textContent = readNum(to) + currencyRatio[toCurrency].unit;
-
 }
 
+// 만, 억, 조, 경 설정
 function readNum(num) {
     let resultString = "";
     let resultArray = [];
@@ -89,26 +83,30 @@ function readNum(num) {
 
     for (let i = 0; i < resultArray.length; i++) {
         if (!resultArray[i]) continue;
-        resultString = String(resultArray[i]) + unitWords[i] + resultString;
+
+        resultString = comma(unComma(String(resultArray[i])))  + (unitWords[i] + " ") + resultString;
     }
 
     return resultString;
 }
 
+// 직접 입력 input 외 자동 천 단위 설정
+function toComma(num) {
+    return num.toLocaleString();
+}
+
+// comma, unComma => 직접 입력 input 천 단위 설정
 function comma(num) {
     num = String(num);
     return num.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 }
-
-// function comma(num) {
-//     return num.toLocaleString();
-// }
 
 function unComma(str) {
     str = String(str);
     return str.replace(/[^\d]+/g, '');
 }
 
+// 곱하기 계산 위해 천 단위 제거
 function removeComma(num) {
     return num.replace(/,/g, "");
 }
