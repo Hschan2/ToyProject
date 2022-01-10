@@ -1,23 +1,38 @@
 // API 호출
+let exchangeRate = {
+    fromKRWtoUSD: 0,
+    fromKRWtoJPY: 0,
+    fromUSDtoKRW: 0,
+    fromUSDtoJPY: 0,
+    fromJPYtoKRW: 0,
+    fromJPYtoUSD: 0,
+};
+
+fetch('https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRWUSD,FRX.KRWJPY,FRX.JPYUSD')
+    .then((res) => res.json())
+    .then((data) => {
+        if (data.success) console.log(data)
+    });
+
 
 // 환율 정보
 let currencyRatio = {
     USD: {
-        KRW: 1193.32,
+        KRW: 1197.56,
         USD: 1,
-        JPY: 115.04,
+        JPY: 115.59,
         unit: "달러",
         img: 'https://cdn-icons-png.flaticon.com/512/555/555526.png'
     },
     KRW: {
         KRW: 1,
         USD: 0.00084,
-        JPY: 0.096,
+        JPY: 0.097,
         unit: "원",
         img: 'https://cdn.countryflags.com/thumbs/south-korea/flag-400.png'
     },
     JPY: {
-        KRW: 10.38,
+        KRW: 10.36,
         USD: 0.0087,
         JPY: 1,
         unit: "엔",
