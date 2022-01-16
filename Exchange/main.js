@@ -8,12 +8,31 @@ let exchangeRate = {
     fromJPYtoUSD: 0,
 };
 
-fetch('https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRWUSD,FRX.KRWJPY,FRX.JPYUSD')
+let test = 0;
+
+const apiUrl = 'https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRWUSD,FRX.KRWJPY,FRX.JPYUSD';
+
+// async function rateData() {
+//     let response = await fetch('https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRWUSD,FRX.KRWJPY,FRX.JPYUSD');
+//     let rates = await response.json();
+
+//     console.log("1: " + rates[0].basePrice);
+
+//     exchangeRate.fromJPYtoKRW = rates[0].basePrice;
+// }
+
+// rateData();
+
+fetch(apiUrl)
     .then((res) => res.json())
     .then((data) => {
-        if (data.success) console.log(data)
-    });
+        rateData(data);
+    })
+    .catch((err) => console.log(err));
 
+setTimeout(function rateData(data) {
+    convert(this);
+}, 500);
 
 // 환율 정보
 let currencyRatio = {
@@ -56,8 +75,6 @@ document.querySelectorAll("#from-currency-list li").forEach((menu) =>
         convert('from');
     })
 );
-
-
 
 document.querySelectorAll("#to-currency-list li").forEach((menu) =>
     menu.addEventListener("click", function () {
