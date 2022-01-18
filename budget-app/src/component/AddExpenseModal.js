@@ -5,7 +5,7 @@ import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "../contents/BudgetContext";
 export default function AddExpenseModal({ show, handleClose, defaultBudgetId }) {
     const descriptionRef = useRef()
     const amountRef = useRef()
-    const BudgetIdRef = useRef()
+    const budgetIdRef = useRef()
     const { addExpense, budgets } = useBudgets()
 
     function handleSubmit(e) {
@@ -15,7 +15,7 @@ export default function AddExpenseModal({ show, handleClose, defaultBudgetId }) 
         {
             description: descriptionRef.current.value,
             amount: parseFloat(amountRef.current.value),
-            budgetId: BudgetIdRef.current.value
+            budgetId: budgetIdRef.current.value
         })
         handleClose()
     }
@@ -37,7 +37,7 @@ export default function AddExpenseModal({ show, handleClose, defaultBudgetId }) 
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="budgetId">
                         <Form.Label>카테고리</Form.Label>
-                        <Form.Select defaultValue={defaultBudgetId} ref={BudgetIdRef}>
+                        <Form.Select defaultValue={defaultBudgetId} ref={budgetIdRef}>
                             <option id={UNCATEGORIZED_BUDGET_ID}>선택되지 않음</option>
                             {budgets.map(budget => (
                                 <option key={budget.id} value={budget.id}>{budget.name}</option>

@@ -11,6 +11,7 @@ export default function BudgetCard({ name, amount, max, gray, onAddExpenseClick 
     else if (gray) classNames.push("bg-light")
 
     return (
+        // className={classNames.join(" ")} => 위 조건문을 통해 해당되는 클래스 추가, join을 사용한 이유는 classNames.push("bg-danger", "bg-opacity-10")처럼 여러 개가 들어갈 경우를 대비
         <Card className={classNames.join(" ")}>
             <Card.Body>
                 <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3">
