@@ -1,15 +1,19 @@
 import { Form, Modal, Button } from "react-bootstrap";
 import { useRef } from "react";
-import { useBudgets } from "../contents/BudgetContext";
+import { useBudgets } from "../contexts/BudgetContext";
+import '../App.css'
 
 export default function AddBudgetModal({ show, handleClose }) {
+    // Input Box에 작성하기 위해 useRef
     const nameRef = useRef()
     const maxRef = useRef()
+    // 예산 추가 함수 가져오기
     const { addBudget } = useBudgets()
 
     function handleSubmit(e) {
         e.preventDefault()
 
+        // 예산 추가 함수에 name, max 값 전달
         addBudget(
         {
             name: nameRef.current.value,
@@ -22,7 +26,7 @@ export default function AddBudgetModal({ show, handleClose }) {
         <Modal show={show} onHide={handleClose}>
             <Form onSubmit={handleSubmit}>
                 <Modal.Header closeButton>
-                    <Modal.Title>새 예산</Modal.Title>
+                    <Modal.Title className="sbFont">새 예산</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form.Group className="mb-3" controlId="name">
