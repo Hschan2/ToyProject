@@ -1,7 +1,6 @@
 import React from 'react'
 import { Card, ProgressBar, Stack, Button } from 'react-bootstrap'
 import { currencyFormatter } from '../utils'
-import ViewExpenseModal from './ViewExpenseModal'
 
 export default function BudgetCard({ name, amount, max, gray, hideButton, onAddExpenseClick, onViewExpenseClick }) {
     // 지출 금액에 맞춰 배경색 등 변경을 위한 배열 변수
