@@ -16,3 +16,8 @@
 .sbFont {
   font-family: "SBBfont";
 }
+
+.iconSize {
+  width: 20px;
+  height: 20px;
+}
