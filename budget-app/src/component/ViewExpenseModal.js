@@ -1,6 +1,7 @@
 import { Modal, Button, Stack } from "react-bootstrap";
 import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "../contexts/BudgetContext";
 import { currencyFormatter } from "../utils";
+import expenseIcon from '../images/dollar.png'
 import '../App.css'
 
 export default function ViewExpenseModal({ budgetId, handleClose }) {
@@ -37,8 +38,8 @@ export default function ViewExpenseModal({ budgetId, handleClose }) {
                     {/* 저장된 지출 내역 모두 출력. 설명과 비용 그리고 삭제 버튼 출력 */}
                     {expenses.map(expense => (
                         <Stack direction="horizontal" gap="2" key={expense.id}>
-                            <div className="me-auto fs-4">{expense.description}</div>
-                            <div className="fs-5">{currencyFormatter.format(expense.amount)}</div>
+                            <div className="me-auto fs-6"><img src={expenseIcon} className="iconSize" /> {expense.description}</div>
+                            <div className="fs-6">{currencyFormatter.format(expense.amount)}</div>
                             <Button onClick={() => deleteExpense(expense)} size="sm" variant="outline-danger">&times;</Button>
                         </Stack>
                     ))}

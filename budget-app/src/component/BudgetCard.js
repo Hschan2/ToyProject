@@ -1,6 +1,9 @@
 import React from 'react'
 import { Card, ProgressBar, Stack, Button } from 'react-bootstrap'
 import { currencyFormatter } from '../utils'
+import budgetIcon from '../images/money.png'
+import expenseIcon from '../images/dollar.png'
+import '../App.css'
 
 export default function BudgetCard({ name, amount, max, gray, hideButton, onAddExpenseClick, onViewExpenseClick }) {
     // 지출 금액에 맞춰 배경색 등 변경을 위한 배열 변수
@@ -18,11 +21,11 @@ export default function BudgetCard({ name, amount, max, gray, hideButton, onAddE
         <Card className={classNames.join(" ")}>
             <Card.Body>
                 <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3">
-                    <div className="me-2">{name}</div>
-                    <div className="d-flex align-items-baseline">
+                    <div className="me-2 fs-5 fw-bold"><img src={budgetIcon} className="iconSize" /> {name}</div>
+                    <div className="d-flex align-items-baseline fs-6">
                         {/* currencyFormatter - 천 자리 단위 설정 */}
                         {currencyFormatter.format(amount)}
-                        {max && (<span className="text-muted fs-6 ms-1">
+                        {max && (<span className="text-muted ms-1">
                             / {currencyFormatter.format(max)}
                         </span>)}
                     </div>
