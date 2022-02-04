@@ -10,29 +10,40 @@ let exchangeRate = {
 
 let test = 0;
 
-const apiUrl = 'https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRWUSD,FRX.KRWJPY,FRX.JPYUSD';
+const apiUrl = 'https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?authkey=lqnoRB6bPy49PWbH5KuV2dZwLfdSLT2s&searchdate=20211210&data=AP01';
 
-// async function rateData() {
-//     let response = await fetch('https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRWUSD,FRX.KRWJPY,FRX.JPYUSD');
-//     let rates = await response.json();
+// fetch(apiUrl)
+//     .then((res) => res.json())
+//     .then((data) => {
+//         console.log(data);
+//     })
+//     .catch((err) => console.log(err));
 
-//     console.log("1: " + rates[0].basePrice);
+// setTimeout(function rateData(data) {
+//     convert(this);
+// }, 500);
 
-//     exchangeRate.fromJPYtoKRW = rates[0].basePrice;
-// }
+async function getRatio() {
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+            },
+        });
 
-// rateData();
+        if(!response.ok) throw new Error(`에러! Status: ${response.status}`);
 
-fetch(apiUrl)
-    .then((res) => res.json())
-    .then((data) => {
-        rateData(data);
-    })
-    .catch((err) => console.log(err));
+        const result = await response.json();
+        
+        return result;
+    } catch(err) {
+        // CORS 에러 발생
+        console.log(err)
+    }
+}
 
-setTimeout(function rateData(data) {
-    convert(this);
-}, 500);
+console.log(getRatio());
 
 // 환율 정보
 let currencyRatio = {
