@@ -12,7 +12,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.2"
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "http": "^0.0.1-security"
   },
   "devDependencies": {
     "lite-server": "^2.6.1",
