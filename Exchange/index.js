@@ -12,38 +12,16 @@ let test = 0;
 
 const apiUrl = 'https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?authkey=lqnoRB6bPy49PWbH5KuV2dZwLfdSLT2s&searchdate=20211210&data=AP01';
 
-// fetch(apiUrl)
-//     .then((res) => res.json())
-//     .then((data) => {
-//         console.log(data);
-//     })
-//     .catch((err) => console.log(err));
+fetch(apiUrl)
+    .then((res) => res.json())
+    .then((data) => {
+        console.log(data);
+    })
+    .catch((err) => console.log(err));
 
 // setTimeout(function rateData(data) {
 //     convert(this);
 // }, 500);
-
-async function getRatio() {
-    try {
-        const response = await fetch(apiUrl, {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-            },
-        });
-
-        if(!response.ok) throw new Error(`에러! Status: ${response.status}`);
-
-        const result = await response.json();
-        
-        return result;
-    } catch(err) {
-        // CORS 에러 발생
-        console.log(err)
-    }
-}
-
-console.log(getRatio());
 
 // 환율 정보
 let currencyRatio = {
