@@ -10,7 +10,7 @@ let exchangeRate = {
 
 let test = 0;
 
-const apiUrl = 'https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?authkey=lqnoRB6bPy49PWbH5KuV2dZwLfdSLT2s&searchdate=20211210&data=AP01';
+const apiUrl = 'https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?authkey=lqnoRB6bPy49PWbH5KuV2dZwLfdSLT2s&data=AP01';
 
 fetch(apiUrl)
     .then((res) => res.json())
