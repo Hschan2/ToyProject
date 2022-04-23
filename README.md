@@ -1,44 +1,53 @@
 # ToyProject
 
 ## Calculator [Link](https://hschan2.github.io/ToyProject/Calculator/index.html)
-* HTML + JAVASCRIPT + CSS로 계산기 만들기   
+* 계산기   
+    * HTML, JAVASCRIPT, CSS   
 
 ## Wooa_GitPage
-* 특정 테크코스의 프론트엔드 Github Page 따라 만들기 (HTML + JAVASCRIPT + CSS)   
-
+* 특정 테크코스의 프론트엔드 Github Page Cover   
+    * HTML, JAVASCRIPT, CSS   
 ## Typing_Cities [Link](https://hschan2.github.io/ToyProject/typing_cities/index.html)
-* 도시 검색하기 (HTML + JAVASCRIPT + CSS, 배열에 도시 값 넣기)   
+* 도시 검색   
+    * HTML, JAVASCRIPT, CSS
+    * 배열에 도시 값 저장   
 
 ## WeatherApp [Link](https://hschan2.github.io/ToyProject/WeatherApp/App.js)
-* 날씨 앱 만들기 (REACT, EXPO, Openweathermap API)   
+* 날씨 모바일 애플리케이션   
+    * 각 도시 지역 온도, 풍향, 먼지 정보 출력
+    * REACT, EXPO, Openweathermap API   
 
 ## Introduce_me_React [Link](https://hschan2.github.io/ToyProject/Introduce_me_React/src/App.js)
-* 나를 소개합니다 (REACT, REACT HOOK)   
+* 나를 소개합니다   
+    * REACT, REACT HOOK   
 
 ## INTRODUCE_PAGE_PHP [Link](http://hseongchan2.dothome.co.kr)
-* 나를 소개합니다 (PHP, CSS, JAVASCRIPT)
-    * 데이터 베이스를 연결 (MYSQL)
+* 나를 소개합니다   
+    * PHP, CSS, JAVASCRIPT, MySQL for 게시판 데이터
     * 게시판, 게시글 작성, 수정, 삭제, 읽기 가능
     * 게시글 댓글 작성, 댓글에 댓글 작성 가능
     * 게시글 검색   
 
 ## KakaoMAP [Link](https://hschan2.github.io/ToyProject/KakaoMAP/kakaomap.html)
-* 집 주변 공공기관 (HTML, JAVASCRIPT, CSS, KAKAO MAP API)
-    * 검색한 위치 이동하기
-    * 현재 위치로 이동하기 (Animation 포함)
-    * 표시할 장소 배열에 오브젝트 배열에 저장   
+* 집 주변 공공기관   
+    * HTML, JAVASCRIPT, CSS, KAKAO MAP API
+    * 검색한 위치로 자동 이동
+    * 현재 위치로 이동 버튼 (Animation 포함)
+    * 표시할 장소 배열에 오브젝트 배열로 저장   
 
 ## React To Do List [Link](https://hschan2.github.io/ToyProject/React_todo_List/src/App.js)
-* To Do List (REACT, REACT HOOK)
+* To Do List   
+    * REACT, REACT HOOK
     * Color List를 생성하여 To Do 색상 적용   
 
 ## simple_diary [Link](http://hschan2.dothome.co.kr)
-* 사진 한 장을 이용한 다이어리 (PHP, JAVASCRIPT, CSS, MYSQL)
+* 사진 한 장을 이용한 다이어리   
+    * PHP, JAVASCRIPT, CSS, MySQL
     * 다이어리 게시글 등록 시 사진 파일 미리보기 가능
-    * 회원가입 시 비밀번호 암호화(BCRYPT, HASH)
+    * 회원가입 시 비밀번호 암호화 (BCRYPT, HASH)   
 
 ## React-Mysql [Link](https://hschan2.github.io/ToyProject/React-Mysql/views/index.hbs)
-* React 페이지 (React, Node.js, Mysql, Bootstrap)
+* React 페이지 (React, Node.js, Mysql, Bootstrap)   
     * Bootstrap 반응형 제거
         * min-width으로 폭 고정
     * Let's Encrypt를 이용하여 HTTPS 적용중
@@ -86,12 +95,27 @@
             * Cannot POST 에러   
 
 ## 구글 확장 프로그램 [Link](https://hschan2.github.io/ToyProject/GoogleExtendProgram/index.html)
-* 검색으로 네이버 웹툰으로 이동하기, 1단계 작업   
+* 검색으로 네이버 웹툰으로 이동
+* 현재 작동하지 않음   
 
-## Lotto (2017)
-* 로또 번호 뽑기
-* 로또 번호마다 몇 번 뽑혔는지 체크 기능 만들 것
+## Lotto (2017) [Link](https://github.com/Hschan2/ToyProject/tree/master/Lotto)
+* 로또 번호 뽑기   
+    * 로또 번호마다 몇 번 뽑혔는지 체크 기능 생성 예정   
 
-## Corona Graph
-* 코로나 바이러스 그래프 현황 (국내)
-* 누적 확진자 현황, 월별 격리자 현황, 확진자·격리 해제자·사망자 현황
+## Corona Graph [Link](https://github.com/Hschan2/ToyProject/tree/master/corona_graph)
+* 코로나 바이러스 그래프 현황   
+    * 국내, 해외 선택 가능 (기본값 - 국내)
+    * 누적 확진자 현황, 월별 격리자 현황, 확진자·격리 해제자·사망자 현황   
+
+## Budget [Link](https://github.com/Hschan2/ToyProject/tree/master/budget-app)
+* 가계부 애플리케이션   
+    * React (with LocalStorage)
+    * 각 예산 패널과 각 예산 패널마다 지출 내역 설정
+    * 주제없는 예산 패널 생성 (공통 예산)
+    * 예산, 지출 내역 삭제 가능
+    * 지출 50% 미만 패널 초록색 (양호), 50% 이상 패널 노란색 (경고), 75% 이상 패널 빨간색 (위험)   
+
+## Movie [Link](https://github.com/Hschan2/ToyProject/tree/master/movie)
+* 인기있는 영화 정보   
+    * React, SpringBoot, themoviedb API
+    * 인기있는 영화 목록, 높은 점수 영화 목록 출력 예정   
