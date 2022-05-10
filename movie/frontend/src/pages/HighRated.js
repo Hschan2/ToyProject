@@ -5,22 +5,26 @@ import ToTop from '../components/ToTop';
 import '../style/listStyle.css';
 
 function HighRated() {
-  const [topRatedData, setTopRatedData] = useState([]);
+  const [topRatedData, setTopRatedData] = useState();
 
   useEffect(() => {
-      (async () => {
-        const getMovies = await axios.get('/api/highRated');
-
-        setTopRatedData(getMovies.data.results);
-      })();
+    getTopRatedData();
   }, []);
 
-  console.log(topRatedData);
+  const getTopRatedData = async () => {
+    try {
+       const getData = await axios.get('/api/popular');
+       setTopRatedData(getData.data.results);
+    }
+    catch(e) {
+       console.log('getTopRatedData error: ', e);
+    }
+ }
 
   return (
     <div>
+      <SEO title="TopRated" />
       <div className="container">
-        <SEO title="TopRated" />
         {topRatedData?.map((movie) => (
           <div className="movie" key={movie.id}>
             <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />

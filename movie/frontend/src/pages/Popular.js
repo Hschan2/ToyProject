@@ -8,17 +8,23 @@ function Popular() {
   const [popularData, setPopularData] = useState();
 
   useEffect(() => {
-      (async () => {
-        const getMovies = await axios.get('/api/popular');
-
-        setPopularData(getMovies.data.results);
-      })();
+    getPopularData();
   }, []);
+
+  const getPopularData = async () => {
+   try {
+      const getData = await axios.get('/api/popular');
+      setPopularData(getData.data.results);
+   }
+   catch(e) {
+      console.log('getPopularData error: ', e);
+   }
+}
 
   return (
     <div>
+      <SEO title="Popular" />
       <div className="container">
-        <SEO title="Popular" />
         {popularData?.map((movie) => (
           <div className="movie" key={movie.id}>
             <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
