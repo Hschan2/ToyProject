@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import SEO from '../components/SEO';
 import ToTop from '../components/ToTop';
@@ -26,12 +27,14 @@ function Popular() {
       <SEO title="Popular" />
       <div className="container">
         {popularData?.map((movie) => (
-          <div className="movie" key={movie.id}>
-            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
-            <h4>
-              <a>{movie.original_title}</a>
-            </h4>
-          </div>
+          <Link to={`/Detail/${movie.id}`} state={{id:movie.id}} key={movie.id}>
+            <div className="movie">
+              <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
+              <h4>
+                {movie.original_title}
+              </h4>
+            </div>
+          </Link>
         ))}
       </div>
       <ToTop />

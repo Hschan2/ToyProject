@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import Nav from './components/Nav';
 import Popular from './pages/Popular';
 import HighRated from './pages/HighRated';
+import Detail from './pages/Detail';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Popular />} />
         <Route path="/HighRated" element={<HighRated />} />
+        <Route path="/Detail/:id" element={<Detail />} />
       </Routes>
     </div>
   );
