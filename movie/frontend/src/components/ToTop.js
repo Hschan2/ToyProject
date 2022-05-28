@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../style/toTop.css';
+import styles from '../style/toTop.module.css';
 
 function ToTop() {
     const [showButton, setShowButton] = useState(false);
@@ -21,7 +21,7 @@ function ToTop() {
     return (
         <div>
             {showButton && (
-                <button onClick={scrollToTop} className="toTop">
+                <button onClick={scrollToTop} className={styles.toTop}>
                     &#8679;
                 </button>
             )}
