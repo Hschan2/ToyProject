@@ -1,43 +1,55 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import React, { useEffect, useState, useTransition } from 'react';
+import { useLocation } from 'react-router-dom';
 import SEO from '../components/SEO';
-// import '../style/detail.css';
+import styles from '../style/detail.module.css';
 
 function Detail() {
-  const {id} = useLocation().state;
+  const [isPending, startTransition] = useTransition();
+  const {mTitle, id} = useLocation().state;
   const [detailData, setDetailData] = useState();
+  const {title, poster_path, overview, genres, production_companies, runtime, vote_average} = detailData || [];
+  
+console.log(mTitle, id);
+
+  const genreText = genres?.map((genre) => {
+    return genre.name;
+  })
+  const productCompanyText = production_companies?.map((pc) => {
+    return pc.name;
+  });
+
 
   useEffect(() => {
-    getDetailData();
+    startTransition(() => {
+      getDetailData();
+    })
   }, []);
 
   const getDetailData = async () => {
     try {
-      const getData = await axios.get(`https://api.themoviedb.org/3/movie/675353?api_key=79d2203704bbe2e06a86e73b747c9053`);
-      setDetailData(getData.data.results);
+      const getData = await axios.get(`/api/detail/${id}`);
+      setDetailData(getData.data);
     }
     catch(e) {
       console.log('getDetailData error: ', e);
     }
   }
 
-  console.log(detailData);
-
   return (
     <div>
-      <SEO title="Detail" />
-      <div className="container">
-        <img src={id} />
-        <h2>{id || "로딩중..."}</h2>
-        <div className="basicInfo">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
+      <SEO title={`${title}`} />
+      <div className={styles.container}>
+        <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} className={styles.img} />
+        <h2>{title || "로딩중..."}</h2>
+        <div className={styles.basicInfo}>
+          <div>{productCompanyText?.join(', ')}</div>
+          <div>{genreText?.join(', ')}</div>
+          <div>{runtime} 분</div>
+          <div>({vote_average}점 / 10점)</div>
         </div>
-        <div className="borderBottom"></div>
-        <div className="overview"></div>
+        <div className={styles.borderBottom}></div>
+        <div className={styles.overview}>{overview}</div>
       </div>
     </div>
   )
