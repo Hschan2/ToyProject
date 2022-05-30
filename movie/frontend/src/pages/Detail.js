@@ -39,18 +39,22 @@ console.log(mTitle, id);
   return (
     <div>
       <SEO title={`${title}`} />
-      <div className={styles.container}>
-        <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} className={styles.img} />
-        <h2>{title || "로딩중..."}</h2>
-        <div className={styles.basicInfo}>
-          <div>{productCompanyText?.join(', ')}</div>
-          <div>{genreText?.join(', ')}</div>
-          <div>{runtime} 분</div>
-          <div>({vote_average}점 / 10점)</div>
+        <div className={styles.container}>
+          {!detailData ? '로딩중...' : (
+            <>
+              <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} className={styles.img} />
+              <h2>{title || "로딩중..."}</h2>
+              <div className={styles.basicInfo}>
+                <div>{productCompanyText?.join(', ')}</div>
+                <div>{genreText?.join(', ')}</div>
+                <div>{runtime} 분</div>
+                <div>({vote_average}점 / 10점)</div>
+              </div>
+              <div className={styles.borderBottom}></div>
+              <div className={styles.overview}>{overview}</div>
+            </>
+          )}
         </div>
-        <div className={styles.borderBottom}></div>
-        <div className={styles.overview}>{overview}</div>
-      </div>
     </div>
   )
 }
