@@ -24,7 +24,8 @@ public class movieController {
 
         String urlStr = "https://api.themoviedb.org/3/movie/popular?" +
                 "api_key=" +
-                API_KEY;
+                API_KEY +
+                "&language=ko-KR";
 
         URL url = new URL(urlStr);
 
@@ -52,7 +53,8 @@ public class movieController {
 
         String urlStr = "https://api.themoviedb.org/3/movie/top_rated?" +
                 "api_key=" +
-                API_KEY;
+                API_KEY +
+                "&language=ko-KR";
 
         URL url = new URL(urlStr);
 
@@ -81,7 +83,8 @@ public class movieController {
         String urlStr = "https://api.themoviedb.org/3/movie/" +
                 id +
                 "?api_key=" +
-                API_KEY;
+                API_KEY +
+                "&language=ko-KR";
 
         URL url = new URL(urlStr);
 
