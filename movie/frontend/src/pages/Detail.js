@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState, useTransition } from 'react';
 import { useLocation } from 'react-router-dom';
+import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import styles from '../style/detail.module.css';
 
@@ -55,6 +56,7 @@ console.log(mTitle, id);
             </>
           )}
         </div>
+        <Footer />
     </div>
   )
 }

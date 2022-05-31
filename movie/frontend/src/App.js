@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Popular />} />
         <Route path="/HighRated" element={<HighRated />} />
-        <Route path="/Detail/:id" element={<Detail />} />
+        <Route path="/Detail/:mTitle/:id" element={<Detail />} />
       </Routes>
     </div>
   );
