@@ -4,6 +4,7 @@ import axios from 'axios';
 import SEO from '../components/SEO';
 import ToTop from '../components/ToTop';
 import styles from '../style/listStyle.module.css';
+import Footer from '../components/Footer';
 
 function Popular() {
   const [popularData, setPopularData] = useState();
@@ -24,10 +25,10 @@ function Popular() {
 
   return (
     <div>
-      <SEO title="Popular" />
+      <SEO title="인기순" />
       <div className={styles.container}>
         {popularData?.map((movie) => (
-          <Link to={`/Detail/${movie.id}`} state={{id:movie.id}} key={movie.id}>
+          <Link to={`/Detail/${movie.original_title}/${movie.id}`} state={{mTitle:movie.original_title, id:movie.id}} key={movie.id}>
             <div className={styles.movie}>
               <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
               <h4>
@@ -37,6 +38,7 @@ function Popular() {
           </Link>
         ))}
       </div>
+      <Footer />
       <ToTop />
     </div>
   )
