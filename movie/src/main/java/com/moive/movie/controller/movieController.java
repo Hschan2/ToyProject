@@ -1,5 +1,6 @@
 package com.moive.movie.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +17,8 @@ import java.util.Date;
 @RestController
 public class movieController {
 
-    private static final String API_KEY = "79d2203704bbe2e06a86e73b747c9053";
+    @Value("${api-key}")
+    private String API_KEY;
 
     @GetMapping("/api/popular")
     public String popular() throws IOException {
