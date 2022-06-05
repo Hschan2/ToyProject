@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState, useTransition } from 'react';
 import { useLocation } from 'react-router-dom';
 import Footer from '../components/Footer';
+import Loading from '../components/Loading';
 import SEO from '../components/SEO';
 import styles from '../style/detail.module.css';
 
@@ -41,7 +42,7 @@ console.log(mTitle, id);
     <div>
       <SEO title={`${title}`} />
         <div className={styles.container}>
-          {!detailData ? '로딩중...' : (
+          {!detailData ? <Loading /> : (
             <>
               <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} className={styles.img} />
               <h2>{title || "로딩중..."}</h2>
