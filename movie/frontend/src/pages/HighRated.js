@@ -15,13 +15,13 @@ function HighRated() {
 
   const getTopRatedData = async () => {
     try {
-       const getData = await axios.get('/api/popular');
+       const getData = await axios.get('/api/highRated');
        setTopRatedData(getData.data.results);
     }
     catch(e) {
        console.log('getTopRatedData error: ', e);
     }
- }
+  }
 
   return (
     <div>
