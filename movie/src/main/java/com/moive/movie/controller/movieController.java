@@ -22,71 +22,43 @@ public class movieController {
 
     @GetMapping("/api/popular")
     public String popular() throws IOException {
-        StringBuilder result = new StringBuilder();
-
         String urlStr = "https://api.themoviedb.org/3/movie/popular?" +
                 "api_key=" +
                 API_KEY +
                 "&language=ko-KR";
 
-        URL url = new URL(urlStr);
+        System.out.println(apiParse(urlStr));
 
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        urlConnection.setRequestMethod("GET");
-
-        BufferedReader br;
-
-        br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "UTF-8"));
-
-        String returnLine;
-
-        while((returnLine = br.readLine()) != null) {
-            result.append(returnLine + "\n\r");
-        }
-
-        urlConnection.disconnect();
-
-        return  result.toString();
+        return apiParse(urlStr);
     }
 
     @GetMapping("/api/highRated")
     public String highRated() throws IOException {
-        StringBuilder result = new StringBuilder();
-
         String urlStr = "https://api.themoviedb.org/3/movie/top_rated?" +
                 "api_key=" +
                 API_KEY +
                 "&language=ko-KR";
 
-        URL url = new URL(urlStr);
+        System.out.println(apiParse(urlStr));
 
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        urlConnection.setRequestMethod("GET");
-
-        BufferedReader br;
-
-        br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "UTF-8"));
-
-        String returnLine;
-
-        while((returnLine = br.readLine()) != null) {
-            result.append(returnLine + "\n\r");
-        }
-
-        urlConnection.disconnect();
-
-        return  result.toString();
+        return apiParse(urlStr);
     }
 
     @GetMapping("/api/detail/{id}")
     public String detail(@PathVariable("id") int id) throws IOException {
-        StringBuilder result = new StringBuilder();
-
         String urlStr = "https://api.themoviedb.org/3/movie/" +
                 id +
                 "?api_key=" +
                 API_KEY +
                 "&language=ko-KR";
+
+        return apiParse(urlStr);
+    }
+
+    public String apiParse(String apiUrl) throws IOException {
+        StringBuilder result = new StringBuilder();
+
+        String urlStr = apiUrl;
 
         URL url = new URL(urlStr);
 
