@@ -11,8 +11,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
-import java.util.Date;
 
 @RestController
 public class movieController {
@@ -22,43 +20,36 @@ public class movieController {
 
     @GetMapping("/api/popular")
     public String popular() throws IOException {
-        String urlStr = "https://api.themoviedb.org/3/movie/popular?" +
-                "api_key=" +
-                API_KEY +
-                "&language=ko-KR";
+        String category = "popular";
 
-        System.out.println(apiParse(urlStr));
-
-        return apiParse(urlStr);
+        return apiParse(category);
     }
 
     @GetMapping("/api/highRated")
     public String highRated() throws IOException {
-        String urlStr = "https://api.themoviedb.org/3/movie/top_rated?" +
-                "api_key=" +
-                API_KEY +
-                "&language=ko-KR";
+        String category = "top_rated";
 
-        System.out.println(apiParse(urlStr));
+        return apiParse(category);
+    }
 
-        return apiParse(urlStr);
+    @GetMapping("/api/upcoming")
+    public String upcoming() throws IOException {
+        String category = "upcoming";
+
+        return apiParse(category);
     }
 
     @GetMapping("/api/detail/{id}")
-    public String detail(@PathVariable("id") int id) throws IOException {
-        String urlStr = "https://api.themoviedb.org/3/movie/" +
-                id +
-                "?api_key=" +
-                API_KEY +
-                "&language=ko-KR";
+    public String detail(@PathVariable("id") String id) throws IOException {
+        String category = id;
 
-        return apiParse(urlStr);
+        return apiParse(category);
     }
 
-    public String apiParse(String apiUrl) throws IOException {
+    public String apiParse(String Category) throws IOException {
         StringBuilder result = new StringBuilder();
 
-        String urlStr = apiUrl;
+        String urlStr = "https://api.themoviedb.org/3/movie/" + Category + "?api_key=" + API_KEY + "&language=ko-KR";
 
         URL url = new URL(urlStr);
 
