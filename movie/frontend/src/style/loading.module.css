@@ -1,3 +1,11 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
 .loading span {
     display: inline-block; /* span 내부요소들을 한줄로 세우기 */
     width: 10px;
