@@ -1,27 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import SEO from '../components/SEO';
 import ToTop from '../components/ToTop';
 import MovieLists from '../components/MovieLists';
 import Footer from '../components/Footer';
 import Loading from '../components/Loading';
+import GetMovieList from '../components/GetMovieList';
 
 function Popular() {
   const [popularData, setPopularData] = useState();
 
   useEffect(() => {
     getPopularData();
-  }, []);
+  }, [popularData]);
 
-  const getPopularData = async () => {
-    try {
-      const getData = await axios.get('/api/popular');
-      setPopularData(getData.data.results);
-    }
-    catch(e) {
-      console.log('getPopularData error: ', e);
-    }
-  }
+  const getPopularData = GetMovieList('/api/popular', setPopularData);
 
   return (
     <div>

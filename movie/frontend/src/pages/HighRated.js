@@ -1,6 +1,6 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Footer from '../components/Footer';
+import GetMovieList from '../components/GetMovieList';
 import Loading from '../components/Loading';
 import MovieLists from '../components/MovieLists';
 import SEO from '../components/SEO';
@@ -11,17 +11,9 @@ function HighRated() {
 
   useEffect(() => {
     getTopRatedData();
-  }, []);
+  }, [topRatedData]);
 
-  const getTopRatedData = async () => {
-    try {
-       const getData = await axios.get('/api/highRated');
-       setTopRatedData(getData.data.results);
-    }
-    catch(e) {
-       console.log('getTopRatedData error: ', e);
-    }
-  }
+  const getTopRatedData = GetMovieList('/api/highRated', setTopRatedData);
 
   return (
     <div>
