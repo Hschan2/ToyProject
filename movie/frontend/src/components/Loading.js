@@ -4,14 +4,10 @@ import styles from '../style/loading.module.css';
 function Loading() {
 
   return (
-    <div class={styles.container}>
-      <div class={styles.loading}>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+    <div className={styles.container}>
+      <div className={styles.loading}></div>
+      <div className={styles.message}>Loading...</div>
     </div>
-    
   )
 }
 
