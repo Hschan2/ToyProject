@@ -1,7 +1,7 @@
-import axios from 'axios';
 import React, { useEffect, useState, useTransition } from 'react';
 import { useLocation } from 'react-router-dom';
 import Footer from '../components/Footer';
+import GetMovieDetail from '../components/GetMovieDetail';
 import Loading from '../components/Loading';
 import SEO from '../components/SEO';
 import styles from '../style/detail.module.css';
@@ -28,22 +28,14 @@ console.log(mTitle, id);
     })
   }, []);
 
-  const getDetailData = async () => {
-    try {
-      const getData = await axios.get(`/api/detail/${id}`);
-      setDetailData(getData.data);
-    }
-    catch(e) {
-      console.log('getDetailData error: ', e);
-    }
-  }
+  const getDetailData = GetMovieDetail(`/api/detail/${id}`, setDetailData)
 
   return (
     <div>
       <SEO title={`${title}`} />
       {!detailData ? <Loading /> : (
         <div className={styles.container}>
-          <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} className={styles.img} />
+          <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} className={styles.img} alt={`${title}`} />
           <h2>{title || "로딩중..."}</h2>
           <div className={styles.basicInfo}>
             <div>{productCompanyText?.join(', ')}</div>
