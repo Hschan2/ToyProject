@@ -164,7 +164,7 @@ Weather.prototype.currentWeather = function () {
         $.getJSON("https://api.openweathermap.org/data/2.5/weather", {
             q: this.location,
             units: "metric",
-            appid: "a03004bf971234fd4cb532f6df20b7af"
+            appid: "bc1301b0b23fe6ef52032a7e5bb70820"
         }, function (json) {
             var wId = json.weather[0].id;
 
@@ -211,7 +211,7 @@ Weather.prototype.forecast = function () {
         q: this.location,
         cnt: 4,
         units: "metric",
-        appid: "a03004bf971234fd4cb532f6df20b7af"
+        appid: "bc1301b0b23fe6ef52032a7e5bb70820"
     }, function (json) {
         setForecast.call(this, json);
         displayForecast.call(this);
@@ -220,7 +220,7 @@ Weather.prototype.forecast = function () {
 
 // 온도 변환 출력
 Weather.prototype.setUnit = function () {
-    //Switch between Celsius and Farhenheit
+    // 화씨, 섭씨 변환 설정
     var prevUnit = "C";
     $("#unit-switch").on("click", function () {
         var newUnit = prevUnit == "C" ? "F" : "C";
