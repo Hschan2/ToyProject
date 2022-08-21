@@ -14,11 +14,11 @@ Weather.prototype.setDate = function () {
 Weather.prototype.getLocation = function () {
     // IP 주소로 위치 가져오기
     var res = {
-        "city": "Buenos Aires",
-        "country": "Argentina",
-        "countryCode": "AR",
-        "query": "200.61.38.44",
-        "regionName": "Buenos Aires F.D.",
+        "city": "Seoul",
+        "country": "Korea",
+        "countryCode": "KR",
+        "query": "211.220.197.0",
+        "regionName": "Seoul",
         "status": "success"
     };
 
