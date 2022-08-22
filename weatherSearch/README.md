@@ -1,5 +1,7 @@
 # Searched Weather Clone
 
+![예시 이미지](./Image/Example%20Image.PNG)
+
 * 자바스크립트 날씨 서비스 Clone
 ```
 현재 날씨 출력
