@@ -2,6 +2,10 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styles from '../style/navStyle.module.css';
 
+/**
+ * 상단 메뉴 컴포넌트
+ * @returns 로고, 인기순, 평점순, 개봉예정작 메뉴 링크
+ */
 function Nav() {
     const location = useLocation();
 

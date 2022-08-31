@@ -6,13 +6,19 @@ import Loading from '../components/Loading';
 import SEO from '../components/SEO';
 import styles from '../style/detail.module.css';
 
+/**
+ * 상세 페이지 출력 컴포넌트
+ * @startTransition 상태 변화의 지연을 위한 함수
+ * @id URL 파라미터로 넘어온 Id 값
+ * @detailData 영화 상세 데이터 담을 변수
+ */
 function Detail() {
   const [isPending, startTransition] = useTransition();
   const {mTitle, id} = useLocation().state;
   const [detailData, setDetailData] = useState();
   const {title, poster_path, overview, genres, production_companies, runtime, vote_average} = detailData || [];
   
-console.log(mTitle, id);
+  console.log(mTitle, id);
 
   const genreText = genres?.map((genre) => {
     return genre.name;

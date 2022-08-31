@@ -6,6 +6,10 @@ import ToTop from '../components/ToTop';
 import Loading from '../components/Loading';
 import GetMovieList from '../components/GetMovieList';
 
+/**
+ * 영화 개봉예정작 출력 컴포넌트
+ * @upcomingData 개봉예정작 영화 데이터 담을 변수
+ */
 function Upcoming() {
   const [upcomingData, setUpcomingData] = useState();
 

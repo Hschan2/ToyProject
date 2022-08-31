@@ -6,6 +6,10 @@ import MovieLists from '../components/MovieLists';
 import SEO from '../components/SEO';
 import ToTop from '../components/ToTop';
 
+/**
+ * 영화 평점순 페이지 출력 컴포넌트
+ * @topRatedData 영화 평점순 데이터 담을 변수
+ */
 function HighRated() {
   const [topRatedData, setTopRatedData] = useState();
 
