@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styles from '../style/navStyle.module.css';
+import { Player } from '@lottiefiles/react-lottie-player';
 
 /**
  * 상단 메뉴 컴포넌트
@@ -12,7 +13,13 @@ function Nav() {
     return (
         <div className={styles.navContainer}>
             <Link to="/">
-                <img src="https://img.icons8.com/glyph-neue/344/movie-projector.png" alt="Title" className={styles.img} />
+                {/* json 출처: https://lottiefiles.com/search?q=movie&category=animations */}
+                <Player
+                    autoplay
+                    loop
+                    src='https://assets6.lottiefiles.com/private_files/lf30_wcgecuzt.json'
+                    className={styles.img}
+                />
             </Link>
             <nav>
                 <Link to="/" className={location.pathname === '/' ? styles.active : styles.nonActive}>
