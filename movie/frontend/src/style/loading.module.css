@@ -8,26 +8,16 @@
 
 .loading {
     display: inline-block;
-    width: 30px;
-    height: 30px;
-    animation: morph 1.5s infinite;
+    width: 150px;
+    height: 150px;
 }
 
 .message {
     margin-top: 10px;
+    color: #3d3d3d;
     font-weight: bold;
-}
-
-@keyframes morph {
-    0%, 100% {
-        border-radius: 50%;
-        transform: rotate(0deg);
-        background-color: black;
-    }
-
-    50% {
-        border-radius: 5%;
-        transform: rotate(180deg);
-        background-color: black;
-    }
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none
 }
