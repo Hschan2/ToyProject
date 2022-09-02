@@ -23,8 +23,8 @@ function HighRated() {
     <div>
       <SEO title="평점순" />
       {!topRatedData ? <Loading /> : <MovieLists movieList={topRatedData} />}
-      <Footer />
       <ToTop />
+      <Footer />
     </div>
   )
 }

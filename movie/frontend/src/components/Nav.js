@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styles from '../style/navStyle.module.css';
 import { Player } from '@lottiefiles/react-lottie-player';
 
 /**
  * 상단 메뉴 컴포넌트
+ * Lottiefiles 출처: https://lottiefiles.com/
  * @returns 로고, 인기순, 평점순, 개봉예정작 메뉴 링크
  */
 function Nav() {
     const location = useLocation();
+    const container = useRef(null);
 
     return (
         <div className={styles.navContainer}>
             <Link to="/">
-                {/* json 출처: https://lottiefiles.com/search?q=movie&category=animations */}
                 <Player
+                    ref={container.current}
                     autoplay
                     loop
                     src='https://assets6.lottiefiles.com/private_files/lf30_wcgecuzt.json'

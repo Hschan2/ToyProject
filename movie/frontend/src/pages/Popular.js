@@ -23,8 +23,8 @@ function Popular() {
     <div>
       <SEO title="인기순" />
       {!popularData ? <Loading /> : <MovieLists movieList={popularData} />}
-      <Footer />
       <ToTop />
+      <Footer />
     </div>
   )
 }

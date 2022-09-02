@@ -23,8 +23,8 @@ function Upcoming() {
     <div>
       <SEO title="개봉예정작" />
       {!upcomingData ? <Loading /> : <MovieLists movieList={upcomingData} />}
-      <Footer />
       <ToTop />
+      <Footer />
     </div>
   )
 }
