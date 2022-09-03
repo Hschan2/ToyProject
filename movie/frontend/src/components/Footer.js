@@ -11,10 +11,12 @@ function Footer() {
     };
 
     return (
-        <div className={styles.container}>
-            <div>It was Developed by React, Spring</div>
-            <div>Copyright &copy; {thisYear()}</div>
-        </div>
+        <>
+            <div className={styles.container}>
+                <div>It was Developed with React, Spring</div>
+                <div>Copyright &copy; {thisYear()}</div>
+            </div>
+        </>
     )
 }
 
