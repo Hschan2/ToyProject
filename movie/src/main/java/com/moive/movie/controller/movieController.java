@@ -69,25 +69,16 @@ public class movieController {
 //    전달받은 파라미터로 API 데이터 호출하기
     public String apiParse(String Category) throws IOException {
         StringBuilder result = new StringBuilder();
-
-//        특정 영화 데이터 목록을 가져올 실제 API 주소
-        String urlStr = "https://api.themoviedb.org/3/movie/" + Category + "?api_key=" + API_KEY + "&language=ko-KR";
-
+        String urlStr = "https://api.themoviedb.org/3/movie/" + Category + "?api_key=" + API_KEY +"&language=ko-KR&page=1";
         URL url = new URL(urlStr);
-
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         urlConnection.setRequestMethod("GET");
-
         BufferedReader br;
-
         br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "UTF-8"));
-
         String returnLine;
-
         while((returnLine = br.readLine()) != null) {
             result.append(returnLine + "\n\r");
         }
-
         urlConnection.disconnect();
 
         return  result.toString();
