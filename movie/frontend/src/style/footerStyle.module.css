@@ -1,10 +1,16 @@
 .container {
-    position: fixed;
-    left: 0;
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 70px;
+}
+
+.container footer {
+    position: absolute;
     bottom: 0;
-    right: 0;
+    padding: 15px 0;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
-    font-size: 10px;
-    color: #959595;
-    margin: 12px 0;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 0.7rem;
 }
