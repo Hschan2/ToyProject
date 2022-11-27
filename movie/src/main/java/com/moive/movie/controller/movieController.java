@@ -69,7 +69,7 @@ public class movieController {
 //    전달받은 파라미터로 API 데이터 호출하기
     public String apiParse(String Category) throws IOException {
         StringBuilder result = new StringBuilder();
-        String urlStr = "https://api.themoviedb.org/3/movie/" + Category + "?api_key=" + API_KEY +"&language=ko-KR&page=1";
+        String urlStr = "https://api.themoviedb.org/3/movie/" + Category + "?api_key=" + API_KEY +"&language=ko-KR";
         URL url = new URL(urlStr);
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         urlConnection.setRequestMethod("GET");
