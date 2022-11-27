@@ -47,7 +47,7 @@ function Detail() {
             <div>{productCompanyText?.join(', ')}</div>
             <div>{genreText?.join(', ')}</div>
             <div>{runtime} 분</div>
-            <div>({vote_average}점 / 10점)</div>
+            <div>({vote_average?.toFixed(1)}점 / 10점)</div>
           </div>
           <div className={styles.borderBottom}></div>
           <div className={styles.overview}>{overview}</div>
