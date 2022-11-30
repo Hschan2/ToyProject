@@ -46,6 +46,16 @@ public class movieController {
         return apiParse(category);
     }
 
+//  현재개봉 영화 목록 가져오기
+    @GetMapping("/api/now_playing")
+    public String nowPlaying() throws IOException {
+//        현재개봉 카테고리 변수 선언
+        String category = "now_playing";
+
+//        현재개봉 카테고리 변수를 API 파싱하는 함수에 전달
+        return apiParse(category);
+    }
+
 //    개봉예정 영화 목록 가져오기
     @GetMapping("/api/upcoming")
     public String upcoming() throws IOException {
@@ -70,16 +80,23 @@ public class movieController {
     public String apiParse(String Category) throws IOException {
         StringBuilder result = new StringBuilder();
         String urlStr = "https://api.themoviedb.org/3/movie/" + Category + "?api_key=" + API_KEY +"&language=ko-KR";
-        URL url = new URL(urlStr);
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        urlConnection.setRequestMethod("GET");
-        BufferedReader br;
-        br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "UTF-8"));
-        String returnLine;
-        while((returnLine = br.readLine()) != null) {
-            result.append(returnLine + "\n\r");
+        URL url = null;
+        HttpURLConnection urlConnection = null;
+        try {
+            url = new URL(urlStr);
+            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("GET");
+            BufferedReader br;
+            br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "UTF-8"));
+            String returnLine;
+            while((returnLine = br.readLine()) != null) {
+                result.append(returnLine + "\n\r");
+            }
+        } catch (Exception e) {
+            System.out.println("에러 : " + e);
+        } finally {
+            urlConnection.disconnect();
         }
-        urlConnection.disconnect();
 
         return  result.toString();
     }
