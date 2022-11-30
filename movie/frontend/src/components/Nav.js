@@ -23,6 +23,9 @@ function Nav() {
                 <Link to="/HighRated" className={location.pathname === '/HighRated' ? styles.active : styles.nonActive}>
                     <div className={styles.navMenus}>평점순</div>
                 </Link>
+                <Link to="/NowPlaying" className={location.pathname === '/NowPlaying' ? styles.active : styles.nonActive}>
+                    <div className={styles.navMenus}>현재개봉작</div>
+                </Link>
                 <Link to="/Upcoming" className={location.pathname === '/Upcoming' ? styles.active : styles.nonActive}>
                     <div className={styles.navMenus}>개봉예정작</div>
                 </Link>
