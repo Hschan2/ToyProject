@@ -33,3 +33,35 @@
     display: flex;
     gap: 10px;
 }
+
+.search {
+    width: 200px;
+    padding: 7px 7px;
+    border-radius: 10px;
+    border-color: #000;
+    margin: 0 0 10px 0;
+}
+
+/* Chrome, Opera, Safari */
+.search::-webkit-input-placeholder {
+    color: #000;
+    text-align: center;
+}
+
+/* Firefox 18- */
+.search:-moz-placeholder {
+    color: #000;
+    text-align: center;
+}
+
+/* Firefox 19+ */
+.search::-moz-placeholder {
+    color: #000;
+    text-align: center;
+}
+
+/* IE(Edge) 10+ */
+.search:-ms-input-placeholder {
+    color: #000;
+    text-align: center;
+}

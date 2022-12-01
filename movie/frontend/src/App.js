@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Nav from './components/Nav';
@@ -9,12 +9,13 @@ import Detail from './pages/Detail';
 import NowPlaying from './pages/NowPlaying';
 
 function App() {
+  const [searchData, setSearchData] = useState("");
 
   return (
     <div>
-      <Nav />
+      <Nav setSearchData={setSearchData} />
       <Routes>
-        <Route path="/" element={<Popular />} />
+        <Route path="/" element={<Popular searchData={searchData} />} />
         <Route path="/HighRated" element={<HighRated />} />
         <Route path="/NowPlaying" element={<NowPlaying />} />
         <Route path="/Upcoming" element={<Upcoming />} />
