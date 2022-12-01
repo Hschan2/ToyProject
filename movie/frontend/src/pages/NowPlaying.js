@@ -15,7 +15,7 @@ function NowPlaying() {
 
   useEffect(() => {
     getNowPlayingData();
-  }, [nowPlayingData]);
+  }, []);
 
   const getNowPlayingData = GetMovieList('/api/now_playing', setNowPlayingData);
 

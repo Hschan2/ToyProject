@@ -17,8 +17,6 @@ function Detail() {
   const {mTitle, id} = useLocation().state;
   const [detailData, setDetailData] = useState();
   const {title, poster_path, overview, genres, production_companies, runtime, vote_average} = detailData || [];
-  
-  console.log(mTitle, id);
 
   const genreText = genres?.map((genre) => {
     return genre.name;

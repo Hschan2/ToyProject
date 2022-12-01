@@ -10,14 +10,19 @@ import GetMovieList from '../components/GetMovieList';
  * 인기 영화 목록 출력 컴포넌트
  * @popularData 인기 영화 목록 데이터 담을 변수
  */
-function Popular() {
+function Popular({ searchData }) {
   const [popularData, setPopularData] = useState();
+  const [searchResultData, setSearchResultData] = useState();
 
   useEffect(() => {
     getPopularData();
-  }, [popularData]);
+    getSearchResultData();
+  }, []);
+
+  console.log(searchResultData);
 
   const getPopularData = GetMovieList('/api/popular', setPopularData);
+  const getSearchResultData = GetMovieList(`/api/search/${searchData}`, setSearchResultData);
 
   return (
     <div>

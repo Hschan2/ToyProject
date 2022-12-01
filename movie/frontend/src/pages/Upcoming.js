@@ -15,7 +15,7 @@ function Upcoming() {
 
   useEffect(() => {
     getUpcomingData();
-  }, [upcomingData]);
+  }, []);
 
   const getUpcomingData = GetMovieList('/api/upcoming', setUpcomingData);
 

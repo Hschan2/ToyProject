@@ -15,7 +15,7 @@ function HighRated() {
 
   useEffect(() => {
     getTopRatedData();
-  }, [topRatedData]);
+  }, []);
 
   const getTopRatedData = GetMovieList('/api/highRated', setTopRatedData);
 
