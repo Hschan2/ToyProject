@@ -1,10 +1,7 @@
 package com.moive.movie.controller;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -76,10 +73,45 @@ public class movieController {
         return apiParse(movieId);
     }
 
+//  영화 검색 파싱
+    @GetMapping("/api/search")
+    public String search(@RequestParam String searchText) throws IOException {
+//        Path로 받은 영화 검색 Text 값을 변수에 담기
+        String searchTitle = searchText;
+        System.out.println(searchText);
+
+//        검색 Text 값을 검색 파싱 함수에 전달
+        return searchParse(searchTitle);
+    }
+
 //    전달받은 파라미터로 API 데이터 호출하기
     public String apiParse(String Category) throws IOException {
         StringBuilder result = new StringBuilder();
         String urlStr = "https://api.themoviedb.org/3/movie/" + Category + "?api_key=" + API_KEY +"&language=ko-KR";
+        URL url = null;
+        HttpURLConnection urlConnection = null;
+        try {
+            url = new URL(urlStr);
+            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("GET");
+            BufferedReader br;
+            br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "UTF-8"));
+            String returnLine;
+            while((returnLine = br.readLine()) != null) {
+                result.append(returnLine + "\n\r");
+            }
+        } catch (Exception e) {
+            System.out.println("에러 : " + e);
+        } finally {
+            urlConnection.disconnect();
+        }
+
+        return  result.toString();
+    }
+
+    public String searchParse(String searchText) throws IOException {
+        StringBuilder result = new StringBuilder();
+        String urlStr = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY +"&query=" + searchText + "&language=ko-KR";
         URL url = null;
         HttpURLConnection urlConnection = null;
         try {
