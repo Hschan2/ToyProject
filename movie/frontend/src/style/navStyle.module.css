@@ -34,34 +34,54 @@
     gap: 10px;
 }
 
-.search {
+.search input {
+    position: relative;
     width: 200px;
-    padding: 7px 7px;
+    height: 80px;
+    display: inline-block;
+}
+
+.search input {
+    height: inherit;
+    padding: 7px 30px 7px 7px;
     border-radius: 10px;
     border-color: #000;
     margin: 0 0 10px 0;
 }
 
 /* Chrome, Opera, Safari */
-.search::-webkit-input-placeholder {
+.search input::-webkit-input-placeholder {
     color: #000;
     text-align: center;
 }
 
 /* Firefox 18- */
-.search:-moz-placeholder {
+.search input:-moz-placeholder {
     color: #000;
     text-align: center;
 }
 
 /* Firefox 19+ */
-.search::-moz-placeholder {
+.search input::-moz-placeholder {
     color: #000;
     text-align: center;
 }
 
 /* IE(Edge) 10+ */
-.search:-ms-input-placeholder {
+.search input:-ms-input-placeholder {
     color: #000;
     text-align: center;
+}
+
+.search button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: inherit;
+    background: url(https://img.icons8.com/pastel-glyph/2x/cancel.png) center center no-repeat;
+    background-size: 50%;
+    border: none;
+    outline: none;
+    cursor: pointer;
 }

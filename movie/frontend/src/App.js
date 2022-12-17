@@ -9,13 +9,13 @@ import Detail from './pages/Detail';
 import NowPlaying from './pages/NowPlaying';
 
 function App() {
-  const [searchData, setSearchData] = useState("");
+  const [searchData, setSearchData] = useState('');
 
   return (
     <div>
-      <Nav setSearchData={setSearchData} />
+      <Nav searchData={searchData} setSearchData={setSearchData} />
       <Routes>
-        <Route path="/" element={<Popular searchData={searchData} />} />
+        <Route path="/" element={<Popular searchData={searchData} setSearchData={setSearchData} />} />
         <Route path="/HighRated" element={<HighRated />} />
         <Route path="/NowPlaying" element={<NowPlaying />} />
         <Route path="/Upcoming" element={<Upcoming />} />
