@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Hide Api-key ###
+application.properties
+application-API-KEY.properties

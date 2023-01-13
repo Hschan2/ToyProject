@@ -1,6 +1,7 @@
 package com.moive.movie.controller;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.BufferedReader;
@@ -14,14 +15,16 @@ import java.net.URL;
  *
  * @author Hong Seong Chan
  * 작성일 2022-09-25
+ * 수정일 2023-01-12
  * */
 
 @RestController
+@PropertySource(value = "application-API-KEY.properties")
 public class movieController {
     
 //    API-KEY.properties의 API key 가져오기
-    @Value("${api-key}")
-    private String API_KEY;
+    @Value("${tmdb-api-key}")
+    private String tmdb_api_key;
 
 //    인기 영화 목록 가져오기
     @GetMapping("/api/popular")
@@ -87,7 +90,7 @@ public class movieController {
 //    전달받은 파라미터로 API 데이터 호출하기
     public String apiParse(String Category) throws IOException {
         StringBuilder result = new StringBuilder();
-        String urlStr = "https://api.themoviedb.org/3/movie/" + Category + "?api_key=" + API_KEY +"&language=ko-KR";
+        String urlStr = "https://api.themoviedb.org/3/movie/" + Category + "?api_key=" + tmdb_api_key +"&language=ko-KR";
         URL url = null;
         HttpURLConnection urlConnection = null;
         try {
@@ -111,7 +114,7 @@ public class movieController {
 
     public String searchParse(String searchText) throws IOException {
         StringBuilder result = new StringBuilder();
-        String urlStr = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY +"&query=" + searchText + "&language=ko-KR";
+        String urlStr = "https://api.themoviedb.org/3/search/movie?api_key=" + tmdb_api_key +"&query=" + searchText + "&language=ko-KR";
         URL url = null;
         HttpURLConnection urlConnection = null;
         try {
