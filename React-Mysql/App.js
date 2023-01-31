@@ -244,11 +244,11 @@ const options = {
     cert: fs.readFileSync('./cert/public.pem')
 };
 
-https.createServer(options, app).listen(5000, function() {
-    console.log("Server started on Port 5000");
-});
+// https.createServer(options, app).listen(5000, function() {
+//     console.log("Server started on Port 5000");
+// });
 
 // HTTP 서버 연결
-// app.listen(5000, () => {
-//     console.log("Server started on Port 5000")
-// });
+app.listen(5000, () => {
+    console.log("Server started on Port 5000")
+});
