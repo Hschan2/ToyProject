@@ -69,6 +69,10 @@ nav {
 }
 
 /* oAuth 스타일 설정 */
+input::placeholder {
+    font-size: 11px;
+}
+
 .oAuthBox {
     margin-top: 10px;
 }
