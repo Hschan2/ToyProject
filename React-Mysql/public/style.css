@@ -138,6 +138,7 @@ input::placeholder {
 /* 게시판 검색 짧은 Input */
 .shortInputBox {
     width: 200px;
+    height: 30px;
     margin-left: 15px;
 }
 
@@ -152,6 +153,10 @@ input::placeholder {
 
 /* 게시판 읽기 (boardRead) */
 /* 게시물 내용 스타일 조정 */
+textarea {
+    resize: none;
+}
+
 .readContentHeight {
     height: 150px;
 }
