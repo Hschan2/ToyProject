@@ -54,7 +54,7 @@ router.get('/boardList', authController.boardList, (req, res) => {
     });
 });
 
-router.get('/boardWrite', authController.boardWrite, (req, res) => {
+router.get('/boardWrite', (req, res) => {
     res.render('boardWrite', {
         user: req.user,
     });
