@@ -249,11 +249,13 @@ exports.withdrawal = async (req, res, next) => {
     }
 };
 
+/* 읽기 페이지에서 새로고침 시, 조회수 중복 방지 변수 */
+let refreshCheck = false;
+
 /* 게시글 목록 */
 exports.boardList = async (req, res, next) => {
     const { search } = req.body; // 검색 단어
-
-    errorHandle("에러 처리 테스트");
+    refreshCheck = false
 
     if(req.cookies.jwt) {
         try {
@@ -282,9 +284,6 @@ exports.boardList = async (req, res, next) => {
         next();
     }
 }
-
-/* 읽기 페이지에서 새로고침 시, 조회수 중복 방지 변수 */
-let refreshCheck = false;
 
 /* 게시글 읽기, 값 불러오는 것이 많아서 따로 분리 */
 exports.boardRead = async (req, res, next) => {
