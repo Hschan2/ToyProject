@@ -10,5 +10,5 @@
 ## 목록
 |타이틀|폴더로 이동|
 |---|:---:|
-|**브라우저 설정 O TextToVoice**|[이동](https://github.com/Hschan2/LearnJavascript/tree/main/TextToVoices/TextToVoice2)|
-|**브라우저 설정 X TextToVoice**|[이동](https://github.com/Hschan2/LearnJavascript/tree/main/TextToVoices/TextToVoice)|
+|**TextToVoice(목소리 선택 가능)**|[이동](https://github.com/Hschan2/ToyProject/tree/master/TextToVoices/TextToVoice)|
+|**TextToVoice(목소리 선택 블가능)**|[이동](https://github.com/Hschan2/ToyProject/tree/master/TextToVoices/TextToVoice2)|
