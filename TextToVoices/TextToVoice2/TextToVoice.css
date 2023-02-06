@@ -35,7 +35,7 @@ body {
 }
 
 #textInput {
-    width: 300px;
+    width: 500px;
     padding: 8px 10px;
     margin: 8px 0;
     display: inline-block;
@@ -54,6 +54,7 @@ body {
     display: inline-block;
     font-size: 12px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 #btnSpeak:hover {

@@ -29,5 +29,5 @@ function GetVoices() {
         listItem.setAttribute('data-name', voice.name);
         voiceList.appendChild(listItem);
     });
-    voiceList.selectedIndex = 0;
+    voiceList.selectedIndex = 174;
 }

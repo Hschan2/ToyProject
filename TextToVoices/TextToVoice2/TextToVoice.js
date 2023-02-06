@@ -31,10 +31,10 @@ function GetVoices() {
         voiceList.appendChild(listItem);
     });
     if(browser.indexOf("chrome") != -1) {
-        voiceList.selectedIndex = 13;
+        voiceList.selectedIndex = 12;
     }
     if(browser.indexOf("edg") != -1) {
-        voiceList.selectedIndex = 15;
+        voiceList.selectedIndex = 175;
     }
     if(browser.indexOf("whale") != -1) {
         voiceList.selectedIndex = 3;
