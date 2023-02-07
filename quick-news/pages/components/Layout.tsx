@@ -1,10 +1,11 @@
 import React from 'react'
-import styled from 'sty'
+import Navbar from './Navbar'
 
-export default function Layout(props: any) {
+export default function Layout({children} : {children: JSX.Element}) {
     return (
         <>
-            
+            <Navbar />
+            <div>{children}</div>
         </>
     )
 }
