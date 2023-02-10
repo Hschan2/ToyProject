@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import localFont from '@next/font/local'
 
-const myFont = localFont({ src: '../fonts/PermanentMarker-Regular.ttf' })
+const myFont = localFont({ src: '../fonts/NewsCycle-Bold.ttf' })
 
 export default function Navbar() {
     const router = useRouter();
@@ -37,7 +37,6 @@ export default function Navbar() {
                     margin: 5px 0;
                     font-size: 30px;
                 }
-
                 nav {
                     display: flex;
                     gap: 10px;
@@ -53,9 +52,14 @@ export default function Navbar() {
                     margin-bottom: 5px;
                 }
                 nav a {
+                    width: 70px;
+                    border: 1px solid rgba(0, 0, 0, 0.15);
+                    border-radius: 20px;
                     font-weight: 600;
                     font-size: 18px;
-                    margin: 0 10px;
+                    margin: 0 2px;
+                    padding: 5px 0;
+                    text-align: center;
                 }
                 .active {
                     color: tomato;

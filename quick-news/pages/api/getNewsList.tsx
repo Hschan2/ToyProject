@@ -21,7 +21,7 @@ export async function NewsList() {
         params: {
             query: "사회",
             sort: "sim",
-            display: 4,
+            display: 10,
         },
         headers: {
             "X-Requested-With": "XMLHttpRequest",
@@ -31,7 +31,7 @@ export async function NewsList() {
     })
         .then(res => res.data)
         .catch(err => {
-            console.log(`에러발생: ${err}`);
+            console.log(`에러발생: ${err.status}`);
             if (err.status === 403) {
                 console.log(`404 에러 페이지로 이동`);
             }
