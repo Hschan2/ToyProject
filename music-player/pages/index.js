@@ -6,9 +6,9 @@ export default function Home() {
       <Seo />
       <div className="wrapper">
         <div className="top-bar">
-          <i className="material-icons">더보기</i>
+          <i className="material-icons"><img src="https://img.icons8.com/material-outlined/24/null/more.png" alt="More" /></i>
           <span>Now Playing</span>
-          <i className="material-icons">설정</i>
+          <i className="material-icons"><img src="https://img.icons8.com/material-outlined/24/null/settings--v1.png" alt="Setting"/></i>
         </div>
         <div className="img-area">
           <img src="" alt="" />
@@ -27,13 +27,13 @@ export default function Home() {
           </div>
         </div>
         <div className="controls">
-          <i id="repeat-play-list" className="material-icons" title="Playlist looped">반복재생</i>
-          <i id="prev" className="material-icons">이전곡</i>
+          <i id="repeat-play-list" className="material-icons" title="Playlist looped"><img src="https://img.icons8.com/material-rounded/24/null/update-left-rotation.png" alt="Repeat" /></i>
+          <i id="prev" className="material-icons"><img src="https://img.icons8.com/external-inkubators-glyph-inkubators/25/null/external-previous-video-interface-inkubators-glyph-inkubators.png" alt="Prev" /></i>
           <div className="play-pause">
-            <i className="material-icons play">재생</i>
+            <i className="material-icons play"><img src="https://img.icons8.com/external-inkubators-glyph-inkubators/25/null/external-play-button-video-interface-inkubators-glyph-inkubators.png" alt="Play"/></i>
           </div>
-          <i id="next" className="material-icons">다음곡</i>
-          <i id="more-music" className="material-icons">재생목록</i>
+          <i id="next" className="material-icons"><img src="https://img.icons8.com/external-inkubators-glyph-inkubators/25/null/external-next-button-video-interface-inkubators-glyph-inkubators.png" alt="Next" /></i>
+          <i id="more-music" className="material-icons"><img src="https://img.icons8.com/material-outlined/24/null/list.png" alt="List" /></i>
         </div>
         <div className="music-list">
           <div className="header">
@@ -78,7 +78,7 @@ export default function Home() {
       }
       .top-bar i {
         font-size: 10px;
-        color: rgba(0,0,0,0.3);
+        opacity: 0.5;
       }
       .top-bar i:first-child {
         margin-left: -7px;
@@ -86,7 +86,7 @@ export default function Home() {
       .top-bar span {
         font-size: 15px;
         margin-left: -3px;
-        color: rgba(0,0,0,0.6);
+        color: rgba(0,0,0,0.7);
       }
       .img-area {
         width: 100%;
@@ -128,7 +128,7 @@ export default function Home() {
         width: 0%;
         position: relative;
         border-radius: inherit;
-        background: linear-gradient(90deg, #ff74a4 0%, #9f6ea3 100%);
+        background: #000;
       }
       .progress-bar::before {
         content: "";
@@ -162,7 +162,6 @@ export default function Home() {
       .controls i{
         font-size: 10px;
         user-select: none;
-        background: linear-gradient(#ff74a4 0%, #9f6ea3 100%);
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -185,8 +184,7 @@ export default function Home() {
         align-items: center;
         justify-content: center;
         border-radius: 50%;
-        background: linear-gradient(#fff 0%, #cecaca 100%);
-        box-shadow: 0px 0px 5px #ff74a4;
+        box-shadow: 0px 0px 5px #000;
       }
       .play-pause::before{
         position: absolute;
@@ -194,13 +192,13 @@ export default function Home() {
         height: 43px;
         width: 43px;
         border-radius: inherit;
-        background: linear-gradient(#ff74a4 0%, #9f6ea3 100%);
       }
       .play-pause i{
         height: 43px;
         width: 43px;
-        line-height: 43px;
+        line-height: 60px;
         text-align: center;
+        margin-left: 6px;
         background: inherit;
         background-clip: text;
         -webkit-background-clip: text;
