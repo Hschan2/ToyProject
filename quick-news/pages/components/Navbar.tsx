@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router'
 import React from 'react'
 import localFont from '@next/font/local'
+import Today from './Today';
 
 const myFont = localFont({ src: '../fonts/NewsCycle-Bold.ttf' })
 
@@ -11,6 +12,7 @@ export default function Navbar() {
     return (
         <nav>
             <h1 className={myFont.className}>Quick News</h1>
+            <Today />
             <div>
                 <Link href='/' legacyBehavior>
                     <a className={router.pathname === '/' ? 'active' : ''}>사회</a>
