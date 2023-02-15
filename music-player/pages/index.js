@@ -1,6 +1,12 @@
 import Seo from "@/components/Seo";
+import { loadMusic, playingSong } from '@/components/Functions';
 
 export default function Home() {
+  window.addEventListener("load", ()=>{
+    loadMusic(musicIndex);
+    playingSong(); 
+  });
+
   return (
     <>
       <Seo />
