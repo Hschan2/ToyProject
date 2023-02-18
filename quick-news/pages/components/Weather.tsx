@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { locationType, WeatherData } from "../constants/interfaces";
+import GetGeoLocation from "./GetGeoLocation";
 
 const API_KEY = "a03004bf971234fd4cb532f6df20b7af";
 
@@ -17,6 +18,7 @@ export default function Weather() {
         humidity: 0,
         wind: 0,
     });
+    const [a, b] = GetGeoLocation();
 
     useEffect(() => {
         if (navigator.geolocation) {
@@ -39,10 +41,12 @@ export default function Weather() {
     useEffect(() => {
         async function fetchWeatherData() {
             try {
-                const response = await fetch(
+                const weatherResponse = await fetch(
                     `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=${API_KEY}&lang=kr&units=metric`
                 );
-                const data = await response.json();
+                console.log(location.latitude, location.longitude);
+                console.log(weatherResponse);
+                const data = await weatherResponse.json();
                 if (data?.cod === "400") throw data;
                 setWeatherData({
                     name: data.name,
