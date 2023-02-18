@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { locationType, WeatherData } from "../constants/interfaces";
-import { WeatherResponse } from "../constants/types";
+
+const API_KEY = "a03004bf971234fd4cb532f6df20b7af";
 
 export default function Weather() {
     const [location, setLocation] = useState<locationType>({
@@ -40,9 +40,10 @@ export default function Weather() {
         async function fetchWeatherData() {
             try {
                 const response = await fetch(
-                    `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=a03004bf971234fd4cb532f6df20b7af&lang=kr&units=metric`
+                    `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=${API_KEY}&lang=kr&units=metric`
                 );
                 const data = await response.json();
+                if (data?.cod === "400") throw data;
                 setWeatherData({
                     name: data.name,
                     description: data.weather[0].description,

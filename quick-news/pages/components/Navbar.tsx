@@ -13,8 +13,10 @@ export default function Navbar() {
     return (
         <nav>
             <h1 className={myFont.className}>Quick News</h1>
-            <Today />
-            <Weather />
+            <div className='TimeWeather'>
+                <Today />
+                <Weather />
+            </div>
             <div>
                 <Link href='/' legacyBehavior>
                     <a className={router.pathname === '/' ? 'active' : ''}>사회</a>
@@ -40,6 +42,12 @@ export default function Navbar() {
                     user-select: none;
                     margin: 5px 0;
                     font-size: 30px;
+                }
+                .TimeWeather {
+                    margin-top: -5px;
+                    margin-bottom: 10px;
+                    color: rgba(0, 0, 0, 0.5);
+                    font-size: 12px;
                 }
                 nav {
                     display: flex;
