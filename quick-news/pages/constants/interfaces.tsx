@@ -6,8 +6,5 @@ export interface locationType {
 export interface WeatherData {
     name: string;
     description: string;
-    icon: string;
     temp: number;
-    humidity: number;
-    wind: number;
 }
