@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import { locationType, WeatherData } from "../constants/interfaces";
 import useGeolocation from "./GetGeoLocation";
 
-const API_KEY = "a03004bf971234fd4cb532f6df20b7af";
-
 export default function Weather() {
     const { latitude, longitude, error } = useGeolocation();
     const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
@@ -13,7 +11,7 @@ export default function Weather() {
         const fetchWeatherData = async () => {
             try {
                 const response = await fetch(
-                    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&lang=kr&units=metric`
+                    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}&lang=kr&units=metric`
                 );
                 if (!response.ok) {
                     throw new Error("위도와 경도가 부정확합니다.");
