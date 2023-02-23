@@ -1,6 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import { locationType, WeatherData } from "../constants/interfaces";
+import { WeatherData } from "../constants/interfaces";
 import useGeolocation from "./GetGeoLocation";
 
 export default function Weather() {
