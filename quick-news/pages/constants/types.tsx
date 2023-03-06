@@ -10,3 +10,12 @@ export type WeatherResponse = {
         country: string;
     }
 }
+
+export type Article = {
+    title: string;
+    description: string;
+    url: string;
+    urlToImage: string;
+    publishedAt: string;
+    content: string;
+  };

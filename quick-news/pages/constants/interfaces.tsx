@@ -20,3 +20,16 @@ export interface NewsItem {
 export interface NewsData {
     items: NewsItem[];
 }
+
+export interface NewsApiItems {
+    author: string;
+    title: string;
+    description: string;
+    url: string;
+    urlToImage: string;
+    publishedAt: string;
+}
+
+export interface NewsApiData {
+    articles: NewsApiItems[];
+}
