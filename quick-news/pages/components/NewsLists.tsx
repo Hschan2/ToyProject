@@ -8,16 +8,25 @@ export default function NewsLists() {
     const [news, setNews] = useState<NewsItem[]>([]);
 
     useEffect(() => {
+        const cancelToken = axios.CancelToken.source();
+
         async function fetchNews() {
             try {
-                const {data} = await axios.get<NewsData>('/api/naver-news-proxy?q=반려동물');
+                const {data} = await axios.get<NewsData>('/api/naver-news-proxy?q=반려동물', {cancelToken:cancelToken.token});
                 setNews(data.items);
             } catch (error) {
                 console.error(error);
+                if (axios.isCancel(error)) {
+                    console.log("요청 취소");
+                }
             }
         }
 
         fetchNews();
+
+        return () => {
+            cancelToken.cancel();
+        }
     }, []);
 
     return (
