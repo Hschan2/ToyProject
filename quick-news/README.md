@@ -3,6 +3,7 @@
 
 ## 활용 기술
 * React
+* React Hook
 * TypeScript
 * Next.js
 * NewsAPI
@@ -20,3 +21,4 @@
 [ ] OpenAI로 카테고리 별 뉴스 가져오고 출력
 [ ] Sanity 적용 가능 확인
 [ ] SWR 상태관리 라이브러리 적용 확인
+[ ] React use 사용
