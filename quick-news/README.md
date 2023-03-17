@@ -9,6 +9,7 @@
 * NewsAPI
 * 네이버 검색 API
 * OpenAI
+* Recoil
 
 ## 기능 목록
 [x] 프로젝트 생성
