@@ -6,10 +6,18 @@ import Seo from './components/Seo'
 export default function Third() {
 
     return (
-        <div>
+        <div className='wrapper'>
             <Seo title="주요 뉴스" />
             <OpenAINews />
             <Footer />
+            <style jsx>{`
+                .wrapper{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    height: 100vh;
+                }
+            `}</style>
         </div>
     )
 }

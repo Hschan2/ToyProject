@@ -29,8 +29,6 @@ export default function NewsApiList() {
         }
     }, []);
 
-    console.log(articles);
-
     return (
         <div className="container">
             {articles.map((article, i) => (
