@@ -1,3 +1,4 @@
+import { Author, NewsCard } from "../constants/styledComponents";
 import axios from "axios";
 import moment from "moment";
 import 'moment/locale/ko';
@@ -30,26 +31,13 @@ export default function NewsApiList() {
     }, []);
 
     return (
-        <div className="container">
+        <div>
             {articles.map((article, i) => (
-                <div key={i} className='news-card'>
+                <NewsCard key={i}>
                     <h3><a href={article.url} rel="noreferrer" target="_blank">{(article.title).split(' - ')[0]}</a></h3>
-                    <p className="author">{moment(article.publishedAt).format('YYYY-MM-DD HH:mm')} {article.author}</p>
-                </div>
+                    <Author>{moment(article.publishedAt).format('YYYY-MM-DD HH:mm')} {article.author}</Author>
+                </NewsCard>
             ))}
-            <style jsx>{`
-                .news-card {
-                    margin: 5px 0;
-                    background-color: #fff;
-                    padding: 0 10px;
-                    border: 1px solid rgba(0, 0, 0, 0.1);
-                    border-radius: 20px;
-                }
-                .author {
-                    font-size: 12px;
-                    color: rgba(0, 0, 0, 0.6);
-                }
-            `}</style>
         </div>
     )
 }

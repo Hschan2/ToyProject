@@ -1,3 +1,4 @@
+import { DateTime, NewsCard } from "../constants/styledComponents";
 import axios from "axios";
 import moment from "moment";
 import 'moment/locale/ko';
@@ -30,27 +31,14 @@ export default function NewsLists() {
     }, []);
 
     return (
-        <div className="container">
+        <div>
             {news.map((item, i) => (
-                <div key={i} className='news-card'>
+                <NewsCard key={i}>
                     <h3 dangerouslySetInnerHTML={{ __html: item.title }} />
-                    <p className="dateTime">{moment(item.pubDate).format('YYYY-MM-DD HH:mm')}</p>
+                    <DateTime>{moment(item.pubDate).format('YYYY-MM-DD HH:mm')}</DateTime>
                     <p dangerouslySetInnerHTML={{__html: item.description}} />
-                </div>
+                </NewsCard>
             ))}
-            <style jsx>{`
-                .news-card {
-                    margin: 5px 0;
-                    background-color: #fff;
-                    padding: 0 10px;
-                    border: 1px solid rgba(0, 0, 0, 0.1);
-                    border-radius: 20px;
-                }
-                .dateTime {
-                    font-size: 12px;
-                    color: rgba(0, 0, 0, 0.6);
-                }
-            `}</style>
         </div>
     )
 }
