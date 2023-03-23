@@ -12,8 +12,8 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
-        <TitleStyleFont />
         <Layout>
+          {/* <TitleStyleFont /> */}
           <Component {...pageProps} />
         </Layout>
       </RecoilRoot>
