@@ -71,7 +71,9 @@ export const TimeWeather = styled.div`
     font-size: 12px;
 `
 
-export const LinkStyle = styled.a`
+export const LinkStyle = styled.a.attrs((props) => ({
+    isActive: props.isActive
+  }))`
     display: inline-block;
     width: 70px;
     border: 1px solid rgba(0, 0, 0, 0.15);
@@ -83,9 +85,7 @@ export const LinkStyle = styled.a`
     text-align: center;
     cursor: pointer;
 
-    &.active {
-        color: tomato;
-    }
+    color: ${(props) => (props.isActive ? 'tomato' : '')};
 `
 
 export const NavDisplay = styled.div`

@@ -1,12 +1,21 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Today from './Today';
 import Weather from './Weather';
 import { LinkStyle, Nav, NavDisplay, NavTitle, TimeWeather } from '../constants/styledComponents';
 
 export default function Navbar() {
     const router = useRouter();
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    })
+
+    if (!isMounted) {
+        return null;
+    }
 
     return (
         <Nav>
@@ -16,20 +25,20 @@ export default function Navbar() {
                 <Weather />
             </TimeWeather>
             <NavDisplay>
-                <Link href='/' legacyBehavior>
-                    <LinkStyle className={router.pathname === '/' ? 'active' : ''}>사회</LinkStyle>
+                <Link href='/' passHref>
+                    <LinkStyle isActive={router.pathname === '/'}>사회</LinkStyle>
                 </Link>
-                <Link href='/about' legacyBehavior>
-                    <LinkStyle className={router.pathname === '/about' ? 'active' : ''}>경제</LinkStyle>
+                <Link href='/about' passHref>
+                    <LinkStyle isActive={router.pathname === '/about'}>경제</LinkStyle>
                 </Link>
-                <Link href='/third' legacyBehavior>
-                    <LinkStyle className={router.pathname === '/third' ? 'active' : ''}>정치</LinkStyle>
+                <Link href='/third' passHref>
+                    <LinkStyle isActive={router.pathname === '/third'}>정치</LinkStyle>
                 </Link>
-                <Link href='/fourth' legacyBehavior>
-                    <LinkStyle className={router.pathname === '/fourth' ? 'active' : ''}>연예</LinkStyle>
+                <Link href='/fourth' passHref>
+                    <LinkStyle isActive={router.pathname === '/fourth'}>연예</LinkStyle>
                 </Link>
-                <Link href='/fifth' legacyBehavior>
-                    <LinkStyle className={router.pathname === '/fifth' ? 'active' : ''}>IT</LinkStyle>
+                <Link href='/fifth' passHref>
+                    <LinkStyle isActive={router.pathname === '/fifth'}>IT</LinkStyle>
                 </Link>
             </NavDisplay>
         </Nav>
