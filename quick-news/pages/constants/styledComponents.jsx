@@ -71,7 +71,7 @@ export const TimeWeather = styled.div`
     font-size: 12px;
 `
 
-export const LinkStyle = styled.a.attrs((props) => ({
+export const LinkStyle = styled.div.attrs((props) => ({
     isActive: props.isActive
   }))`
     display: inline-block;
