@@ -30,6 +30,10 @@ export const NewsCard = styled.div`
     padding: 0 10px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 20px;
+
+    &:hover {
+        box-shadow: 0 4px 2px 2px rgba(0, 0, 0, 0.02)
+    }
 `
 
 export const DateTime = styled.p`

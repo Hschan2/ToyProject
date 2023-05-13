@@ -4,6 +4,7 @@ import moment from "moment";
 import 'moment/locale/ko';
 import { useEffect, useState } from "react";
 import { NewsApiData, NewsApiItems } from "../constants/interfaces";
+import Link from "next/link";
 
 export default function NewsApiList() {
     const [articles, setArticles] = useState<NewsApiItems[]>([]);
@@ -33,10 +34,12 @@ export default function NewsApiList() {
     return (
         <div>
             {articles.map((article, i) => (
-                <NewsCard key={i}>
-                    <h3><a href={article.url} rel="noreferrer" target="_blank">{(article.title).split(' - ')[0]}</a></h3>
-                    <Author>{moment(article.publishedAt).format('YYYY-MM-DD HH:mm')} {article.author}</Author>
-                </NewsCard>
+                <Link href={article.url} target="_blank" key={i}>
+                    <NewsCard>
+                        <h3>{(article.title).split(' - ')[0]}</h3>
+                        <Author>{moment(article.publishedAt).format('YYYY-MM-DD HH:mm')} {article.author}</Author>
+                    </NewsCard>
+                </Link>
             ))}
         </div>
     )
