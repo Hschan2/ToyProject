@@ -5,11 +5,11 @@ import NewsApiProxyTest from './components/NewsApiProxyTest';
 import Seo from './components/Seo'
 import { Wrapper } from './constants/styledComponents';
 
-export default function About() {
+export default function Total() {
 
   return (
     <Wrapper>
-      <Seo title="주요 뉴스" />
+      <Seo title="톱 헤드라인" />
       <Suspense fallback={<div>Loading...</div>}>
         <NewsApiList />
       </Suspense>

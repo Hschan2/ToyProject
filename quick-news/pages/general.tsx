@@ -1,14 +1,14 @@
 import Footer from './components/Footer';
-import OpenAINews from './components/OpenAiNews';
+import NewsSourceList from './components/NewsSourceList';
 import Seo from './components/Seo'
 import { Wrapper } from './constants/styledComponents';
 
-export default function Third() {
+export default function General() {
 
     return (
         <Wrapper>
-            <Seo title="주요 뉴스" />
-            <OpenAINews />
+            <Seo title="사회" />
+            <NewsSourceList category='general' />
             <Footer />
         </Wrapper>
     )

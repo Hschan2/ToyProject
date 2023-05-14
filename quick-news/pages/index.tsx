@@ -8,7 +8,7 @@ export default function Home() {
 
   return (
     <Wrapper>
-      <Seo title="사회" />
+      <Seo title="오늘의 주요뉴스" />
       <Suspense fallback={<div>Loading...</div>}>
         <NewsLists />
       </Suspense>

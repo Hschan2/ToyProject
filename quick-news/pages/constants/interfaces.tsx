@@ -40,3 +40,7 @@ export interface OpenAiNews {
     content: string;
     link: string;
 }
+
+export interface NewsSourceListProps {
+    category: string;
+}

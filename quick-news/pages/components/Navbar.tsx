@@ -26,19 +26,31 @@ export default function Navbar() {
             </TimeWeather>
             <NavDisplay>
                 <Link href='/' passHref>
-                    <LinkStyle isActive={router.pathname === '/'}>사회</LinkStyle>
+                    <LinkStyle isActive={router.pathname === '/'}>주요뉴스</LinkStyle>
                 </Link>
-                <Link href='/about' passHref>
-                    <LinkStyle isActive={router.pathname === '/about'}>경제</LinkStyle>
+                <Link href='/total' passHref>
+                    <LinkStyle isActive={router.pathname === '/total'}>인기</LinkStyle>
                 </Link>
-                <Link href='/third' passHref>
-                    <LinkStyle isActive={router.pathname === '/third'}>정치</LinkStyle>
+                <Link href='/business' passHref>
+                    <LinkStyle isActive={router.pathname === '/business'}>경제</LinkStyle>
                 </Link>
-                <Link href='/fourth' passHref>
-                    <LinkStyle isActive={router.pathname === '/fourth'}>연예</LinkStyle>
+                <Link href='/general' passHref>
+                    <LinkStyle isActive={router.pathname === '/general'}>사회</LinkStyle>
                 </Link>
-                <Link href='/fifth' passHref>
-                    <LinkStyle isActive={router.pathname === '/fifth'}>IT</LinkStyle>
+                <Link href='/entertainment' passHref>
+                    <LinkStyle isActive={router.pathname === '/entertainment'}>연예</LinkStyle>
+                </Link>
+                <Link href='/sports' passHref>
+                    <LinkStyle isActive={router.pathname === '/sports'}>스포츠</LinkStyle>
+                </Link>
+                <Link href='/technology' passHref>
+                    <LinkStyle isActive={router.pathname === '/technology'}>테크</LinkStyle>
+                </Link>
+                <Link href='/health' passHref>
+                    <LinkStyle isActive={router.pathname === '/health'}>건강</LinkStyle>
+                </Link>
+                <Link href='/science' passHref>
+                    <LinkStyle isActive={router.pathname === '/science'}>과학</LinkStyle>
                 </Link>
             </NavDisplay>
         </Nav>
