@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import Footer from './components/Footer';
 import NewsSourceList from './components/NewsSourceList';
 import Seo from './components/Seo'
@@ -8,7 +9,9 @@ export default function Health() {
     return (
         <Wrapper>
             <Seo title="건강" />
-            <NewsSourceList category='health' />
+            <Suspense fallback={<div>Loading...</div>}>
+                <NewsSourceList category='health' />
+            </Suspense>
             <Footer />
         </Wrapper>
     )

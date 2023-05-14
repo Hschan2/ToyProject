@@ -1,7 +1,6 @@
 import { Suspense } from 'react';
 import Footer from './components/Footer';
 import NewsApiList from './components/NewsApiList';
-import NewsApiProxyTest from './components/NewsApiProxyTest';
 import Seo from './components/Seo'
 import { Wrapper } from './constants/styledComponents';
 

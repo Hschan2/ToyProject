@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import Footer from './components/Footer';
 import NewsSourceList from './components/NewsSourceList';
 import OpenAINews from './components/OpenAiNews';
@@ -9,7 +10,9 @@ export default function Business() {
     return (
         <Wrapper>
             <Seo title="경제" />
-            <NewsSourceList category='business' />
+            <Suspense fallback={<div>Loading...</div>}>
+                <NewsSourceList category='business' />
+            </Suspense>
             <Footer />
         </Wrapper>
     )

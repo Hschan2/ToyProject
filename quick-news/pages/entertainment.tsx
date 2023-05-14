@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import Footer from './components/Footer';
 import NewsSourceList from './components/NewsSourceList';
 import Seo from './components/Seo'
@@ -8,7 +9,9 @@ export default function Entertainment() {
     return (
         <Wrapper>
             <Seo title="연예" />
-            <NewsSourceList category='entertainment' />
+            <Suspense fallback={<div>Loading...</div>}>
+                <NewsSourceList category='entertainment' />
+            </Suspense>
             <Footer />
         </Wrapper>
     )
