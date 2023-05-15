@@ -39,6 +39,7 @@ export default function NewsSourceList(props: NewsSourceListProps) {
                     <NewsCard>
                         <h3>{(article.title).split(' - ')[0]}</h3>
                         <Author>{moment(article.publishedAt).format('YYYY-MM-DD HH:mm')} {article.author}</Author>
+                        <p>{article.description}</p>
                     </NewsCard>
                 </Link>
             ))}
