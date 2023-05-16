@@ -34,9 +34,6 @@ export default function Navbar() {
                 <Link href='/business' passHref>
                     <LinkStyle isActive={router.pathname === '/business'}>경제</LinkStyle>
                 </Link>
-                <Link href='/general' passHref>
-                    <LinkStyle isActive={router.pathname === '/general'}>사회</LinkStyle>
-                </Link>
                 <Link href='/entertainment' passHref>
                     <LinkStyle isActive={router.pathname === '/entertainment'}>연예</LinkStyle>
                 </Link>
