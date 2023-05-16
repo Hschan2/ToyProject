@@ -34,13 +34,6 @@ export interface NewsApiData {
     articles: NewsApiItems[];
 }
 
-export interface OpenAiNews {
-    title: string;
-    author: string;
-    content: string;
-    link: string;
-}
-
 export interface NewsSourceListProps {
-    category: string;
+    category?: string;
 }

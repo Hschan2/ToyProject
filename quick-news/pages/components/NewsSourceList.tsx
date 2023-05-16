@@ -9,13 +9,19 @@ import Link from "next/link";
 export default function NewsSourceList(props: NewsSourceListProps) {
     const [articles, setArticles] = useState<NewsApiItems[]>([]);
     const { category } = props;
+    const fromToday = new Date().toISOString().split("T")[0];
 
     useEffect(() => {
         const cancelToken = axios.CancelToken.source();
 
         async function fetchNews() {
             try {
-                const response = await axios.get<NewsApiData>(`https://newsapi.org/v2/top-headlines?country=kr&category=${category}&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`, {cancelToken:cancelToken.token});
+                let url = `https://newsapi.org/v2/top-headlines?country=kr&from=${fromToday}&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`;
+                if (category) {
+                    url += `&category=${category}`;
+                }
+
+                const response = await axios.get<NewsApiData>(url, {cancelToken:cancelToken.token});
                 setArticles(response.data.articles);
             } catch (error) {
                 console.error(error);
@@ -30,7 +36,7 @@ export default function NewsSourceList(props: NewsSourceListProps) {
         return () => {
             cancelToken.cancel();
         }
-    }, []);
+    }, [category]);
 
     return (
         <div>

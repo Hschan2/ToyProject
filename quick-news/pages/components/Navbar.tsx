@@ -29,7 +29,7 @@ export default function Navbar() {
                     <LinkStyle isActive={router.pathname === '/'}>주요뉴스</LinkStyle>
                 </Link>
                 <Link href='/total' passHref>
-                    <LinkStyle isActive={router.pathname === '/total'}>인기</LinkStyle>
+                    <LinkStyle isActive={router.pathname === '/total'}>종합</LinkStyle>
                 </Link>
                 <Link href='/business' passHref>
                     <LinkStyle isActive={router.pathname === '/business'}>경제</LinkStyle>
