@@ -18,7 +18,7 @@ export const Wrapper = styled.div`
 `
 
 export const BottomFooter = styled.footer`
-    padding: 20px 0;
+    padding: 30px 0;
     text-align: center;
     background-color: rgba(0, 0, 0, 0.01);
     color: rgba(0, 0, 0, 0.5);
@@ -41,6 +41,11 @@ export const DateTime = styled.p`
 `
 
 export const Author = styled.p`
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.8);
+`
+
+export const DateOfNews = styled.p`
     font-size: 12px;
     color: rgba(0, 0, 0, 0.6);
     margin-top: -10px;
@@ -105,4 +110,37 @@ export const UpButton = styled.div`
     right: 40px;
     cursor: pointer;
     font-size: 40px;
+`
+
+export const PageSizesButton = styled.div`
+    position: fixed;
+    background-color: #000;
+    color: #fff;
+    border-radius: 50%;
+    padding: 4px 8px 6px 8px;
+    bottom: 110px;
+    right: 40px;
+    cursor: pointer;
+    font-size: 22px;
+    user-select: none;
+
+    &::before {
+        content: attr("뉴스 데이터 개수 선택\n오늘의주요뉴스 제외");
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 8px;
+        background-color: #000;
+        color: #fff;
+        border-radius: 4px;
+        font-size: 14px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+    }
+
+    &:hover::before {
+        opacity: 1;
+    }
 `

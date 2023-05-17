@@ -9,7 +9,7 @@ body {
 }
 
 body {
-  max-width: 768px;
+  max-width: 680px;
   margin: 0 auto;
   -ms-overflow-style: none;
 }
@@ -25,4 +25,33 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.title-tooltip {
+  position: fixed;
+  bottom: 150px;
+  right: 60px;
+}
+  
+.title-tooltip::before {
+  content: attr(title);
+  position: absolute;
+  width: 80px;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px;
+  margin-bottom: 8px;
+  background-color: #4D7653;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 14px;
+  opacity: 0;
+  text-align: center;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+  
+.title-tooltip:hover::before {
+  opacity: 1;
 }
