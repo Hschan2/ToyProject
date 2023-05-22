@@ -8,8 +8,8 @@ import { createGlobalStyle } from 'styled-components'
 const queryClient = new QueryClient();
 const GlobalFontStyle = createGlobalStyle`
   @font-face {
-    font-family: 'PermanentMarker-Regular';
-    src: url('/fonts/PermanentMarker-Regular.ttf') format('truetype');
+    font-family: 'Newsreader_60pt-BoldItalic';
+    src: url('/fonts/Newsreader_60pt-BoldItalic.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
     font-display: fallback;

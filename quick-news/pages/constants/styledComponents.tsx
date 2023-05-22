@@ -62,7 +62,7 @@ export const Nav = styled.nav`
 `
 
 export const NavTitle = styled.h1`
-    font-family: 'PermanentMarker-Regular', sans-serif;
+    font-family: 'Georgia', sans-serif;
     font-size: 40px;
     color: #4D7653;
     margin: 5px 0;
@@ -80,12 +80,10 @@ export const TimeWeather = styled.div`
     font-size: 12px;
 `
 
-export const LinkStyle = styled.div.attrs((props) => ({
-    isActive: props.isActive
-  }))`
+export const LinkStyle = styled.div<{ isActive: boolean }>`
     display: inline-block;
     width: 70px;
-    background-color: #FFF;
+    background-color: #fff;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 15px;
     font-weight: bold;
@@ -94,8 +92,8 @@ export const LinkStyle = styled.div.attrs((props) => ({
     text-align: center;
     cursor: pointer;
 
-    color: ${(props) => (props.isActive ? '#4D7653' : '')};
-`
+    ${(props) => (props.isActive ? 'color: #4D7653;' : '')};
+`;
 
 export const NavDisplay = styled.div`
     display: flex;
@@ -146,3 +144,19 @@ export const PageSizesButton = styled.div`
         opacity: 1;
     }
 `
+
+export const TimelineScrollContainer = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #f0f0f0;
+`
+
+export const TimelineScrollBar = styled.div<{ progress: number }>`
+    height: 100%;
+    background-color: #4d7653;
+    transition: width 0.1s;
+    ${(props) => `width: ${props.progress}%`};
+`;
