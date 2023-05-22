@@ -15,7 +15,7 @@ export default async function handler(
             },
             params: {
                 query: query.q,
-                display: 10,
+                display: 20,
                 start: 1,
                 sort: 'sim',
             },

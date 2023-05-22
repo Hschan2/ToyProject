@@ -1,14 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components';
-
-export const TitleStyleFont = createGlobalStyle`
-    @font-face {
-        font-family: 'NewsCycle-Bold';
-        src: url('../fonts/NewsCycle-Bold.ttf') format('truetype');
-        font-weight: bold;
-        font-style: normal;
-        font-display: fallback;
-    }
-`
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
     display: flex;
@@ -17,12 +7,20 @@ export const Wrapper = styled.div`
     height: 100vh;
 `
 
-export const BottomFooter = styled.footer`
-    padding: 30px 0;
+export const FooterContainer = styled.div`
+    position: relative;
+    padding-bottom: 100px;
+`
+
+export const FooterContents = styled.footer`
+    position: absolute;
+    bottom: 0;
+    padding: 20px 0;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.01);
     color: rgba(0, 0, 0, 0.5);
-    font-size: 0.6rem;
+    font-size: 0.7rem;
 `
 
 export const NewsCard = styled.div`
@@ -64,8 +62,8 @@ export const Nav = styled.nav`
 `
 
 export const NavTitle = styled.h1`
-    font-family: 'NewsCycle-Bold', sans-serif;
-    font-size: 30px;
+    font-family: 'PermanentMarker-Regular', sans-serif;
+    font-size: 40px;
     color: #4D7653;
     margin: 5px 0;
     -webkit-user-select: none;
@@ -106,19 +104,23 @@ export const NavDisplay = styled.div`
 
 export const UpButton = styled.div`
     position: fixed;
-    bottom: 40px;
+    bottom: 50px;
     right: 40px;
     cursor: pointer;
-    font-size: 40px;
+    font-size: 30px;
+    background-color: #4D7653;
+    border-radius: 50%;
+    padding: 2px 14px 2px 14px;
+    color: #fff;
 `
 
 export const PageSizesButton = styled.div`
     position: fixed;
-    background-color: #000;
+    background-color: #4D7653;
     color: #fff;
     border-radius: 50%;
-    padding: 4px 8px 6px 8px;
-    bottom: 110px;
+    padding: 6px 10px 8px 10px;
+    bottom: 120px;
     right: 40px;
     cursor: pointer;
     font-size: 22px;
@@ -131,7 +133,7 @@ export const PageSizesButton = styled.div`
         left: 50%;
         transform: translateX(-50%);
         padding: 8px;
-        background-color: #000;
+        background-color: #4D7653;
         color: #fff;
         border-radius: 4px;
         font-size: 14px;

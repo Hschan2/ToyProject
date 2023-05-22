@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { FaArrowCircleUp } from 'react-icons/fa';
 import { UpButton } from '../constants/styledComponents';
 
 export default function MoveUp() {
@@ -27,9 +26,7 @@ export default function MoveUp() {
     return (
         <>
             {showButton && (
-                <UpButton onClick={handleClick}>
-                    <FaArrowCircleUp />
-                </UpButton>
+                <UpButton onClick={handleClick}>&#8593;</UpButton>
             )}
         </>
     )

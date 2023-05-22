@@ -1,13 +1,18 @@
-import { BottomFooter } from '../constants/styledComponents'
+import { FooterContainer, FooterContents } from '../constants/styledComponents'
 import React from 'react'
 
 function Footer() {
+    const thisYear = () => {
+        return new Date().getFullYear();
+    };
 
     return (
-        <BottomFooter>
-            <div>It was Developed with NextJS</div>
-            <div>Copyright &copy; HONG SEONGCHAN</div>
-        </BottomFooter>
+        <FooterContainer>
+            <FooterContents>
+                <div>It was Developed with NextJS</div>
+                <div>Copyright &copy; {thisYear()} HONG SEONGCHAN</div>
+            </FooterContents>
+        </FooterContainer>
     )
 }
 
