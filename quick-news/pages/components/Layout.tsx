@@ -1,8 +1,8 @@
 import React from 'react'
-import MoveUp from './MoveUp'
-import Navbar from './Navbar'
-import PageSizeButton from './PageSizeButton'
-import TimelineScroll from './TimelineScroll'
+import MoveUp from './btn/MoveUp'
+import Navbar from './nav/Navbar'
+import PageSizeButton from './btn/PageSizeButton'
+import TimelineScroll from './page/TimelineScroll'
 
 export default function Layout({children} : {children: JSX.Element}) {
 

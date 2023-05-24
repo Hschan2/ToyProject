@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { TimelineScrollBar, TimelineScrollContainer } from '../constants/styledComponents';
+import { TimelineScrollBar, TimelineScrollContainer } from '../../constants/styledComponents';
 
 export default function TimelineScroll() {
     const [scrollProgress, setScrollProgress] = useState(0);

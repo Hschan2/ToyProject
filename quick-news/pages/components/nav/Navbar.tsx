@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router'
 import React, { useEffect, useState, lazy, Suspense } from 'react'
-import { LinkStyle, Nav, NavDisplay, NavTitle, TimeWeather } from '../constants/styledComponents';
+import { LinkStyle, Nav, NavDisplay, NavTitle, TimeWeather } from '../../constants/styledComponents';
 
-const Today = lazy(() => import('./Today'));
-const Weather = lazy(() => import('./Weather'));
+const Today = lazy(() => import('../info/Today'));
+const Weather = lazy(() => import('../info/Weather'));
 
 export default function Navbar() {
     const router = useRouter();

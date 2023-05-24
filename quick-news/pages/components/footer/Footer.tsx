@@ -1,4 +1,4 @@
-import { FooterContainer, FooterContents } from '../constants/styledComponents'
+import { FooterContainer, FooterContents } from '../../constants/styledComponents'
 import React from 'react'
 
 function Footer() {
