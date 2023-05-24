@@ -1,13 +1,13 @@
-import { Author, DateOfNews, NewsCard } from "../constants/styledComponents";
+import { Author, DateOfNews, NewsCard } from "../../constants/styledComponents";
 import axios from "axios";
 import moment from "moment";
 import 'moment/locale/ko';
 import { Suspense, useEffect, useState } from "react";
-import { NewsApiData, NewsApiItems, NewsSourceListProps } from "../constants/interfaces";
+import { NewsApiData, NewsApiItems, NewsSourceListProps } from "../../constants/interfaces";
 import Link from "next/link";
 import { useRecoilValue } from "recoil";
-import { pageSizeAtom } from "../constants/pageSizeAtom";
-import Loading from "./page/loading";
+import { pageSizeAtom } from "../../constants/pageSizeAtom";
+import Loading from "../page/loading";
 
 export default function NewsSourceList(props: NewsSourceListProps) {
     const [articles, setArticles] = useState<NewsApiItems[]>([]);

@@ -1,11 +1,11 @@
-import { DateTime, NewsCard } from "../constants/styledComponents";
+import { DateTime, NewsCard } from "../../constants/styledComponents";
 import axios from "axios";
 import moment from "moment";
 import 'moment/locale/ko';
 import { Suspense, useEffect, useState } from "react";
-import { NewsData, NewsItem } from '../constants/interfaces';
+import { NewsData, NewsItem } from '../../constants/interfaces';
 import Link from "next/link";
-import Loading from "./page/loading";
+import Loading from "../page/loading";
 
 export default function NewsLists() {
     const [news, setNews] = useState<NewsItem[]>([]);
