@@ -2,9 +2,10 @@ import { DateTime, NewsCard } from "../constants/styledComponents";
 import axios from "axios";
 import moment from "moment";
 import 'moment/locale/ko';
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { NewsData, NewsItem } from '../constants/interfaces';
 import Link from "next/link";
+import Loading from "./page/loading";
 
 export default function NewsLists() {
     const [news, setNews] = useState<NewsItem[]>([]);
@@ -32,16 +33,18 @@ export default function NewsLists() {
     }, []);
 
     return (
-        <div>
-            {news.map((item, i) => (
-                <Link href={item.link} target="_blank" key={i}>
-                    <NewsCard>
-                        <h3 dangerouslySetInnerHTML={{ __html: item.title }} />
-                        <DateTime>{moment(item.pubDate).format('YYYY-MM-DD HH:mm')}</DateTime>
-                        <p dangerouslySetInnerHTML={{__html: item.description}} />
-                    </NewsCard>
-                </Link>
-            ))}
-        </div>
+        <Suspense fallback={<Loading />}>
+            <div>
+                {news.map((item, i) => (
+                    <Link href={item.link} target="_blank" key={i}>
+                        <NewsCard>
+                            <h3 dangerouslySetInnerHTML={{ __html: item.title }} />
+                            <DateTime>{moment(item.pubDate).format('YYYY-MM-DD HH:mm')}</DateTime>
+                            <p dangerouslySetInnerHTML={{__html: item.description}} />
+                        </NewsCard>
+                    </Link>
+                ))}
+            </div>
+        </Suspense>
     )
 }
