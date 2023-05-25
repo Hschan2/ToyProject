@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styles from '../style/navStyle.module.css';
 import LottieFiles from './lottieFiles';
@@ -13,9 +13,6 @@ function Nav({ searchData, setSearchData }) {
 
     const onChange = useCallback((e) => {
         setSearchData(e.target.value);
-        // setTimeout(() => {
-        //     setSearchData(e.target.value);
-        // }, 1000)
     }, []);
 
     const onReset = () => {

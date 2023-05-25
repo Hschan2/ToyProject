@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SEO from '../components/SEO';
-import ToTop from '../components/ToTop';
 import MovieLists from '../components/MovieLists';
-import Footer from '../components/Footer';
 import Loading from '../components/Loading';
 import GetMovieList from '../components/GetMovieList';
 
@@ -23,8 +21,6 @@ function NowPlaying() {
     <div>
       <SEO title="현재개봉작" />
       {!nowPlayingData ? <Loading /> : <MovieLists movieList={nowPlayingData} />}
-      <ToTop />
-      <Footer />
     </div>
   )
 }

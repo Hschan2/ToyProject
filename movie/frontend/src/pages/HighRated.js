@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import Footer from '../components/Footer';
 import GetMovieList from '../components/GetMovieList';
 import Loading from '../components/Loading';
 import MovieLists from '../components/MovieLists';
 import SEO from '../components/SEO';
-import ToTop from '../components/ToTop';
 
 /**
  * 영화 평점순 페이지 출력 컴포넌트
@@ -23,8 +21,6 @@ function HighRated() {
     <div>
       <SEO title="평점순" />
       {!topRatedData ? <Loading /> : <MovieLists movieList={topRatedData} />}
-      <ToTop />
-      <Footer />
     </div>
   )
 }

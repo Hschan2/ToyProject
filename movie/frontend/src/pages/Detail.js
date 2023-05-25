@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useTransition } from 'react';
 import { useLocation } from 'react-router-dom';
-import Footer from '../components/Footer';
 import GetMovieDetail from '../components/GetMovieDetail';
 import Loading from '../components/Loading';
 import SEO from '../components/SEO';
@@ -51,7 +50,6 @@ function Detail() {
           <div className={styles.overview}>{overview}</div>
         </div>
       )}
-      <Footer />
     </div>
   )
 }

@@ -1,26 +1,33 @@
-import React, { useState } from 'react';
+import React, { lazy, Suspense } from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Nav from './components/Nav';
-import Popular from './pages/Popular';
-import HighRated from './pages/HighRated';
-import Upcoming from './pages/Upcoming';
-import Detail from './pages/Detail';
-import NowPlaying from './pages/NowPlaying';
+import Footer from './components/Footer';
+
+const Popular = lazy(() => import('./pages/Popular'));
+const HighRated = lazy(() => import('./pages/HighRated'));
+const Upcoming = lazy(() => import('./pages/Upcoming'));
+const Detail = lazy(() => import('./pages/Detail'));
+const NowPlaying = lazy(() => import('./pages/NowPlaying'));
+const Loading = lazy(() => import('./components/Loading'));
+const ToTop = lazy(() => import('./components/ToTop'));
 
 function App() {
-  const [searchData, setSearchData] = useState('');
 
   return (
     <div>
-      <Nav searchData={searchData} setSearchData={setSearchData} />
-      <Routes>
-        <Route path="/" element={<Popular searchData={searchData} setSearchData={setSearchData} />} />
-        <Route path="/HighRated" element={<HighRated />} />
-        <Route path="/NowPlaying" element={<NowPlaying />} />
-        <Route path="/Upcoming" element={<Upcoming />} />
-        <Route path="/Detail/:mTitle/:id" element={<Detail />} />
-      </Routes>
+      <Nav />
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          <Route path="/" element={<Popular />} />
+          <Route path="/HighRated" element={<HighRated />} />
+          <Route path="/NowPlaying" element={<NowPlaying />} />
+          <Route path="/Upcoming" element={<Upcoming />} />
+          <Route path="/Detail/:mTitle/:id" element={<Detail />} />
+        </Routes>
+      </Suspense>
+      <Footer />
+      <ToTop />
     </div>
   );
 }
