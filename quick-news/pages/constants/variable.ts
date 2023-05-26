@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router'
 
-const ROUTER = useRouter();
-export const CURRENT_URL = ROUTER.asPath;
+const ROUTER = useRouter()
+export const CURRENT_URL = ROUTER.asPath

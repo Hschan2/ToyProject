@@ -1,6 +1,6 @@
-import { atom } from "recoil";
+import { atom } from 'recoil'
 
 export const pageSizeAtom = atom<number>({
-    key: "pageSize",
-    default: 20,
-});
+  key: 'pageSize',
+  default: 20,
+})
