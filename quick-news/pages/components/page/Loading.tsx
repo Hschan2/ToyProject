@@ -2,7 +2,7 @@ import {
   LoadingContainer,
   LoadingLottie,
   LoadingMessage,
-} from '@/pages/constants/styledComponents'
+} from '@/styles/styledComponents'
 import React, { useState, useEffect } from 'react'
 
 export default function Loading() {

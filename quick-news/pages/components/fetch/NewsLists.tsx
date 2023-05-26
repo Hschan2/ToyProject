@@ -1,4 +1,4 @@
-import { DateTime, NewsCard } from '../../constants/styledComponents'
+import { DateTime, NewsCard } from '../../../styles/styledComponents'
 import axios from 'axios'
 import moment from 'moment'
 import 'moment/locale/ko'

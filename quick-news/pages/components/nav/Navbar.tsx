@@ -7,7 +7,7 @@ import {
   NavDisplay,
   NavTitle,
   TimeWeather,
-} from '../../constants/styledComponents'
+} from '../../../styles/styledComponents'
 
 const Today = lazy(() => import('../info/Today'))
 const Weather = lazy(() => import('../info/Weather'))

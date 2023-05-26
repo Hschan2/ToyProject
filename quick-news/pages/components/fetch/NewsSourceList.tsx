@@ -1,4 +1,4 @@
-import { Author, DateOfNews, NewsCard } from '../../constants/styledComponents'
+import { Author, DateOfNews, NewsCard } from '../../../styles/styledComponents'
 import axios from 'axios'
 import moment from 'moment'
 import 'moment/locale/ko'

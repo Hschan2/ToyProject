@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { UpButton } from '../../constants/styledComponents'
+import { UpButton } from '../../../styles/styledComponents'
 
 export default function MoveUp() {
   const [showButton, setShowButton] = useState(false)

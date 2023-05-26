@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {
   TimelineScrollBar,
   TimelineScrollContainer,
-} from '../../constants/styledComponents'
+} from '../../../styles/styledComponents'
 
 export default function TimelineScroll() {
   const [scrollProgress, setScrollProgress] = useState(0)
