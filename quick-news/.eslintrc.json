@@ -16,7 +16,6 @@
     "airbnb",
     "airbnb-typescript",
     "airbnb/hooks",
-    "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "prettier"
