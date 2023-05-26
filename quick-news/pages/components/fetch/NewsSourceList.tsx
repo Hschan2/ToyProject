@@ -11,7 +11,7 @@ import {
 import Link from 'next/link'
 import { useRecoilValue } from 'recoil'
 import { pageSizeAtom } from '../../constants/pageSizeAtom'
-import Loading from '../page/loading'
+import Loading from '../page/Loading'
 
 export default function NewsSourceList(props: NewsSourceListProps) {
   const [articles, setArticles] = useState<NewsApiItems[]>([])

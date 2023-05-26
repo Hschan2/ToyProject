@@ -5,7 +5,7 @@ import 'moment/locale/ko'
 import { Suspense, useEffect, useState } from 'react'
 import { NewsData, NewsItem } from '../../constants/interfaces'
 import Link from 'next/link'
-import Loading from '../page/loading'
+import Loading from '../page/Loading'
 
 export default function NewsLists() {
   const [news, setNews] = useState<NewsItem[]>([])
