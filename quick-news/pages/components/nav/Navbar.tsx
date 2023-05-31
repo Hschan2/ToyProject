@@ -18,7 +18,7 @@ export default function Navbar() {
 
   useEffect(() => {
     setIsMounted(true)
-  })
+  }, [])
 
   if (!isMounted) {
     return null
