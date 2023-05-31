@@ -4,9 +4,5 @@ export default function Today() {
     dateStyle: 'full',
   })
 
-  return (
-    <>
-      <div>{f.format(today)}</div>
-    </>
-  )
+  return <div>{f.format(today)}</div>
 }

@@ -1,9 +1,9 @@
+import React, { useState, useEffect } from 'react'
 import {
   LoadingContainer,
   LoadingLottie,
   LoadingMessage,
-} from '@/styles/styledComponents'
-import React, { useState, useEffect } from 'react'
+} from '../../../styles/styledComponents'
 
 export default function Loading() {
   const lottieFilesSrc =

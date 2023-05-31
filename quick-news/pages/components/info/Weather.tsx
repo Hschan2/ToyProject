@@ -21,8 +21,8 @@ export default function Weather() {
           description: data.weather[0].description,
           temp: data.main.temp,
         })
-      } catch (error) {
-        console.log(error)
+      } catch (err) {
+        console.log(err)
       }
     }
 
@@ -42,11 +42,9 @@ export default function Weather() {
   }
 
   return (
-    <>
-      <div>
-        {weatherData.name} {Math.floor(weatherData.temp)}˚{' '}
-        {weatherData.description}
-      </div>
-    </>
+    <div>
+      {weatherData.name} {Math.floor(weatherData.temp)}˚{' '}
+      {weatherData.description}
+    </div>
   )
 }

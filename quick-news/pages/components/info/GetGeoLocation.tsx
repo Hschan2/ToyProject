@@ -12,8 +12,8 @@ export default function useGeolocation() {
           setLatitude(position.coords.latitude)
           setLongitude(position.coords.longitude)
         },
-        (error) => {
-          setError(error.message)
+        (err) => {
+          setError(err.message)
         },
       )
     } else {

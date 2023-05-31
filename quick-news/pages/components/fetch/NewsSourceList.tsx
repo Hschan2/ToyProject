@@ -1,15 +1,15 @@
-import { Author, DateOfNews, NewsCard } from '../../../styles/styledComponents'
+import { useRecoilValue } from 'recoil'
+import Link from 'next/link'
+import { Suspense, useEffect, useState } from 'react'
 import axios from 'axios'
 import moment from 'moment'
 import 'moment/locale/ko'
-import { Suspense, useEffect, useState } from 'react'
+import { Author, DateOfNews, NewsCard } from '../../../styles/styledComponents'
 import {
   NewsApiData,
   NewsApiItems,
   NewsSourceListProps,
 } from '../../constants/interfaces'
-import Link from 'next/link'
-import { useRecoilValue } from 'recoil'
 import { pageSizeAtom } from '../../constants/pageSizeAtom'
 import Loading from '../page/Loading'
 
@@ -51,15 +51,15 @@ export default function NewsSourceList(props: NewsSourceListProps) {
   return (
     <Suspense fallback={<Loading />}>
       <div>
-        {articles.map((article, i) => (
-          <Link href={article.url} target="_blank" key={i}>
+        {articles.map((article) => (
+          <Link href={article.url} target="_blank" key={article.id}>
             <NewsCard>
               <h3>{article.title.split(' - ')[0]}</h3>
               <DateOfNews>
                 {moment(article.publishedAt).format('YYYY-MM-DD HH:mm')}
               </DateOfNews>
               <Author>{article.author}</Author>
-              <p>{article.description}</p>
+              <p>{article.description ?? ''}</p>
             </NewsCard>
           </Link>
         ))}

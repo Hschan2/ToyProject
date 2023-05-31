@@ -1,4 +1,4 @@
-export interface locationType {
+export interface LocationType {
   latitude: number | null
   longitude: number | null
 }
@@ -22,6 +22,7 @@ export interface NewsData {
 }
 
 export interface NewsApiItems {
+  id: string
   author: string
   title: string
   description: string

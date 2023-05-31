@@ -1,10 +1,11 @@
-import { DateTime, NewsCard } from '@/styles/styledComponents'
+import { Suspense, useEffect, useState } from 'react'
+import Link from 'next/link'
 import axios from 'axios'
 import moment from 'moment'
 import 'moment/locale/ko'
-import { Suspense, useEffect, useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+import { DateTime, NewsCard } from '../../../styles/styledComponents'
 import { NewsData, NewsItem } from '../../constants/interfaces'
-import Link from 'next/link'
 import Loading from '../page/Loading'
 
 export default function NewsLists() {
@@ -38,8 +39,8 @@ export default function NewsLists() {
   return (
     <Suspense fallback={<Loading />}>
       <div>
-        {news.map((item, i) => (
-          <Link href={item.link} target="_blank" key={i}>
+        {news.map((item) => (
+          <Link href={item.link} target="_blank" key={uuidv4()}>
             <NewsCard>
               <h3 dangerouslySetInnerHTML={{ __html: item.title }} />
               <DateTime>

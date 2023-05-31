@@ -1,8 +1,8 @@
+import React from 'react'
 import {
   FooterContainer,
   FooterContents,
 } from '../../../styles/styledComponents'
-import React from 'react'
 
 function Footer() {
   const thisYear = () => {
