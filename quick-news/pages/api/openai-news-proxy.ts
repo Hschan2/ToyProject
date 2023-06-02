@@ -35,10 +35,10 @@ export default async function handler(
       },
     )
 
-    const data = response.data.data
+    const { data } = response.data
 
     const articles = data.map((result: any) => {
-      const metadata = result.document.metadata
+      const { metadata } = result.document
       return {
         title: metadata.headline,
         author: metadata.authors,
