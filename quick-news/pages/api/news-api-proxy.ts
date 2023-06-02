@@ -6,7 +6,7 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   if (req.method === 'GET') {
-    var options = {
+    const options = {
       method: 'GET',
       url: 'https://bing-news-search1.p.rapidapi.com/news',
       params: { safeSearch: 'Off', textFormat: 'Raw' },
