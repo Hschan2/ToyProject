@@ -23,5 +23,5 @@ export default function MoveUp() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  return showButton && <UpButton onClick={handleClick}>&#8593;</UpButton>
+  return showButton ? <UpButton onClick={handleClick}>&#8593;</UpButton> : null
 }
