@@ -9,8 +9,8 @@ import {
   NewsApiData,
   NewsApiItems,
   NewsSourceListProps,
-} from '../../utils/interfaces'
-import pageSizeAtom from '../../utils/pageSizeAtom'
+} from '../../../utils/interfaces'
+import pageSizeAtom from '../../../utils/pageSizeAtom'
 import Loading from '../page/Loading'
 
 export default function NewsSourceList(props: NewsSourceListProps) {
