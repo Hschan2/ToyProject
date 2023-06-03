@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRecoilState } from 'recoil'
-import pageSizeAtom from '../common/pageSizeAtom'
+import pageSizeAtom from '../../../constants/pageSizeAtom'
 import { PageSizesButton } from '../../../styles/styledComponents'
 
 export default function PageSizeButton() {
