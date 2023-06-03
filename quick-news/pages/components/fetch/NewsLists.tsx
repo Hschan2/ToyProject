@@ -5,7 +5,7 @@ import moment from 'moment'
 import 'moment/locale/ko'
 import { v4 as uuidv4 } from 'uuid'
 import { DateTime, NewsCard } from '../../../styles/styledComponents'
-import { NewsData, NewsItem } from '../../../utils/interfaces'
+import { NewsData, NewsItem } from '../common/interfaces'
 import Loading from '../page/Loading'
 
 export default function NewsLists() {
