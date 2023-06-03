@@ -22,9 +22,10 @@ export default function NewsLists() {
         )
         setNews(data.items)
       } catch (error) {
-        console.error(error)
         if (axios.isCancel(error)) {
           console.log('요청 취소')
+        } else {
+          console.error(error)
         }
       }
     }
