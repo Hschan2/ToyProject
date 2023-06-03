@@ -9,7 +9,7 @@ import {
   NewsApiData,
   NewsApiItems,
   NewsSourceListProps,
-} from '../common/interfaces'
+} from '../../../interfaces/interfaces'
 import pageSizeAtom from '../common/pageSizeAtom'
 import Loading from '../page/Loading'
 

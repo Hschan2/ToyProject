@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { LocationType, WeatherData } from '../common/interfaces'
+import { LocationType, WeatherData } from '../../../interfaces/interfaces'
 import useGeolocation from './GetGeoLocation'
 
 export default function Weather() {
