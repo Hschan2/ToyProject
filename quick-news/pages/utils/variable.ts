@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router'
 
-export const useCurrentUrl = () => {
+const useCurrentUrl = () => {
   const router = useRouter()
   return router.asPath
 }
+
+export default useCurrentUrl
