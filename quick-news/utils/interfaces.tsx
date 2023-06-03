@@ -1,6 +1,7 @@
 export interface LocationType {
   latitude: number | null
   longitude: number | null
+  error: string | null
 }
 
 export interface WeatherData {
