@@ -6,6 +6,7 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   const { query } = req
+  res.setHeader('Access-Control-Allow-Origin', '*')
   const apiResponse = await axios.get(
     `https://openapi.naver.com/v1/search/news.json`,
     {
