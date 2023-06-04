@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { LocationType } from '../../../interfaces/interfaces'
+import { LocationType } from '../interfaces/interfaces'
 
 export default function useGeolocation(): LocationType {
   const [latitude, setLatitude] = useState<number | null>(null)
