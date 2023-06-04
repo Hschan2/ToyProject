@@ -20,6 +20,7 @@ export default function NewsLists() {
           '/api/naver-news-proxy?q=오늘의주요뉴스',
           { cancelToken: cancelToken.token },
         )
+        console.log(data)
         setNews(data.items)
       } catch (error) {
         if (axios.isCancel(error)) {
