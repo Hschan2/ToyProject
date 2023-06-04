@@ -9,7 +9,6 @@ export default function Weather() {
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        console.log(latitude, longitude, process.env.NEXT_PUBLIC_WEATHER_KEY)
         const response = await fetch(
           `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}&lang=kr&units=metric`,
         )
