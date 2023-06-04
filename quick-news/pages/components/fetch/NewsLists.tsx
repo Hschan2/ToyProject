@@ -17,8 +17,13 @@ export default function NewsLists() {
     async function fetchNews() {
       try {
         const { data } = await axios.get<NewsData>(
-          '/api/naver-news-proxy?q=오늘의주요뉴스',
-          { cancelToken: cancelToken.token },
+          '/api/naver-news-proxy',
+          {
+            params: {
+              q: '오늘의주요뉴스',
+            },
+            cancelToken: cancelToken.token,
+          },
         )
         console.log(data)
         setNews(data.items)
