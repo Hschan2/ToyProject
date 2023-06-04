@@ -40,7 +40,7 @@ export default function NewsLists() {
   return (
     <Suspense fallback={<Loading />}>
       <div>
-        {news.map((item) => (
+        {news?.map((item) => (
           <Link href={item.link} target="_blank" key={uuidv4()}>
             <NewsCard>
               <h3 dangerouslySetInnerHTML={{ __html: item.title }} />

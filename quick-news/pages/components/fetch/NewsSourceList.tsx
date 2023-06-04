@@ -51,7 +51,7 @@ export default function NewsSourceList(props: NewsSourceListProps) {
   return (
     <Suspense fallback={<Loading />}>
       <div>
-        {articles.map((article) => (
+        {articles?.map((article) => (
           <Link href={article.url} target="_blank" key={article.id}>
             <NewsCard>
               <h3>{article.title.split(' - ')[0]}</h3>
