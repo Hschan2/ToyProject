@@ -1,6 +1,7 @@
 import { Form, Modal, Button } from "react-bootstrap";
 import { useRef } from "react";
 import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "../contexts/BudgetContext";
+import currentTime from '../constants/currentTime';
 import '../App.css'
 
 export default function AddExpenseModal({ show, handleClose, defaultBudgetId }) {
@@ -10,6 +11,7 @@ export default function AddExpenseModal({ show, handleClose, defaultBudgetId }) 
     const budgetIdRef = useRef()
     // 새 지출 추가와 해당 예산 함수 가져오기
     const { addExpense, budgets } = useBudgets()
+    const nowDateTime = currentTime();
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -19,7 +21,8 @@ export default function AddExpenseModal({ show, handleClose, defaultBudgetId }) 
         {
             description: descriptionRef.current.value,
             amount: parseFloat(amountRef.current.value),
-            budgetId: budgetIdRef.current.value
+            budgetId: budgetIdRef.current.value,
+            time: nowDateTime,
         })
         handleClose()
     }

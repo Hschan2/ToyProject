@@ -24,9 +24,9 @@ export const BudgetsProvider = ({ children }) => {
 
     // 지출 추가. 설명, 금액, 해당 예산 ID 값으로 저장
     // 이전 지출내역을 포함해서 저장
-    function addExpense({ description, amount, budgetId }) {
+    function addExpense({ description, amount, budgetId, time }) {
         setExpenses(prevExpenses => {
-            return [...prevExpenses, { id: uuidV4(), description, amount, budgetId }]
+            return [...prevExpenses, { id: uuidV4(), description, amount, budgetId, time }]
         })
     }
 
@@ -46,10 +46,11 @@ export const BudgetsProvider = ({ children }) => {
     // 해당 예산에 있는 지출 내역도 모두 삭제 (카테고리 없음으로 변경)
     function deleteBudget({ id }) {
         setExpenses(prevExpenses => {
-            return prevExpenses.map(expense => {
-                if (expense.budgetId !== id) return expense
-                return { ...expense, budgetId: UNCATEGORIZED_BUDGET_ID }
-            })
+            // return prevExpenses.map(expense => {
+            //     if (expense.budgetId !== id) return expense
+            //     return { ...expense, budgetId: UNCATEGORIZED_BUDGET_ID }
+            // })
+            return prevExpenses.filter(expense => expense.budgetId !== id);
         })
         // Todo: Expense 다루기
         // 예산 ID가 삭제할 예산과 다른 경우만 저장
