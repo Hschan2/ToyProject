@@ -1,5 +1,3 @@
-import React from 'react'
-
 const currentTime = () => {
     const currentTime = new Date();
     const year = String(currentTime.getFullYear()).slice(-2);

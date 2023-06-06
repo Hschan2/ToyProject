@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, ProgressBar, Stack, Button } from 'react-bootstrap'
 import { currencyFormatter } from '../utils'
 import budgetIcon from '../images/money.png'
-import expenseIcon from '../images/dollar.png'
+// import expenseIcon from '../images/dollar.png'
 import '../App.css'
 
 export default function BudgetCard({ name, amount, max, gray, hideButton, onAddExpenseClick, onViewExpenseClick }) {
@@ -21,7 +21,7 @@ export default function BudgetCard({ name, amount, max, gray, hideButton, onAddE
         <Card className={classNames.join(" ")}>
             <Card.Body>
                 <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3">
-                    <div className="me-2 fs-5 fw-bold"><img src={budgetIcon} className="iconSize" /> {name}</div>
+                    <div className="me-2 fs-5 fw-bold"><img src={budgetIcon} className="iconSize" alt={name} /> {name}</div>
                     <div className="d-flex align-items-baseline fs-6">
                         {/* currencyFormatter - 천 자리 단위 설정 */}
                         {currencyFormatter.format(amount)}
