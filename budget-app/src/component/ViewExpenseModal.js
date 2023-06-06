@@ -38,7 +38,7 @@ export default function ViewExpenseModal({ budgetId, handleClose }) {
                     {/* 저장된 지출 내역 모두 출력. 설명과 비용 그리고 삭제 버튼 출력 */}
                     {expenses.map(expense => (
                         <Stack direction="horizontal" gap="2" key={expense.id}>
-                            <div className="me-auto fs-6"><img src={expenseIcon} className="iconSize" /> {expense.description}</div>
+                            <div className="me-auto fs-6"><img src={expenseIcon} className="iconSize" /> {expense.description} <span className="text-secondary small-font">{expense.time}</span></div>
                             <div className="fs-6">{currencyFormatter.format(expense.amount)}</div>
                             <Button onClick={() => deleteExpense(expense)} size="sm" variant="outline-danger">&times;</Button>
                         </Stack>
