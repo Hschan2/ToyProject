@@ -42,6 +42,22 @@ export const BudgetsProvider = ({ children }) => {
         })
     }
 
+    function updateBudget({ expenseId, description, amount }) {
+        setExpenses(prevExpenses => {
+            return prevExpenses.map(expense => {
+                if (expense.id === expenseId) {
+                    return {
+                        ...expense,
+                        description: description,
+                        amount: amount
+                    }
+                }
+
+                return expense
+            })
+        })
+    }
+
     // 예산 삭제. 해당 id를 활용해서 삭제
     // 해당 예산에 있는 지출 내역도 모두 삭제 (카테고리 없음으로 변경)
     function deleteBudget({ id }) {
@@ -74,6 +90,7 @@ export const BudgetsProvider = ({ children }) => {
             getBudgetExpenses,
             addExpense,
             addBudget,
+            updateBudget,
             deleteBudget,
             deleteExpense,
         }}>

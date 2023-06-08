@@ -26,7 +26,7 @@ function App() {
   return (
     <>
       <Container className="my-4">
-        <Stack direction="horizontal" gap="2" className="mb-4">
+        <Stack direction="horizontal" gap="2" className="mb-4 justify-content-center">
           <h1 className="me-auto sbFont">가계부</h1>
           <Button variant="primary" onClick={() => setShowAddBudgetModal(true)}>새 예산</Button>
           <Button variant="outline-primary" onClick={openAddExpenseModal}>새 지출</Button>
