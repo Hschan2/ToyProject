@@ -24,8 +24,18 @@ export default function ViewExpenseModal({ budgetId, handleClose }) {
         setEditedAmount(0)
     }
 
+    const handleDeleteBudget = () => {
+        deleteBudget(budget)
+        handleClose()
+    }
+
+    const handleCloseClick = () => {
+        handleClose()
+        resetEdit()
+    }
+
     return (
-        <Modal show={budgetId != null} onHide={() => { handleClose(); resetEdit(); } }>
+        <Modal show={budgetId != null} onHide={handleCloseClick}>
             <Modal.Header closeButton>
                 <Modal.Title>
                     <Stack direction="horizontal" gap="2">
@@ -33,10 +43,7 @@ export default function ViewExpenseModal({ budgetId, handleClose }) {
                         <div className="sbFont">지출 내역 - {budget?.name}</div>
                         {/* ID가 카테고리 없음이 아닐 경우 삭제 버튼 활성화 */}
                         {budgetId !== UNCATEGORIZED_BUDGET_ID && (
-                            <Button onClick={() => {
-                                deleteBudget(budget)
-                                handleClose()
-                            }}
+                            <Button onClick={handleDeleteBudget}
                             variant="outline-danger"
                             >
                                 삭제
@@ -67,9 +74,7 @@ export default function ViewExpenseModal({ budgetId, handleClose }) {
                                             amount: parseFloat(amountRef.current.value)
                                         })
 
-                                        setSelectedExpenseId(null)
-                                        setEditedDescription("")
-                                        setEditedAmount(0)
+                                        resetEdit()
                                         }}>저장</Button>
                                     </>
                                 ) : (
