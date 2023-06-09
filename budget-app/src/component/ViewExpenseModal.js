@@ -63,7 +63,7 @@ export default function ViewExpenseModal({ budgetId, handleClose }) {
 
                                         updateBudget({
                                             expenseId: expense.id,
-                                            description: descriptionRef.current.value,
+                                            description: parseFloat(descriptionRef.current.value),
                                             amount: amountRef.current.value
                                         })
 
