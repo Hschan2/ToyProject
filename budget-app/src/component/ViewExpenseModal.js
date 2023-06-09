@@ -63,8 +63,8 @@ export default function ViewExpenseModal({ budgetId, handleClose }) {
 
                                         updateBudget({
                                             expenseId: expense.id,
-                                            description: parseFloat(descriptionRef.current.value),
-                                            amount: amountRef.current.value
+                                            description: descriptionRef.current.value,
+                                            amount: parseFloat(amountRef.current.value)
                                         })
 
                                         setSelectedExpenseId(null)
