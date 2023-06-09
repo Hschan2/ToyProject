@@ -34,6 +34,24 @@ export default function ViewExpenseModal({ budgetId, handleClose }) {
         resetEdit()
     }
 
+    const handleEditClick = (expense) => {
+        setSelectedExpenseId(expense.id)
+        setEditedDescription(expense.description)
+        setEditedAmount(expense.amount)
+    }
+
+    const handleEditComplete = (e, expense) => {
+        e.preventDefault();
+
+        updateBudget({
+            expenseId: expense.id,
+            description: descriptionRef.current.value,
+            amount: parseFloat(amountRef.current.value)
+        })
+
+        resetEdit()
+    }
+
     return (
         <Modal show={budgetId != null} onHide={handleCloseClick}>
             <Modal.Header closeButton>
@@ -65,27 +83,13 @@ export default function ViewExpenseModal({ budgetId, handleClose }) {
                                         <Form.Group className="fs-6 me-1" controlId="amount">
                                             <Form.Control ref={amountRef} value={editedAmount} type="number" required min={0} step={0.01} size="sm" onChange={(e) => setEditedAmount(e.target.value)} />
                                         </Form.Group>
-                                        <Button variant="outline-primary" size="sm" onClick={(e) => {
-                                        e.preventDefault();
-
-                                        updateBudget({
-                                            expenseId: expense.id,
-                                            description: descriptionRef.current.value,
-                                            amount: parseFloat(amountRef.current.value)
-                                        })
-
-                                        resetEdit()
-                                        }}>저장</Button>
+                                        <Button variant="outline-primary" size="sm" onClick={(e) => handleEditComplete(e, expense)}>저장</Button>
                                     </>
                                 ) : (
                                     <>
                                         <div className="me-auto fs-6"><img src={expenseIcon} alt={expense.description} className="iconSize" /> {expense.description} <span className="text-secondary small-font">{expense.time}</span></div>
                                         <div className="fs-6">{currencyFormatter.format(expense.amount)}</div>
-                                        <Button onClick={() => {
-                                            setSelectedExpenseId(expense.id)
-                                            setEditedDescription(expense.description)
-                                            setEditedAmount(expense.amount)
-                                        }} size="sm" variant="outline-primary">수정</Button>
+                                        <Button onClick={() => handleEditClick(expense)} size="sm" variant="outline-primary">수정</Button>
                                         <Button onClick={() => deleteExpense(expense)} size="sm" variant="outline-danger">&times;</Button>
                                     </>
                             )}
