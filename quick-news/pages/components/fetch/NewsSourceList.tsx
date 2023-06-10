@@ -4,6 +4,7 @@ import { Suspense, useEffect, useState } from 'react'
 import axios from 'axios'
 import moment from 'moment'
 import 'moment/locale/ko'
+import { v4 as uuidv4 } from 'uuid'
 import { Author, DateOfNews, NewsCard } from '../../../styles/styledComponents'
 import {
   NewsApiData,
@@ -52,7 +53,7 @@ export default function NewsSourceList(props: NewsSourceListProps) {
     <Suspense fallback={<Loading />}>
       <div>
         {articles?.map((article) => (
-          <Link href={article.url} target="_blank" key={article.id}>
+          <Link href={article.url} target="_blank" key={uuidv4()}>
             <NewsCard>
               <h3>{article.title.split(' - ')[0]}</h3>
               <DateOfNews>
