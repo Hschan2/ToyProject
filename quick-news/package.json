@@ -10,6 +10,7 @@
     "lint": "next lint",
     "vercel-deploy": "next build && next export"
   },
+  "homepage": "https://quick-news-hschan2.vercel.app/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@next/font": "13.1.6",
