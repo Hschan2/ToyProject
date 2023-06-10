@@ -1,11 +1,15 @@
 const currentTime = () => {
     const currentTime = new Date();
-    const year = String(currentTime.getFullYear()).slice(-2);
-    const month = String(currentTime.getMonth() + 1).padStart(2, '0');
-    const day = String(currentTime.getDate()).padStart(2, '0');
-    const hours = String(currentTime.getHours()).padStart(2, '0');
-    const minutes = String(currentTime.getMinutes()).padStart(2, '0');
-    const formattedTime = `${year}.${month}.${day} ${hours}:${minutes}`;
+    const options = {
+    year: '2-digit',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+    };
+    const formatter = new Intl.DateTimeFormat('ko-KR', options);
+    const formattedTime = formatter.format(currentTime);
 
     return formattedTime;
 }
