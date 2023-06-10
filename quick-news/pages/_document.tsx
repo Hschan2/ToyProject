@@ -22,7 +22,7 @@ export default function Document() {
           rel="icon"
           href="/icons8-news-doodle-96.png"
         />
-        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <body>
         <Main />
