@@ -77,10 +77,10 @@ export default function ViewExpenseModal({ budgetId, handleClose }) {
                         <Stack direction="horizontal" gap="2" key={expense.id}>
                             {expense.id === selectedExpenseId ? (
                                     <>
-                                        <Form.Group className="me-4 fs-6" controlId="description">
+                                        <Form.Group className="me-5 fs-6" controlId="description">
                                             <Form.Control ref={descriptionRef} value={editedDescription} type="text" size="sm" required onChange={(e) => setEditedDescription(e.target.value)} />
                                         </Form.Group>
-                                        <Form.Group className="fs-6 me-1" controlId="amount">
+                                        <Form.Group className="fs-6 w-25" style={{ marginLeft: '58px' }} controlId="amount">
                                             <Form.Control ref={amountRef} value={editedAmount} type="number" required min={0} step={0.01} size="sm" onChange={(e) => setEditedAmount(e.target.value)} />
                                         </Form.Group>
                                         <Button variant="outline-primary" size="sm" onClick={(e) => handleEditComplete(e, expense)}>저장</Button>
