@@ -23,6 +23,7 @@ export default function Document() {
           href="/icons8-news-doodle-96.png"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="뉴스 빠르게 확인하기" />
       </Head>
       <body>
         <Main />
