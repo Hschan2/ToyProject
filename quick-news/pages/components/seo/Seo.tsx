@@ -3,7 +3,6 @@ import useCurrentUrl from '../../../constants/variable'
 
 export default function Seo({ title }: { title: string }) {
   const nowLocation = useCurrentUrl()
-  console.log(nowLocation)
 
   return (
     <Head>
