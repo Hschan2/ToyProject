@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { RecoilRoot } from 'recoil'
 import { createGlobalStyle } from 'styled-components'
 import Layout from './components/Layout'
+import Error from './Error'
 
 const queryClient = new QueryClient()
 const GlobalFontStyle = createGlobalStyle`
@@ -17,6 +18,10 @@ const GlobalFontStyle = createGlobalStyle`
 `
 
 export default function App({ Component, pageProps }: AppProps) {
+  if (pageProps.statusCode && pageProps.statusCode !== 200) {
+    return <Error {...pageProps} />
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
