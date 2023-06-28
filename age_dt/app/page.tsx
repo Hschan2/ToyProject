@@ -3,7 +3,7 @@ import Head from "next/head";
 import { FormEvent, useState } from "react";
 
 export default function Home() {
-  const [elasped, setElasped] = useState<{
+  const [elapsed, setElapsed] = useState<{
     days: number | undefined,
     months: number | undefined,
     years: number | undefined,
@@ -12,29 +12,32 @@ export default function Home() {
     months: undefined,
     years: undefined,
   })
+  const [allDay, setAllDay] = useState<number | undefined>(0)
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formElement = e.target as HTMLFormElement;
     const formData = new FormData(formElement);
-    const { day, month, year } = Object.fromEntries(formData);
+    const formDataEntries = Object.fromEntries(formData) as Record<string, string>;
+    const { day, month, year } = formDataEntries;
     const inputDate = new Date(`${year}-${month}-${day}`);
     const currentDate = new Date();
 
     const timeDiff: number = currentDate.getTime() - inputDate.getTime();
-    const elapsedYears = Math.floor(
-      timeDiff / (1000 * 60 * 60 * 24 * 365)
-    );
-    const elapsedMonths = Math.floor(
-      timeDiff / (1000 * 60 * 60 * 24 * 30)
-    );
-    const elapsedDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+    const elapsedYears = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 365));
+    const remainingTime = timeDiff % (1000 * 60 * 60 * 24 * 365);
 
-    setElasped({
-      days: elapsedDays,
-      months: elapsedMonths,
+    const elapsedMonths = Math.floor(remainingTime / (1000 * 60 * 60 * 24 * 30));
+    const remainingDays = Math.floor((remainingTime % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+    
+    const allDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+
+    setElapsed({
       years: elapsedYears,
-    })
+      months: elapsedMonths,
+      days: remainingDays,
+    });
+    setAllDay(allDays)
   }
 
   return (
@@ -88,23 +91,30 @@ export default function Home() {
           <div className="flex flex-col gap-4">
             <div className="flex gap-2">
               <span className="text-4xl font-bold text-green-500">
-                {elasped.years ? elasped.years : "- -"}
+                {elapsed.years ? elapsed.years : "- -"}
               </span>
               <span className="text-4xl font-bold">년</span>
             </div>
             <div className="flex gap-2">
               <span className="text-4xl font-bold text-green-500">
-                {elasped.months ? elasped.months : "- -"}
+                {elapsed.months ? elapsed.months : "- -"}
               </span>
               <span className="text-4xl font-bold">월</span>
             </div>
             <div className="flex gap-2">
               <span className="text-4xl font-bold text-green-500">
-                {elasped.days ? elasped.days : "- -"}
+                {elapsed.days ? elapsed.days : "- -"}
               </span>
               <span className="text-4xl font-bold">일</span>
             </div>
           </div>
+
+          {allDay ? (
+            <div className="relative">
+              <hr className="my-8 w-full border-b-gray-400" />
+              <p className="text-xs">{allDay}</p>
+            </div>
+          ) : ''}
         </div>
       </main>
     </>
