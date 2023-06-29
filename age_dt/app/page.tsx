@@ -13,6 +13,7 @@ export default function Home() {
     years: undefined,
   })
   const [message, setMessage] = useState<string | undefined>('')
+  const [errorMessage, setErrorMessage] = useState<string | undefined>('')
 
   const handleMessage = (days: number) => {
     if (days <= 4745) {
@@ -36,8 +37,10 @@ export default function Home() {
     const { day, month, year } = formDataEntries;
 
     if (isNaN(Number(day)) || isNaN(Number(month)) || isNaN(Number(year))) {
-      alert("숫자만 입력해주세요.");
+      setErrorMessage('숫자만 입력해 주세요.')
       return;
+    } else {
+      setErrorMessage('')
     }
 
     const inputDate = new Date(`${year}-${month}-${day}`);
@@ -128,6 +131,15 @@ export default function Home() {
               <span className="text-4xl font-bold">일</span>
             </div>
           </div>
+
+          {errorMessage ? (
+            <div className="relative">
+              <hr className="my-8 w-full border-b-gray-400" />
+              <p className="text-xl">
+                {errorMessage}
+              </p>
+            </div>
+          ) : ''}
 
           {message ? (
             <div className="relative">
