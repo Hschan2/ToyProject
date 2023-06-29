@@ -1,4 +1,6 @@
 export const GraphData = (items, setConfirmedData, setQuarantinedData, setComparedData) => {
+    let labels = '';
+
     const arr = items.reduce((acc, cur) => {
         const currentDate = new Date(cur.Date);
         const year = currentDate.getFullYear();
@@ -29,7 +31,9 @@ export const GraphData = (items, setConfirmedData, setQuarantinedData, setCompar
         return acc;
     }, [])
 
-    const labels = arr.map(a => `${a.month + 1}월`);
+    if (arr) {
+        labels = arr?.map(a => `${a.month + 1}월`);
+    }
 
     setConfirmedData({
         labels,
@@ -38,7 +42,7 @@ export const GraphData = (items, setConfirmedData, setQuarantinedData, setCompar
                 label: "국내 누적 확진자",
                 backgroundColor: "salmon",
                 fill: true,
-                data: arr.map(a => a.confirmed)
+                data: arr ? arr?.map(a => a.confirmed) : []
             },
         ]
     });
@@ -50,12 +54,12 @@ export const GraphData = (items, setConfirmedData, setQuarantinedData, setCompar
                 label: "월별 격리자 현황",
                 backgroundColor: "orange",
                 fill: false,
-                data: arr.map(a => a.active)
+                data: arr ? arr?.map(a => a.active) : []
             },
         ]
     });
 
-    const last = arr[arr.length - 1];
+    const last = arr && arr.length > 0 ? arr[arr.length - 1] : null;
 
     setComparedData({
         labels: ["확진자", "격리 해제(일시 제외)", "사망"],
@@ -66,7 +70,7 @@ export const GraphData = (items, setConfirmedData, setQuarantinedData, setCompar
                 borderColor: ["#ff3d67", "#059bff", "#ffc233"],
                 fill: false,
                 // API에서 recovered가 0으로 기록되어 있기 때문에 화면에도 0으로 출력
-                data: [last.confirmed, last.recovered, last.death]
+                data: [last?.confirmed, last?.recovered, last?.death]
             },
         ]
     });

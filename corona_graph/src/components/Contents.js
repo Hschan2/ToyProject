@@ -27,13 +27,16 @@ const Contents = () => {
 
         const fetchEvents = async () => {
             const res = await axios.get(`https://api.covid19api.com/total/dayone/country/${country.country}`)
-            GraphData(res.data, setConfirmedData, setQuarantinedData, setComparedData);
+            if (res) {
+                GraphData(res?.data, setConfirmedData, setQuarantinedData, setComparedData);
+            }
         }
 
         const fetchTotalEvents = async () => {
             const res = await axios.get(`https://api.covid19api.com/world/total`)
-            Totals(res.data, setTotalCorona);
-
+            if (res) {
+                Totals(res?.data, setTotalCorona);
+            }
         }
 
         setContentLoading(false);
@@ -54,7 +57,7 @@ const Contents = () => {
                 </div>
             </div>
 
-            {contentLoading ?
+            {contentLoading && contentLoading ?
                 (<div className="Loading"><GridLoader size={20} color='#3b5998' loading /></div>)
             :
                 (confirmedData ? <Graph confirmedData={confirmedData} quarantinedData={quarantinedData} comparedData={comparedData}/> : <Graph confirmedData={0} quarantinedData={0} comparedData={0} />)
