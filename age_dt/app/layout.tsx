@@ -7,9 +7,8 @@ export const metadata = {
   title: 'Your Age Date&Time from Now',
   description: '태어난 날부터 지금까지 당신의 시간',
   icons: {
-    icon: { url: '/icons8-age-office-16.png', type: 'image/svg' },
-    shortcut: { url: '/icons8-age-office-16.png', type: 'image/svg' },
-  },
+    icon: '/public/images/icons8-age-office-16.png',
+  }
 }
 
 export default function RootLayout({
