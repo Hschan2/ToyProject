@@ -19,7 +19,7 @@ const Select = ({ country, setCountry }) => {
         <>
             <select onChange={changeCountry}>
                 {Options && Options?.map((obj) => (
-                    <option value={obj.country} key={obj.country} selected={obj.country == country ? 'selected' : ""}>{obj.title}</option>
+                    <option value={obj.country} key={obj.country} selected={obj.country === country ? 'selected' : ""}>{obj.title}</option>
                 ))}
             </select>
         </>

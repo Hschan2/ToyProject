@@ -26,16 +26,20 @@ const Contents = () => {
     useEffect(() => {
 
         const fetchEvents = async () => {
-            const res = await axios.get(`https://api.covid19api.com/total/dayone/country/${country.country}`)
-            if (res) {
+            try {
+                const res = await axios.get(`https://api.covid19api.com/total/dayone/country/${country.country}`)
                 GraphData(res?.data, setConfirmedData, setQuarantinedData, setComparedData);
+            } catch (err) {
+                console.log(err);
             }
         }
 
         const fetchTotalEvents = async () => {
-            const res = await axios.get(`https://api.covid19api.com/world/total`)
-            if (res) {
+            try {
+                const res = await axios.get(`https://api.covid19api.com/world/total`)
                 Totals(res?.data, setTotalCorona);
+            } catch (err) {
+                console.log(err);
             }
         }
 
