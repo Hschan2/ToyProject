@@ -12,7 +12,21 @@ export default function Home() {
     months: undefined,
     years: undefined,
   })
-  const [allDay, setAllDay] = useState<number | undefined>(0)
+  const [message, setMessage] = useState<string | undefined>('')
+
+  const handleMessage = (days: number) => {
+    if (days <= 4745) {
+      setMessage(`${days}일을 사셨어요. 이제는 초등학생에서 중학생으로 새로운 시작을 하는 당신을 응원합니다.`)
+    } else if (days > 4745 && days <= 6935) {
+      setMessage(`${days}일을 사셨어요. 어엿한 성인이 되신 걸 축하합니다. 꿈을 향해 나아갈 당신을 응원합니다.`)
+    } else if (days > 6935 && days <= 10585) {
+      setMessage(`${days}일을 사셨어요. 곧 20대를 벗어나 새로운 시작을 하시네요. 너무 걱정하지 마세요.`)
+    } else if (days > 10585 && days <= 14235) {
+      setMessage(`${days}일을 사셨어요. 30대가 되어보시니 어떠신가요? 그래도 당신은 아직 젊으니 즐겁게 살아보아요.`)
+    } else {
+      setMessage(`${days}일을 사셨어요. 이제는 어른이 되어 책임감을 가진 채 살아갈 당신을 응원합니다. 행복하세요.`)
+    }
+  }
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,6 +34,12 @@ export default function Home() {
     const formData = new FormData(formElement);
     const formDataEntries = Object.fromEntries(formData) as Record<string, string>;
     const { day, month, year } = formDataEntries;
+
+    if (isNaN(Number(day)) || isNaN(Number(month)) || isNaN(Number(year))) {
+      alert("숫자만 입력해주세요.");
+      return;
+    }
+
     const inputDate = new Date(`${year}-${month}-${day}`);
     const currentDate = new Date();
 
@@ -37,7 +57,7 @@ export default function Home() {
       months: elapsedMonths,
       days: remainingDays,
     });
-    setAllDay(allDays)
+    handleMessage(allDays)
   }
 
   return (
@@ -109,10 +129,12 @@ export default function Home() {
             </div>
           </div>
 
-          {allDay ? (
+          {message ? (
             <div className="relative">
               <hr className="my-8 w-full border-b-gray-400" />
-              <p className="text-xs">{allDay}</p>
+              <p className="text-xs">
+                {message}
+              </p>
             </div>
           ) : ''}
         </div>
