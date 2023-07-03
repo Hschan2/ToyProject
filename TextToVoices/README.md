@@ -5,10 +5,22 @@
 
 브라우저 마다 다르게 설정한 것과 아닌 것을 만들어 차이를 이해하려고 노력합니다.   
 
+## 목소리 고정 버전
+![목소리 고정 버전](https://github.com/Hschan2/ToyProject/blob/master/TextToVoices/TextToVoice_1.gif?raw=true)
+
+## 목소리 선택 버전
+![목소리 선택 버전](https://github.com/Hschan2/ToyProject/blob/master/TextToVoices/TextToVoice_2.gif?raw=true)
+
+<br/>
+
+## 추가 예정 기능
+* 내보내기 기능
+    * 입력한 내용을 오디오 파일로 저장   
+
 <br/>
 
 ## 목록
 |타이틀|폴더로 이동|
 |---|:---:|
-|**TextToVoice(목소리 선택 가능)**|[이동](https://github.com/Hschan2/ToyProject/tree/master/TextToVoices/TextToVoice)|
-|**TextToVoice(목소리 선택 블가능)**|[이동](https://github.com/Hschan2/ToyProject/tree/master/TextToVoices/TextToVoice2)|
+|**TextToVoice(목소리 선택 버전)**|[이동](https://github.com/Hschan2/ToyProject/tree/master/TextToVoices/TextToVoice)|
+|**TextToVoice(목소리 고정 버전)**|[이동](https://github.com/Hschan2/ToyProject/tree/master/TextToVoices/TextToVoice2)|
