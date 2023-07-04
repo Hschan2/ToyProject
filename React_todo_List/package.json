@@ -5,7 +5,8 @@
   "dependencies": {
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.2.0"
+    "react-scripts": "^5.0.1",
+    "webpack": "^4.41.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -27,5 +28,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "main": "index.js",
+  "license": "MIT",
+  "description": "React JS로 ToDo List 만들기",
+  "author": ""
 }
