@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Card Game</title>
+</head>
+
+<body>
+    <header>
+        <h1>
+            <img src="./assets/clubs.gif" alt="Card Game" loading="lazy" width="80" height="80" />
+            Card Game
+        </h1>
+    </header>
+
+    <section id="wrap">
+        <h2 class="icon-lis">
+            <img src="./assets/start.gif" alt="Card Game" loading="lazy" width="50" height="50" />
+            Let's Start
+        </h2>
+
+        <article class="game-score">
+            <h3>남은 시간</h3>
+            <p class="game-timer"></p>
+        </article>
+
+        <div class="game-board"></div>
+    </section>
+
+    <section>
+        <dialog class="nes-dialog is-rounded" id="dialog-default">
+            <form method="dialog" class="nes-column">
+                <h3>
+                    <img src="./assets/success.gif" alt="result" loading="lazy" width="50" height="50" />
+                    <span></span>
+                </h3>
+                <button type="submit" class="nes-btn is-error restart">게임 재시작</button>
+            </form>
+        </dialog>
+    </section>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
