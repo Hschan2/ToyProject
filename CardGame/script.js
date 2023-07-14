@@ -194,14 +194,18 @@ let remainingTime = 0;
 // 게임 일시정지 버튼 클릭 시
 pauseButton.addEventListener('click', () => {
     if (!pauseTimer) {
-        clearInterval(time);
-        remainingTime = count;
-        pauseButton.innerText = '재개';
-        pauseTimer = true;
+        if (count > 0) {
+            clearInterval(time);
+            remainingTime = count;
+            pauseButton.innerText = '재개';
+            pauseTimer = true;
+        }
     } else {
-        startTimer(remainingTime);
-        pauseButton.innerText = '일시정지';
-        pauseTimer = false;
+        if (count > 0) {
+            startTimer(remainingTime);
+            pauseButton.innerText = '일시정지';
+            pauseTimer = false;
+        }
     }
 });
 
@@ -210,9 +214,7 @@ const game = () => {
     shuffleCards();
     renderCards();
     showCards();
-    setTimeout(() => {
-        startTimer();
-    }, 1000);
+    startTimer();
     addCardClickEvent();
 }
 
@@ -220,7 +222,6 @@ game();
 
 // 재시작
 restart.addEventListener('click', () => {
-    start.play();
     cardReset();
     game();
 });
