@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./assets/clubs.gif">
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="./style.css" />
     <title>Card Game</title>
@@ -20,7 +21,7 @@
     <section id="wrap">
         <h2 class="icon-lis">
             <img src="./assets/start.gif" alt="Card Game" loading="lazy" width="50" height="50" />
-            Let's Start
+            Game Start
         </h2>
 
         <article class="game-score">
@@ -31,10 +32,12 @@
         <div class="game-board"></div>
     </section>
 
+    <button class="nes-btn is-primary pause">일시정지</button>
+
     <section>
         <dialog class="nes-dialog is-rounded" id="dialog-default">
-            <form method="dialog" class="nes-column">
-                <h3>
+            <form method="dialog">
+                <h3 class="nes-column">
                     <img src="./assets/success.gif" alt="result" loading="lazy" width="50" height="50" />
                     <span></span>
                 </h3>

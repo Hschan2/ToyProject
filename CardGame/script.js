@@ -88,14 +88,16 @@ const showCards = () => {
         }, index * 80)
         setTimeout(() => {
             card.classList.remove('show');
-        }, 2000)
+        }, 1500)
     })
 };
 
+// 제한시간
+let count = 30;
+
 // 카운트다운
-const startTimer = () => {
-    // 제한시간 30초
-    let count = 30;
+const startTimer = (initialCount = 30) => {
+    count = initialCount;
 
     time = setInterval(() => {
         count--;
@@ -184,12 +186,33 @@ const addCardClickEvent = () => {
     });
 };
 
+const pauseButton = document.querySelector('.pause');
+
+let pauseTimer = false;
+let remainingTime = 0;
+
+// 게임 일시정지 버튼 클릭 시
+pauseButton.addEventListener('click', () => {
+    if (!pauseTimer) {
+        clearInterval(time);
+        remainingTime = count;
+        pauseButton.innerText = '재개';
+        pauseTimer = true;
+    } else {
+        startTimer(remainingTime);
+        pauseButton.innerText = '일시정지';
+        pauseTimer = false;
+    }
+});
+
 // 게임 시작
 const game = () => {
     shuffleCards();
     renderCards();
     showCards();
-    startTimer();
+    setTimeout(() => {
+        startTimer();
+    }, 1000);
     addCardClickEvent();
 }
 
