@@ -22,7 +22,7 @@
 ## 당신이 살아온 시간 개발자
 
 ### 프론트엔드
-| [홍성찬](https://github.com/Hschan2) |.
+| [홍성찬](https://github.com/Hschan2) |
 | :---: |
 | ![](https://avatars.githubusercontent.com/u/39434913?v=4) |
 | 당신이 살아온 시간 전체 개발 <br/> 전체 디자인 |

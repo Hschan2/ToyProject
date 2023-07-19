@@ -22,7 +22,7 @@
 ## 영화 정보 서비스 개발자
 
 ### 프론트엔드
-| [홍성찬](https://github.com/Hschan2) |.
+| [홍성찬](https://github.com/Hschan2) |
 | :---: |
 | ![](https://avatars.githubusercontent.com/u/39434913?v=4) |
 | 카테고리 별 영화 목록 출력 <br/> 상세 페이지 구현 <br/> 전체 디자인 |

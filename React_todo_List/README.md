@@ -23,7 +23,7 @@ React JS로 ToDo List 만들기
 ## 메모 리스트 개발자
 
 ### 프론트엔드
-| [홍성찬](https://github.com/Hschan2) |.
+| [홍성찬](https://github.com/Hschan2) |
 | :---: |
 | ![](https://avatars.githubusercontent.com/u/39434913?v=4) |
 | ToDo List 구현 <br/> 색상 선택 버튼 구현 <br/> Checked 및 삭제 버튼 구현 <br/>전체 디자인 |

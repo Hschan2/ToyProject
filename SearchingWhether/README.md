@@ -17,7 +17,7 @@
 ## 도시 검색 날씨 서비스 개발자
 
 ### 프론트엔드
-| [홍성찬](https://github.com/Hschan2) |.
+| [홍성찬](https://github.com/Hschan2) |
 | :---: |
 | ![](https://avatars.githubusercontent.com/u/39434913?v=4) |
 | 날씨 검색 기능 구현 <br/> 검색에 따른 날씨 데이터 출력 구현 <br/> 전체 디자인 |

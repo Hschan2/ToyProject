@@ -36,7 +36,7 @@
 ## 지금 어디 개발자
 
 ### 웹 개발
-| [홍성찬](https://github.com/Hschan2) |.
+| [홍성찬](https://github.com/Hschan2) |
 | :---: |
 | ![](https://avatars.githubusercontent.com/u/39434913?v=4) |
 | 카카오맵 지도 출력 구현 <br/> 마커, 툴팁 박스 구현 <br/> 위치 검색 구현 <br/> 다이어리 목록 출력 및 글 삭제 구현 <br/> 내 위치 이동 기능 구현 |

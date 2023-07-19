@@ -24,7 +24,7 @@
 ## 소셜 게시판 개발자
 
 ### 웹 개발
-| [홍성찬](https://github.com/Hschan2) |.
+| [홍성찬](https://github.com/Hschan2) |
 | :---: |
 | ![](https://avatars.githubusercontent.com/u/39434913?v=4) |
 | 회원가입 및 로그인 구현 <br/> 소셜미디어 회원가입 및 로그인 구현 <br/> 게시판 CRUD 구현 <br/> 데이터 베이스 구성 <br/> 회원 정보 암호화 적용 <br/> 전체 디자인 |
