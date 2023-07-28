@@ -41,9 +41,6 @@
 ![NPM](https://img.shields.io/badge/NPM-CB3837?style=for-the-badge)
 ![Webpack](https://img.shields.io/badge/Webpack-8DD6F9?style=for-the-badge)
 
-#### 배포
-![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
-
 <br/>
 <br/>
 
