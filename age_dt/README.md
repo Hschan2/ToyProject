@@ -37,7 +37,7 @@
 ![Prettier](https://img.shields.io/badge/prettier-FF69B4?style=flat-square&logo=prettier&logoColor=white)
 
 #### 개발 도구
-![VSCode](https://img.shields.io/badge/Visual Studio Code-007ACC?style=flat-square&logo=Visual Studio Code&logoColor=white)
+![VSCode](https://img.shields.io/badge/Visual-Studio-Code-007ACC?style=flat-square&logo=Visual-Studio-Code&logoColor=white)
 ![NPM](https://img.shields.io/badge/NPM-CB3837?style=for-the-badge)
 ![Webpack](https://img.shields.io/badge/Webpack-8DD6F9?style=for-the-badge)
 
