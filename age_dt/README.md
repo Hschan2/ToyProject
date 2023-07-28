@@ -10,12 +10,7 @@
 
 그리고, 살아온 총 일 수를 알려주고 응원의 메세지를 전달합니다.   
 
-![ageCalculator](https://github.com/Hschan2/ToyProject/assets/39434913/bc3c331f-7772-4f76-9ffb-e2e68b7dda20)
-
-<br/>
-
-## 체험
-[Budget](https://age-dt.vercel.app/)
+![ageCalculator](https://github.com/Hschan2/ToyProject/blob/master/age_dt/public/images/ageCalculator.gif?raw=true)
 
 <br/>
 
@@ -42,7 +37,7 @@
 ![Prettier](https://img.shields.io/badge/prettier-FF69B4?style=flat-square&logo=prettier&logoColor=white)
 
 #### 개발 도구
-![VSCode](https://img.shields.io/badge/VSCODE-007ACC?style=for-the-badge&logo=visual studio code&logoColor=white)
+![VSCode](https://img.shields.io/badge/Visual Studio Code-007ACC?style=flat-square&logo=Visual Studio Code&logoColor=white)
 ![NPM](https://img.shields.io/badge/NPM-CB3837?style=for-the-badge)
 ![Webpack](https://img.shields.io/badge/Webpack-8DD6F9?style=for-the-badge)
 
