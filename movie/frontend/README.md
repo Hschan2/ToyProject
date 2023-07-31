@@ -12,12 +12,14 @@
 
 또한, 인기 영화, 신작 영화, 평가순 영화 등 다양한 카테고리의 영화 목록들을 확인할 수 있습니다.   
 
-![quick-news](https://github.com/Hschan2/ToyProject/assets/39434913/8e2bcb21-6328-43d4-bd01-38a1cb4d320b)
+![movie](https://github.com/Hschan2/ToyProject/blob/master/movie/frontend/public/screen-recording.gif?raw=true)
 
 <br/>
 
 ## 체험
 배포 예정
+
+<br/>
 
 ## 영화 정보 서비스 개발자
 
@@ -91,6 +93,8 @@ src
 * themoviedb API에서 가져온 ID값을 기준으로 상세페이지 구현
 * 제목, 장르, 제작사, 영화 시간, 평가 점수, 상세 내용 출력
 
+<br/>
+
 ## 기술 선택
 #### React를 선택한 이유
 * 중복적으로 사용되는 부분을 컴포넌트로 분리하여 재사용함으로써 효율적으로 개발이 가능하기 때문에 선택하였습니다.
@@ -106,12 +110,18 @@ src
 #### 이 프로젝트를 개발한 이유
 * 무한 스크롤과 검색 구현을 개발해보고 싶다는 생각과 다양한 주제, 카테고리 별로 영화 정보를 확인하고 싶기 때문에 개발하였습니다.
 
+<br/>
+
 ## 개발 예정 목록
 * Intersection Observer API을 이용해 무한 스크롤 구현
 * Redux 라이브러리를 활용해 영화 검색 기능 구현
 
+<br/>
+
 ## 프로젝트 주요 타겟
 * 다양한 카테고리 별로 영화 정보를 쉽게 확인하고 싶은 사람
+
+<br/>
 
 ## 실행
 ```
