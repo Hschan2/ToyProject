@@ -27,7 +27,7 @@
 ### 웹 개발
 | [홍성찬](https://github.com/Hschan2) |
 | :---: |
-| ![](https://avatars.githubusercontent.com/u/39434913?v=4) |
+| <img src="https://avatars.githubusercontent.com/u/39434913?v=4" width="100" height="100"> |
 | 나를 소개합니다 메인 페이지 구현 <br/> 프로젝트 소개 페이지 구현 <br/> 게시판 CRUD 구현 <br/> 댓글, 대댓글 구현 <br/> 전체 디자인 |
 
 <br/>

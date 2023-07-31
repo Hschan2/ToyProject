@@ -27,7 +27,7 @@
 ### 웹 개발
 | [홍성찬](https://github.com/Hschan2) |
 | :---: |
-| <img src="https://avatars.githubusercontent.com/u/39434913?v=4" width="150" /> |
+| <img src="https://avatars.githubusercontent.com/u/39434913?v=4" width="100" height="100"> |
 | 로그인에 따라 다른 메인 화면 구현 <br/> 회원가입 및 로그인 기능 구현 <br/> 다이어리 작성 구현 <br/> 다이어리 목록 출력 및 글 삭제 구현 <br/> 전체 디자인 |
 
 <br/>

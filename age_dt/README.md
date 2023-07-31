@@ -19,7 +19,7 @@
 ### 프론트엔드
 | [홍성찬](https://github.com/Hschan2) |
 | :---: |
-| ![](https://avatars.githubusercontent.com/u/39434913?v=4) |
+| <img src="https://avatars.githubusercontent.com/u/39434913?v=4" width="100" height="100"> |
 | 당신이 살아온 시간 전체 개발 <br/> 전체 디자인 |
 
 <br/>

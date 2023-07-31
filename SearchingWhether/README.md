@@ -19,7 +19,7 @@
 ### 프론트엔드
 | [홍성찬](https://github.com/Hschan2) |
 | :---: |
-| ![](https://avatars.githubusercontent.com/u/39434913?v=4) |
+| <img src="https://avatars.githubusercontent.com/u/39434913?v=4" width="100" height="100"> |
 | 날씨 검색 기능 구현 <br/> 검색에 따른 날씨 데이터 출력 구현 <br/> 전체 디자인 |
 
 <br/>
@@ -33,7 +33,7 @@
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
 #### 개발 도구
-![VSCode](https://img.shields.io/badge/VSCODE-007ACC?style=for-the-badge&logo=visual studio code&logoColor=white)
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 ![NPM](https://img.shields.io/badge/NPM-CB3837?style=for-the-badge)
 ![Webpack](https://img.shields.io/badge/Webpack-8DD6F9?style=for-the-badge)
 
