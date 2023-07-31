@@ -12,7 +12,7 @@
 
 또한, 인기 영화, 신작 영화, 평가순 영화 등 다양한 카테고리의 영화 목록들을 확인할 수 있습니다.   
 
-![quick-news](https://github.com/Hschan2/ToyProject/assets/39434913/8e2bcb21-6328-43d4-bd01-38a1cb4d320b)
+![movie](https://github.com/Hschan2/ToyProject/blob/master/movie/frontend/public/screen-recording.gif?raw=true)
 
 <br/>
 
