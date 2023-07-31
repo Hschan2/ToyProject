@@ -31,7 +31,6 @@ function Nav({ searchData, setSearchData }) {
                     value={searchData}
                     onChange={onChange}
                 />
-                <button onClick={onReset}>초기화</button>
             </div>
             <nav>
                 <Link to="/" className={location.pathname === '/' ? styles.active : styles.nonActive}>
