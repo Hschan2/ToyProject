@@ -6,16 +6,13 @@ import axios from "axios"
  * @param {*} setData API에서 가져온 데이터를 담을 파라미터
  * @returns 
  */
-function GetMovieList(apiUrl, setData) {
-
-  return async () => {
-    try {
-      const getData = await axios.get(apiUrl);
-      setData(getData.data.results);
-    }
-    catch(e) {
-      console.log(`${setData} error: ` , e);
-    }
+async function GetMovieList(apiUrl, setData) {
+  try {
+    const getData = await axios.get(apiUrl);
+    setData(getData.data.results);
+  }
+  catch (e) {
+    console.log(`${setData} error: `, e);
   }
 }
 

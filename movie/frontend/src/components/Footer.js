@@ -6,19 +6,17 @@ import styles from '../style/footerStyle.module.css'
  * @thisYear 올해(2022년) 값 변수
  */
 function Footer() {
-    const thisYear = () => {
+    const getCurrentYear = () => {
         return new Date().getFullYear();
     };
 
     return (
-        <>
-            <div className={styles.container}>
-                <footer>
-                    <div>It was Developed with React, Spring</div>
-                    <div>Copyright &copy; {thisYear()}</div>
-                </footer>
-            </div>
-        </>
+        <div className={styles.container}>
+            <footer>
+                <div>It was Developed with React and Spring</div>
+                <div>Copyright &copy; {getCurrentYear()}</div>
+            </footer>
+        </div>
     )
 }
 

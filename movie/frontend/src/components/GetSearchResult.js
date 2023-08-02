@@ -7,18 +7,15 @@ import axios from "axios"
  * @param Text 검색을 위한 입력값
  * @returns 
  */
-function GetSearchResult(apiUrl, setData, searchText) {
-
-  return async () => {
-    try {
-      const getData = await axios.get(apiUrl, {
-        params: { searchText: searchText },
-      });
-      setData(getData.data.results);
-    }
-    catch(e) {
-      console.log(`${setData} error: ` , e);
-    }
+async function GetSearchResult(apiUrl, setData, searchText) {
+  try {
+    const getData = await axios.get(apiUrl, {
+      params: { searchText: searchText },
+    });
+    setData(getData.data.results);
+  }
+  catch (e) {
+    console.log(`${setData} error: `, e);
   }
 }
 

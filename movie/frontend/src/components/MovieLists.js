@@ -11,12 +11,14 @@ function MovieLists({ movieList }) {
   return (
     <div className={styles.container}>
         {movieList?.map((movie) => (
-          <Link to={`/Detail/${movie.original_title}/${movie.id}`} state={{mTitle:movie.original_title, id:movie.id}} key={movie.id}>
-            <div className={styles.movie} key={movie.id}>
+          <Link
+            to={`/Detail/${movie.original_title}/${movie.id}`}
+            state={{ mTitle: movie.original_title, id: movie.id }}
+            key={movie.id}
+          >
+            <div className={styles.movie}>
               <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
-              <h4>
-                {movie.title}
-              </h4>
+              <h4>{movie.title}</h4>
             </div>
           </Link>
         ))}

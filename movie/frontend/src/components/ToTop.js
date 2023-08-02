@@ -7,13 +7,22 @@ import styles from '../style/toTop.module.css';
  * @returns showButton이 true일 경우 버튼 출력
  */
 function ToTop() {
-    const [showButton, setShowButton] = useState(false);
+    const [showTopButton, setShowTopButton] = useState(false);
 
     useEffect(() => {
-        window.addEventListener("scroll", () => {
-            if (window.pageYOffset > 300) setShowButton(true);
-            else setShowButton(false);
-        });
+        const handleScroll = () => {
+            if (window.pageYOffset > 300) {
+                setShowTopButton(true);
+            } else {
+                setShowTopButton(false);
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        }
     }, []);
 
     const scrollToTop = () => {
@@ -25,7 +34,7 @@ function ToTop() {
 
     return (
         <div>
-            {showButton && (
+            {showTopButton && (
                 <button onClick={scrollToTop} className={styles.toTop}>
                     &#8679;
                 </button>
