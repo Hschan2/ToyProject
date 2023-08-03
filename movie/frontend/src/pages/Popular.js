@@ -10,14 +10,15 @@ import GetMovieList from '../components/GetMovieList';
  */
 function Popular() {
   const [popularData, setPopularData] = useState();
-  // const [searchResultData, setSearchResultData] = useState();
-  const getPopularData = GetMovieList('/api/popular', setPopularData);
-// const getSearchResultData = GetSearchResult('/api/search', setSearchResultData, searchData);
   
   useEffect(() => {
     getPopularData();
-    // getSearchResultData();
-  }, [getPopularData]);
+  }, []);
+
+  const getPopularData = async () => {
+    const getPopularLists = await GetMovieList('/api/popular');
+    setPopularData(getPopularLists);
+  }
 
   return (
     <div>

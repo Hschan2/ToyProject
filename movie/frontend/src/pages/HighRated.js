@@ -15,7 +15,10 @@ function HighRated() {
     getTopRatedData();
   }, []);
 
-  const getTopRatedData = GetMovieList('/api/highRated', setTopRatedData);
+  const getTopRatedData = async () => {
+    const getHighRatedList = await GetMovieList('/api/highRated');
+    setTopRatedData(getHighRatedList);
+  }
 
   return (
     <div>

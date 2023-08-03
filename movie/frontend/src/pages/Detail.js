@@ -13,17 +13,12 @@ import styles from '../style/detail.module.css';
  */
 function Detail() {
   const [isPending, startTransition] = useTransition();
-  const {mTitle, id} = useLocation().state;
+  const { mTitle, id } = useLocation().state;
   const [detailData, setDetailData] = useState();
-  const {title, poster_path, overview, genres, production_companies, runtime, vote_average} = detailData || [];
+  const { title, poster_path, overview, genres, production_companies, runtime, vote_average } = detailData || [];
 
-  const genreText = genres?.map((genre) => {
-    return genre.name;
-  })
-  const productCompanyText = production_companies?.map((pc) => {
-    return pc.name;
-  });
-
+  const genreText = genres?.map((genre) => genre.name);
+  const productCompanyText = production_companies?.map((pc) => pc.name);
 
   useEffect(() => {
     startTransition(() => {
@@ -31,20 +26,30 @@ function Detail() {
     })
   }, []);
 
-  const getDetailData = GetMovieDetail(`/api/detail/${id}`, setDetailData)
+  const getDetailData = async () => {
+    try {
+      const getData = await GetMovieDetail(`/api/detail/${id}`);
+      setDetailData(getData);
+    } catch (err) {
+      console.log(`${GetMovieDetail} Error: `, err);
+    }
+    
+  };
 
   return (
     <div>
       <SEO title={`${title}`} />
-      {!detailData ? <Loading /> : (
+      {!detailData ? (
+        <Loading />
+      ) : (
         <div className={styles.container}>
           <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} className={styles.img} alt={`${title}`} />
           <h2>{title || "로딩중..."}</h2>
           <div className={styles.basicInfo}>
-            <div>{productCompanyText?.join(', ')}</div>
-            <div>{genreText?.join(', ')}</div>
-            <div>{runtime} 분</div>
-            <div>({vote_average?.toFixed(1)}점 / 10점)</div>
+            <p>{productCompanyText?.join(', ')}</p>
+            <p>{genreText?.join(', ')}</p>
+            <p>{runtime} 분</p>
+            <p>({vote_average?.toFixed(1)}점 / 10점)</p>
           </div>
           <div className={styles.borderBottom}></div>
           <div className={styles.overview}>{overview}</div>
