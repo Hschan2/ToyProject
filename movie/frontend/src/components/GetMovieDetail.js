@@ -12,8 +12,8 @@ async function GetMovieDetail(apiUrl) {
     return getData.data;
   }
   catch (e) {
-    console.log(`getMovieDetail error: `, e);
-    return null;
+    console.log(`getMovieDetail `, e);
+    return;
   }
 }
 

@@ -1,5 +1,6 @@
 package com.moive.movie.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.moive.movie.model.MovieApiResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -52,14 +53,26 @@ public class MovieService {
     }
 
     private MovieApiResponse callApi(String url, boolean includeAllFields) {
-        CompletableFuture<MovieApiResponse> future = CompletableFuture.supplyAsync(() ->
-                restTemplate.getForObject(url, MovieApiResponse.class)
-        );
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .get()
+                .addHeader("accept", "application/json")
+                .addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNGUyNjllMWExYmUyNmYwZTg3OWMyNzY2MjkyNjdlMSIsInN1YiI6IjYzYmViNTFiZjg1OTU4MDA3ZDM3OTQ3NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.PiUXCgzcA8Dgh2CFEE-mRn3hFfsfs6tN4ESIzlgW2jI")
+                .build();
+
         try {
-            MovieApiResponse response = future.get();
+            Response okHttpResponse = client.newCall(request).execute();
+            String responseBody = okHttpResponse.body().string();
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            MovieApiResponse response = objectMapper.readValue(responseBody, MovieApiResponse.class);
+
             if (!includeAllFields) {
                 return new MovieApiResponse(response.getTitle(), response.getPosterPath());
             }
+
             return response;
         } catch (Exception e) {
             e.printStackTrace();

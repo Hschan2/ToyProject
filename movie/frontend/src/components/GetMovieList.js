@@ -12,8 +12,8 @@ async function GetMovieList(apiUrl) {
     return getData.data.results;
   }
   catch (e) {
-    console.log(`MovieList Error: `, e);
-    return null;
+    console.log(`MovieList `, e);
+    return;
   }
 }
 
