@@ -13,7 +13,6 @@ async function GetMovieDetail(apiUrl) {
   }
   catch (e) {
     console.log(`getMovieDetail `, e);
-    return;
   }
 }
 

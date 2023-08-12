@@ -13,7 +13,6 @@ async function GetMovieList(apiUrl) {
   }
   catch (e) {
     console.log(`MovieList `, e);
-    return;
   }
 }
 
