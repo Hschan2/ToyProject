@@ -7,6 +7,10 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.concurrent.CompletableFuture;
 
 @Service
@@ -53,18 +57,17 @@ public class MovieService {
     }
 
     private MovieApiResponse callApi(String url, boolean includeAllFields) {
-        OkHttpClient client = new OkHttpClient();
-
-        Request request = new Request.Builder()
-                .url(url)
-                .get()
-                .addHeader("accept", "application/json")
-                .addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNGUyNjllMWExYmUyNmYwZTg3OWMyNzY2MjkyNjdlMSIsInN1YiI6IjYzYmViNTFiZjg1OTU4MDA3ZDM3OTQ3NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.PiUXCgzcA8Dgh2CFEE-mRn3hFfsfs6tN4ESIzlgW2jI")
-                .build();
-
         try {
-            Response okHttpResponse = client.newCall(request).execute();
-            String responseBody = okHttpResponse.body().string();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .header("accept", "application/json")
+                    .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNGUyNjllMWExYmUyNmYwZTg3OWMyNzY2MjkyNjdlMSIsInN1YiI6IjYzYmViNTFiZjg1OTU4MDA3ZDM3OTQ3NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.PiUXCgzcA8Dgh2CFEE-mRn3hFfsfs6tN4ESIzlgW2jI")
+                    .method("GET", HttpRequest.BodyPublishers.noBody())
+                    .build();
+
+            HttpResponse<String> httpResponse = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+
+            String responseBody = httpResponse.body();
 
             ObjectMapper objectMapper = new ObjectMapper();
             MovieApiResponse response = objectMapper.readValue(responseBody, MovieApiResponse.class);
