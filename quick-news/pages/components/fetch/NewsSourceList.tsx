@@ -63,20 +63,21 @@ export default function NewsSourceList(props: NewsSourceListProps) {
   return (
     <Suspense fallback={<Loading />}>
       <div ref={newsListRef}>
-        {articles
-          .filter((article) => isVisible)
-          .map((article) => (
-            <Link href={article.url} target="_blank" key={uuidv4()}>
-              <NewsCard>
-                <h3>{article.title.split(' - ')[0]}</h3>
-                <DateOfNews>
-                  {moment(article.publishedAt).format('YYYY-MM-DD HH:mm')}
-                </DateOfNews>
-                <Author>{article.author}</Author>
-                <p>{article.description ?? ''}</p>
-              </NewsCard>
-            </Link>
-          ))}
+        {articles?.map(
+          (article) =>
+            isVisible && (
+              <Link href={article.url} target="_blank" key={uuidv4()}>
+                <NewsCard>
+                  <h3>{article.title.split(' - ')[0]}</h3>
+                  <DateOfNews>
+                    {moment(article.publishedAt).format('YYYY-MM-DD HH:mm')}
+                  </DateOfNews>
+                  <Author>{article.author}</Author>
+                  <p>{article.description ?? ''}</p>
+                </NewsCard>
+              </Link>
+            ),
+        )}
       </div>
     </Suspense>
   )

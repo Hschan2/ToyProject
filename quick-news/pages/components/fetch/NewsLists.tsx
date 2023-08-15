@@ -53,19 +53,20 @@ export default function NewsLists() {
   return (
     <Suspense fallback={<Loading />}>
       <div ref={newsListRef}>
-        {news
-          .filter((item) => isVisible)
-          .map((item) => (
-            <Link href={item.link} target="_blank" key={uuidv4()}>
-              <NewsCard>
-                <h3 dangerouslySetInnerHTML={{ __html: item.title }} />
-                <DateTime>
-                  {moment(item.pubDate).format('YYYY-MM-DD HH:mm')}
-                </DateTime>
-                <p dangerouslySetInnerHTML={{ __html: item.description }} />
-              </NewsCard>
-            </Link>
-          ))}
+        {news?.map(
+          (item) =>
+            isVisible && (
+              <Link href={item.link} target="_blank" key={uuidv4()}>
+                <NewsCard>
+                  <h3 dangerouslySetInnerHTML={{ __html: item.title }} />
+                  <DateTime>
+                    {moment(item.pubDate).format('YYYY-MM-DD HH:mm')}
+                  </DateTime>
+                  <p dangerouslySetInnerHTML={{ __html: item.description }} />
+                </NewsCard>
+              </Link>
+            ),
+        )}
       </div>
     </Suspense>
   )
