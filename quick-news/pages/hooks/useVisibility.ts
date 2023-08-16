@@ -1,7 +1,7 @@
 import { useState, useEffect, RefObject } from 'react'
 
 function useVisibility<T extends HTMLElement>(ref: RefObject<T>): boolean {
-  const [isVisible, setIsVisible] = useState<boolean>(false)
+  const [isVisible, setIsVisible] = useState<boolean>(true)
 
   useEffect(() => {
     const currentRef = ref.current
