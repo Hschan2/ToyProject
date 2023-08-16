@@ -17,7 +17,7 @@ export default async function handler(
         },
         params: {
           query: query.q,
-          display: 20,
+          display: query.pageCount,
           start: 1,
           sort: 'sim',
         },

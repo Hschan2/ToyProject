@@ -1,3 +1,4 @@
+import { useRecoilValue } from 'recoil'
 import { Suspense, lazy, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import axios from 'axios'
@@ -6,12 +7,14 @@ import 'moment/locale/ko'
 import { v4 as uuidv4 } from 'uuid'
 import { DateTime, NewsCard } from '../../../styles/styledComponents'
 import { NewsData, NewsItem } from '../../../interfaces/interfaces'
+import pageSizeAtom from '../../../constants/pageSizeAtom'
 import useVisibility from '../../hooks/useVisibility'
 
 const Loading = lazy(() => import('../page/Loading'))
 
 export default function NewsLists() {
   const [news, setNews] = useState<NewsItem[]>([])
+  const pageSize = useRecoilValue(pageSizeAtom)
   const newsListRef = useRef<HTMLDivElement | null>(null)
   const isVisible = useVisibility(newsListRef)
 
@@ -25,6 +28,7 @@ export default function NewsLists() {
         const { data } = await axios.get<NewsData>('/api/naver-news-proxy', {
           params: {
             q: '오늘의주요뉴스',
+            pageCount: pageSize,
           },
           cancelToken: cancelToken.token,
         })
@@ -48,7 +52,7 @@ export default function NewsLists() {
     return () => {
       cancelToken.cancel()
     }
-  }, [])
+  }, [pageSize])
 
   return (
     <Suspense fallback={<Loading />}>
