@@ -159,7 +159,7 @@ export const TimelineScrollBar = styled.div<{ progress: number }>`
   height: 100%;
   background-color: #4d7653;
   transition: width 0.1s;
-  width: ${(props) => `${props.progress}%`};
+  ${(props) => `width: ${props.progress}%`};
 `
 
 export const LoadingContainer = styled.div`
