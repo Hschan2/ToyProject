@@ -27,12 +27,19 @@ export default function NewsSourceList(props: NewsSourceListProps) {
     newPageSize: number,
     newCategory: string | undefined,
   ) => {
+    const startTime = performance.now()
+
     let url = `https://newsapi.org/v2/top-headlines?country=kr&from=${fromToday}&pageSize=${newPageSize}&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`
     if (newCategory) {
       url += `&category=${newCategory}`
     }
 
     const response = await axios.get<NewsApiData>(url)
+
+    const endTime = performance.now()
+    const executionTime = endTime - startTime
+    console.log(`${Math.floor(executionTime)}ms`)
+
     return response.data.articles
   }
 
