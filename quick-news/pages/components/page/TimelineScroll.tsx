@@ -1,30 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import {
   TimelineScrollBar,
   TimelineScrollContainer,
 } from '../../../styles/styledComponents'
 
-export default function TimelineScroll() {
+function TimelineScroll() {
   const [scrollProgress, setScrollProgress] = useState(0)
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollHeight =
-        document.documentElement.scrollHeight - window.innerHeight
-      const scrollTop =
-        window.pageYOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop ||
-        0
-      const progress = (scrollTop / scrollHeight) * 100
-      setScrollProgress(progress)
-    }
+  const handleScroll = useCallback(() => {
+    const scrollHeight =
+      document.documentElement.scrollHeight - window.innerHeight
+    const scrollTop =
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0
+    const progress = (scrollTop / scrollHeight) * 100
+    setScrollProgress(progress)
+  }, [])
 
+  useEffect(() => {
     window.addEventListener('scroll', handleScroll)
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [])
+  }, [handleScroll])
 
   return (
     <TimelineScrollContainer>
@@ -32,3 +32,5 @@ export default function TimelineScroll() {
     </TimelineScrollContainer>
   )
 }
+
+export default React.memo(TimelineScroll)
