@@ -7,7 +7,7 @@ import 'moment/locale/ko'
 import { v4 as uuidv4 } from 'uuid'
 import { useQuery } from 'react-query'
 import { DateTime, NewsCard } from '../../../styles/styledComponents'
-import { NewsItem } from '../../../interfaces/interfaces'
+import { NewsData } from '../../../interfaces/interfaces'
 import pageSizeAtom from '../../../constants/pageSizeAtom'
 import useVisibility from '../../hooks/useVisibility'
 
@@ -21,7 +21,7 @@ export default function NewsLists() {
   const fetchNews = async (newPageSize: number) => {
     const startTime = performance.now()
 
-    const { data } = await axios.get('/api/naver-news-proxy', {
+    const { data } = await axios.get<NewsData>('/api/naver-news-proxy', {
       params: {
         q: '오늘의주요뉴스',
         pageCount: newPageSize,
@@ -46,7 +46,7 @@ export default function NewsLists() {
     <Suspense fallback={<Loading />}>
       <div ref={newsListRef}>
         {news?.map(
-          (item: NewsItem) =>
+          (item) =>
             isVisible && (
               <Link href={item.link} target="_blank" key={uuidv4()}>
                 <NewsCard>
