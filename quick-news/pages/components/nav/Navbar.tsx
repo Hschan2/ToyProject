@@ -34,32 +34,32 @@ export default function Navbar() {
         </Suspense>
       </TimeWeather>
       <NavDisplay>
-        <Link href="/" passHref>
+        <Link href="/" passHref prefetch>
           <LinkStyle isActive={router.pathname === '/'}>주요뉴스</LinkStyle>
         </Link>
-        <Link href="/total" passHref>
+        <Link href="/total" passHref prefetch>
           <LinkStyle isActive={router.pathname === '/total'}>종합</LinkStyle>
         </Link>
-        <Link href="/business" passHref>
+        <Link href="/business" passHref prefetch>
           <LinkStyle isActive={router.pathname === '/business'}>경제</LinkStyle>
         </Link>
-        <Link href="/entertainment" passHref>
+        <Link href="/entertainment" passHref prefetch>
           <LinkStyle isActive={router.pathname === '/entertainment'}>
             연예
           </LinkStyle>
         </Link>
-        <Link href="/sports" passHref>
+        <Link href="/sports" passHref prefetch>
           <LinkStyle isActive={router.pathname === '/sports'}>스포츠</LinkStyle>
         </Link>
-        <Link href="/technology" passHref>
+        <Link href="/technology" passHref prefetch>
           <LinkStyle isActive={router.pathname === '/technology'}>
             테크
           </LinkStyle>
         </Link>
-        <Link href="/health" passHref>
+        <Link href="/health" passHref prefetch>
           <LinkStyle isActive={router.pathname === '/health'}>건강</LinkStyle>
         </Link>
-        <Link href="/science" passHref>
+        <Link href="/science" passHref prefetch>
           <LinkStyle isActive={router.pathname === '/science'}>과학</LinkStyle>
         </Link>
       </NavDisplay>
