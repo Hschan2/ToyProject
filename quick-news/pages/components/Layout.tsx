@@ -3,6 +3,7 @@ import MoveUp from './btn/MoveUp'
 import Navbar from './nav/Navbar'
 import PageSizeButton from './btn/PageSizeButton'
 import TimelineScroll from './page/TimelineScroll'
+import NotificationModal from './page/NotificationModal'
 
 export default function Layout({ children }: { children: JSX.Element }) {
   return (
@@ -12,6 +13,7 @@ export default function Layout({ children }: { children: JSX.Element }) {
       <MoveUp />
       <PageSizeButton />
       <TimelineScroll />
+      <NotificationModal />
     </>
   )
 }
