@@ -42,6 +42,7 @@
 
 #### 라이브러리
 ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+![React Query](https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white)
 ![Recoil](https://img.shields.io/badge/recoil-000000?style=flat-square&logo=recoil&logoColor=white)
 ![Styled-Components](https://img.shields.io/badge/styled components-DB7093?style=flat-square&logo=styled-components&logoColor=white)
 ![Eslint](https://img.shields.io/badge/Eslint-4B0082?style=flat-square&logo=Eslint&logoColor=white)
@@ -104,6 +105,17 @@ src
 #### 각 주제별 뉴스 페이지
 * News API에서 가져온 데이터로 각 주제별 뉴스 목록 출력
 * 뉴스 데이터 갯수 20~40개 설정 버튼 구현
+
+#### 최적화
+* 프로젝트 성능 향상을 위해 최적화를 진행하고 있습니다.
+* 1차 성능 최적화
+    * IntersectionObserver을 이용한 Custom Hook 만들어 처음부터 페이지에 모든 데이터가 출력되지 않고, 스크롤 할 때마다 로드되도록 수정하였습니다.
+    * React-Query를 사용하여 API 데이터를 가져오고 사용할 때, 캐시 기능을 사용하였습니다.
+    * 결과적으로, 300대 초반의 속도를 200대 초반으로 감소시켰습니다.
+    * 최적화 전
+    ![Before](http://naver.me/xQ86jpjD)
+    * 최적화 후
+    ![After](http://naver.me/5uiAmNcN)
 
 ## 기술 선택
 #### Next JS를 선택한 이유
