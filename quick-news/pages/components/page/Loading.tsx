@@ -3,7 +3,7 @@ import {
   LoadingContainer,
   LoadingLottie,
   LoadingMessage,
-} from '../../../styles/styledComponents'
+} from '../../../styles/LoadingStyle'
 
 export default function Loading() {
   const lottieFilesSrc =

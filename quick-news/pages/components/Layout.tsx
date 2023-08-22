@@ -1,19 +1,21 @@
-import React from 'react'
-import MoveUp from './btn/MoveUp'
-import Navbar from './nav/Navbar'
-import PageSizeButton from './btn/PageSizeButton'
-import TimelineScroll from './page/TimelineScroll'
-import NotificationModal from './page/NotificationModal'
+import React, { Suspense, lazy } from 'react'
+
+const LazyMoveUp = lazy(() => import('./btn/MoveUp'))
+const LazyNavbar = lazy(() => import('./nav/Navbar'))
+const LazyPageSizeButton = lazy(() => import('./btn/PageSizeButton'))
+const LazyTimelineScroll = lazy(() => import('./page/TimelineScroll'))
+const LazyNotificationModal = lazy(() => import('./page/NotificationModal'))
+const LazyLoading = lazy(() => import('./page/Loading'))
 
 export default function Layout({ children }: { children: JSX.Element }) {
   return (
-    <>
-      <Navbar />
+    <Suspense fallback={<LazyLoading />}>
+      <LazyNavbar />
       <div>{children}</div>
-      <MoveUp />
-      <PageSizeButton />
-      <TimelineScroll />
-      <NotificationModal />
-    </>
+      <LazyMoveUp />
+      <LazyPageSizeButton />
+      <LazyTimelineScroll />
+      <LazyNotificationModal />
+    </Suspense>
   )
 }

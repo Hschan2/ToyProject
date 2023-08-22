@@ -1,7 +1,7 @@
 import Footer from './components/footer/Footer'
 import NewsLists from './components/fetch/NewsLists'
 import Seo from './components/seo/Seo'
-import { Wrapper } from '../styles/styledComponents'
+import { Wrapper } from '../styles/PageStyle'
 
 export default function Home() {
   return (

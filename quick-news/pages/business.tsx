@@ -1,7 +1,7 @@
 import Footer from './components/footer/Footer'
 import NewsSourceList from './components/fetch/NewsSourceList'
 import Seo from './components/seo/Seo'
-import { Wrapper } from '../styles/styledComponents'
+import { Wrapper } from '../styles/PageStyle'
 
 export default function Business() {
   return (

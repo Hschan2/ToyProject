@@ -5,7 +5,7 @@ import {
   ModalContent,
   ModalOverlay,
   ModalText,
-} from '../../../styles/styledComponents'
+} from '../../../styles/ModalStyle'
 
 function NotificationModal() {
   const [showModal, setShowModal] = useState(false)
