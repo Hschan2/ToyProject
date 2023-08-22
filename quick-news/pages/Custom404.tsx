@@ -1,4 +1,4 @@
-import { Wrapper } from '../styles/styledComponents'
+import { Wrapper } from '../styles/PageStyle'
 
 export default function Custom404({
   statusCode,
