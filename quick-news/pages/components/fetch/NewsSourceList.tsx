@@ -6,7 +6,7 @@ import moment from 'moment'
 import 'moment/locale/ko'
 import { v4 as uuidv4 } from 'uuid'
 import { useQuery } from 'react-query'
-import { Author, DateOfNews, NewsCard } from '../../../styles/styledComponents'
+import { Author, DateOfNews, NewsCard } from '../../../styles/NewsStyle'
 import {
   NewsApiData,
   NewsSourceListProps,
