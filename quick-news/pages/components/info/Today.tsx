@@ -1,8 +1,13 @@
-export default function Today() {
-  const today = new Date()
-  const f = new Intl.DateTimeFormat('ko-kr', {
-    dateStyle: 'full',
-  })
+import { useMemo } from 'react'
 
-  return <div>{f.format(today)}</div>
+export default function Today() {
+  const today = useMemo(() => new Date(), [])
+  const formattedToday = useMemo(() => {
+    const krDate = new Intl.DateTimeFormat('ko-kr', {
+      dateStyle: 'full',
+    })
+    return krDate.format(today)
+  }, [today])
+
+  return <div>{formattedToday}</div>
 }
