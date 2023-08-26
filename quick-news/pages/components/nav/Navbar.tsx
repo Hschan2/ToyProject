@@ -57,6 +57,9 @@ export default function Navbar() {
         <Link href="/science" passHref>
           <LinkStyle isActive={router.pathname === '/science'}>과학</LinkStyle>
         </Link>
+        <Link href="/search" passHref>
+          <LinkStyle isActive={router.pathname === '/search'}>검색</LinkStyle>
+        </Link>
       </NavDisplay>
     </Nav>
   )
