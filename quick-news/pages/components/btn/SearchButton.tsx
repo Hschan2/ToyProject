@@ -8,7 +8,7 @@ import {
   InputWrapper,
   SearchContainer,
   SearchInput,
-  StyledButton,
+  SearchingButton,
 } from '../../../styles/ButtonStyle'
 
 function SearchButton() {
@@ -56,9 +56,9 @@ function SearchButton() {
 
   return (
     <SearchContainer>
-      <StyledButton type="button" onClick={handleToggleInput}>
+      <SearchingButton type="button" onClick={handleToggleInput}>
         <FontAwesomeIcon icon={faSearch} size="1x" />
-      </StyledButton>
+      </SearchingButton>
       {isInputVisible && searchInput}
     </SearchContainer>
   )

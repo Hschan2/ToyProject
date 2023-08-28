@@ -73,13 +73,13 @@ export const SearchInput = styled.input`
   }
 `
 
-export const StyledButton = styled.button`
+export const SearchingButton = styled.button`
   position: fixed;
   background-color: #4d7653;
   color: #fff;
   border-radius: 50%;
   padding: 12px 14px 12px 14px;
-  bottom: 180px;
+  bottom: 240px;
   right: 40px;
   cursor: pointer;
   font-size: 18px;
@@ -89,7 +89,7 @@ export const StyledButton = styled.button`
 
 export const InputWrapper = styled.div`
   position: fixed;
-  bottom: 185px;
+  bottom: 245px;
   right: 100px;
   animation: ${slideIn} 0.3s ease-out;
   z-index: 1;
