@@ -2,21 +2,23 @@ import styled, { keyframes } from 'styled-components'
 
 export const UpButton = styled.div`
   position: fixed;
-  bottom: 50px;
+  bottom: 100px;
   right: 40px;
   cursor: pointer;
   font-size: 30px;
   background-color: #4d7653;
   border-radius: 50%;
-  padding: 2px 14px 2px 14px;
+  padding: 2px 14px 4px 14px;
   color: #fff;
 `
 
 export const slideIn = keyframes`
   from {
-    transform: translateX(5%);
+    opacity: 0;
+    transform: translateX(10%);
   }
   to {
+    opacity: 1;
     transform: translateX(0);
   }
 `
@@ -45,8 +47,8 @@ export const SearchingButton = styled.button`
   background-color: #4d7653;
   color: #fff;
   border-radius: 50%;
-  padding: 12px 14px 12px 14px;
-  bottom: 240px;
+  padding: 14px 14px 12px 14px;
+  bottom: 170px;
   right: 40px;
   cursor: pointer;
   font-size: 18px;
@@ -56,7 +58,7 @@ export const SearchingButton = styled.button`
 
 export const InputWrapper = styled.div`
   position: fixed;
-  bottom: 245px;
+  bottom: 180px;
   right: 100px;
   animation: ${slideIn} 0.3s ease-out;
   z-index: 1;
