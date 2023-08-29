@@ -2,7 +2,6 @@ import React, { Suspense, lazy } from 'react'
 
 const LazyMoveUp = lazy(() => import('./btn/MoveUp'))
 const LazyNavbar = lazy(() => import('./nav/Navbar'))
-const LazyPageSizeButton = lazy(() => import('./btn/PageSizeButton'))
 const LazySearchButton = lazy(() => import('./btn/SearchButton'))
 const LazyTimelineScroll = lazy(() => import('./page/TimelineScroll'))
 const LazyNotificationModal = lazy(() => import('./page/NotificationModal'))
@@ -14,7 +13,6 @@ export default function Layout({ children }: { children: JSX.Element }) {
       <LazyNavbar />
       <div>{children}</div>
       <LazyMoveUp />
-      <LazyPageSizeButton />
       <LazySearchButton />
       <LazyTimelineScroll />
       <LazyNotificationModal />
