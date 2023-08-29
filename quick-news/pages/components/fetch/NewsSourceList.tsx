@@ -22,6 +22,7 @@ export default function NewsSourceList(props: NewsSourceListProps) {
   const { pageSize, handleLoadMore } = useMoreNews()
   const newsListRef = useRef<HTMLDivElement | null>(null)
   const isVisible = useVisibility(newsListRef)
+  const maxPageCount = 40
 
   const fetchNews = async (
     newPageSize: number,
@@ -73,7 +74,7 @@ export default function NewsSourceList(props: NewsSourceListProps) {
       {articles && (
         <MoreViewButton
           onClick={handleLoadMore}
-          disabled={isLoading || pageSize >= 40}
+          disabled={isLoading || pageSize >= maxPageCount}
         >
           더보기
         </MoreViewButton>

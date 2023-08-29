@@ -18,6 +18,7 @@ export default function NewsLists() {
   const { pageSize, handleLoadMore } = useMoreNews()
   const newsListRef = useRef<HTMLDivElement | null>(null)
   const isVisible = useVisibility(newsListRef)
+  const maxPageCount = 40
 
   const fetchNews = async (newPageSize: number) => {
     const startTime = performance.now()
@@ -61,10 +62,10 @@ export default function NewsLists() {
             ),
         )}
       </div>
-      {news && (
+      {isLoading && (
         <MoreViewButton
           onClick={handleLoadMore}
-          disabled={isLoading || pageSize >= 40}
+          disabled={isLoading || pageSize >= maxPageCount}
         >
           더보기
         </MoreViewButton>

@@ -20,6 +20,7 @@ function SearchNews() {
   const searchTerm = useRecoilValue(searchState)
   const newsListRef = useRef<HTMLDivElement | null>(null)
   const isVisible = useVisibility(newsListRef)
+  const maxPageCount = 40
 
   const fetchSearch = async (newPageSize: number) => {
     const { data } = await axios.get<NewsData>(`/api/naver-news-proxy`, {
@@ -61,7 +62,7 @@ function SearchNews() {
       {news && (
         <MoreViewButton
           onClick={handleLoadMore}
-          disabled={isLoading || pageSize >= 40}
+          disabled={isLoading || pageSize >= maxPageCount}
         >
           더보기
         </MoreViewButton>
