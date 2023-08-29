@@ -1,4 +1,3 @@
-import { useRecoilValue } from 'recoil'
 import Link from 'next/link'
 import { Suspense, lazy, useRef } from 'react'
 import axios from 'axios'
@@ -11,15 +10,16 @@ import {
   NewsApiData,
   NewsSourceListProps,
 } from '../../../interfaces/interfaces'
-import pageSizeAtom from '../../../constants/pageSizeAtom'
 import useVisibility from '../../hooks/useVisibility'
+import useMoreNews from '../../hooks/useMoreNews'
+import MoreViewButton from '../btn/MoreViewButton'
 
 const Loading = lazy(() => import('../page/Loading'))
 
 export default function NewsSourceList(props: NewsSourceListProps) {
   const { category } = props
   const fromToday = new Date().toISOString().split('T')[0]
-  const pageSize = useRecoilValue(pageSizeAtom)
+  const { pageSize, handleLoadMore } = useMoreNews()
   const newsListRef = useRef<HTMLDivElement | null>(null)
   const isVisible = useVisibility(newsListRef)
 
@@ -43,7 +43,7 @@ export default function NewsSourceList(props: NewsSourceListProps) {
     return response.data.articles
   }
 
-  const { data: articles } = useQuery(
+  const { data: articles, isLoading } = useQuery(
     ['news', pageSize, category],
     () => fetchNews(pageSize, category),
     {
@@ -70,6 +70,14 @@ export default function NewsSourceList(props: NewsSourceListProps) {
             ),
         )}
       </div>
+      {articles && (
+        <MoreViewButton
+          onClick={handleLoadMore}
+          disabled={isLoading || pageSize >= 40}
+        >
+          더보기
+        </MoreViewButton>
+      )}
     </Suspense>
   )
 }

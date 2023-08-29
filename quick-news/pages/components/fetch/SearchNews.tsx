@@ -9,13 +9,14 @@ import { searchState } from '../../../constants/SearchTermState'
 import { NewsCard } from '../../../styles/NewsStyle'
 import { DateTime } from '../../../styles/InfoStyle'
 import { NewsData } from '../../../interfaces/interfaces'
-import pageSizeAtom from '../../../constants/pageSizeAtom'
 import useVisibility from '../../hooks/useVisibility'
+import useMoreNews from '../../hooks/useMoreNews'
+import MoreViewButton from '../btn/MoreViewButton'
 
 const Loading = lazy(() => import('../page/Loading'))
 
 function SearchNews() {
-  const pageSize = useRecoilValue(pageSizeAtom)
+  const { pageSize, handleLoadMore } = useMoreNews()
   const searchTerm = useRecoilValue(searchState)
   const newsListRef = useRef<HTMLDivElement | null>(null)
   const isVisible = useVisibility(newsListRef)
@@ -31,7 +32,7 @@ function SearchNews() {
     return data.items
   }
 
-  const { data: news } = useQuery(
+  const { data: news, isLoading } = useQuery(
     ['news', pageSize],
     () => fetchSearch(pageSize),
     {
@@ -57,6 +58,14 @@ function SearchNews() {
             ),
         )}
       </div>
+      {news && (
+        <MoreViewButton
+          onClick={handleLoadMore}
+          disabled={isLoading || pageSize >= 40}
+        >
+          더보기
+        </MoreViewButton>
+      )}
     </Suspense>
   )
 }

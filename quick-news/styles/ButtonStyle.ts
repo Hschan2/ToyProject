@@ -12,39 +12,6 @@ export const UpButton = styled.div`
   color: #fff;
 `
 
-export const PageSizesButton = styled.div`
-  position: fixed;
-  background-color: #4d7653;
-  color: #fff;
-  border-radius: 50%;
-  padding: 6px 10px 8px 10px;
-  bottom: 120px;
-  right: 40px;
-  cursor: pointer;
-  font-size: 22px;
-  user-select: none;
-
-  &::before {
-    content: attr('뉴스 데이터 개수 선택\n오늘의주요뉴스 제외');
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 8px;
-    background-color: #4d7653;
-    color: #fff;
-    border-radius: 4px;
-    font-size: 14px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s;
-  }
-
-  &:hover::before {
-    opacity: 1;
-  }
-`
-
 export const slideIn = keyframes`
   from {
     transform: translateX(5%);
@@ -93,4 +60,21 @@ export const InputWrapper = styled.div`
   right: 100px;
   animation: ${slideIn} 0.3s ease-out;
   z-index: 1;
+`
+
+export const MoreButton = styled.button`
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 12px;
+  background-color: #4d7653;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: default;
+  }
 `

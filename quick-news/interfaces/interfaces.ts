@@ -39,3 +39,9 @@ export interface NewsApiData {
 export interface NewsSourceListProps {
   category?: string
 }
+
+export interface MoreButtonProps {
+  onClick: () => void
+  disabled: boolean
+  children: React.ReactNode
+}
