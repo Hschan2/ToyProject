@@ -13,6 +13,7 @@ import {
 import useVisibility from '../../hooks/useVisibility'
 import useMoreNews from '../../hooks/useMoreNews'
 import MoreViewButton from '../btn/MoreViewButton'
+import { MAX_PAGE_COUNT } from '../../../constants/CommonVariable'
 
 const Loading = lazy(() => import('../page/Loading'))
 
@@ -22,15 +23,11 @@ export default function NewsSourceList(props: NewsSourceListProps) {
   const { pageSize, handleLoadMore } = useMoreNews()
   const newsListRef = useRef<HTMLDivElement | null>(null)
   const isVisible = useVisibility(newsListRef)
-  const maxPageCount = 40
 
-  const fetchNews = async (
-    newPageSize: number,
-    newCategory: string | undefined,
-  ) => {
+  const fetchNews = async (newCategory: string | undefined) => {
     const startTime = performance.now()
 
-    let url = `https://newsapi.org/v2/top-headlines?country=kr&from=${fromToday}&pageSize=${newPageSize}&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`
+    let url = `https://newsapi.org/v2/top-headlines?country=kr&from=${fromToday}&pageSize=${MAX_PAGE_COUNT}&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`
     if (newCategory) {
       url += `&category=${newCategory}`
     }
@@ -45,17 +42,19 @@ export default function NewsSourceList(props: NewsSourceListProps) {
   }
 
   const { data: articles, isLoading } = useQuery(
-    ['news', pageSize, category],
-    () => fetchNews(pageSize, category),
+    ['news', category],
+    () => fetchNews(category),
     {
       refetchOnWindowFocus: false,
     },
   )
 
+  const visibleNews = articles?.slice(0, pageSize)
+
   return (
     <Suspense fallback={<Loading />}>
       <div ref={newsListRef}>
-        {articles?.map(
+        {visibleNews?.map(
           (article) =>
             isVisible && (
               <Link href={article.url} target="_blank" key={uuidv4()}>
@@ -71,10 +70,10 @@ export default function NewsSourceList(props: NewsSourceListProps) {
             ),
         )}
       </div>
-      {articles && (
+      {visibleNews && (
         <MoreViewButton
           onClick={handleLoadMore}
-          disabled={isLoading || pageSize >= maxPageCount}
+          disabled={isLoading || pageSize >= MAX_PAGE_COUNT}
         >
           더보기
         </MoreViewButton>

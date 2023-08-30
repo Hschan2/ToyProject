@@ -11,6 +11,7 @@ import { NewsData } from '../../../interfaces/interfaces'
 import useVisibility from '../../hooks/useVisibility'
 import useMoreNews from '../../hooks/useMoreNews'
 import MoreViewButton from '../btn/MoreViewButton'
+import { MAX_PAGE_COUNT } from '../../../constants/CommonVariable'
 
 const Loading = lazy(() => import('../page/Loading'))
 
@@ -18,15 +19,14 @@ export default function NewsLists() {
   const { pageSize, handleLoadMore } = useMoreNews()
   const newsListRef = useRef<HTMLDivElement | null>(null)
   const isVisible = useVisibility(newsListRef)
-  const maxPageCount = 40
 
-  const fetchNews = async (newPageSize: number) => {
+  const fetchNews = async () => {
     const startTime = performance.now()
 
     const { data } = await axios.get<NewsData>('/api/naver-news-proxy', {
       params: {
         q: '오늘의주요뉴스',
-        pageCount: newPageSize,
+        pageCount: MAX_PAGE_COUNT,
       },
     })
     const endTime = performance.now()
@@ -36,18 +36,16 @@ export default function NewsLists() {
     return data.items
   }
 
-  const { data: news, isLoading } = useQuery(
-    ['news', pageSize],
-    () => fetchNews(pageSize),
-    {
-      refetchOnWindowFocus: false,
-    },
-  )
+  const { data: news, isLoading } = useQuery('news', fetchNews, {
+    refetchOnWindowFocus: false,
+  })
+
+  const visibleNews = news?.slice(0, pageSize)
 
   return (
     <Suspense fallback={<Loading />}>
       <div ref={newsListRef}>
-        {news?.map(
+        {visibleNews?.map(
           (item) =>
             isVisible && (
               <Link href={item.link} target="_blank" key={uuidv4()}>
@@ -62,10 +60,10 @@ export default function NewsLists() {
             ),
         )}
       </div>
-      {isLoading && (
+      {visibleNews && (
         <MoreViewButton
           onClick={handleLoadMore}
-          disabled={isLoading || pageSize >= maxPageCount}
+          disabled={isLoading || pageSize >= MAX_PAGE_COUNT}
         >
           더보기
         </MoreViewButton>
