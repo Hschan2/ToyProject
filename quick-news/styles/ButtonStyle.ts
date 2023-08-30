@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components'
+import { COMMON_COLOR } from '../constants/StyleVariable'
 
 export const UpButton = styled.div`
   position: fixed;
@@ -6,7 +7,7 @@ export const UpButton = styled.div`
   right: 40px;
   cursor: pointer;
   font-size: 30px;
-  background-color: #4d7653;
+  background-color: ${COMMON_COLOR};
   border-radius: 50%;
   padding: 2px 14px 4px 14px;
   color: #fff;
@@ -30,21 +31,21 @@ export const SearchContainer = styled.div`
 
 export const SearchInput = styled.input`
   padding: 8px;
-  border: 1px solid #4d7653;
+  border: 1px solid ${COMMON_COLOR};
   border-radius: 4px;
   outline: none;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   transition: border-color 0.3s, box-shadow 0.3s;
 
   &:focus {
-    border-color: #4d7653;
+    border-color: ${COMMON_COLOR};
     box-shadow: 0px 2px 8px rgba(77, 118, 83, 0.3);
   }
 `
 
 export const SearchingButton = styled.button`
   position: fixed;
-  background-color: #4d7653;
+  background-color: ${COMMON_COLOR};
   color: #fff;
   border-radius: 50%;
   padding: 14px 14px 12px 14px;
@@ -68,7 +69,7 @@ export const MoreButton = styled.button`
   margin: 20px auto;
   padding: 10px 20px;
   font-size: 12px;
-  background-color: #4d7653;
+  background-color: ${COMMON_COLOR};
   color: #fff;
   border: none;
   border-radius: 24px;

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { COMMON_COLOR } from '../constants/StyleVariable'
 
 export const Wrapper = styled.div`
   display: flex;
@@ -21,7 +22,7 @@ export const Nav = styled.nav`
 export const NavTitle = styled.h1`
   font-family: 'Georgia', sans-serif;
   font-size: 40px;
-  color: #4d7653;
+  color: ${COMMON_COLOR};
   margin: 5px 0;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -46,7 +47,7 @@ export const LinkStyle = styled.div<{ isActive: boolean }>`
   text-align: center;
   cursor: pointer;
 
-  ${(props) => (props.isActive ? 'color: #4D7653;' : '')};
+  ${(props) => (props.isActive ? `color: ${COMMON_COLOR};` : '')};
 `
 
 export const TimelineScrollContainer = styled.div`
@@ -60,7 +61,7 @@ export const TimelineScrollContainer = styled.div`
 
 export const TimelineScrollBar = styled.div<{ progress: number }>`
   height: 100%;
-  background-color: #4d7653;
+  background-color: ${COMMON_COLOR};
   transition: width 0.1s;
   ${(props) => `width: ${props.progress}%`};
 `

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { COMMON_COLOR } from '../constants/StyleVariable'
 
 export const NewsCard = styled.div`
   background-color: #fff;
@@ -6,7 +7,7 @@ export const NewsCard = styled.div`
   border-bottom: 0.25px solid rgba(0, 0, 0, 0.1);
 
   &:hover {
-    border-left: 3px solid #4d7653;
+    border-left: 3px solid ${COMMON_COLOR};
   }
 `
 

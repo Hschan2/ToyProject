@@ -29,7 +29,7 @@ export const ModalText = styled.p`
 
 export const ModalButtonContainer = styled.div`
   display: flex;
-  justify-content: center; /* 버튼을 가운데 정렬 */
+  justify-content: center;
 `
 
 export const ModalButton = styled.button`

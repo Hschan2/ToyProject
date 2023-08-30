@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import useCurrentUrl from '../../../constants/variable'
+import useCurrentUrl from '../../../constants/CurrentUrl'
 
 export default function Seo({ title }: { title: string }) {
   const nowLocation = useCurrentUrl()
