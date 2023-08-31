@@ -11,7 +11,7 @@ import {
   SearchingButton,
 } from '../../../styles/ButtonStyle'
 
-function SearchButton() {
+export default function SearchButton() {
   const [isInputVisible, setInputVisible] = useState(false)
   const [searchTerm, setSearchTerm] = useState<string>('')
   const [searchTermState, setSearchTermState] = useRecoilState(searchState)
@@ -21,26 +21,27 @@ function SearchButton() {
     setInputVisible((prev) => !prev)
   }, [])
 
-  const handleInputChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setSearchTerm(event.target.value)
-    },
-    [],
-  )
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value)
+  }
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLInputElement>) => {
       if (event.key === 'Enter') {
         setSearchTermState(searchTerm)
         setInputVisible(false)
+        setSearchTerm('')
         router.push(`/search`)
       }
     },
     [searchTerm, setSearchTermState, router],
   )
 
-  const searchInput = useMemo(
-    () => (
+  const searchInput = useMemo(() => {
+    if (!isInputVisible) {
+      return null
+    }
+    return (
       <InputWrapper>
         <SearchInput
           type="text"
@@ -50,18 +51,15 @@ function SearchButton() {
           autoFocus
         />
       </InputWrapper>
-    ),
-    [searchTerm, handleInputChange, handleKeyDown],
-  )
+    )
+  }, [searchTerm, handleInputChange, handleKeyDown])
 
   return (
     <SearchContainer>
       <SearchingButton type="button" onClick={handleToggleInput}>
         <FontAwesomeIcon icon={faSearch} size="1x" />
       </SearchingButton>
-      {isInputVisible && searchInput}
+      {searchInput}
     </SearchContainer>
   )
 }
-
-export default SearchButton
