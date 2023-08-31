@@ -70,7 +70,7 @@ export default function NewsSourceList(props: NewsSourceListProps) {
             ),
         )}
       </div>
-      {visibleNews && (
+      {!isLoading && (
         <MoreViewButton
           onClick={handleLoadMore}
           disabled={isLoading || pageSize >= MAX_PAGE_COUNT}
