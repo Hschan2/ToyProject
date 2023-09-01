@@ -1,17 +1,15 @@
 import { Suspense, lazy, useRef } from 'react'
 import Link from 'next/link'
-import axios from 'axios'
 import moment from 'moment'
 import 'moment/locale/ko'
 import { v4 as uuidv4 } from 'uuid'
-import { useQuery } from 'react-query'
 import { NewsCard } from '../../../styles/NewsStyle'
 import { DateTime } from '../../../styles/InfoStyle'
-import { NewsData } from '../../../interfaces/interfaces'
 import useVisibility from '../../hooks/useVisibility'
 import useMoreNews from '../../hooks/useMoreNews'
 import MoreViewButton from '../btn/MoreViewButton'
 import { MAX_PAGE_COUNT } from '../../../constants/CommonVariable'
+import NaverNewsFetch from './NaverNewsFetch'
 
 const Loading = lazy(() => import('../page/Loading'))
 
@@ -19,28 +17,7 @@ export default function NewsLists() {
   const { pageSize, handleLoadMore } = useMoreNews()
   const newsListRef = useRef<HTMLDivElement | null>(null)
   const isVisible = useVisibility(newsListRef)
-
-  const fetchNews = async () => {
-    const startTime = performance.now()
-
-    const { data } = await axios.get<NewsData>('/api/naver-news-proxy', {
-      params: {
-        q: '오늘의주요뉴스',
-        pageCount: MAX_PAGE_COUNT,
-      },
-    })
-    const endTime = performance.now()
-    const executionTime = endTime - startTime
-    console.log(`${Math.floor(executionTime)}ms`)
-
-    return data.items
-  }
-
-  const { data: news, isLoading } = useQuery('news', fetchNews, {
-    refetchOnWindowFocus: false,
-  })
-
-  const visibleNews = news?.slice(0, pageSize)
+  const { visibleNews, isLoading } = NaverNewsFetch(pageSize)
 
   return (
     <Suspense fallback={<Loading />}>

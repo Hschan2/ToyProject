@@ -1,43 +1,25 @@
-import axios from 'axios'
 import moment from 'moment'
 import Link from 'next/link'
 import React, { Suspense, lazy, useRef } from 'react'
-import { useRecoilValue } from 'recoil'
-import { useQuery } from 'react-query'
 import { v4 as uuidv4 } from 'uuid'
+import { useRecoilValue } from 'recoil'
 import { searchState } from '../../../constants/SearchTermState'
 import { NewsCard } from '../../../styles/NewsStyle'
 import { DateTime } from '../../../styles/InfoStyle'
-import { NewsData } from '../../../interfaces/interfaces'
 import useVisibility from '../../hooks/useVisibility'
 import useMoreNews from '../../hooks/useMoreNews'
 import MoreViewButton from '../btn/MoreViewButton'
 import { MAX_PAGE_COUNT } from '../../../constants/CommonVariable'
+import NaverNewsFetch from './NaverNewsFetch'
 
 const Loading = lazy(() => import('../page/Loading'))
 
 function SearchNews() {
   const { pageSize, handleLoadMore } = useMoreNews()
-  const searchTerm = useRecoilValue(searchState)
   const newsListRef = useRef<HTMLDivElement | null>(null)
   const isVisible = useVisibility(newsListRef)
-
-  const fetchSearch = async () => {
-    const { data } = await axios.get<NewsData>(`/api/naver-news-proxy`, {
-      params: {
-        q: searchTerm,
-        pageCount: MAX_PAGE_COUNT,
-      },
-    })
-
-    return data.items
-  }
-
-  const { data: news, isLoading } = useQuery('news', fetchSearch, {
-    refetchOnWindowFocus: false,
-  })
-
-  const visibleNews = news?.slice(0, pageSize)
+  const searchTerm = useRecoilValue(searchState)
+  const { visibleNews, isLoading } = NaverNewsFetch(pageSize, searchTerm)
 
   return (
     <Suspense fallback={<Loading />}>
