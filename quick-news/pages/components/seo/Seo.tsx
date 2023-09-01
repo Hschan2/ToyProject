@@ -1,12 +1,18 @@
 import Head from 'next/head'
+import { useEffect, useState } from 'react'
 import useCurrentUrl from '../../../constants/CurrentUrl'
 
 export default function Seo({ title }: { title: string }) {
   const nowLocation = useCurrentUrl()
+  const [isPageLoaded, setIsPageLoaded] = useState(false)
+
+  useEffect(() => {
+    setIsPageLoaded(true)
+  }, [])
 
   return (
     <Head>
-      <title>퀵 뉴스 | {title}</title>
+      <title>{isPageLoaded ? `퀵 뉴스 | ${title}` : '퀵 뉴스'}</title>
 
       <meta
         property="og:url"
