@@ -1,6 +1,6 @@
 import React from 'react'
 import { MoreButton } from '../../../styles/ButtonStyle'
-import { MoreButtonProps } from '../../../interfaces/interfaces'
+import { MoreButtonProps } from '../../../interfaces/Interfaces'
 
 export default function MoreViewButton({
   onClick,
