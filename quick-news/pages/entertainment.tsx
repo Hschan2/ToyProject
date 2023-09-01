@@ -13,7 +13,7 @@ export default function Entertainment() {
 
   useEffect(() => {
     setSEO('연예')
-  })
+  }, [])
 
   return (
     <Wrapper>

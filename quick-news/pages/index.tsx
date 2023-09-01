@@ -11,7 +11,7 @@ export default function Home() {
 
   useEffect(() => {
     setSEO('오늘의 주요뉴스')
-  })
+  }, [])
 
   return (
     <Wrapper>

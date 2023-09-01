@@ -13,7 +13,7 @@ export default function Health() {
 
   useEffect(() => {
     setSEO('건강')
-  })
+  }, [])
 
   return (
     <Wrapper>

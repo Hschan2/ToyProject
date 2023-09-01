@@ -14,7 +14,7 @@ export default function Search() {
 
   useEffect(() => {
     setSEO(`${searchTerm} 검색`)
-  })
+  }, [])
 
   return (
     <Wrapper>

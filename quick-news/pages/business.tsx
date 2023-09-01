@@ -13,7 +13,7 @@ export default function Business() {
 
   useEffect(() => {
     setSEO('경제')
-  })
+  }, [])
 
   return (
     <Wrapper>

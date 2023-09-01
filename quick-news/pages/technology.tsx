@@ -13,7 +13,7 @@ export default function Technology() {
 
   useEffect(() => {
     setSEO('테크')
-  })
+  }, [])
 
   return (
     <Wrapper>

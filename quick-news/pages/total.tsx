@@ -13,7 +13,7 @@ export default function Total() {
 
   useEffect(() => {
     setSEO('톱 헤드라인')
-  })
+  }, [])
 
   return (
     <Wrapper>

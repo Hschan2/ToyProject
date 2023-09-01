@@ -13,7 +13,7 @@ export default function Science() {
 
   useEffect(() => {
     setSEO('과학')
-  })
+  }, [])
 
   return (
     <Wrapper>

@@ -13,7 +13,7 @@ export default function Sports() {
 
   useEffect(() => {
     setSEO('스포츠')
-  })
+  }, [])
 
   return (
     <Wrapper>
