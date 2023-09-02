@@ -1,11 +1,8 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState, lazy, Suspense } from 'react'
-import { useRecoilValue } from 'recoil'
-import { SeoState } from '../../../constants/SeoState'
 import { LinkStyle, Nav, NavDisplay, NavTitle } from '../../../styles/PageStyle'
 import { TimeWeather } from '../../../styles/InfoStyle'
-import Seo from '../seo/Seo'
 
 const Today = lazy(() => import('../info/Today'))
 const Weather = lazy(() => import('../info/Weather'))
@@ -13,7 +10,6 @@ const Weather = lazy(() => import('../info/Weather'))
 export default function Navbar() {
   const router = useRouter()
   const [isMounted, setIsMounted] = useState(false)
-  const categoryName = useRecoilValue(SeoState)
 
   useEffect(() => {
     setIsMounted(true)
@@ -25,7 +21,6 @@ export default function Navbar() {
 
   return (
     <Nav>
-      <Seo title={categoryName} />
       <NavTitle>Quick News</NavTitle>
       <TimeWeather>
         <Suspense fallback={<div>Loading...</div>}>
