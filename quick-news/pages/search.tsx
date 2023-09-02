@@ -1,25 +1,19 @@
-import { lazy, useEffect } from 'react'
+import { lazy } from 'react'
 import { useRecoilValue } from 'recoil'
 import { searchState } from '../constants/SearchTermState'
-import Footer from './components/footer/Footer'
-import Seo from './components/seo/Seo'
-import { Wrapper } from '../styles/PageStyle'
-import useSetSEO from './hooks/useSetSEO'
 
 const LazySearchNews = lazy(() => import('./components/fetch/SearchNews'))
+const LazyContents = lazy(() => import('./components/Contents'))
 
 export default function Search() {
   const searchTerm = useRecoilValue(searchState)
-  const setSEO = useSetSEO()
-
-  useEffect(() => {
-    setSEO(`${searchTerm} 검색`)
-  }, [])
 
   return (
-    <Wrapper>
+    <LazyContents
+      title={`검색: ${searchTerm}`}
+      description="검색 결과를 확인하세요"
+    >
       <LazySearchNews />
-      <Footer />
-    </Wrapper>
+    </LazyContents>
   )
 }

@@ -1,24 +1,14 @@
-import { lazy, useEffect } from 'react'
-import Footer from './components/footer/Footer'
-import Seo from './components/seo/Seo'
-import { Wrapper } from '../styles/PageStyle'
-import useSetSEO from './hooks/useSetSEO'
+import { lazy } from 'react'
 
 const LazyNewsSourceList = lazy(
   () => import('./components/fetch/NewsSourceList'),
 )
+const LazyContents = lazy(() => import('./components/Contents'))
 
 export default function Technology() {
-  const setSEO = useSetSEO()
-
-  useEffect(() => {
-    setSEO('테크')
-  }, [])
-
   return (
-    <Wrapper>
+    <LazyContents title="기술뉴스" description="테크 관련 뉴스를 확인하세요">
       <LazyNewsSourceList category="technology" />
-      <Footer />
-    </Wrapper>
+    </LazyContents>
   )
 }

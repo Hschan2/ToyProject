@@ -1,24 +1,14 @@
-import { lazy, useEffect } from 'react'
-import Footer from './components/footer/Footer'
-import Seo from './components/seo/Seo'
-import { Wrapper } from '../styles/PageStyle'
-import useSetSEO from './hooks/useSetSEO'
+import { lazy } from 'react'
 
 const LazyNewsSourceList = lazy(
   () => import('./components/fetch/NewsSourceList'),
 )
+const LazyContents = lazy(() => import('./components/Contents'))
 
 export default function Business() {
-  const setSEO = useSetSEO()
-
-  useEffect(() => {
-    setSEO('경제')
-  }, [])
-
   return (
-    <Wrapper>
+    <LazyContents title="경제뉴스" description="경제 관련 뉴스들을 확인하세요">
       <LazyNewsSourceList category="business" />
-      <Footer />
-    </Wrapper>
+    </LazyContents>
   )
 }

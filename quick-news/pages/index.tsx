@@ -1,22 +1,15 @@
-import { lazy, useEffect } from 'react'
-import Footer from './components/footer/Footer'
-import Seo from './components/seo/Seo'
-import { Wrapper } from '../styles/PageStyle'
-import useSetSEO from './hooks/useSetSEO'
+import { lazy } from 'react'
 
 const LazyNewsLists = lazy(() => import('./components/fetch/NewsLists'))
+const LazyContents = lazy(() => import('./components/Contents'))
 
 export default function Home() {
-  const setSEO = useSetSEO()
-
-  useEffect(() => {
-    setSEO('오늘의 주요뉴스')
-  }, [])
-
   return (
-    <Wrapper>
+    <LazyContents
+      title="오늘의 주요뉴스"
+      description="오늘의 주요뉴스를 확인하세요"
+    >
       <LazyNewsLists />
-      <Footer />
-    </Wrapper>
+    </LazyContents>
   )
 }
