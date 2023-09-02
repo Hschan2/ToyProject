@@ -45,3 +45,14 @@ export interface MoreButtonProps {
   disabled: boolean
   children: React.ReactNode
 }
+
+export interface SEOProps {
+  title: string
+  description: string
+}
+
+export interface ContentsProps {
+  title: string
+  description: string
+  children: React.ReactNode
+}
