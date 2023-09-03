@@ -15,7 +15,7 @@ const Loading = lazy(() => import('../page/Loading'))
 
 export default function NewsSourceList(props: NewsSourceListProps) {
   const { category } = props
-  const { pageSize, handleLoadMore } = useMoreNews()
+  const { pageSize, handleLoadMore, isAllLoaded } = useMoreNews()
   const newsListRef = useRef<HTMLDivElement | null>(null)
   const isVisible = useVisibility(newsListRef)
   const { visibleNews, isLoading } = CategoriesNewsFetch(category, pageSize)
@@ -39,7 +39,7 @@ export default function NewsSourceList(props: NewsSourceListProps) {
             ),
         )}
       </div>
-      {!isLoading && (
+      {!isAllLoaded && !isLoading && (
         <MoreViewButton
           onClick={handleLoadMore}
           disabled={isLoading || pageSize >= MAX_PAGE_COUNT}

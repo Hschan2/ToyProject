@@ -3,7 +3,7 @@ import { ContentsProps } from '../../interfaces/Interfaces'
 import { Wrapper } from '../../styles/PageStyle'
 import Footer from './footer/Footer'
 
-const LazySEO = lazy(() => import('./seo/Seo'))
+const LazySEO = lazy(() => import('./seo/SEO'))
 
 export default function Contents({
   title,
