@@ -4,9 +4,18 @@ import useGeolocation from '../../../constants/GetGeoLocation'
 
 export default function Weather() {
   const { latitude, longitude, error }: LocationType = useGeolocation()
-  const [weatherData, setWeatherData] = useState<WeatherData | null>(null)
+  const [weatherData, setWeatherData] = useState<WeatherData | null>({
+    name: '',
+    description: '',
+    temp: 0,
+  })
+  const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
+    if (!latitude || !longitude) {
+      return undefined
+    }
+
     const abortController = new AbortController()
 
     const fetchWeatherData = async () => {
@@ -24,14 +33,13 @@ export default function Weather() {
           description: data.weather[0].description,
           temp: data.main.temp,
         })
+        setLoading(true)
       } catch (err) {
         console.log(err)
       }
     }
 
-    if (latitude && longitude) {
-      fetchWeatherData()
-    }
+    fetchWeatherData()
 
     return () => {
       abortController.abort()
@@ -41,8 +49,11 @@ export default function Weather() {
   if (error) {
     return <div>{error}</div>
   }
-  if (!latitude || !longitude || !weatherData) {
-    return null
+  if (!weatherData) {
+    return <div>날씨 정보가 없습니다.</div>
+  }
+  if (!loading) {
+    return <div>날씨 가져오는 중...</div>
   }
 
   return (
