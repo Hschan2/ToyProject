@@ -12,6 +12,8 @@ export default function useMoreNews(initialPageSize = 20) {
   useEffect(() => {
     if (pageSize >= MAX_PAGE_COUNT) {
       setIsAllLoaded(true)
+    } else {
+      setIsAllLoaded(false)
     }
   }, [pageSize])
 
