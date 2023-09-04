@@ -25,6 +25,7 @@ export default function CategoriesNewsFetch(
     () => fetchNews(category),
     {
       refetchOnWindowFocus: false,
+      cacheTime: 30 * 60 * 1000,
     },
   )
 
