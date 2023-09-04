@@ -11,11 +11,16 @@ export interface WeatherData {
 }
 
 export interface NewsItem {
+  id: number
   title: string
   link: string
   image: string
   description: string
   pubDate: number
+}
+
+export interface NewsContent {
+  item: NewsItem
 }
 
 export interface NewsData {
