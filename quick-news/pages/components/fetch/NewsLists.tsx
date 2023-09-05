@@ -20,7 +20,7 @@ export default function NewsLists() {
       <div ref={newsListRef}>
         {visibleNews?.map((item) => isVisible && <NewsItem item={item} />)}
       </div>
-      {!isAllLoaded && !isLoading && (
+      {!isAllLoaded && (
         <MoreViewButton
           onClick={handleLoadMore}
           disabled={isLoading || pageSize >= MAX_PAGE_COUNT}
