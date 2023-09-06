@@ -1,21 +1,17 @@
-import moment from 'moment'
-import Link from 'next/link'
 import React, { Suspense, lazy, useRef } from 'react'
-import { v4 as uuidv4 } from 'uuid'
 import { useRecoilValue } from 'recoil'
 import { searchState } from '../../../constants/SearchTermState'
-import { NewsCard } from '../../../styles/NewsStyle'
-import { DateTime } from '../../../styles/InfoStyle'
 import useVisibility from '../../hooks/useVisibility'
 import useMoreNews from '../../hooks/useMoreNews'
 import MoreViewButton from '../btn/MoreViewButton'
 import { MAX_PAGE_COUNT } from '../../../constants/CommonVariable'
-import NaverNewsFetch from './NaverNewsFetch'
+import NaverNewsFetch from '../fetch/NaverNewsFetch'
+import NewsItem from './NewsItem'
 
-const Loading = lazy(() => import('../page/Loading'))
+const Loading = lazy(() => import('./Loading'))
 
 function SearchNews() {
-  const { pageSize, handleLoadMore } = useMoreNews()
+  const { pageSize, handleLoadMore, isAllLoaded } = useMoreNews()
   const newsListRef = useRef<HTMLDivElement | null>(null)
   const isVisible = useVisibility(newsListRef)
   const searchTerm = useRecoilValue(searchState)
@@ -24,22 +20,9 @@ function SearchNews() {
   return (
     <Suspense fallback={<Loading />}>
       <div ref={newsListRef}>
-        {visibleNews?.map(
-          (item) =>
-            isVisible && (
-              <Link href={item.link} target="_blank" key={uuidv4()}>
-                <NewsCard>
-                  <h3 dangerouslySetInnerHTML={{ __html: item.title }} />
-                  <DateTime>
-                    {moment(item.pubDate).format('YYYY-MM-DD HH:mm')}
-                  </DateTime>
-                  <p dangerouslySetInnerHTML={{ __html: item.description }} />
-                </NewsCard>
-              </Link>
-            ),
-        )}
+        {visibleNews?.map((item) => isVisible && <NewsItem item={item} />)}
       </div>
-      {!isLoading && (
+      {!isAllLoaded && (
         <MoreViewButton
           onClick={handleLoadMore}
           disabled={isLoading || pageSize >= MAX_PAGE_COUNT}

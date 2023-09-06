@@ -4,10 +4,10 @@ import useVisibility from '../../hooks/useVisibility'
 import useMoreNews from '../../hooks/useMoreNews'
 import MoreViewButton from '../btn/MoreViewButton'
 import { MAX_PAGE_COUNT } from '../../../constants/CommonVariable'
-import NaverNewsFetch from './NaverNewsFetch'
+import NaverNewsFetch from '../fetch/NaverNewsFetch'
 
-const Loading = lazy(() => import('../page/Loading'))
-const NewsItem = lazy(() => import('../page/NewsItem'))
+const Loading = lazy(() => import('./Loading'))
+const NewsItem = lazy(() => import('./NewsItem'))
 
 export default function NewsLists() {
   const { pageSize, handleLoadMore, isAllLoaded } = useMoreNews()

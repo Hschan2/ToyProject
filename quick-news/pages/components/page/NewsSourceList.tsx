@@ -9,9 +9,9 @@ import useVisibility from '../../hooks/useVisibility'
 import useMoreNews from '../../hooks/useMoreNews'
 import MoreViewButton from '../btn/MoreViewButton'
 import { MAX_PAGE_COUNT } from '../../../constants/CommonVariable'
-import CategoriesNewsFetch from './CategoriesNewsFetch'
+import CategoriesNewsFetch from '../fetch/CategoriesNewsFetch'
 
-const Loading = lazy(() => import('../page/Loading'))
+const Loading = lazy(() => import('./Loading'))
 
 export default function NewsSourceList(props: NewsSourceListProps) {
   const { category } = props

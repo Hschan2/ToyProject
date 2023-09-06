@@ -1,7 +1,7 @@
 import { lazy } from 'react'
 
 const LazyNewsSourceList = lazy(
-  () => import('./components/fetch/NewsSourceList'),
+  () => import('./components/page/NewsSourceList'),
 )
 const LazyContents = lazy(() => import('./components/Contents'))
 

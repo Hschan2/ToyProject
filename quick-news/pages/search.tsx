@@ -2,7 +2,7 @@ import { lazy } from 'react'
 import { useRecoilValue } from 'recoil'
 import { searchState } from '../constants/SearchTermState'
 
-const LazySearchNews = lazy(() => import('./components/fetch/SearchNews'))
+const LazySearchNews = lazy(() => import('./components/page/SearchNews'))
 const LazyContents = lazy(() => import('./components/Contents'))
 
 export default function Search() {
