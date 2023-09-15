@@ -2,14 +2,14 @@ import styled, { css } from 'styled-components'
 import { COMMON_COLOR } from '../constants/StyleVariable'
 
 const media = {
-  tablet: (styles: TemplateStringsArray) => css`
+  tablet: (styles: TemplateStringsArray, ...interpolations: any[]) => css`
     @media screen and (max-width: 768px) {
-      ${css(styles)}
+      ${css(styles, ...interpolations)}
     }
   `,
-  mobile: (styles: TemplateStringsArray) => css`
+  mobile: (styles: TemplateStringsArray, ...interpolations: any[]) => css`
     @media screen and (max-width: 480px) {
-      ${css(styles)}
+      ${css(styles, ...interpolations)}
     }
   `,
 }

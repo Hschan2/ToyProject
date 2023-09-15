@@ -1,16 +1,23 @@
 import styled, { css } from 'styled-components'
 
 const media = {
-  tablet: (styles: TemplateStringsArray) => css`
+  tablet: (styles: TemplateStringsArray, ...interpolations: any[]) => css`
     @media screen and (max-width: 768px) {
-      ${css(styles)}
+      ${css(styles, ...interpolations)}
     }
   `,
-  mobile: (styles: TemplateStringsArray) => css`
+  mobile: (styles: TemplateStringsArray, ...interpolations: any[]) => css`
     @media screen and (max-width: 480px) {
-      ${css(styles)}
+      ${css(styles, ...interpolations)}
     }
   `,
+}
+
+const fontSize = {
+  large: '1rem',
+  middle: '0.875rem',
+  small: '0.75rem',
+  mini: '0.625rem',
 }
 
 export const ModalOverlay = styled.div`
@@ -44,15 +51,15 @@ export const ModalContent = styled.div`
 `
 
 export const ModalText = styled.p`
-  font-size: 1rem;
+  font-size: ${fontSize.large};
   margin-bottom: 1.25rem;
 
   ${media.tablet`
-    font-size: 0.75rem;
+    font-size: ${fontSize.small};
   `}
 
   ${media.mobile`
-    font-size: 0.625rem;
+    font-size: ${fontSize.mini};
   `}
 `
 
@@ -68,7 +75,7 @@ export const ModalButton = styled.button`
   padding: 0.625rem 1.25rem;
   border-radius: 0.25rem;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: ${fontSize.large};
   transition: background-color 0.3s;
 
   &:hover {
@@ -76,10 +83,10 @@ export const ModalButton = styled.button`
   }
 
   ${media.tablet`
-    font-size: 0.875rem;
+    font-size: ${fontSize.middle};
   `}
 
   ${media.mobile`
-    font-size: 0.75rem;
+    font-size: ${fontSize.small};
   `}
 `
