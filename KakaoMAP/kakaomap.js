@@ -75,7 +75,6 @@ function createMarker(position) {
 function createChoiceMarkers() {
     for (const i = 0; i < homeAddress.length; i++) {
         const marker = createMarker(homeAddress[i].latlng);
-        //const marker = createCircle(homeAddress[i].latlng);
 
         const circle = '<div class ="circle-main"><div class="circle">' + (i + 1) + '</div></div>';
 
@@ -112,25 +111,25 @@ function createChoiceMarkers() {
 
         const tooltip = '<div class="tooltip">' + homeAddress[i].desc + '</div>';
 
-        const tooltipoverlay = new kakao.maps.CustomOverlay({
+        const tooltipOverlay = new kakao.maps.CustomOverlay({
             content: tooltip,
             map: map,
             position: marker.getPosition(),
         });
 
-        kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, tooltipoverlay));
-        kakao.maps.event.addListener(marker, 'mouseout', makeOverListener(null, tooltipoverlay));
+        kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, tooltipOverlay));
+        kakao.maps.event.addListener(marker, 'mouseout', makeOverListener(null, tooltipOverlay));
 
         const circleDiv = document.getElementsByClassName("circle-main");
 
-        $(circleDiv[i]).on('mouseover', makeOverListener(map, tooltipoverlay));
-        $(circleDiv[i]).on('mouseout', makeOverListener(null, tooltipoverlay));
+        $(circleDiv[i]).on('mouseover', makeOverListener(map, tooltipOverlay));
+        $(circleDiv[i]).on('mouseout', makeOverListener(null, tooltipOverlay));
 
         $(circleDiv[i]).on('click', makeClickListener(map, overlay));
 
         choiceMarkers.push(marker);
         choiceOverlays.push(overlay);
-        choiceTooltips.push(tooltipoverlay);
+        choiceTooltips.push(tooltipOverlay);
         choicePolylines.push(homeAddress[i].latlng);
     }
 }
