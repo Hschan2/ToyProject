@@ -1,24 +1,24 @@
-var current = document.getElementById('current');
+const current = document.getElementById('current');
 
-var content = '<div class="positionwrap">' + 
-                '<div class="circle1"></div>' + 
-                '<div class="circle2"></div>' +      
-            '</div>';
+const content = '<div class="positionwrap">' +
+    '<div class="circle1"></div>' +
+    '<div class="circle2"></div>' +
+    '</div>';
 
-var myoverlay = new kakao.maps.CustomOverlay({
+const myoverlay = new kakao.maps.CustomOverlay({
     content: content,
 });
 
-current.addEventListener('click', function() {
+current.addEventListener('click', function () {
     if (navigator.geolocation) {
-    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var lat = position.coords.latitude, // 위도
-                lon = position.coords.longitude; // 경도
-            
-            var locPosition = new kakao.maps.LatLng(lat+0.0047, lon+0.03058); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다 
+        // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+        navigator.geolocation.getCurrentPosition(function (position) {
+            const lat = position.coords.latitude // 위도
+            const lon = position.coords.longitude; // 경도
 
-            if(myoverlay.getMap()) {
+            const locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다 
+
+            if (myoverlay.getMap()) {
                 myoverlay.setMap(null);
                 current.style.color = 'black';
             } else {
