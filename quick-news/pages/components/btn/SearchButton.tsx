@@ -31,7 +31,7 @@ export default function SearchButton() {
         setSearchTermState(searchTerm)
         setInputVisible(false)
         setSearchTerm('')
-        router.push(`/search`)
+        router.push(`/search?q=${searchTermState}`)
       }
       if (event.key === 'Enter' && searchTerm.trim() === '') {
         alert('검색어를 입력해 주세요.')
