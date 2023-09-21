@@ -39,7 +39,7 @@ export default function NewsSourceList(props: NewsSourceListProps) {
             ),
         )}
       </div>
-      {!isAllLoaded && !isLoading && (
+      {!isAllLoaded && (
         <MoreViewButton
           onClick={handleLoadMore}
           disabled={isLoading || pageSize >= MAX_PAGE_COUNT}
