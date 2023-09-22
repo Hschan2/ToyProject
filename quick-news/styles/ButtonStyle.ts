@@ -104,8 +104,8 @@ export const InputWrapper = styled.div`
 
 export const MoreButton = styled.button`
   margin: 1.25rem auto;
-  padding: 0.625rem 1.25rem;
-  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
   background-color: ${COMMON_COLOR};
   color: #fff;
   border: none;
@@ -119,12 +119,12 @@ export const MoreButton = styled.button`
   }
 
   ${media.tablet`
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 0.9rem;
     font-size: 0.625rem;
   `}
 
   ${media.mobile`
-    padding: 0.375rem 0.875rem;
+    padding: 0.35rem 0.75rem;
     font-size: 0.5rem;
   `}
 `
