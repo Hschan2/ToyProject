@@ -2,8 +2,6 @@ import React, { useState, useCallback, useMemo } from 'react'
 import { useRouter } from 'next/router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { useRecoilState } from 'recoil'
-import { searchState } from '../../../constants/SearchTermState'
 import {
   InputWrapper,
   SearchContainer,
@@ -14,7 +12,6 @@ import {
 export default function SearchButton() {
   const [isInputVisible, setInputVisible] = useState(false)
   const [searchTerm, setSearchTerm] = useState<string>('')
-  const [searchTermState, setSearchTermState] = useRecoilState(searchState)
   const router = useRouter()
 
   const handleToggleInput = useCallback(() => {
@@ -28,16 +25,15 @@ export default function SearchButton() {
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLInputElement>) => {
       if (event.key === 'Enter' && searchTerm.trim() !== '') {
-        setSearchTermState(searchTerm)
+        router.push(`/search?q=${searchTerm}`)
         setInputVisible(false)
         setSearchTerm('')
-        router.push(`/search?q=${searchTermState}`)
       }
       if (event.key === 'Enter' && searchTerm.trim() === '') {
         alert('검색어를 입력해 주세요.')
       }
     },
-    [searchTerm, setSearchTermState, router],
+    [searchTerm, router],
   )
 
   const searchInput = useMemo(() => {

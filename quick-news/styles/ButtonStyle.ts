@@ -30,7 +30,9 @@ export const UpButton = styled.div`
   `}
 
   ${media.mobile`
+    right: 20px;
     font-size: 1.25rem;
+    padding: 0.1rem 0.65rem 0.175rem 0.7rem;
   `}
 `
 
@@ -64,10 +66,12 @@ export const SearchInput = styled.input`
   }
 
   ${media.tablet`
+    width: 10rem;
     padding: 0.375rem;
   `}
 
   ${media.mobile`
+    width: 6rem;
     padding: 0.25rem;
   `}
 `
@@ -86,10 +90,13 @@ export const SearchingButton = styled.button`
   border: none;
 
   ${media.tablet`
-    font-size: 0.9375rem;
+    font-size: 0.9rem;
   `}
 
   ${media.mobile`
+    padding: 0.6rem 0.6rem 0.55rem 0.7rem;
+    bottom: 150px;
+    right: 20px;
     font-size: 0.75rem;
   `}
 `
@@ -100,6 +107,14 @@ export const InputWrapper = styled.div`
   right: 100px;
   animation: ${slideIn} 0.3s ease-out;
   z-index: 1;
+
+  ${media.tablet`
+  `}
+
+  ${media.mobile`
+    bottom: 155px;
+    right: 60px;
+  `}
 `
 
 export const MoreButton = styled.button`
@@ -119,11 +134,12 @@ export const MoreButton = styled.button`
   }
 
   ${media.tablet`
-    padding: 0.4rem 0.9rem;
-    font-size: 0.625rem;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.75rem;
   `}
 
   ${media.mobile`
+    margin: 1.75rem auto;
     padding: 0.35rem 0.75rem;
     font-size: 0.5rem;
   `}

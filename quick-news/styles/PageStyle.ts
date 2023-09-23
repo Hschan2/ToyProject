@@ -71,7 +71,7 @@ export const LinkStyle = styled.div<{ isActive: boolean }>`
   ${(props) => (props.isActive ? `color: ${COMMON_COLOR};` : '')};
 
   ${media.tablet`
-    width: 3.25rem;
+    width: 3.75rem;
     font-size: 0.5rem;
   `}
 

@@ -18,11 +18,11 @@ export const FooterContainer = styled.div`
   padding-bottom: 6.25rem;
 
   ${media.tablet`
-    padding-bottom: 4.375rem;
+    padding-bottom: 4.5rem;
   `}
 
   ${media.mobile`
-    padding-bottom: 3.125rem;
+    padding-bottom: 2.75rem;
   `}
 `
 
@@ -34,13 +34,15 @@ export const FooterContents = styled.footer`
   transform: translateX(-50%);
   text-align: center;
   color: rgba(0, 0, 0, 0.5);
-  font-size: 0.625rem;
+  font-size: 0.6rem;
 
   ${media.tablet`
-    font-size: 0.5rem;
+    padding: 0.75rem 0;
+    font-size: 0.4rem;
   `}
 
   ${media.mobile`
-    font-size: 0.375rem;
+    padding: 0.5rem 0;
+    font-size: 0.2rem;
   `}
 `
