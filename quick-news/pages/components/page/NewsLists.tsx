@@ -18,7 +18,9 @@ export default function NewsLists() {
   return (
     <Suspense fallback={<Loading />}>
       <div ref={newsListRef}>
-        {visibleNews?.map((item) => isVisible && <NewsItem item={item} />)}
+        {visibleNews?.map(
+          (item) => isVisible && <NewsItem key={item.id} item={item} />,
+        )}
       </div>
       {!isAllLoaded && (
         <MoreViewButton

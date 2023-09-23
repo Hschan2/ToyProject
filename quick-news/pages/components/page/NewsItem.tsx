@@ -1,7 +1,6 @@
 import moment from 'moment'
 import Link from 'next/link'
 import React from 'react'
-import { v4 as uuidv4 } from 'uuid'
 import { NewsCard } from '../../../styles/NewsStyle'
 import { DateTime } from '../../../styles/InfoStyle'
 import { NewsContent } from '../../../interfaces/Interfaces'
