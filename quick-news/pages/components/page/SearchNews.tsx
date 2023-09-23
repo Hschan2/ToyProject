@@ -1,6 +1,5 @@
 import React, { Suspense, lazy, useRef } from 'react'
-import { useRecoilValue } from 'recoil'
-import { searchState } from '../../../constants/SearchTermState'
+import { useSearchParams } from 'next/navigation'
 import useVisibility from '../../hooks/useVisibility'
 import useMoreNews from '../../hooks/useMoreNews'
 import MoreViewButton from '../btn/MoreViewButton'
@@ -14,13 +13,16 @@ function SearchNews() {
   const { pageSize, handleLoadMore, isAllLoaded } = useMoreNews()
   const newsListRef = useRef<HTMLDivElement | null>(null)
   const isVisible = useVisibility(newsListRef)
-  const searchTerm = useRecoilValue(searchState)
-  const { visibleNews, isLoading } = NaverNewsFetch(pageSize, searchTerm)
+  const searchParams = useSearchParams()
+  const searchedValue = searchParams.get('q') || ''
+  const { visibleNews, isLoading } = NaverNewsFetch(pageSize, searchedValue)
 
   return (
     <Suspense fallback={<Loading />}>
       <div ref={newsListRef}>
-        {visibleNews?.map((item) => isVisible && <NewsItem item={item} />)}
+        {visibleNews?.map(
+          (item) => isVisible && <NewsItem key={item.id} item={item} />,
+        )}
       </div>
       {!isAllLoaded && (
         <MoreViewButton
