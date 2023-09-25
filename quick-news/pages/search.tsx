@@ -1,6 +1,5 @@
 import { useSearchParams } from 'next/navigation'
 import { lazy } from 'react'
-import { useRecoilValue } from 'recoil'
 
 const LazySearchNews = lazy(() => import('./components/page/SearchNews'))
 const LazyContents = lazy(() => import('./components/Contents'))
