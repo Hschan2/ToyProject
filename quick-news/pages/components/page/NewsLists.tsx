@@ -22,14 +22,6 @@ export default function NewsLists() {
           (item) => isVisible && <NewsItem key={item.id} item={item} />,
         )}
       </div>
-      {!isAllLoaded && (
-        <MoreViewButton
-          onClick={handleLoadMore}
-          disabled={isLoading || pageSize >= MAX_PAGE_COUNT}
-        >
-          더보기
-        </MoreViewButton>
-      )}
     </Suspense>
   )
 }
