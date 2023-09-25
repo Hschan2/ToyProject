@@ -1,9 +1,12 @@
 import React, { lazy } from 'react'
+import dynamic from 'next/dynamic'
 import { ContentsProps } from '../../interfaces/Interfaces'
 import { Wrapper } from '../../styles/PageStyle'
-import Footer from './footer/Footer'
 
 const LazySEO = lazy(() => import('./seo/SEO'))
+const DynamicFooter = dynamic(() => import('./footer/Footer'), {
+  ssr: false,
+})
 
 export default function Contents({
   title,
@@ -14,7 +17,7 @@ export default function Contents({
     <Wrapper>
       <LazySEO title={title} description={description} />
       {children}
-      <Footer />
+      <DynamicFooter />
     </Wrapper>
   )
 }
