@@ -7,9 +7,8 @@ import { Author, DateOfNews, NewsCard } from '../../../styles/NewsStyle'
 import { NewsSourceListProps } from '../../../interfaces/Interfaces'
 import useVisibility from '../../hooks/useVisibility'
 import useMoreNews from '../../hooks/useMoreNews'
-import MoreViewButton from '../btn/MoreViewButton'
-import { MAX_PAGE_COUNT } from '../../../constants/CommonVariable'
 import CategoriesNewsFetch from '../fetch/CategoriesNewsFetch'
+import useInfiniteScroll from '../../hooks/useInfiniteScroll'
 
 const Loading = lazy(() => import('./Loading'))
 
@@ -19,6 +18,8 @@ export default function NewsSourceList(props: NewsSourceListProps) {
   const newsListRef = useRef<HTMLDivElement | null>(null)
   const isVisible = useVisibility(newsListRef)
   const { visibleNews, isLoading } = CategoriesNewsFetch(category, pageSize)
+
+  useInfiniteScroll(handleLoadMore, isAllLoaded)
 
   return (
     <Suspense fallback={<Loading />}>
@@ -39,6 +40,7 @@ export default function NewsSourceList(props: NewsSourceListProps) {
             ),
         )}
       </div>
+      {!isLoading ? '' : '로딩중...'}
     </Suspense>
   )
 }

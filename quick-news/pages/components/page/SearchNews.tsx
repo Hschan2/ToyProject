@@ -2,10 +2,9 @@ import React, { Suspense, lazy, useRef } from 'react'
 import { useSearchParams } from 'next/navigation'
 import useVisibility from '../../hooks/useVisibility'
 import useMoreNews from '../../hooks/useMoreNews'
-import MoreViewButton from '../btn/MoreViewButton'
-import { MAX_PAGE_COUNT } from '../../../constants/CommonVariable'
 import NaverNewsFetch from '../fetch/NaverNewsFetch'
 import NewsItem from './NewsItem'
+import useInfiniteScroll from '../../hooks/useInfiniteScroll'
 
 const Loading = lazy(() => import('./Loading'))
 
@@ -17,6 +16,8 @@ function SearchNews() {
   const searchedValue = searchParams.get('q') || ''
   const { visibleNews, isLoading } = NaverNewsFetch(pageSize, searchedValue)
 
+  useInfiniteScroll(handleLoadMore, isAllLoaded)
+
   return (
     <Suspense fallback={<Loading />}>
       <div ref={newsListRef}>
@@ -24,6 +25,7 @@ function SearchNews() {
           (item) => isVisible && <NewsItem key={item.id} item={item} />,
         )}
       </div>
+      {!isLoading ? '' : '로딩중...'}
     </Suspense>
   )
 }
