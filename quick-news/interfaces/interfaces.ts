@@ -61,3 +61,8 @@ export interface ContentsProps {
   description: string
   children: React.ReactNode
 }
+
+export interface InfiniteScrollProps {
+  handleLoadMore: () => void
+  isAllLoaded: boolean
+}
