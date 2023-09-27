@@ -14,7 +14,7 @@ export default function NewsLists() {
   const isVisible = useVisibility(newsListRef)
   const { visibleNews, isLoading } = NaverNewsFetch(pageSize)
 
-  useInfiniteScroll(handleLoadMore, isAllLoaded)
+  useInfiniteScroll({ handleLoadMore, isAllLoaded })
 
   return (
     <Suspense fallback={<Loading />}>

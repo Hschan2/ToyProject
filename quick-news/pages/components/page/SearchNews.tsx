@@ -16,7 +16,7 @@ function SearchNews() {
   const searchedValue = searchParams.get('q') || ''
   const { visibleNews, isLoading } = NaverNewsFetch(pageSize, searchedValue)
 
-  useInfiniteScroll(handleLoadMore, isAllLoaded)
+  useInfiniteScroll({ handleLoadMore, isAllLoaded })
 
   return (
     <Suspense fallback={<Loading />}>

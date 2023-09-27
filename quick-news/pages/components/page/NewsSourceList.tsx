@@ -19,7 +19,7 @@ export default function NewsSourceList(props: NewsSourceListProps) {
   const isVisible = useVisibility(newsListRef)
   const { visibleNews, isLoading } = CategoriesNewsFetch(category, pageSize)
 
-  useInfiniteScroll(handleLoadMore, isAllLoaded)
+  useInfiniteScroll({ handleLoadMore, isAllLoaded })
 
   return (
     <Suspense fallback={<Loading />}>
