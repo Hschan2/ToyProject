@@ -4,7 +4,7 @@ function useVisibility<T extends HTMLElement>(ref: RefObject<T>): boolean {
   const [isVisible, setIsVisible] = useState<boolean>(true)
 
   useEffect(() => {
-    const currentRef = ref.current
+    const targetElement = ref.current
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -17,13 +17,13 @@ function useVisibility<T extends HTMLElement>(ref: RefObject<T>): boolean {
       },
     )
 
-    if (currentRef) {
-      observer.observe(currentRef)
+    if (targetElement) {
+      observer.observe(targetElement)
     }
 
     return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef)
+      if (targetElement) {
+        observer.unobserve(targetElement)
       }
     }
   }, [ref])
