@@ -37,6 +37,10 @@ export interface NewsApiItems {
   publishedAt: string
 }
 
+export interface NewsApiContent {
+  article: NewsApiItems
+}
+
 export interface NewsApiData {
   articles: NewsApiItems[]
 }
