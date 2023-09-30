@@ -4,6 +4,7 @@ import useVisibility from '../../hooks/useVisibility'
 import useMoreNews from '../../hooks/useMoreNews'
 import NaverNewsFetch from '../fetch/NaverNewsFetch'
 import useInfiniteScroll from '../../hooks/useInfiniteScroll'
+import { LoadingContainer } from '../../../styles/LoadingStyle'
 
 const Loading = lazy(() => import('./Loading'))
 const NewsItem = lazy(() => import('./NewsItem'))
@@ -23,7 +24,7 @@ export default function NewsLists() {
           (item) => isVisible && <NewsItem key={item.id} item={item} />,
         )}
       </div>
-      {!isLoading ? '' : '로딩중...'}
+      {!isLoading ? '' : <LoadingContainer>로딩중...</LoadingContainer>}
     </Suspense>
   )
 }
