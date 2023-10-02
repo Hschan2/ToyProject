@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useQuery } from 'react-query'
-import { NewsApiData } from '../../../interfaces/Interfaces'
+import { CategoryNewsLists } from '../../../interfaces/Interfaces'
 import { MAX_PAGE_COUNT } from '../../../constants/CommonVariable'
 
 export default function CategoriesNewsFetch(
@@ -15,7 +15,7 @@ export default function CategoriesNewsFetch(
       url += `&category=${newCategory}`
     }
 
-    const response = await axios.get<NewsApiData>(url)
+    const response = await axios.get<CategoryNewsLists>(url)
 
     return response.data.articles
   }

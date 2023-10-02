@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import { useQuery, useQueryClient } from 'react-query'
 import { MAX_PAGE_COUNT } from '../../../constants/CommonVariable'
-import { NewsData } from '../../../interfaces/Interfaces'
+import { NaverNewsLists } from '../../../interfaces/Interfaces'
 
 export default function NaverNewsFetch(
   pageSize: number,
@@ -11,7 +11,7 @@ export default function NaverNewsFetch(
   const queryClient = useQueryClient()
 
   const fetchNews = async () => {
-    const { data } = await axios.get<NewsData>('/api/naver-news-proxy', {
+    const { data } = await axios.get<NaverNewsLists>('/api/naver-news-proxy', {
       params: {
         q: queryValue,
         pageCount: MAX_PAGE_COUNT,

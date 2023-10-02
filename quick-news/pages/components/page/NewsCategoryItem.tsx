@@ -2,9 +2,9 @@ import moment from 'moment'
 import Link from 'next/link'
 import React from 'react'
 import { Author, DateOfNews, NewsCard } from '../../../styles/NewsStyle'
-import { NewsApiContent } from '../../../interfaces/Interfaces'
+import { CategoryNewsList } from '../../../interfaces/Interfaces'
 
-function NewsCategoryItem({ article }: NewsApiContent) {
+function NewsCategoryItem({ article }: CategoryNewsList) {
   return (
     <Link href={article.url} target="_blank" key={article.id}>
       <NewsCard>

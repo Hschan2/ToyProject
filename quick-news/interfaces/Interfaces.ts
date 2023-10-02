@@ -1,16 +1,16 @@
-export interface LocationType {
-  latitude: number | null
-  longitude: number | null
+export interface ILocation {
+  latitude: number
+  longitude: number
   error: string | null
 }
 
-export interface WeatherData {
+export interface IWeather {
   name: string
   description: string
   temp: number
 }
 
-export interface NewsItem {
+export interface NaverNewsProps {
   id: number
   title: string
   link: string
@@ -19,15 +19,7 @@ export interface NewsItem {
   pubDate: number
 }
 
-export interface NewsContent {
-  item: NewsItem
-}
-
-export interface NewsData {
-  items: NewsItem[]
-}
-
-export interface NewsApiItems {
+export interface CategoryNewsProps {
   id: string
   author: string
   title: string
@@ -35,18 +27,6 @@ export interface NewsApiItems {
   url: string
   urlToImage: string
   publishedAt: string
-}
-
-export interface NewsApiContent {
-  article: NewsApiItems
-}
-
-export interface NewsApiData {
-  articles: NewsApiItems[]
-}
-
-export interface NewsSourceListProps {
-  category?: string
 }
 
 export interface MoreButtonProps {
@@ -69,4 +49,24 @@ export interface ContentsProps {
 export interface InfiniteScrollProps {
   handleLoadMore: () => void
   isAllLoaded: boolean
+}
+
+export interface NaverNewsList {
+  item: NaverNewsProps
+}
+
+export interface NaverNewsLists {
+  items: NaverNewsProps[]
+}
+
+export interface CategoryNewsList {
+  article: CategoryNewsProps
+}
+
+export interface CategoryNewsLists {
+  articles: CategoryNewsProps[]
+}
+
+export interface NewsSourceListProps {
+  category?: string
 }

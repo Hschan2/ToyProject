@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import { LocationType, WeatherData } from '../../../interfaces/Interfaces'
+import { ILocation, IWeather } from '../../../interfaces/Interfaces'
 import useGeolocation from '../../../constants/GetGeoLocation'
 
 export default function Weather() {
-  const { latitude, longitude, error }: LocationType = useGeolocation()
-  const [weatherData, setWeatherData] = useState<WeatherData | null>({
+  const { latitude, longitude, error }: ILocation = useGeolocation()
+  const [weatherData, setWeatherData] = useState<IWeather | null>({
     name: '',
     description: '',
     temp: 0,

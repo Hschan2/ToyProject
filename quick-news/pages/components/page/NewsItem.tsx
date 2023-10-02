@@ -3,9 +3,9 @@ import Link from 'next/link'
 import React from 'react'
 import { NewsCard } from '../../../styles/NewsStyle'
 import { DateTime } from '../../../styles/InfoStyle'
-import { NewsContent } from '../../../interfaces/Interfaces'
+import { NaverNewsList } from '../../../interfaces/Interfaces'
 
-function NewsItem({ item }: NewsContent) {
+function NewsItem({ item }: NaverNewsList) {
   return (
     <Link href={item.link} target="_blank" key={item.id}>
       <NewsCard>
