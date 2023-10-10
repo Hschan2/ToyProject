@@ -18,7 +18,7 @@
 
 버튼 형식에서 무한 스크롤로 데이터를 불러오는 방식을 변경하였습니다.   
 
-![Infinite ver](http://naver.me/FcuavLLn)
+![Infinite](http://naver.me/FcuavLLn)
 
 <br/>
 
