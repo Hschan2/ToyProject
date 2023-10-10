@@ -18,7 +18,7 @@
 
 버튼 형식에서 무한 스크롤로 데이터를 불러오는 방식을 변경하였습니다.   
 
-![Infinite](http://naver.me/FcuavLLn)
+![Infinite](https://github.com/Hschan2/ToyProject/blob/master/quick-news/public/screen-recording.gif)
 
 <br/>
 
