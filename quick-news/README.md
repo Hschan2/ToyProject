@@ -14,6 +14,12 @@
 
 ![quick-news](https://github.com/Hschan2/ToyProject/assets/39434913/8e2bcb21-6328-43d4-bd01-38a1cb4d320b)
 
+   
+
+버튼 형식에서 무한 스크롤로 데이터를 불러오는 방식을 변경하였습니다.   
+
+![Infinite ver](http://naver.me/FcuavLLn)
+
 <br/>
 
 ## 체험
