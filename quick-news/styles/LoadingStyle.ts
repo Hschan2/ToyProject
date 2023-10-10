@@ -19,10 +19,10 @@ export const LoadingContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 9.375rem;
+  margin-top: 5.375rem;
 
   ${media.tablet`
-    margin-top: 6.25rem;
+    margin-top: 4.25rem;
   `}
 
   ${media.mobile`

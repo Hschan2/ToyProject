@@ -26,7 +26,7 @@ function SearchNews() {
           (item) => isVisible && <NewsItem key={item.id} item={item} />,
         )}
       </div>
-      {!isLoading ? '' : <LoadingContainer>로딩중...</LoadingContainer>}
+      {!isLoading ? '' : <LoadingContainer>📰불러오는 중...</LoadingContainer>}
     </Suspense>
   )
 }
