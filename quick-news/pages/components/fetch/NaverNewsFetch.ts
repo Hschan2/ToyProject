@@ -23,6 +23,7 @@ export default function NaverNewsFetch(
 
   const { data: news, isLoading } = useQuery(['news', queryValue], fetchNews, {
     refetchOnWindowFocus: false,
+    cacheTime: 30 * 60 * 1000,
   })
 
   useEffect(() => {
