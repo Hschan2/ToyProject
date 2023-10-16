@@ -9,7 +9,7 @@ import { LoadingContainer } from '../../../styles/LoadingStyle'
 
 const Loading = lazy(() => import('./Loading'))
 
-function SearchNews() {
+export default function SearchNews() {
   const { pageSize, handleLoadMore, isAllLoaded } = useMoreNews()
   const newsListRef = useRef<HTMLDivElement | null>(null)
   const isVisible = useVisibility(newsListRef)
@@ -30,5 +30,3 @@ function SearchNews() {
     </Suspense>
   )
 }
-
-export default SearchNews
