@@ -3,11 +3,11 @@ import { useSearchParams } from 'next/navigation'
 import useVisibility from '../../hooks/useVisibility'
 import useMoreNews from '../../hooks/useMoreNews'
 import NaverNewsFetch from '../fetch/NaverNewsFetch'
-import NewsItem from './NewsItem'
 import useInfiniteScroll from '../../hooks/useInfiniteScroll'
 import { LoadingContainer } from '../../../styles/LoadingStyle'
 
 const Loading = lazy(() => import('./Loading'))
+const NewsItem = lazy(() => import('./NewsItem'))
 
 export default function SearchNews() {
   const { pageSize, handleLoadMore, isAllLoaded } = useMoreNews()

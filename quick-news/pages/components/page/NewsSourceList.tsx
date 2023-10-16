@@ -6,9 +6,9 @@ import useMoreNews from '../../hooks/useMoreNews'
 import CategoriesNewsFetch from '../fetch/CategoriesNewsFetch'
 import useInfiniteScroll from '../../hooks/useInfiniteScroll'
 import { LoadingContainer } from '../../../styles/LoadingStyle'
-import NewsCategoryItem from './NewsCategoryItem'
 
 const Loading = lazy(() => import('./Loading'))
+const NewsCategoryItem = lazy(() => import('./NewsCategoryItem'))
 
 export default function NewsSourceList(props: NewsSourceListProps) {
   const { category } = props
