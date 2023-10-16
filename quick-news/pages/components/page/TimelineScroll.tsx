@@ -7,7 +7,7 @@ import {
 function TimelineScroll() {
   const [scrollProgress, setScrollProgress] = useState(0)
 
-  const handleScroll = useCallback(() => {
+  const handleScroll = useCallback((): void => {
     const scrollHeight =
       document.documentElement.scrollHeight - window.innerHeight
     const scrollTop =
