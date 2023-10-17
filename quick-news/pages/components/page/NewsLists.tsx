@@ -1,30 +1,29 @@
-import { Suspense, lazy, useRef } from 'react'
+import { lazy, useCallback } from 'react'
 import 'moment/locale/ko'
-import useVisibility from '../../hooks/useVisibility'
 import useMoreNews from '../../hooks/useMoreNews'
 import NaverNewsFetch from '../fetch/NaverNewsFetch'
 import useInfiniteScroll from '../../hooks/useInfiniteScroll'
-import { LoadingContainer } from '../../../styles/LoadingStyle'
+import RenderNewsPage from './RenderNewsPage'
+import { NaverNewsProps } from '../../../interfaces/Interfaces'
 
-const Loading = lazy(() => import('./Loading'))
 const NewsItem = lazy(() => import('./NewsItem'))
 
 export default function NewsLists() {
   const { pageSize, handleLoadMore, isAllLoaded } = useMoreNews()
-  const newsListRef = useRef<HTMLDivElement | null>(null)
-  const isVisible = useVisibility(newsListRef)
   const { visibleNews, isLoading } = NaverNewsFetch(pageSize)
 
   useInfiniteScroll({ handleLoadMore, isAllLoaded })
 
+  const renderNewsItem = useCallback(
+    (item: NaverNewsProps) => <NewsItem key={item.id} item={item} />,
+    [],
+  )
+
   return (
-    <Suspense fallback={<Loading />}>
-      <div ref={newsListRef}>
-        {visibleNews?.map(
-          (item) => isVisible && <NewsItem key={item.id} item={item} />,
-        )}
-      </div>
-      {!isLoading ? '' : <LoadingContainer>📰불러오는 중...</LoadingContainer>}
-    </Suspense>
+    <RenderNewsPage
+      visibleNews={visibleNews}
+      isLoading={isLoading}
+      itemRenderer={renderNewsItem}
+    />
   )
 }
