@@ -1,12 +1,7 @@
-import React, { ReactElement, Suspense, lazy, useCallback, useRef } from 'react'
+import React, { Suspense, lazy, useCallback, useRef } from 'react'
 import useVisibility from '../../hooks/useVisibility'
 import { LoadingContainer } from '../../../styles/LoadingStyle'
-
-interface CommonNewsListProps<T> {
-  visibleNews: T[] | undefined
-  isLoading: boolean
-  itemRenderer: (item: T) => ReactElement
-}
+import { CommonNewsListProps } from '../../../interfaces/Interfaces'
 
 const Loading = lazy(() => import('./Loading'))
 
@@ -25,7 +20,11 @@ export default function RenderNewsPage<T>(props: CommonNewsListProps<T>) {
       <div ref={newsListRef}>
         {visibleNews?.map((item) => isVisible && memoizedItemRenderer(item))}
       </div>
-      {!isLoading ? '' : <LoadingContainer>📰Loading...</LoadingContainer>}
+      {!isLoading ? (
+        ''
+      ) : (
+        <LoadingContainer>📰뉴스 불러오는 중...</LoadingContainer>
+      )}
     </Suspense>
   )
 }

@@ -1,3 +1,5 @@
+import { ReactElement } from 'react'
+
 export interface ILocation {
   latitude: number
   longitude: number
@@ -69,4 +71,10 @@ export interface CategoryNewsLists {
 
 export interface NewsSourceListProps {
   category?: string
+}
+
+export interface CommonNewsListProps<T> {
+  visibleNews: T[] | undefined
+  isLoading: boolean
+  itemRenderer: (item: T) => ReactElement
 }
