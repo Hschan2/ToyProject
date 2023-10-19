@@ -1,14 +1,12 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import React, { useEffect, useState, lazy, Suspense } from 'react'
-import { LinkStyle, Nav, NavDisplay, NavTitle } from '../../../styles/PageStyle'
+import { Nav, NavDisplay, NavTitle } from '../../../styles/PageStyle'
 import { TimeWeather } from '../../../styles/InfoStyle'
+import NavLink from '../page/NavLink'
 
 const Today = lazy(() => import('../info/Today'))
 const Weather = lazy(() => import('../info/Weather'))
 
 export default function Navbar() {
-  const router = useRouter()
   const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
@@ -29,34 +27,14 @@ export default function Navbar() {
         </Suspense>
       </TimeWeather>
       <NavDisplay>
-        <Link href="/" passHref>
-          <LinkStyle isActive={router.pathname === '/'}>주요뉴스</LinkStyle>
-        </Link>
-        <Link href="/total" passHref>
-          <LinkStyle isActive={router.pathname === '/total'}>종합</LinkStyle>
-        </Link>
-        <Link href="/business" passHref>
-          <LinkStyle isActive={router.pathname === '/business'}>경제</LinkStyle>
-        </Link>
-        <Link href="/entertainment" passHref>
-          <LinkStyle isActive={router.pathname === '/entertainment'}>
-            연예
-          </LinkStyle>
-        </Link>
-        <Link href="/sports" passHref>
-          <LinkStyle isActive={router.pathname === '/sports'}>스포츠</LinkStyle>
-        </Link>
-        <Link href="/technology" passHref>
-          <LinkStyle isActive={router.pathname === '/technology'}>
-            테크
-          </LinkStyle>
-        </Link>
-        <Link href="/health" passHref>
-          <LinkStyle isActive={router.pathname === '/health'}>건강</LinkStyle>
-        </Link>
-        <Link href="/science" passHref>
-          <LinkStyle isActive={router.pathname === '/science'}>과학</LinkStyle>
-        </Link>
+        <NavLink href="/" category="주요뉴스" />
+        <NavLink href="/total" category="종합" />
+        <NavLink href="/business" category="경제" />
+        <NavLink href="/entertainment" category="연예" />
+        <NavLink href="/sports" category="스포츠" />
+        <NavLink href="/technology" category="테크" />
+        <NavLink href="/health" category="건강" />
+        <NavLink href="/science" category="과학" />
       </NavDisplay>
     </Nav>
   )

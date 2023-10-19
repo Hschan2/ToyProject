@@ -78,3 +78,8 @@ export interface CommonNewsListProps<T> {
   isLoading: boolean
   itemRenderer: (item: T) => ReactElement
 }
+
+export interface NavLinkProps {
+  href: string
+  category: string
+}
