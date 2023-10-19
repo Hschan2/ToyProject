@@ -24,13 +24,15 @@ export default function SearchButton() {
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLInputElement>) => {
-      if (event.key === 'Enter' && searchTerm.trim() !== '') {
-        router.push(`/search?q=${searchTerm}`)
-        setInputVisible(false)
-        setSearchTerm('')
-      }
-      if (event.key === 'Enter' && searchTerm.trim() === '') {
-        alert('검색어를 입력해 주세요.')
+      if (event.key === 'Enter') {
+        event.preventDefault()
+        if (searchTerm.trim() !== '') {
+          router.push(`/search?q=${searchTerm}`)
+          setInputVisible(false)
+          setSearchTerm('')
+        } else {
+          alert('검색어를 입력해 주세요.')
+        }
       }
     },
     [searchTerm, router],
@@ -51,7 +53,7 @@ export default function SearchButton() {
         />
       </InputWrapper>
     )
-  }, [searchTerm, handleInputChange, handleKeyDown])
+  }, [isInputVisible, searchTerm, handleInputChange, handleKeyDown])
 
   return (
     <SearchContainer>

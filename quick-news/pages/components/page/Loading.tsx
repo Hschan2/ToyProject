@@ -31,7 +31,7 @@ export default function Loading() {
   return (
     <LoadingContainer>
       <LoadingLottie loop animationData={animationData} play />;
-      <LoadingMessage>Wait...</LoadingMessage>
+      <LoadingMessage>Loading Error...</LoadingMessage>
     </LoadingContainer>
   )
 }

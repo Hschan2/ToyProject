@@ -10,11 +10,7 @@ function TimelineScroll() {
   const handleScroll = useCallback((): void => {
     const scrollHeight =
       document.documentElement.scrollHeight - window.innerHeight
-    const scrollTop =
-      window.pageYOffset ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop ||
-      0
+    const scrollTop = window.scrollY
     const progress = (scrollTop / scrollHeight) * 100
     setScrollProgress(progress)
   }, [])
