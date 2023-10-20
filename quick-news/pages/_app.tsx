@@ -7,6 +7,7 @@ import Layout from './components/Layout'
 import Error from './Error'
 
 const queryClient = new QueryClient()
+
 const GlobalFontStyle = createGlobalStyle`
   @font-face {
     font-family: 'Newsreader_60pt-BoldItalic';
