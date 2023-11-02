@@ -64,11 +64,11 @@ export const LoadingLottie = styled(Lottie)`
 `
 
 const loadingAnimation = keyframes`
-  0% {
-    background-position: 0 200%;
+  0%, 100% {
+    opacity: 1;
   }
-  100% {
-    background-position: 0 -200%;
+  50% {
+    opacity: 0.5;
   }
 `
 
@@ -78,9 +78,9 @@ export const SkeletonLoader = styled.div`
 `
 
 export const SkeletonLine = styled.div`
-  background: linear-gradient(0deg, #f5f5f5 25%, #e0e0e0 50%, #f5f5f5 75%);
+  background: #dbdcda;
   background-size: 100% 200%;
-  animation: ${loadingAnimation} 1.5s infinite;
+  animation: ${loadingAnimation} 1s infinite;
   width: 100%;
   height: 200px;
   margin-bottom: 5px;
