@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 import Lottie from 'react-lottie-player'
 
 const media = {
@@ -61,4 +61,27 @@ export const LoadingLottie = styled(Lottie)`
     width: 9.375rem;
     height: 9.375rem;
   `}
+`
+
+const loadingAnimation = keyframes`
+  0% {
+    background-position: 0 200%;
+  }
+  100% {
+    background-position: 0 -200%;
+  }
+`
+
+export const SkeletonLoader = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const SkeletonLine = styled.div`
+  background: linear-gradient(0deg, #f5f5f5 25%, #e0e0e0 50%, #f5f5f5 75%);
+  background-size: 100% 200%;
+  animation: ${loadingAnimation} 1.5s infinite;
+  width: 100%;
+  height: 200px;
+  margin-bottom: 5px;
 `
