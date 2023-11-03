@@ -4,11 +4,11 @@ import { SkeletonLine, SkeletonLoader } from '../../../styles/LoadingStyle'
 function Skeleton() {
   return (
     <SkeletonLoader>
-      <SkeletonLine />
-      <SkeletonLine />
-      <SkeletonLine />
-      <SkeletonLine />
-      <SkeletonLine />
+      {Array(5)
+        .fill(0)
+        .map(() => (
+          <SkeletonLine />
+        ))}
     </SkeletonLoader>
   )
 }
