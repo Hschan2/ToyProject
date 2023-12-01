@@ -17,7 +17,7 @@ function MovieLists({ movieList }) {
             key={movie.id}
           >
             <div className={styles.movie}>
-              <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
+              <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} loading='lazy' alt={movie.title} />
               <h4>{movie.title}</h4>
             </div>
           </Link>
