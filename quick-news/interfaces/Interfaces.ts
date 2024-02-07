@@ -1,8 +1,8 @@
 import { ReactElement } from 'react'
 
 export interface ILocation {
-  latitude: number
-  longitude: number
+  latitude: number | null
+  longitude: number | null
   error: string | null
 }
 
