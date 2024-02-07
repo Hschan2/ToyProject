@@ -2,7 +2,7 @@ import moment from 'moment'
 import Link from 'next/link'
 import React from 'react'
 import { Author, DateOfNews, NewsCard } from '../../../styles/NewsStyle'
-import { CategoryNewsList } from '../../../interfaces/Interfaces'
+import { CategoryNewsList } from '../../../interfaces/interface'
 
 function NewsCategoryItem({ article }: CategoryNewsList) {
   return (

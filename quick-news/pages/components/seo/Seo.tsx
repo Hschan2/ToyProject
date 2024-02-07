@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import useCurrentUrl from '../../../constants/CurrentUrl'
-import { SEOProps } from '../../../interfaces/Interfaces'
+import { SEOProps } from '../../../interfaces/interface'
 
 export default function SEO({ title, description }: SEOProps) {
   const nowLocation = useCurrentUrl()

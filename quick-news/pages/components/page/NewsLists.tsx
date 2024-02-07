@@ -4,7 +4,7 @@ import useMoreNews from '../../hooks/useMoreNews'
 import NaverNewsFetch from '../fetch/NaverNewsFetch'
 import useInfiniteScroll from '../../hooks/useInfiniteScroll'
 import RenderNewsPage from './RenderNewsPage'
-import { NaverNewsProps } from '../../../interfaces/Interfaces'
+import { NaverNewsProps } from '../../../interfaces/interface'
 
 const NewsItem = lazy(() => import('./NewsItem'))
 

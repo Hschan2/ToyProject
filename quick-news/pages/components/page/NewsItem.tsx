@@ -3,7 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 import { NewsCard } from '../../../styles/NewsStyle'
 import { DateTime } from '../../../styles/InfoStyle'
-import { NaverNewsList } from '../../../interfaces/Interfaces'
+import { NaverNewsList } from '../../../interfaces/interface'
 
 function NewsItem({ item }: NaverNewsList) {
   return (

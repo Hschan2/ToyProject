@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef } from 'react'
-import { InfiniteScrollProps } from '../../interfaces/Interfaces'
+import { InfiniteScrollProps } from '../../interfaces/interface'
 
 export default function useInfiniteScroll({
   handleLoadMore,

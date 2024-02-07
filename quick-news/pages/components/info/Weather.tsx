@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ILocation, IWeather } from '../../../interfaces/Interfaces'
+import { ILocation, IWeather } from '../../../interfaces/interface'
 import useGeolocation from '../../../constants/GetGeoLocation'
 
 export default function Weather() {

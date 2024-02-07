@@ -1,7 +1,7 @@
 import React, { Suspense, lazy, useCallback, useRef } from 'react'
 import useVisibility from '../../hooks/useVisibility'
 import { LoadingContainer } from '../../../styles/LoadingStyle'
-import { CommonNewsListProps } from '../../../interfaces/Interfaces'
+import { CommonNewsListProps } from '../../../interfaces/interface'
 import Skeleton from './Skeleton'
 
 const Loading = lazy(() => import('./Loading'))

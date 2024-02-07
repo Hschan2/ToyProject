@@ -3,7 +3,7 @@ import 'moment/locale/ko'
 import {
   CategoryNewsProps,
   NewsSourceListProps,
-} from '../../../interfaces/Interfaces'
+} from '../../../interfaces/interface'
 import useMoreNews from '../../hooks/useMoreNews'
 import CategoriesNewsFetch from '../fetch/CategoriesNewsFetch'
 import useInfiniteScroll from '../../hooks/useInfiniteScroll'

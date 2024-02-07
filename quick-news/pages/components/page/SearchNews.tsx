@@ -3,7 +3,7 @@ import { useSearchParams } from 'next/navigation'
 import useMoreNews from '../../hooks/useMoreNews'
 import NaverNewsFetch from '../fetch/NaverNewsFetch'
 import useInfiniteScroll from '../../hooks/useInfiniteScroll'
-import { NaverNewsProps } from '../../../interfaces/Interfaces'
+import { NaverNewsProps } from '../../../interfaces/interface'
 import RenderNewsPage from './RenderNewsPage'
 
 const NewsItem = lazy(() => import('./NewsItem'))

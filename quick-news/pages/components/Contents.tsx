@@ -1,6 +1,6 @@
 import React, { lazy } from 'react'
 import dynamic from 'next/dynamic'
-import { ContentsProps } from '../../interfaces/Interfaces'
+import { ContentsProps } from '../../interfaces/interface'
 import { Wrapper } from '../../styles/PageStyle'
 
 const LazySEO = lazy(() => import('./seo/SEO'))

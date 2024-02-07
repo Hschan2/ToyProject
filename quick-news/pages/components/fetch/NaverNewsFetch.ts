@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import { useQuery, useQueryClient } from 'react-query'
 import { MAX_PAGE_COUNT } from '../../../constants/CommonVariable'
-import { NaverNewsLists, NaverNewsProps } from '../../../interfaces/Interfaces'
+import { NaverNewsLists, NaverNewsProps } from '../../../interfaces/interface'
 
 const fetchNews = async (queryValue: string): Promise<NaverNewsProps[]> => {
   const { data } = await axios.get<NaverNewsLists>('/api/naver-news-proxy', {

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useQuery } from 'react-query'
-import { CategoryNewsLists } from '../../../interfaces/Interfaces'
+import { CategoryNewsLists } from '../../../interfaces/interface'
 import { MAX_PAGE_COUNT } from '../../../constants/CommonVariable'
 
 const fetchNews = async (newCategory: string | undefined) => {
