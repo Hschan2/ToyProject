@@ -6,8 +6,8 @@ function Skeleton() {
     <SkeletonLoader>
       {Array(5)
         .fill(0)
-        .map(() => (
-          <SkeletonLine />
+        .map((_, index) => (
+          <SkeletonLine key={index} />
         ))}
     </SkeletonLoader>
   )

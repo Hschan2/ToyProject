@@ -1,6 +1,5 @@
 import React, { Suspense, lazy, useCallback, useRef } from 'react'
 import useVisibility from '../../hooks/useVisibility'
-import { LoadingContainer } from '../../../styles/LoadingStyle'
 import { CommonNewsListProps } from '../../../interfaces/interface'
 import Skeleton from './Skeleton'
 
@@ -19,14 +18,13 @@ export default function RenderNewsPage<T>(props: CommonNewsListProps<T>) {
   return (
     <Suspense fallback={<Loading />}>
       <div ref={newsListRef}>
-        {visibleNews?.map((item) => isVisible && memoizedItemRenderer(item))}
+        {visibleNews?.map((item, index) => (
+          <React.Fragment key={index}>
+            {isVisible && memoizedItemRenderer(item)}
+          </React.Fragment>
+        ))}
       </div>
-      {!isLoading ? (
-        ''
-      ) : (
-        // <LoadingContainer>📰뉴스 불러오는 중...</LoadingContainer>
-        <Skeleton />
-      )}
+      {!isLoading ? '' : <Skeleton />}
     </Suspense>
   )
 }
