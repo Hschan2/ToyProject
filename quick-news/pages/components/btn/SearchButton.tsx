@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react'
+import React, { useState, useCallback, useMemo, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -12,6 +12,7 @@ import {
 export default function SearchButton() {
   const [isInputVisible, setInputVisible] = useState(false)
   const [searchTerm, setSearchTerm] = useState<string>('')
+  const inputValueRef = useRef('')
   const router = useRouter()
 
   const handleToggleInput = useCallback(() => {
@@ -22,21 +23,25 @@ export default function SearchButton() {
     setSearchTerm(event.target.value)
   }
 
-  const handleKeyDown = useCallback(
+  const searchNews = useCallback(
     (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (router.pathname !== '/search') inputValueRef.current = ''
       if (event.key === 'Enter') {
         event.preventDefault()
-        if (searchTerm.trim() !== '') {
-          router.push(`/search?q=${searchTerm}`)
-          setInputVisible(false)
-          setSearchTerm('')
-        } else {
-          alert('검색어를 입력해 주세요.')
+        if (inputValueRef.current !== searchTerm && searchTerm.trim() !== '') {
+          handleSearch()
+          console.log(`검색: ${searchTerm}`)
         }
       }
     },
-    [searchTerm, router],
+    [searchTerm],
   )
+
+  const handleSearch = () => {
+    router.push(`/search?q=${searchTerm}`)
+    setInputVisible(false)
+    inputValueRef.current = searchTerm
+  }
 
   const searchInput = useMemo(() => {
     if (!isInputVisible) {
@@ -48,12 +53,13 @@ export default function SearchButton() {
           type="text"
           value={searchTerm}
           onChange={handleInputChange}
-          onKeyDown={handleKeyDown}
+          placeholder="검색"
+          onKeyDown={searchNews}
           autoFocus
         />
       </InputWrapper>
     )
-  }, [isInputVisible, searchTerm, handleInputChange, handleKeyDown])
+  }, [isInputVisible, searchTerm, handleInputChange, searchNews])
 
   return (
     <SearchContainer>
