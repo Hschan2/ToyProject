@@ -16,9 +16,8 @@ export default function SearchNews() {
 
   useInfiniteScroll({ handleLoadMore, isAllLoaded })
 
-  const renderNewsItem = useCallback(
-    (item: NaverNewsProps) => <NewsItem key={item.id} item={item} />,
-    [],
+  const renderNewsItem = (item: NaverNewsProps) => (
+    <NewsItem key={item.id} item={item} />
   )
 
   return (

@@ -5,7 +5,7 @@ export default function MoveUp() {
   const [showButton, setShowButton] = useState(false)
 
   const handleScroll = useCallback(() => {
-    setShowButton(window.pageYOffset > 200)
+    setShowButton(window.scrollY > 200)
   }, [])
 
   useEffect(() => {

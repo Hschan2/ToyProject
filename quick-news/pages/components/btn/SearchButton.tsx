@@ -18,25 +18,22 @@ export default function SearchButton({
   const [searchTerm, setSearchTerm] = useState<string>('')
   const router = useRouter()
 
-  const handleToggleInput = useCallback(() => {
+  const handleToggleInput = () => {
     setInputVisible((prev) => !prev)
-  }, [])
+  }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value)
   }
 
-  const searchNews = useCallback(
-    (event: React.KeyboardEvent<HTMLInputElement>) => {
-      if (event.key === 'Enter') {
-        event.preventDefault()
-        if (searchRef.current !== searchTerm && searchTerm.trim() !== '') {
-          handleSearch()
-        }
+  const searchNews = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      event.preventDefault()
+      if (searchRef.current !== searchTerm && searchTerm.trim() !== '') {
+        handleSearch()
       }
-    },
-    [searchTerm],
-  )
+    }
+  }
 
   const handleSearch = () => {
     router.push(`/search?q=${searchTerm}`, undefined, { shallow: true })
@@ -44,7 +41,7 @@ export default function SearchButton({
     searchRef.current = searchTerm
   }
 
-  const searchInput = useMemo(() => {
+  const searchInput = () => {
     if (!isInputVisible) {
       return null
     }
@@ -60,14 +57,14 @@ export default function SearchButton({
         />
       </InputWrapper>
     )
-  }, [isInputVisible, searchTerm, handleInputChange, searchNews])
+  }
 
   return (
     <SearchContainer>
       <SearchingButton type="button" onClick={handleToggleInput}>
         <FontAwesomeIcon icon={faSearch} size="1x" />
       </SearchingButton>
-      {searchInput}
+      {searchInput()}
     </SearchContainer>
   )
 }

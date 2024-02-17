@@ -21,20 +21,17 @@ export default function Weather() {
           { signal: abortController.signal },
         )
 
-        if (!response.ok) {
-          throw new Error('위도와 경도가 부정확합니다.')
-        }
+        if (!response.ok) throw new Error('위도와 경도가 부정확합니다.')
 
-        const data = await response.json()
+        const { name, weather, main } = await response.json()
         setWeatherData({
-          name: data.name,
-          description: data.weather[0].description,
-          temp: data.main.temp,
+          name: name,
+          description: weather[0].description,
+          temp: main.temp,
         })
-
         setLoading(true)
       } catch (err) {
-        console.log('Error fetching weather data: ', err)
+        console.log('날씨를 가져오지 못했습니다. : ', err)
       }
     }
 

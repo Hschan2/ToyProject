@@ -18,11 +18,8 @@ export default function NewsSourceList(props: NewsSourceListProps) {
 
   useInfiniteScroll({ handleLoadMore, isAllLoaded })
 
-  const renderNewsItem = useCallback(
-    (article: CategoryNewsProps) => (
-      <NewsCategoryItem key={article.id} article={article} />
-    ),
-    [],
+  const renderNewsItem = (article: CategoryNewsProps) => (
+    <NewsCategoryItem key={article.id} article={article} />
   )
 
   return (
