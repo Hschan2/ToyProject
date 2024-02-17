@@ -1,4 +1,4 @@
-import React, { lazy, useCallback } from 'react'
+import React, { lazy } from 'react'
 import { useSearchParams } from 'next/navigation'
 import useMoreNews from '../../hooks/useMoreNews'
 import NaverNewsFetch from '../fetch/NaverNewsFetch'
@@ -11,7 +11,10 @@ const NewsItem = lazy(() => import('./NewsItem'))
 export default function SearchNews() {
   const { pageSize, handleLoadMore, isAllLoaded } = useMoreNews()
   const searchParams = useSearchParams()
-  const searchedValue = searchParams.get('q') || ''
+  const searchedValue =
+    searchParams.get('q') ||
+    (typeof window !== 'undefined' && localStorage.getItem('searchValue')) ||
+    ''
   const { visibleNews, isLoading } = NaverNewsFetch(pageSize, searchedValue)
 
   useInfiniteScroll({ handleLoadMore, isAllLoaded })

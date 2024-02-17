@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useRef } from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -39,6 +39,8 @@ export default function SearchButton({
     router.push(`/search?q=${searchTerm}`, undefined, { shallow: true })
     setInputVisible(false)
     searchRef.current = searchTerm
+    if (typeof window !== 'undefined')
+      localStorage.setItem('searchValue', searchTerm)
   }
 
   const searchInput = () => {
