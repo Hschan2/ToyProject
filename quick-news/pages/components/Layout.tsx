@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic'
-import React, { Suspense, lazy } from 'react'
+import { useRouter } from 'next/router'
+import React, { Suspense, lazy, useRef } from 'react'
 
 const LazyMoveUp = lazy(() => import('./btn/MoveUp'))
 const LazyNavbar = lazy(() => import('./nav/Navbar'))
@@ -11,12 +12,16 @@ const DynamicSearchButton = dynamic(() => import('./btn/SearchButton'), {
 })
 
 export default function Layout({ children }: { children: JSX.Element }) {
+  const router = useRouter()
+  const searchRef = useRef('')
+  if (router.pathname !== '/search') searchRef.current = ''
+
   return (
     <Suspense fallback={<LazyLoading />}>
       <LazyNavbar />
       <div>{children}</div>
       <LazyMoveUp />
-      <DynamicSearchButton />
+      <DynamicSearchButton searchRef={searchRef} />
       <LazyTimelineScroll />
       <LazyNotificationModal />
     </Suspense>

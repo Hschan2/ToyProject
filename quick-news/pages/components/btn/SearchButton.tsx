@@ -9,10 +9,13 @@ import {
   SearchingButton,
 } from '../../../styles/ButtonStyle'
 
-export default function SearchButton() {
+export default function SearchButton({
+  searchRef,
+}: {
+  searchRef: React.MutableRefObject<string>
+}) {
   const [isInputVisible, setInputVisible] = useState(false)
   const [searchTerm, setSearchTerm] = useState<string>('')
-  const inputValueRef = useRef('')
   const router = useRouter()
 
   const handleToggleInput = useCallback(() => {
@@ -25,12 +28,10 @@ export default function SearchButton() {
 
   const searchNews = useCallback(
     (event: React.KeyboardEvent<HTMLInputElement>) => {
-      if (router.pathname !== '/search') inputValueRef.current = ''
       if (event.key === 'Enter') {
         event.preventDefault()
-        if (inputValueRef.current !== searchTerm && searchTerm.trim() !== '') {
+        if (searchRef.current !== searchTerm && searchTerm.trim() !== '') {
           handleSearch()
-          console.log(`검색: ${searchTerm}`)
         }
       }
     },
@@ -38,9 +39,9 @@ export default function SearchButton() {
   )
 
   const handleSearch = () => {
-    router.push(`/search?q=${searchTerm}`)
+    router.push(`/search?q=${searchTerm}`, undefined, { shallow: true })
     setInputVisible(false)
-    inputValueRef.current = searchTerm
+    searchRef.current = searchTerm
   }
 
   const searchInput = useMemo(() => {
