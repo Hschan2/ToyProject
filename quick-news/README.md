@@ -15,7 +15,6 @@
 ![quick-news](https://github.com/Hschan2/ToyProject/assets/39434913/8e2bcb21-6328-43d4-bd01-38a1cb4d320b)
 
    
-
 버튼 형식에서 무한 스크롤로 데이터를 불러오는 방식을 변경하였습니다.   
 
 ![Infinite](https://github.com/Hschan2/ToyProject/blob/master/quick-news/public/screen-recording.gif)
@@ -50,7 +49,7 @@
 ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 ![React Query](https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white)
 ![Recoil](https://img.shields.io/badge/recoil-000000?style=flat-square&logo=recoil&logoColor=white)
-![Styled-Components](https://img.shields.io/badge/styled components-DB7093?style=flat-square&logo=styled-components&logoColor=white)
+![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
 ![Eslint](https://img.shields.io/badge/Eslint-4B0082?style=flat-square&logo=Eslint&logoColor=white)
 ![Prettier](https://img.shields.io/badge/prettier-FF69B4?style=flat-square&logo=prettier&logoColor=white)
 
@@ -83,10 +82,10 @@ src
 │       ├─ info
 │       ├─ nav
 │       ├─ page
-│       ├─ seo
+│       └─ seo
 │  ├─ hooks
 │  ├─ _app.tsx
-│  ├─ _document.tsx
+│  └─ _document.tsx
 │
 ├─ public
 ├─ styles
@@ -135,6 +134,7 @@ src
     * 스타일 컴포넌트를 사용 시, 로드 전에 불러오는 방식으로 Dynamic을 활용해 페이지 초기 접근 또는 새로고침할 때 스타일이 적용되지 않은 문제를 해결했습니다.
 * 3차 성능 최적화
     * NextJS의 ```<Image>```를 사용해 로딩페이지 및 404 에러페이지의 이미지 최적화를 진행하였습니다.
+    * "useRef.current"로 값을 참조하고 조건문으로 비교하여 같은 단어가 중복 검색됨으로써 불필요한 서버 요청을 하지 않도록 이를 방지하였습니다.
 
 #### 뉴스 검색 기능
 뉴스 검색 버튼을 하단 오른쪽에 생성하여, 버튼 클릭 시 입력할 수 있는 박스가 애니메이션으로 나타나도록 하였습니다. 그리고 입력한 값으로 뉴스가 검색되며, 해당 내용의 뉴스들이 나타납니다.   
@@ -142,6 +142,8 @@ src
 ![뉴스 검색](http://naver.me/5ZjY2TVe)
 
 Recoil로 검색 값을 저장해 활용하는 방식에서 NextJS의 Navigation을 이용해 Param으로 값을 넘기는 방식으로 수정하였습니다.   
+
+같은 단어로 중복 검색 시, 불필요한 서버 요청을 방지하기 위해 중복 검색을 방지하였습니다.
    
 #### 반응형 만들기
 브라우저 크기에 따라 전체적인 크기가 변경되도록 하였습니다. 1차 수정이 이루어졌으며, 더 깔끔하고 자연스러운 반응형으로 개발할 계획입니다.   
@@ -171,14 +173,18 @@ Recoil로 검색 값을 저장해 활용하는 방식에서 NextJS의 Navigation
 * 해당 변수를 모든 컴포넌트에 직접 전달하는 것으로 구현하기에는 코드가 복잡해졌습니다.
 * 위의 문제를 해결하기 위해 상태 관리 라이브러리를 찾아보았고, Redux보다 편리하게 사용할 수 있다고 판단하여 Recoil을 사용하였습니다.
     * Redux보다 편리하게 사용할 수 있다고 판단한 이유는 Store, Dispatch, Reduce, Action을 모두 구현할 필요가 없었기 때문입니다.
+* 현재, Recoil을 사용하고 있지 않습니다.
 
 #### Naver Search API와 News API를 선택한 이유
 * "오늘의 주요 뉴스"와 같은 특정 데이터를 가져오고 싶었지만, 다른 API를 찾지 못했고, 네이버 검색 API를 활용해 "오늘의 주요 뉴스" 쿼리를 전달하여 해당 데이터를 가져오는 것을 선택하였습니다.
 * 다음, 네이버에서 크롤링하여 각 카테고리별 뉴스들을 가져오려고 시도하였으나, 목록을 제대로 가져오지 못하거나 한글이 깨지는 등 여러 문제들이 발생하여 무료 News API를 사용하였습니다.
+* 그러나, 무료 API 사용으로 배포 환경에서는 활용하지 못하는 문제가 있습니다.
 
 ## 개발 과정 중 겪은 문제
 * Vercel 배포 시, 배포가 되지 않는 에러 상황
     * [Vercel 배포 에러 회고](https://hseongchan2.tistory.com/89)   
+* 같은 단어로 중복 검색을 방지했던 개선 경험
+    * [같은 단어 중복 검색 방지](https://hseongchan2.tistory.com/148)   
 
 ## 이 프로젝트를 개발한 이유
 오늘 봐야할 주요 뉴스들을 빠르게 확인하거나, 다양한 카테고리 별로 주요한 뉴스들을 빠르게 보고 싶어 이 프로젝트를 개발하였습니다.   
