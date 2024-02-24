@@ -17,7 +17,8 @@ export default function Loading() {
         const jsonData = await response.json()
         setAnimationData(jsonData)
       } catch (error) {
-        console.error('Failed to fetch animation data:', error)
+        console.error(`로딩 애니메이션 동작 실패: ${error}`)
+        throw new Error(`로딩 애니메이션 실패: ${error}`)
       }
     }
 

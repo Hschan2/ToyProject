@@ -31,7 +31,8 @@ export default function Weather() {
         })
         setLoading(true)
       } catch (err) {
-        console.log('날씨를 가져오지 못했습니다. : ', err)
+        console.error(`날씨를 가져오지 못했습니다. : ${err}`)
+        throw new Error(`날씨 정보 가져오기 실패: ${err}`)
       }
     }
 
@@ -47,11 +48,11 @@ export default function Weather() {
   }
 
   if (!loading) {
-    return <div>날씨 가져오는 중...</div>
+    return <p>날씨 가져오는 중...</p>
   }
 
   if (!weatherData) {
-    return <div>날씨 정보가 없습니다.</div>
+    return <p>날씨 정보가 없습니다.</p>
   }
 
   return (
