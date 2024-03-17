@@ -18,3 +18,5 @@ export const newsApi = createApi({
 })
 
 export const { useFetchNewsQuery } = newsApi
+export const { reducer: newsReducer } = newsApi
+export const { middleware: apiMiddleware } = newsApi
