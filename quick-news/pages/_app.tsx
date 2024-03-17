@@ -5,6 +5,8 @@ import { RecoilRoot } from 'recoil'
 import { createGlobalStyle } from 'styled-components'
 import Layout from './components/Layout'
 import Error from './Error'
+import { Provider } from 'react-redux'
+import { store } from './components/store/newsStore'
 
 const queryClient = new QueryClient()
 
@@ -26,12 +28,14 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
-        <Layout>
-          <div>
-            <GlobalFontStyle />
-            <Component {...pageProps} />
-          </div>
-        </Layout>
+        <Provider store={store}>
+          <Layout>
+            <div>
+              <GlobalFontStyle />
+              <Component {...pageProps} />
+            </div>
+          </Layout>
+        </Provider>
       </RecoilRoot>
     </QueryClientProvider>
   )
