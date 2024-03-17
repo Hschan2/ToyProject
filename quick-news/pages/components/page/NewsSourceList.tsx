@@ -1,4 +1,4 @@
-import { lazy, useCallback } from 'react'
+import { lazy } from 'react'
 import 'moment/locale/ko'
 import {
   CategoryNewsProps,
@@ -14,7 +14,10 @@ const NewsCategoryItem = lazy(() => import('./NewsCategoryItem'))
 export default function NewsSourceList(props: NewsSourceListProps) {
   const { category } = props
   const { pageSize, handleLoadMore, isAllLoaded } = useMoreNews()
-  const { visibleNews, isLoading } = CategoriesNewsFetch(category, pageSize)
+  const { visibleNews, isLoading } = CategoriesNewsFetch(
+    category,
+    pageSize,
+  )
 
   useInfiniteScroll({ handleLoadMore, isAllLoaded })
 
