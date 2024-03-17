@@ -1,7 +1,8 @@
 import axios from 'axios'
-import { useQuery } from 'react-query'
 import { CategoryNewsLists } from '../../../interfaces/interface'
 import { MAX_PAGE_COUNT } from '../../../constants/CommonVariable'
+import { useFetchNewsQuery } from './CreateApi'
+import { toast } from 'react-toastify'
 
 const fetchNews = async (newCategory: string | undefined) => {
   const fromToday = new Date().toISOString().split('T')[0]
@@ -20,16 +21,23 @@ export default function CategoriesNewsFetch(
   category: string | undefined,
   pageSize: number,
 ) {
-  const { data: articles, isLoading } = useQuery(
-    ['news', category],
-    () => fetchNews(category),
-    {
-      refetchOnWindowFocus: false,
-      cacheTime: 30 * 60 * 1000,
-    },
-  )
+  // const { data: articles, isLoading } = useQuery(
+  //   ['news', category],
+  //   () => fetchNews(category),
+  //   {
+  //     refetchOnWindowFocus: false,
+  //     cacheTime: 30 * 60 * 1000,
+  //   },
+  // )
+
+  const { data: articles, isLoading, error } = useFetchNewsQuery(category)
+
+  if (error) {
+    toast.error('뉴스 데이터를 불러오지 못했습니다.')
+    console.error(error)
+  }
 
   const visibleNews = articles?.slice(0, pageSize)
 
-  return { visibleNews, isLoading }
+  return { visibleNews, isLoading, error }
 }
