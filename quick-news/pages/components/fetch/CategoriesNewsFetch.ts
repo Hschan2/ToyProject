@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { CategoryNewsLists } from '../../../interfaces/interface'
 import { MAX_PAGE_COUNT } from '../../../constants/CommonVariable'
-import { useFetchNewsQuery } from './CreateApi'
+import { newsApi, useFetchNewsQuery } from './CreateApi'
 import { toast } from 'react-toastify'
 
 const fetchNews = async (newCategory: string | undefined) => {
@@ -37,7 +37,7 @@ export default function CategoriesNewsFetch(
     console.error(error)
   }
 
-  const visibleNews = articles?.slice(0, pageSize)
+  const visibleNews = articles?.articles.slice(0, pageSize)
 
-  return { visibleNews, isLoading, error }
+  return { visibleNews, isLoading }
 }
