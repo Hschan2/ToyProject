@@ -1,17 +1,10 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import { newsApi, newsReducer } from '../fetch/CreateApi'
-import { useDispatch } from 'react-redux'
-
-const rootReducer = combineReducers({
-  news: newsReducer,
-  [newsApi.reducerPath]: newsApi.reducer,
-})
+import { configureStore } from '@reduxjs/toolkit'
+import { newsApi } from '../fetch/CreateApi'
 
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    [newsApi.reducerPath]: newsApi.reducer,
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(newsApi.middleware),
 })
-
-export type AppDispatch = typeof store.dispatch
-export const useAppDispatch = () => useDispatch<AppDispatch>()
