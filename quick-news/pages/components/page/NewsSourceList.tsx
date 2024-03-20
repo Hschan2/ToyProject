@@ -14,10 +14,7 @@ const NewsCategoryItem = lazy(() => import('./NewsCategoryItem'))
 export default function NewsSourceList(props: NewsSourceListProps) {
   const { category } = props
   const { pageSize, handleLoadMore, isAllLoaded } = useMoreNews()
-  const { visibleNews, isLoading } = CategoriesNewsFetch(
-    category,
-    pageSize,
-  )
+  const { visibleNews, isLoading } = CategoriesNewsFetch(category, pageSize)
 
   useInfiniteScroll({ handleLoadMore, isAllLoaded })
 
