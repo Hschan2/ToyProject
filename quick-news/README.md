@@ -48,6 +48,7 @@
 #### 라이브러리
 ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 ![React Query](https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white)
+![RTK-Query(Redux)](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
 ![Recoil](https://img.shields.io/badge/recoil-000000?style=flat-square&logo=recoil&logoColor=white)
 ![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
 ![Eslint](https://img.shields.io/badge/Eslint-4B0082?style=flat-square&logo=Eslint&logoColor=white)
@@ -179,6 +180,14 @@ Recoil로 검색 값을 저장해 활용하는 방식에서 NextJS의 Navigation
 * "오늘의 주요 뉴스"와 같은 특정 데이터를 가져오고 싶었지만, 다른 API를 찾지 못했고, 네이버 검색 API를 활용해 "오늘의 주요 뉴스" 쿼리를 전달하여 해당 데이터를 가져오는 것을 선택하였습니다.
 * 다음, 네이버에서 크롤링하여 각 카테고리별 뉴스들을 가져오려고 시도하였으나, 목록을 제대로 가져오지 못하거나 한글이 깨지는 등 여러 문제들이 발생하여 무료 News API를 사용하였습니다.
 * 그러나, 무료 API 사용으로 배포 환경에서는 활용하지 못하는 문제가 있습니다.
+
+#### useQuery → RTK Query
+* useQuery와 RTK Query 비교 후, RTK Query의 더 많은 장점을 보고 변경하였습니다.
+    * 자동 캐시 적용
+    * 타입스크립트 적용
+    * 코드 수 개선
+* Provider, Store를 설정하고, "createApi"로 호출해 데이터를 가져와서 활용하였습니다.
+* RTK Query에서 제공하는 "error"를 활용해 toast, console 등으로 에러 처리를 하였습니다.
 
 ## 개발 과정 중 겪은 문제
 * Vercel 배포 시, 배포가 되지 않는 에러 상황
