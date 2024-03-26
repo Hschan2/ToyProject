@@ -10,13 +10,16 @@ import { store } from './components/store/newsStore'
 
 const queryClient = new QueryClient()
 
-const GlobalFontStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Newsreader_60pt-BoldItalic';
     src: url('/fonts/Newsreader_60pt-BoldItalic.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
     font-display: fallback;
+  }
+  body {
+    background-color: ${(props) => props.theme.background}
   }
 `
 
@@ -31,7 +34,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <Provider store={store}>
           <Layout>
             <div>
-              <GlobalFontStyle />
+              <GlobalStyle />
               <Component {...pageProps} />
             </div>
           </Layout>

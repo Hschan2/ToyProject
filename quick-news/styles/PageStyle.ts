@@ -22,7 +22,7 @@ export const Wrapper = styled.div`
 `
 export const Nav = styled.nav`
   display: flex;
-  background-color: rgba(0, 0, 0, 0.01);
+  background-color: ${(props) => props.theme.background};
   gap: 1em;
   flex-direction: column;
   align-items: center;
@@ -59,8 +59,8 @@ export const NavDisplay = styled.div`
 export const LinkStyle = styled.div<{ isActive: boolean }>`
   display: inline-block;
   width: 4.375rem;
-  background-color: #fff;
-  border: 0.0625rem solid rgba(0, 0, 0, 0.15);
+  background-color: ${(props) => props.theme.background};
+  border: 0.0625rem solid grey;
   border-radius: 0.9375rem;
   font-weight: bold;
   font-size: 0.75rem;
@@ -87,7 +87,7 @@ export const TimelineScrollContainer = styled.div`
   left: 0;
   width: 100%;
   height: 0.1875rem;
-  background-color: #fff;
+  background-color: ${(props) => props.theme.background};
 `
 
 export const TimelineScrollBar = styled.div<{ progress: number }>`

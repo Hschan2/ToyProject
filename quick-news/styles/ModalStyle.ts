@@ -70,7 +70,7 @@ export const ModalButtonContainer = styled.div`
 
 export const ModalButton = styled.button`
   background-color: #007bff;
-  color: #fff;
+  color: ${(props) => props.theme.text};
   border: none;
   padding: 0.625rem 1.25rem;
   border-radius: 0.25rem;

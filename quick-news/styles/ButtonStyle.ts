@@ -16,24 +16,31 @@ const media = {
 
 export const UpButton = styled.div`
   position: fixed;
+  color: ${(props) => props.theme.text};
+  border: 1px solid ${(props) => props.theme.border};
+  border-radius: 50%;
+  padding: 0.875rem 0.875rem 0.75rem 0.875rem;
   bottom: 100px;
   right: 40px;
   cursor: pointer;
-  font-size: 1.875rem;
-  background-color: ${COMMON_COLOR};
-  border-radius: 50%;
-  padding: 0.125rem 0.875rem 0.25rem 0.875rem;
-  color: #fff;
+  font-size: 1.125rem;
+  user-select: none;
+
+  svg {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
 
   ${media.tablet`
-    font-size: 1.5625rem;
-  `}
+  font-size: 0.9rem;
+`}
 
   ${media.mobile`
-    right: 20px;
-    font-size: 1.25rem;
-    padding: 0.1rem 0.65rem 0.175rem 0.7rem;
-  `}
+  padding: 0.6rem 0.6rem 0.55rem 0.7rem;
+  bottom: 150px;
+  right: 20px;
+  font-size: 0.75rem;
+`}
 `
 
 export const slideIn = keyframes`
@@ -78,8 +85,8 @@ export const SearchInput = styled.input`
 
 export const SearchingButton = styled.button`
   position: fixed;
-  background-color: ${COMMON_COLOR};
-  color: #fff;
+  color: ${(props) => props.theme.text};
+  border: 1px solid ${(props) => props.theme.border};
   border-radius: 50%;
   padding: 0.875rem 0.875rem 0.75rem 0.875rem;
   bottom: 170px;
@@ -87,7 +94,7 @@ export const SearchingButton = styled.button`
   cursor: pointer;
   font-size: 1.125rem;
   user-select: none;
-  border: none;
+  background-color: transparent;
 
   ${media.tablet`
     font-size: 0.9rem;
@@ -122,7 +129,7 @@ export const MoreButton = styled.button`
   padding: 0.5rem 1rem;
   font-size: 0.8rem;
   background-color: ${COMMON_COLOR};
-  color: #fff;
+  color: ${(props) => props.theme.text};
   border: none;
   border-radius: 1.5rem;
   cursor: pointer;
@@ -143,4 +150,42 @@ export const MoreButton = styled.button`
     padding: 0.35rem 0.75rem;
     font-size: 0.5rem;
   `}
+`
+
+export const DarkModeBtn = styled.button`
+  position: fixed;
+  color: ${(props) => props.theme.text};
+  border: 1px solid ${(props) => props.theme.border};
+  border-radius: 50%;
+  padding: 0.875rem 0.875rem 0.75rem 0.875rem;
+  bottom: 240px;
+  right: 40px;
+  cursor: pointer;
+  user-select: none;
+  background-color: transparent;
+
+  svg {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  ${media.tablet`
+    font-size: 0.9rem;
+  `}
+
+  ${media.mobile`
+    padding: 0.6rem 0.6rem 0.55rem 0.7rem;
+    bottom: 150px;
+    right: 20px;
+    font-size: 0.75rem;
+  `}
+`
+
+export const BottomBtnContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+  height: 300px;
+  border: 1px solid black;
 `

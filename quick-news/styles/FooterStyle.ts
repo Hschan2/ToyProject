@@ -33,7 +33,7 @@ export const FooterContents = styled.footer`
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  color: rgba(0, 0, 0, 0.5);
+  color: grey;
   font-size: 0.6rem;
 
   ${media.tablet`
