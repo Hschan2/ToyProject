@@ -10,6 +10,17 @@ import { store } from './components/store/newsStore'
 
 const queryClient = new QueryClient()
 
+declare module 'styled-components' {
+  export interface DefaultTheme {
+    background: string;
+    lightBackground: string;
+    text: string;
+    lightText: string;
+    border: string;
+    shadow: string;
+  }
+}
+
 const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Newsreader_60pt-BoldItalic';
