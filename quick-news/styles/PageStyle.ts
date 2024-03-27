@@ -22,14 +22,13 @@ export const Wrapper = styled.div`
 `
 export const Nav = styled.nav`
   display: flex;
-  background-color: ${(props) => props.theme.background};
+  background-color: ${(props) => props.theme.lightBackground};
   gap: 1em;
   flex-direction: column;
   align-items: center;
   padding: 1.25rem 0;
-  border-bottom: 0.0625rem solid rgba(0, 0, 0, 0.1);
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 3.125rem 6.25rem -1.25rem,
-    rgba(0, 0, 0, 0.3) 0px 1.875rem 3.75rem -1.875rem;
+  border-bottom: 0.0625rem solid ${(props) => props.theme.border};
+  box-shadow: ${(props) => props.theme.shadow};
 `
 
 export const NavTitle = styled.h1`
@@ -67,8 +66,9 @@ export const LinkStyle = styled.div<{ isActive: boolean }>`
   padding: 0.3125rem 0.5rem;
   text-align: center;
   cursor: pointer;
+  color: ${(props) => props.theme.text};
 
-  ${(props) => (props.isActive ? `color: ${COMMON_COLOR};` : '')};
+  ${(props) => props.isActive && `color: ${COMMON_COLOR};`}
 
   ${media.tablet`
     width: 3.75rem;

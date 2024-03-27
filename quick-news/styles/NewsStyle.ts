@@ -30,7 +30,7 @@ const newsValueSize = {
 export const NewsCard = styled.div`
   background-color: ${(props) => props.theme.background};
   padding: ${cardPadding.desktop};
-  border-bottom: 0.25px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 0.25px solid ${(props) => props.theme.border};
   color: ${(props) => props.theme.text};
 
   &:hover {
@@ -48,7 +48,7 @@ export const NewsCard = styled.div`
 
 export const Author = styled.p`
   font-size: ${newsValueSize.large};
-  color: grey;
+  color: ${(props) => props.theme.lightText};
 
   ${media.tablet`
     font-size: ${newsValueSize.middle};
@@ -61,7 +61,7 @@ export const Author = styled.p`
 
 export const DateOfNews = styled.p`
   font-size: ${newsValueSize.middle};
-  color: grey;
+  color: ${(props) => props.theme.lightText};
   margin-top: -${newsValueSize.small};
 
   ${media.tablet`

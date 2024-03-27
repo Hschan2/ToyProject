@@ -21,7 +21,7 @@ const infoFontSize = {
 
 export const DateTime = styled.p`
   font-size: ${infoFontSize.desktop};
-  color: grey;
+  color: ${(props) => props.theme.lightText};
 
   ${media.tablet`
     font-size: ${infoFontSize.tablet};
@@ -36,7 +36,7 @@ export const TimeWeather = styled.div`
   display: flex;
   gap: 10px;
   margin-bottom: 10px;
-  color: grey;
+  color: ${(props) => props.theme.lightText};
   font-size: ${infoFontSize.desktop};
 
   ${media.tablet`
