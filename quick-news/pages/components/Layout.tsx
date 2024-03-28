@@ -1,5 +1,4 @@
 import { DARK_MODE_VALUE } from '@/constants/CommonVariable'
-import { BottomBtnContainer } from '../../styles/ButtonStyle'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import React, { Suspense, lazy, useRef } from 'react'
@@ -12,10 +11,12 @@ const LazyNavbar = lazy(() => import('./nav/Navbar'))
 const LazyTimelineScroll = lazy(() => import('./page/TimelineScroll'))
 const LazyNotificationModal = lazy(() => import('./page/NotificationModal'))
 const LazyLoading = lazy(() => import('./page/Loading'))
+const LazyDarkMode = dynamic(() => import('./btn/DarkModeButton'), {
+  ssr: false,
+})
 const DynamicSearchButton = dynamic(() => import('./btn/SearchButton'), {
   ssr: false,
 })
-const LazyDarkMode = lazy(() => import('./btn/DarkModeButton'))
 
 export default function Layout({ children }: { children: JSX.Element }) {
   const router = useRouter()
@@ -29,11 +30,9 @@ export default function Layout({ children }: { children: JSX.Element }) {
       <Suspense fallback={<LazyLoading />}>
         <LazyNavbar />
         <div>{children}</div>
-        <BottomBtnContainer>
-          <LazyDarkMode />
-          <LazyMoveUp />
-          <DynamicSearchButton searchRef={searchRef} />
-        </BottomBtnContainer>
+        <LazyDarkMode />
+        <LazyMoveUp />
+        <DynamicSearchButton searchRef={searchRef} />
         <LazyTimelineScroll />
         <LazyNotificationModal />
       </Suspense>
