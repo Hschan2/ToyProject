@@ -189,3 +189,15 @@ export const BottomBtnContainer = styled.div`
   height: 300px;
   border: 1px solid black;
 `
+
+export const SaveButton = styled.button`
+  background: transparent;
+  border: none;
+  margin-top: 20px;
+  color: ${(props) => props.theme.lightText};
+
+  svg {
+    width: 15px;
+    height: 15px;
+  }
+`

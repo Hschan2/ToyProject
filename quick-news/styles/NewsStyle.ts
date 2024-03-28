@@ -72,3 +72,12 @@ export const DateOfNews = styled.p`
     font-size: ${newsValueSize.mini};
   `}
 `
+
+export const TitleSaveContainer = styled.div`
+  display: flex;
+  align-item: center;
+  align-content: center;
+  align-self: center;
+  height: 40px;
+  gap: ${newsValueSize.small};
+`
