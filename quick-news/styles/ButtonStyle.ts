@@ -60,26 +60,26 @@ export const SearchContainer = styled.div`
 `
 
 export const SearchInput = styled.input`
-  padding: 0.5rem;
-  border: 0.0625rem solid ${COMMON_COLOR};
-  border-radius: 0.25rem;
+  padding: 0.6rem;
+  border: 0.0625rem solid ${(props) => props.theme.border};
+  border-radius: 0.5rem;
   outline: none;
-  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.125rem 0.3125rem ${(props) => props.theme.shadow};
   transition: border-color 0.3s, box-shadow 0.3s;
 
   &:focus {
-    border-color: ${COMMON_COLOR};
-    box-shadow: 0 0.125rem 0.5rem rgba(77, 118, 83, 0.3);
+    border-color: ${(props) => props.theme.border};
+    box-shadow: 0 0.125rem 0.5rem ${(props) => props.theme.shadow};
   }
 
   ${media.tablet`
     width: 10rem;
-    padding: 0.375rem;
+    padding: 0.4rem;
   `}
 
   ${media.mobile`
     width: 6rem;
-    padding: 0.25rem;
+    padding: 0.3rem;
   `}
 `
 
@@ -110,7 +110,7 @@ export const SearchingButton = styled.button`
 
 export const InputWrapper = styled.div`
   position: fixed;
-  bottom: 180px;
+  bottom: 175px;
   right: 100px;
   animation: ${slideIn} 0.3s ease-out;
   z-index: 1;
