@@ -14,8 +14,8 @@ export default function NewsLists() {
 
   useInfiniteScroll({ handleLoadMore, isAllLoaded })
 
-  const renderNewsItem = (item: NaverNewsProps) => (
-    <NewsItem key={item.id} item={item} />
+  const renderNewsItem = (article: NaverNewsProps) => (
+    <NewsItem key={article.id} article={article} />
   )
 
   return (
