@@ -54,7 +54,7 @@ export interface InfiniteScrollProps {
 }
 
 export interface NaverNewsList {
-  item: NaverNewsProps
+  article: NaverNewsProps
 }
 
 export interface NaverNewsLists {
