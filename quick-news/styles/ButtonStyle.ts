@@ -195,6 +195,7 @@ export const SaveButton = styled.button`
   border: none;
   margin-top: 20px;
   color: ${(props) => props.theme.lightText};
+  cursor: pointer;
 
   svg {
     width: 15px;
