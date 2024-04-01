@@ -193,9 +193,12 @@ export const BottomBtnContainer = styled.div`
 export const SaveButton = styled.button`
   background: transparent;
   border: none;
-  margin-top: 20px;
   color: ${(props) => props.theme.lightText};
   cursor: pointer;
+
+  &.newsHome {
+    margin-top: 20px;
+  }
 
   svg {
     width: 15px;

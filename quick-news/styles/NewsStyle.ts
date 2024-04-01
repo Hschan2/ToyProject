@@ -78,6 +78,9 @@ export const TitleSaveContainer = styled.div`
   align-item: center;
   align-content: center;
   align-self: center;
-  height: 40px;
   gap: ${newsValueSize.small};
+
+  &.newsHome {
+    height: 40px;
+  }
 `
