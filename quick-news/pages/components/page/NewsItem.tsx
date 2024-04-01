@@ -5,19 +5,21 @@ import { NewsCard, TitleSaveContainer } from '../../../styles/NewsStyle'
 import { DateTime } from '../../../styles/InfoStyle'
 import { NaverNewsList } from '../../../interfaces/interface'
 import { SaveButton } from '@/styles/ButtonStyle'
-import { SaveNews } from '../utils/storage'
+import { SaveNewsInStorage } from '../utils/storage'
 
 function NewsItem({ article }: NaverNewsList) {
   const onSaveNews = () => {
-    SaveNews({ article })
+    SaveNewsInStorage({ article })
   }
 
   return (
     <Link href={article.link} target="_blank" key={article.id}>
       <NewsCard>
-        <TitleSaveContainer>
+        <TitleSaveContainer className="newsHome">
           <h3 dangerouslySetInnerHTML={{ __html: article.title }} />
-          <SaveButton onClick={onSaveNews}>저장</SaveButton>
+          <SaveButton onClick={onSaveNews} className="newsHome">
+            저장
+          </SaveButton>
         </TitleSaveContainer>
         <DateTime>
           {moment(article.pubDate).format('YYYY-MM-DD HH:mm')}
