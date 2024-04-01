@@ -31,6 +31,19 @@ export interface CategoryNewsProps {
   publishedAt: string
 }
 
+export interface StorageNewsProps {
+  id: number | string
+  title: string
+  link?: string
+  image?: string
+  description: string
+  pubDate?: number
+  author?: string
+  url?: string
+  urlToImage?: string
+  publishedAt?: string
+}
+
 export interface MoreButtonProps {
   onClick: () => void
   disabled: boolean
@@ -67,6 +80,15 @@ export interface CategoryNewsList {
 
 export interface CategoryNewsLists {
   articles: CategoryNewsProps[]
+}
+
+export interface StorageNewsList {
+  article: StorageNewsProps
+  storedNews?: StorageNewsProps[] | undefined
+}
+
+export interface StorageNewsLists {
+  articles: StorageNewsProps[]
 }
 
 export interface NewsSourceListProps {
