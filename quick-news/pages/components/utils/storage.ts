@@ -1,19 +1,20 @@
-import { NaverNewsList, NaverNewsProps } from '@/interfaces/interface'
+import { StorageNewsList, StorageNewsProps } from '@/interfaces/interface'
 
-const storedNews = JSON.parse(localStorage.getItem('news')!) || []
-
-const CheckInLocalStorage = ({ article }: NaverNewsList) => {
-  const isAlreadySaved = storedNews.some(
-    (savedItem: NaverNewsProps) => savedItem.link === article.link,
-  )
+const CheckInStorage = ({ article, storedNews }: StorageNewsList) => {
+  const isAlreadySaved =
+    storedNews?.some((savedItem: StorageNewsProps) => {
+      return savedItem.link === article.link || savedItem.url === article.url
+    }) ?? false
 
   return isAlreadySaved ? true : false
 }
 
-export const SaveNews = ({ article }: NaverNewsList) => {
-  const getCheckValue = CheckInLocalStorage({ article })
+export const SaveNewsInStorage = ({ article }: StorageNewsList) => {
+  const storedNews = JSON.parse(localStorage.getItem('news')!) || []
 
-  if (getCheckValue) {
+  const getCheckResult = CheckInStorage({ article, storedNews })
+
+  if (getCheckResult) {
     alert('이미 저장되었습니다.')
   } else {
     storedNews.push(article)
@@ -22,9 +23,12 @@ export const SaveNews = ({ article }: NaverNewsList) => {
   }
 }
 
-const removeNews = (newsId: string) => {
+const removeNews = (link: string) => {
+  const storedNews = JSON.parse(localStorage.getItem('news')!) || []
+
   const filterNews = storedNews.filter(
-    (article: NaverNewsProps) => article.link !== article.link,
+    (article: StorageNewsProps) =>
+      article.link !== link || article.url !== link,
   )
   localStorage.setItem('news', JSON.stringify(filterNews))
   alert('뉴스가 삭제되었습니다.')
