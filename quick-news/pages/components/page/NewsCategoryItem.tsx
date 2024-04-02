@@ -4,7 +4,9 @@ import React from 'react'
 import {
   Author,
   DateOfNews,
+  LimitLineTitle,
   NewsCard,
+  NewsContainer,
   TitleSaveContainer,
 } from '../../../styles/NewsStyle'
 import { CategoryNewsList } from '../../../interfaces/interface'
@@ -17,19 +19,23 @@ function NewsCategoryItem({ article }: CategoryNewsList) {
   }
 
   return (
-    <Link href={article.url} target="_blank" key={article.id}>
+    <NewsContainer key={article.id}>
       <NewsCard>
         <TitleSaveContainer>
-          <h3>{article.title.split(' - ')[0]}</h3>
+          <Link href={article.url} target="_blank">
+            <LimitLineTitle>{article.title.split(' - ')[0]}</LimitLineTitle>
+          </Link>
           <SaveButton onClick={onSaveNews}>저장</SaveButton>
         </TitleSaveContainer>
         <DateOfNews>
           {moment(article.publishedAt).format('YYYY-MM-DD HH:mm')}
         </DateOfNews>
         <Author>{article.author}</Author>
-        <p>{article.description ?? ''}</p>
+        <Link href={article.url} target="_blank">
+          <p>{article.description ?? ''}</p>
+        </Link>
       </NewsCard>
-    </Link>
+    </NewsContainer>
   )
 }
 
