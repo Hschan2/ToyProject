@@ -84,3 +84,15 @@ export const TitleSaveContainer = styled.div`
     height: 40px;
   }
 `
+
+export const NewsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const LimitLineTitle = styled.h3`
+  max-width: 560px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`
