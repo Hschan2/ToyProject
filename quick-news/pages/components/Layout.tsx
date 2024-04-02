@@ -11,7 +11,10 @@ const LazyNavbar = lazy(() => import('./nav/Navbar'))
 const LazyTimelineScroll = lazy(() => import('./page/TimelineScroll'))
 const LazyNotificationModal = lazy(() => import('./page/NotificationModal'))
 const LazyLoading = lazy(() => import('./page/Loading'))
-const LazyDarkMode = dynamic(() => import('./btn/DarkModeButton'), {
+const LazyDarkModeButton = dynamic(() => import('./btn/DarkModeButton'), {
+  ssr: false,
+})
+const LazySavedNewsButton = dynamic(() => import('./btn/SavedNewsButton'), {
   ssr: false,
 })
 const DynamicSearchButton = dynamic(() => import('./btn/SearchButton'), {
@@ -30,7 +33,8 @@ export default function Layout({ children }: { children: JSX.Element }) {
       <Suspense fallback={<LazyLoading />}>
         <LazyNavbar />
         <div>{children}</div>
-        <LazyDarkMode />
+        <LazyDarkModeButton />
+        <LazySavedNewsButton />
         <LazyMoveUp />
         <DynamicSearchButton searchRef={searchRef} />
         <LazyTimelineScroll />
