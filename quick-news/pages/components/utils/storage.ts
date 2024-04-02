@@ -1,12 +1,18 @@
 import { StorageNewsList, StorageNewsProps } from '@/interfaces/interface'
 
 const CheckInStorage = ({ article, storedNews }: StorageNewsList) => {
-  const isAlreadySaved =
-    storedNews?.some((savedItem: StorageNewsProps) => {
-      return savedItem.link === article.link || savedItem.url === article.url
-    }) ?? false
+  const isAlreadySaved = storedNews?.some((savedItem: StorageNewsProps) => {
+    if (article.link && savedItem.link === article.link) {
+      return true
+    }
+    if (article.url && savedItem.url === article.url) {
+      return true
+    }
 
-  return isAlreadySaved ? true : false
+    return false
+  })
+
+  return isAlreadySaved
 }
 
 export const SaveNewsInStorage = ({ article }: StorageNewsList) => {
