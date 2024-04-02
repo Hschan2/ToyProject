@@ -12,12 +12,13 @@ const queryClient = new QueryClient()
 
 declare module 'styled-components' {
   export interface DefaultTheme {
-    background: string;
-    lightBackground: string;
-    text: string;
-    lightText: string;
-    border: string;
-    shadow: string;
+    background: string
+    lightBackground: string
+    text: string
+    lightText: string
+    border: string
+    shadow: string
+    mainColor: string
   }
 }
 

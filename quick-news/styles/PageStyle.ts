@@ -34,7 +34,7 @@ export const Nav = styled.nav`
 export const NavTitle = styled.h1`
   font-family: 'Georgia', sans-serif;
   font-size: 2.5rem;
-  color: ${COMMON_COLOR};
+  color: ${(props) => props.theme.mainColor};
   margin: 0.3125rem 0;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -68,7 +68,7 @@ export const LinkStyle = styled.div<{ isActive: boolean }>`
   cursor: pointer;
   color: ${(props) => props.theme.text};
 
-  ${(props) => props.isActive && `color: ${COMMON_COLOR};`}
+  ${(props) => props.isActive && `color: ${props.theme.mainColor};`}
 
   ${media.tablet`
     width: 3.75rem;
