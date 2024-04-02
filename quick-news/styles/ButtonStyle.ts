@@ -158,6 +158,35 @@ export const DarkModeBtn = styled.button`
   border: 1px solid ${(props) => props.theme.border};
   border-radius: 50%;
   padding: 0.875rem 0.875rem 0.75rem 0.875rem;
+  bottom: 310px;
+  right: 40px;
+  cursor: pointer;
+  user-select: none;
+  background-color: transparent;
+
+  svg {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  ${media.tablet`
+    font-size: 0.9rem;
+  `}
+
+  ${media.mobile`
+    padding: 0.6rem 0.6rem 0.55rem 0.7rem;
+    bottom: 150px;
+    right: 20px;
+    font-size: 0.75rem;
+  `}
+`
+
+export const SavedNewsBtn = styled.button`
+  position: fixed;
+  color: ${(props) => props.theme.text};
+  border: 1px solid ${(props) => props.theme.border};
+  border-radius: 50%;
+  padding: 0.875rem 0.875rem 0.75rem 0.875rem;
   bottom: 240px;
   right: 40px;
   cursor: pointer;
