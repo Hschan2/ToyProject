@@ -97,7 +97,7 @@ export interface NewsSourceListProps {
 
 export interface CommonNewsListProps<T> {
   visibleNews: T[] | undefined
-  isLoading: boolean
+  isLoading?: boolean
   itemRenderer: (item: T) => ReactElement
 }
 
