@@ -1,4 +1,4 @@
-import { lazy, useCallback } from 'react'
+import { lazy } from 'react'
 import 'moment/locale/ko'
 import useMoreNews from '../../hooks/useMoreNews'
 import NaverNewsFetch from '../fetch/NaverNewsFetch'
