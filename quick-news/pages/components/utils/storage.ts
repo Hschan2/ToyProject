@@ -29,12 +29,12 @@ export const SaveNewsInStorage = ({ article }: StorageNewsList) => {
   }
 }
 
-const removeNews = (link: string) => {
+export const DeleteNews = (link: string | undefined) => {
   const storedNews = JSON.parse(localStorage.getItem('news')!) || []
 
   const filterNews = storedNews.filter(
     (article: StorageNewsProps) =>
-      article.link !== link || article.url !== link,
+      article.link !== link && article.url !== link,
   )
   localStorage.setItem('news', JSON.stringify(filterNews))
   alert('뉴스가 삭제되었습니다.')
