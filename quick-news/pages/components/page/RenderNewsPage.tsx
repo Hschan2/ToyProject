@@ -5,8 +5,11 @@ import Skeleton from './Skeleton'
 
 const Loading = lazy(() => import('./Loading'))
 
-export default function RenderNewsPage<T>(props: CommonNewsListProps<T>) {
-  const { visibleNews, isLoading, itemRenderer } = props
+export default function RenderNewsPage<T>({
+  visibleNews,
+  isLoading,
+  itemRenderer,
+}: CommonNewsListProps<T>) {
   const newsListRef = useRef<HTMLDivElement | null>(null)
   const isVisible = useVisibility(newsListRef)
 
