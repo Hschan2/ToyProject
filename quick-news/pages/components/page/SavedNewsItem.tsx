@@ -14,11 +14,10 @@ import React, { useState } from 'react'
 import { DeleteNews } from '../utils/storage'
 
 function SavedNewsItem({ article }: StorageNewsList) {
-  const link = article.link ? article.link : article.url
   const [deleted, setDeleted] = useState(false)
 
   const onDeleteNews = () => {
-    DeleteNews(link)
+    DeleteNews(article.link ?? article.url)
     setDeleted(true)
   }
 
@@ -28,7 +27,7 @@ function SavedNewsItem({ article }: StorageNewsList) {
     <NewsContainer key={article.id}>
       <NewsCard>
         <TitleSaveContainer className="newsHome">
-          <Link href={link!} target="_blank">
+          <Link href={(article.link ?? article.url)!} target="_blank">
             <LimitLineTitle
               dangerouslySetInnerHTML={{
                 __html: article.title.split(' - ')[0],
@@ -40,10 +39,12 @@ function SavedNewsItem({ article }: StorageNewsList) {
           </SaveButton>
         </TitleSaveContainer>
         <DateTime>
-          {moment(article.pubDate).format('YYYY-MM-DD HH:mm')}
+          {moment(article.pubDate ?? article.publishedAt).format(
+            'YYYY-MM-DD HH:mm',
+          )}
         </DateTime>
         {article.author && <Author>{article.author}</Author>}
-        <Link href={link!} target="_blank">
+        <Link href={(article.link ?? article.url)!} target="_blank">
           <p dangerouslySetInnerHTML={{ __html: article.description ?? '' }} />
         </Link>
       </NewsCard>
