@@ -2,6 +2,7 @@ import React, { useEffect, useState, lazy, Suspense } from 'react'
 import { Nav, NavDisplay, NavTitle } from '../../../styles/PageStyle'
 import { TimeWeather } from '../../../styles/InfoStyle'
 import NavLink from '../page/NavLink'
+import Loading from '../page/Loading'
 
 const Today = lazy(() => import('../info/Today'))
 const Weather = lazy(() => import('../info/Weather'))
@@ -21,7 +22,7 @@ export default function Navbar() {
     <Nav>
       <NavTitle>Quick News</NavTitle>
       <TimeWeather>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loading />}>
           <Today />
           <Weather />
         </Suspense>
