@@ -12,7 +12,7 @@
 
 ##### 기본
 
-<img src="https://blog.kakaocdn.net/dn/KI6uw/btsGrb7vlGY/XhpIUNkmoYP5g6Ov1dctNK/img.gif" width="500" />
+<img src="./public/gif/main.gif" width="500" />
    
 ##### 뉴스 카테고리 & 다크모드
 
@@ -20,7 +20,7 @@
    
 ##### 뉴스 검색
 
-<img src="https://blog.kakaocdn.net/dn/zIFl5/btsGqmhMZvb/CwaP4kr0MiqxzoQW3Ps8F1/img.gif" width="500" />
+<img src="./public/gif/search.gif" width="500" />
    
 ##### 뉴스 저장/삭제
 
