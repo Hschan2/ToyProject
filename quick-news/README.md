@@ -10,11 +10,19 @@
 
 퀵뉴스는 오늘의 주요 뉴스와 각 주제별 뉴스들을 빠르게 볼 수 있도록 도와줍니다. 각 총 60개의 뉴스들을 볼 수 있고, 20개 씩 무한스크롤이 구현됩니다. 또한, 뉴스를 검색할 수 있고, 저장/삭제가 가능합니다.
 
+##### 기본
+
 <img src="https://blog.kakaocdn.net/dn/LpLlQ/btsGqh8wPKi/66mFg8dET7n0o9Dz2kPIa0/img.gif" width="500" />
+   
+##### 뉴스 카테고리 & 다크모드
 
 <img src="https://blog.kakaocdn.net/dn/b4sp0n/btsGq99zZIj/LyyLl08bjRnPNrJ0xLGkuk/img.gif" width="500" />
+   
+##### 뉴스 검색
 
 <img src="https://blog.kakaocdn.net/dn/bhVAlO/btsGpKDveew/DbAcMvhl99FX9lHSLqrRMK/img.gif" width="500" />
+   
+##### 뉴스 저장/삭제
 
 <img src="https://blog.kakaocdn.net/dn/dSqOG0/btsGsh0o90v/tLvXkvfkk6Qariax2RXbzK/img.gif" width="500" />
 
