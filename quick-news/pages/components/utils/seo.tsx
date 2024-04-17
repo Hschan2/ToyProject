@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import useCurrentUrl from '../../../constants/CurrentUrl'
 import { SEOProps } from '../../../interfaces/interface'
 
@@ -7,18 +7,21 @@ export default function SEO({ title, description }: SEOProps) {
   const nowLocation = useCurrentUrl()
   const [isPageLoaded, setIsPageLoaded] = useState(false)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setIsPageLoaded(true)
   }, [])
 
   return (
     <Head>
       <title>{isPageLoaded ? `퀵 뉴스 | ${title}` : '퀵 뉴스'}</title>
-      <meta name="description" content={description} />
+      <meta
+        name="description"
+        content={description || '뉴스 빠르게 확인하기'}
+      />
 
       <meta
         property="og:url"
-        content={`https://quick-news-tau.vercel.app${nowLocation}`}
+        content={`https://quick-news-tau.vercel.app/${nowLocation}`}
       />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="Quick News" />
