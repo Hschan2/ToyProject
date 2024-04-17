@@ -27,14 +27,22 @@ function SavedNewsItem({ article }: StorageNewsList) {
     <NewsContainer key={article.id}>
       <NewsCard>
         <TitleSaveContainer className="newsHome">
-          <Link href={(article.link ?? article.url)!} target="_blank">
+          <Link
+            href={(article.link ?? article.url)!}
+            target="_blank"
+            title={`${article.title} 페이지로 이동`}
+          >
             <LimitLineTitle
               dangerouslySetInnerHTML={{
                 __html: article.title.split(' - ')[0],
               }}
             />
           </Link>
-          <SaveButton onClick={onDeleteNews} className="newsHome">
+          <SaveButton
+            onClick={onDeleteNews}
+            className="newsHome"
+            title="뉴스 삭제"
+          >
             삭제
           </SaveButton>
         </TitleSaveContainer>
@@ -44,7 +52,11 @@ function SavedNewsItem({ article }: StorageNewsList) {
           )}
         </DateTime>
         {article.author && <Author>{article.author}</Author>}
-        <Link href={(article.link ?? article.url)!} target="_blank">
+        <Link
+          href={(article.link ?? article.url)!}
+          target="_blank"
+          title={`${article.title} 페이지로 이동`}
+        >
           <p dangerouslySetInnerHTML={{ __html: article.description ?? '' }} />
         </Link>
       </NewsCard>

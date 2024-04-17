@@ -33,7 +33,9 @@ function NotificationModal() {
           무료 API 사용으로 배포 서비스에는 데이터가 출력되지 않습니다.
         </ModalText>
         <ModalButtonContainer>
-          <ModalButton onClick={closeModal}>확인</ModalButton>
+          <ModalButton onClick={closeModal} title="확인 완료">
+            확인
+          </ModalButton>
         </ModalButtonContainer>
       </ModalContent>
     </ModalOverlay>

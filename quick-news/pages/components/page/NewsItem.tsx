@@ -21,19 +21,31 @@ function NewsItem({ article }: NaverNewsList) {
     <NewsContainer key={article.id}>
       <NewsCard>
         <TitleSaveContainer className="newsHome">
-          <Link href={article.link} target="_blank">
+          <Link
+            href={article.link}
+            target="_blank"
+            title={`${article.title} 페이지로 이동`}
+          >
             <LimitLineTitle
               dangerouslySetInnerHTML={{ __html: article.title }}
             />
           </Link>
-          <SaveButton onClick={onSaveNews} className="newsHome">
+          <SaveButton
+            onClick={onSaveNews}
+            className="newsHome"
+            title="뉴스 저장"
+          >
             저장
           </SaveButton>
         </TitleSaveContainer>
         <DateTime>
           {moment(article.pubDate).format('YYYY-MM-DD HH:mm')}
         </DateTime>
-        <Link href={article.link} target="_blank">
+        <Link
+          href={article.link}
+          target="_blank"
+          title={`${article.title} 페이지로 이동`}
+        >
           <p dangerouslySetInnerHTML={{ __html: article.description }} />
         </Link>
       </NewsCard>
