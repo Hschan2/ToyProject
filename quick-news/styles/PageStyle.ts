@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { COMMON_COLOR } from '../constants/StyleVariable'
+import { COMMON_COLOR } from '../utils/ColorValue'
 
 const media = {
   tablet: (styles: TemplateStringsArray, ...interpolations: any[]) => css`

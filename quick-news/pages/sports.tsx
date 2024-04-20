@@ -1,9 +1,9 @@
 import { lazy } from 'react'
 
 const LazyNewsSourceList = lazy(
-  () => import('./components/page/NewsSourceList'),
+  () => import('./category/NewsSourceList'),
 )
-const LazyContents = lazy(() => import('./components/Contents'))
+const LazyContents = lazy(() => import('./Contents'))
 
 export default function Sports() {
   return (

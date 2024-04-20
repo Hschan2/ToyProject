@@ -1,8 +1,8 @@
 import { useSearchParams } from 'next/navigation'
 import { lazy } from 'react'
 
-const LazySearchNews = lazy(() => import('./components/page/SearchNews'))
-const LazyContents = lazy(() => import('./components/Contents'))
+const LazySearchNews = lazy(() => import('./saved/SearchNews'))
+const LazyContents = lazy(() => import('./Contents'))
 
 export default function Search() {
   const searchParams = useSearchParams()

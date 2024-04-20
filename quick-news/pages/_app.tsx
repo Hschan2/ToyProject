@@ -3,10 +3,10 @@ import type { AppProps } from 'next/app'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { RecoilRoot } from 'recoil'
 import { createGlobalStyle } from 'styled-components'
-import Layout from './components/Layout'
+import Layout from './Layout'
 import Error from './Error'
 import { Provider } from 'react-redux'
-import { store } from './components/store/newsStore'
+import { store } from '../utils/store/Store'
 
 const queryClient = new QueryClient()
 
