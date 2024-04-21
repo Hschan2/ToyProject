@@ -29,13 +29,13 @@ export default function Navbar() {
       </TimeWeather>
       <NavDisplay>
         <NavLink href="/" category="주요뉴스" />
-        <NavLink href="/total" category="종합" />
-        <NavLink href="/business" category="경제" />
-        <NavLink href="/entertainment" category="연예" />
-        <NavLink href="/sports" category="스포츠" />
-        <NavLink href="/technology" category="테크" />
-        <NavLink href="/health" category="건강" />
-        <NavLink href="/science" category="과학" />
+        <NavLink href="/page/category/total" category="종합" />
+        <NavLink href="/page/category/business" category="경제" />
+        <NavLink href="/page/category/entertainment" category="연예" />
+        <NavLink href="/page/category/sports" category="스포츠" />
+        <NavLink href="/page/category/technology" category="테크" />
+        <NavLink href="/page/category/health" category="건강" />
+        <NavLink href="/page/category/science" category="과학" />
       </NavDisplay>
     </Nav>
   )

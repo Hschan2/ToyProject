@@ -6,7 +6,7 @@ function SavedNewsButton() {
   const router = useRouter()
 
   const navigateSavedNews = () => {
-    router.push(`/savedNews`, undefined, { shallow: true })
+    router.push(`/page/saved/savedNews`, undefined, { shallow: true })
   }
   return (
     <SavedNewsBtn onClick={navigateSavedNews}>
