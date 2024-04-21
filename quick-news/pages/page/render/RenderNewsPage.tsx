@@ -1,5 +1,5 @@
 import React, { Suspense, lazy, useCallback, useRef } from 'react'
-import { randomUUID } from 'crypto'
+import { v4 as uuidv4 } from 'uuid'
 import useVisibility from '../../../utils/hooks/useVisibility'
 import { CommonNewsListProps } from '../../../utils/types/type'
 import Skeleton from '../../loading/Skeleton'
@@ -23,7 +23,7 @@ export default function RenderNewsPage<T>({
     <Suspense fallback={<Loading />}>
       <div ref={newsListRef}>
         {visibleNews?.map((item) => (
-          <React.Fragment key={randomUUID()}>
+          <React.Fragment key={uuidv4()}>
             {isVisible && memoizedItemRenderer(item)}
           </React.Fragment>
         ))}
