@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -16,6 +16,8 @@ export default function SearchButton({
 }) {
   const [isInputVisible, setInputVisible] = useState(false)
   const [searchTerm, setSearchTerm] = useState<string>('')
+  const ref = searchRef
+
   const router = useRouter()
 
   const handleToggleInput = () => {
@@ -27,9 +29,11 @@ export default function SearchButton({
   }
 
   const handleSearch = () => {
-    router.push(`/search?q=${searchTerm}`, undefined, { shallow: true })
+    ref.current = searchTerm.trim()
+    router.push(`/page/search/search?q=${searchTerm}`, undefined, {
+      shallow: true,
+    })
     setInputVisible(false)
-    searchRef.current = searchTerm
     if (typeof window !== 'undefined')
       localStorage.setItem('searchValue', searchTerm)
   }
@@ -37,28 +41,10 @@ export default function SearchButton({
   const searchNews = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       event.preventDefault()
-      if (searchRef.current !== searchTerm && searchTerm.trim() !== '') {
+      if (ref.current !== searchTerm.trim() && searchTerm.trim() !== '') {
         handleSearch()
       }
     }
-  }
-
-  const searchInput = () => {
-    if (!isInputVisible) {
-      return null
-    }
-    return (
-      <InputWrapper>
-        <SearchInput
-          type="text"
-          value={searchTerm}
-          onChange={handleInputChange}
-          placeholder="검색"
-          onKeyDown={searchNews}
-          autoFocus
-        />
-      </InputWrapper>
-    )
   }
 
   return (
@@ -66,7 +52,18 @@ export default function SearchButton({
       <SearchingButton type="button" onClick={handleToggleInput}>
         <FontAwesomeIcon icon={faSearch} size="1x" />
       </SearchingButton>
-      {searchInput()}
+      {isInputVisible && (
+        <InputWrapper>
+          <SearchInput
+            type="text"
+            value={searchTerm}
+            onChange={handleInputChange}
+            placeholder="검색"
+            onKeyDown={searchNews}
+            autoFocus
+          />
+        </InputWrapper>
+      )}
     </SearchContainer>
   )
 }
