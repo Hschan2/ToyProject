@@ -1,16 +1,16 @@
-import { StorageNewsList } from '@/utils/types/type'
-import { SaveButton } from '@/styles/ButtonStyle'
-import { DateTime } from '@/styles/InfoStyle'
+import React, { useState } from 'react'
+import Link from 'next/link'
+import moment from 'moment'
+import { StorageNewsList } from '../../utils/types/type'
+import { SaveButton } from '../../styles/ButtonStyle'
+import { DateTime } from '../../styles/InfoStyle'
 import {
   Author,
   LimitLineTitle,
   NewsCard,
   NewsContainer,
   TitleSaveContainer,
-} from '@/styles/NewsStyle'
-import moment from 'moment'
-import Link from 'next/link'
-import React, { useState } from 'react'
+} from '../../styles/NewsStyle'
 import { DeleteNews } from '../../utils/storage/Storage'
 
 function SavedNewsItem({ article }: StorageNewsList) {

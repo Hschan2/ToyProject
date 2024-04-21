@@ -1,7 +1,7 @@
 import React from 'react'
-import { DarkModeBtn } from '../../styles/ButtonStyle'
 import { useRecoilState } from 'recoil'
-import { DARK_MODE_VALUE } from '@/utils/Constants'
+import { DarkModeBtn } from '../../styles/ButtonStyle'
+import { DARK_MODE_VALUE } from '../../utils/Constants'
 
 function DarkModeButton() {
   const [isDarkMode, setIsDarkMode] = useRecoilState(DARK_MODE_VALUE)

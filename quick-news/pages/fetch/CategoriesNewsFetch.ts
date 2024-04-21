@@ -1,5 +1,5 @@
-import { useFetchNewsQuery } from '../api/CreateApi'
 import { toast } from 'react-toastify'
+import { useFetchNewsQuery } from '../api/CreateApi'
 
 export default function CategoriesNewsFetch(
   category: string | undefined,

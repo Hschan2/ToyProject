@@ -1,11 +1,11 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { Provider } from 'react-redux'
 import { RecoilRoot } from 'recoil'
 import { createGlobalStyle } from 'styled-components'
 import Layout from './page/layout/Layout'
 import Error from './page/error/Error'
-import { Provider } from 'react-redux'
 import { store } from '../utils/store/Store'
 
 const queryClient = new QueryClient()

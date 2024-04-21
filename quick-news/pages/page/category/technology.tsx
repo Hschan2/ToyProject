@@ -1,8 +1,6 @@
 import { lazy } from 'react'
 
-const LazyNewsSourceList = lazy(
-  () => import('../../category/NewsSourceList'),
-)
+const LazyNewsSourceList = lazy(() => import('../../category/NewsSourceList'))
 const LazyContents = lazy(() => import('../render/Contents'))
 
 export default function Technology() {

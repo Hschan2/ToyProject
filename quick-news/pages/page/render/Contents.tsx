@@ -4,9 +4,12 @@ import { ContentsProps } from '../../../utils/types/type'
 import { Wrapper } from '../../../styles/PageStyle'
 
 const LazySEO = lazy(() => import('../../../components/SEO/Index'))
-const DynamicFooter = dynamic(() => import('../../../components/Footer/Index'), {
-  ssr: false,
-})
+const DynamicFooter = dynamic(
+  () => import('../../../components/Footer/Index'),
+  {
+    ssr: false,
+  },
+)
 
 export default function Contents({
   title,

@@ -11,7 +11,7 @@ import {
 } from '../../styles/NewsStyle'
 import { CategoryNewsList } from '../../utils/types/type'
 import { SaveNewsInStorage } from '../../utils/storage/Storage'
-import { SaveButton } from '@/styles/ButtonStyle'
+import { SaveButton } from '../../styles/ButtonStyle'
 
 function NewsCategoryItem({ article }: CategoryNewsList) {
   const onSaveNews = () => {

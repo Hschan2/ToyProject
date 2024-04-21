@@ -1,9 +1,6 @@
 import { lazy } from 'react'
 import 'moment/locale/ko'
-import {
-  CategoryNewsProps,
-  NewsSourceListProps,
-} from '../../utils/types/type'
+import { CategoryNewsProps, NewsSourceListProps } from '../../utils/types/type'
 import useMoreNews from '../../utils/hooks/useMoreNews'
 import CategoriesNewsFetch from '../fetch/CategoriesNewsFetch'
 import useInfiniteScroll from '../../utils/hooks/useInfiniteScroll'

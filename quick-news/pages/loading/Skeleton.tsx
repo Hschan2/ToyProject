@@ -1,4 +1,5 @@
 import React from 'react'
+import { randomUUID } from 'crypto'
 import { SkeletonLine, SkeletonLoader } from '../../styles/LoadingStyle'
 
 function Skeleton() {
@@ -6,8 +7,8 @@ function Skeleton() {
     <SkeletonLoader>
       {Array(5)
         .fill(0)
-        .map((_, index) => (
-          <SkeletonLine key={index} />
+        .map((value) => (
+          <SkeletonLine key={randomUUID()} />
         ))}
     </SkeletonLoader>
   )

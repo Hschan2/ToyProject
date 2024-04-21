@@ -9,7 +9,7 @@ import {
 } from '../../styles/NewsStyle'
 import { DateTime } from '../../styles/InfoStyle'
 import { NaverNewsList } from '../../utils/types/type'
-import { SaveButton } from '@/styles/ButtonStyle'
+import { SaveButton } from '../../styles/ButtonStyle'
 import { SaveNewsInStorage } from '../../utils/storage/Storage'
 
 function NewsItem({ article }: NaverNewsList) {

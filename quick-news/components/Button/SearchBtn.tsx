@@ -26,6 +26,14 @@ export default function SearchButton({
     setSearchTerm(event.target.value)
   }
 
+  const handleSearch = () => {
+    router.push(`/search?q=${searchTerm}`, undefined, { shallow: true })
+    setInputVisible(false)
+    searchRef.current = searchTerm
+    if (typeof window !== 'undefined')
+      localStorage.setItem('searchValue', searchTerm)
+  }
+
   const searchNews = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       event.preventDefault()
@@ -33,14 +41,6 @@ export default function SearchButton({
         handleSearch()
       }
     }
-  }
-
-  const handleSearch = () => {
-    router.push(`/search?q=${searchTerm}`, undefined, { shallow: true })
-    setInputVisible(false)
-    searchRef.current = searchTerm
-    if (typeof window !== 'undefined')
-      localStorage.setItem('searchValue', searchTerm)
   }
 
   const searchInput = () => {
