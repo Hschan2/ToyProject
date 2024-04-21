@@ -2,7 +2,7 @@ import { StorageNewsProps } from '@/utils/types/type'
 import useInfiniteScroll from '@/utils/hooks/useInfiniteScroll'
 import useMoreNews from '@/utils/hooks/useMoreNews'
 import React from 'react'
-import RenderNewsPage from '../RenderNewsPage'
+import RenderNewsPage from '../page/render/RenderNewsPage'
 import SavedNewsItem from './SavedNewsItem'
 import SavedNewsData from '../fetch/SavedNewsData'
 

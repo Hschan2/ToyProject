@@ -1,5 +1,5 @@
 import { NextPageContext } from 'next'
-import Custom404 from './error/Error404'
+import Custom404 from '../../error/Error404'
 
 export default function Error({
   statusCode,

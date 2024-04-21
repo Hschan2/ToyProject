@@ -6,18 +6,18 @@ import { useRecoilState } from 'recoil'
 import { ThemeProvider } from 'styled-components'
 import { DARK_THEME, LIGHT_THEME } from '@/utils/ColorValue'
 
-const LazyMoveUp = lazy(() => import('../components/Button/UpBtn'))
-const LazyNavbar = lazy(() => import('../components/Nav/Index'))
-const LazyTimelineScroll = lazy(() => import('./scroll/TimelineScroll'))
-const LazyNotificationModal = lazy(() => import('./modal/NotificationModal'))
-const LazyLoading = lazy(() => import('./loading/Loading'))
-const LazyDarkModeButton = dynamic(() => import('../components/Button/DarkModeBtn'), {
+const LazyMoveUp = lazy(() => import('../../../components/Button/UpBtn'))
+const LazyNavbar = lazy(() => import('../../../components/Nav/Index'))
+const LazyTimelineScroll = lazy(() => import('../../scroll/TimelineScroll'))
+const LazyNotificationModal = lazy(() => import('../../modal/NotificationModal'))
+const LazyLoading = lazy(() => import('../../loading/Loading'))
+const LazyDarkModeButton = dynamic(() => import('../../../components/Button/DarkModeBtn'), {
   ssr: false,
 })
-const LazySavedNewsButton = dynamic(() => import('../components/Button/SaveNewsBtn'), {
+const LazySavedNewsButton = dynamic(() => import('../../../components/Button/SaveNewsBtn'), {
   ssr: false,
 })
-const DynamicSearchButton = dynamic(() => import('../components/Button/SearchBtn'), {
+const DynamicSearchButton = dynamic(() => import('../../../components/Button/SearchBtn'), {
   ssr: false,
 })
 

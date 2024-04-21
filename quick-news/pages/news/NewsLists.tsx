@@ -3,7 +3,7 @@ import 'moment/locale/ko'
 import useMoreNews from '../../utils/hooks/useMoreNews'
 import NaverNewsFetch from '../fetch/NaverNewsFetch'
 import useInfiniteScroll from '../../utils/hooks/useInfiniteScroll'
-import RenderNewsPage from '../RenderNewsPage'
+import RenderNewsPage from '../page/render/RenderNewsPage'
 import { NaverNewsProps } from '../../utils/types/type'
 
 const NewsItem = lazy(() => import('./NewsItem'))

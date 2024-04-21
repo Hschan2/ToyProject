@@ -7,7 +7,7 @@ import {
 import useMoreNews from '../../utils/hooks/useMoreNews'
 import CategoriesNewsFetch from '../fetch/CategoriesNewsFetch'
 import useInfiniteScroll from '../../utils/hooks/useInfiniteScroll'
-import RenderNewsPage from '../RenderNewsPage'
+import RenderNewsPage from '../page/render/RenderNewsPage'
 
 const NewsCategoryItem = lazy(() => import('./NewsCategoryItem'))
 

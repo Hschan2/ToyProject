@@ -1,7 +1,7 @@
 import { lazy } from 'react'
 
 const LazyNewsLists = lazy(() => import('./news/NewsLists'))
-const LazyContents = lazy(() => import('./Contents'))
+const LazyContents = lazy(() => import('./page/render/Contents'))
 
 export default function Home() {
   return (

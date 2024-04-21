@@ -1,9 +1,9 @@
 import React, { Suspense, lazy, useCallback, useRef } from 'react'
-import useVisibility from '../utils/hooks/useVisibility'
-import { CommonNewsListProps } from '../utils/types/type'
-import Skeleton from './loading/Skeleton'
+import useVisibility from '../../../utils/hooks/useVisibility'
+import { CommonNewsListProps } from '../../../utils/types/type'
+import Skeleton from '../../loading/Skeleton'
 
-const Loading = lazy(() => import('./loading/Loading'))
+const Loading = lazy(() => import('../../loading/Loading'))
 
 export default function RenderNewsPage<T>({
   visibleNews,
