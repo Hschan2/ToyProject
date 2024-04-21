@@ -25,7 +25,7 @@ export default function Weather() {
 
         const { name, weather, main } = await response.json()
         setWeatherData({
-          name: name,
+          name,
           description: weather[0].description,
           temp: main.temp,
         })
