@@ -25,6 +25,7 @@ export const UpButton = styled.div`
   cursor: pointer;
   font-size: 1.125rem;
   user-select: none;
+  background-color: ${(props) => props.theme.background};
 
   svg {
     width: 1.125rem;
@@ -94,7 +95,12 @@ export const SearchingButton = styled.button`
   cursor: pointer;
   font-size: 1.125rem;
   user-select: none;
-  background-color: transparent;
+  background-color: ${(props) => props.theme.background};
+
+  svg {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
 
   ${media.tablet`
     font-size: 0.9rem;
@@ -162,7 +168,7 @@ export const DarkModeBtn = styled.button`
   right: 40px;
   cursor: pointer;
   user-select: none;
-  background-color: transparent;
+  background-color: ${(props) => props.theme.background};
 
   svg {
     width: 1.125rem;
@@ -191,7 +197,7 @@ export const SavedNewsBtn = styled.button`
   right: 40px;
   cursor: pointer;
   user-select: none;
-  background-color: transparent;
+  background-color: ${(props) => props.theme.background};
 
   svg {
     width: 1.125rem;
