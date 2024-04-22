@@ -9,14 +9,10 @@ import {
   SearchingButton,
 } from '../../styles/ButtonStyle'
 
-export default function SearchButton({
-  searchRef,
-}: {
-  searchRef: React.MutableRefObject<string>
-}) {
+export default function SearchButton() {
   const [isInputVisible, setInputVisible] = useState(false)
   const [searchTerm, setSearchTerm] = useState<string>('')
-  const ref = searchRef
+  const prevSearchTerm = useRef<string>('')
 
   const router = useRouter()
 
@@ -29,23 +25,34 @@ export default function SearchButton({
   }
 
   const handleSearch = () => {
-    ref.current = searchTerm.trim()
     router.push(`/page/search/search?q=${searchTerm}`, undefined, {
       shallow: true,
     })
     setInputVisible(false)
-    if (typeof window !== 'undefined')
-      localStorage.setItem('searchValue', searchTerm)
+    saveNewsValue()
   }
 
   const searchNews = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      event.preventDefault()
-      if (ref.current !== searchTerm.trim() && searchTerm.trim() !== '') {
-        handleSearch()
-      }
-    }
+    if (event.key !== 'Enter') return
+    event.preventDefault()
+
+    if (!searchTerm.trim()) return
+
+    if (prevSearchTerm.current === searchTerm.trim()) return
+
+    handleSearch()
   }
+
+  const saveNewsValue = () => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('searchValue', searchTerm)
+    }
+    prevSearchTerm.current = searchTerm.trim()
+  }
+
+  useEffect(() => {
+    if (router.pathname !== '/page/search/search') prevSearchTerm.current = ''
+  }, [router.pathname])
 
   return (
     <SearchContainer>

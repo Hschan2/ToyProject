@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic'
-import { useRouter } from 'next/router'
-import React, { Suspense, lazy, useRef } from 'react'
+import React, { Suspense, lazy } from 'react'
 import { useRecoilState } from 'recoil'
 import { ThemeProvider } from 'styled-components'
 import { DARK_MODE_VALUE } from '../../../utils/Constants'
@@ -33,11 +32,7 @@ const DynamicSearchButton = dynamic(
 )
 
 export default function Layout({ children }: { children: JSX.Element }) {
-  const router = useRouter()
-  const searchRef = useRef('')
   const [isDarkMode, setIsDarkMode] = useRecoilState(DARK_MODE_VALUE)
-
-  if (router.pathname !== '/search') searchRef.current = ''
 
   return (
     <ThemeProvider theme={isDarkMode ? DARK_THEME : LIGHT_THEME}>
@@ -47,7 +42,7 @@ export default function Layout({ children }: { children: JSX.Element }) {
         <LazyDarkModeButton />
         <LazySavedNewsButton />
         <LazyMoveUp />
-        <DynamicSearchButton searchRef={searchRef} />
+        <DynamicSearchButton />
         <LazyTimelineScroll />
         <LazyNotificationModal />
       </Suspense>
