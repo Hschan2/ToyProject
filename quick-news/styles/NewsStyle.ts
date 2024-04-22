@@ -16,8 +16,8 @@ const media = {
 
 const cardPadding = {
   desktop: '1.25rem 1rem',
-  tablet: '0.9rem 0.75rem',
-  mobile: '0.625rem 0.5rem',
+  tablet: '0.9rem 1rem',
+  mobile: '0.625rem 1rem',
 }
 
 const newsValueSize = {
@@ -55,7 +55,7 @@ export const Author = styled.p`
   `}
 
   ${media.mobile`
-    font-size: ${newsValueSize.small};
+    font-size: ${newsValueSize.mini};
   `}
 `
 
@@ -95,4 +95,15 @@ export const LimitLineTitle = styled.h3`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  ${media.mobile`
+    max-width: 280px;
+    font-size: ${newsValueSize.large};
+  `}
+`
+
+export const Description = styled.p`
+  ${media.mobile`
+    font-size: ${newsValueSize.small};
+  `}
 `

@@ -72,12 +72,13 @@ export const LinkStyle = styled.div<{ isActive: boolean }>`
 
   ${media.tablet`
     width: 3.75rem;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
   `}
 
   ${media.mobile`
-    width: 2.25rem;
-    font-size: 0.25rem;
+    width: 2rem;
+    font-size: 0.5rem;
+    padding: 0.3rem 0.4rem;
   `}
 `
 
