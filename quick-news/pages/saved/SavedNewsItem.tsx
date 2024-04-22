@@ -6,6 +6,7 @@ import { SaveButton } from '../../styles/ButtonStyle'
 import { DateTime } from '../../styles/InfoStyle'
 import {
   Author,
+  Description,
   LimitLineTitle,
   NewsCard,
   NewsContainer,
@@ -57,7 +58,9 @@ function SavedNewsItem({ article }: StorageNewsList) {
           target="_blank"
           title={`${article.title} 페이지로 이동`}
         >
-          <p dangerouslySetInnerHTML={{ __html: article.description ?? '' }} />
+          <Description
+            dangerouslySetInnerHTML={{ __html: article.description ?? '' }}
+          />
         </Link>
       </NewsCard>
     </NewsContainer>

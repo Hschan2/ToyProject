@@ -4,6 +4,7 @@ import React from 'react'
 import {
   Author,
   DateOfNews,
+  Description,
   LimitLineTitle,
   NewsCard,
   NewsContainer,
@@ -42,7 +43,7 @@ function NewsCategoryItem({ article }: CategoryNewsList) {
           target="_blank"
           title={`${article.title} 페이지로 이동`}
         >
-          <p>{article.description ?? ''}</p>
+          <Description>{article.description ?? ''}</Description>
         </Link>
       </NewsCard>
     </NewsContainer>

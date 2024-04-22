@@ -2,6 +2,7 @@ import moment from 'moment'
 import Link from 'next/link'
 import React from 'react'
 import {
+  Description,
   LimitLineTitle,
   NewsCard,
   NewsContainer,
@@ -46,7 +47,7 @@ function NewsItem({ article }: NaverNewsList) {
           target="_blank"
           title={`${article.title} 페이지로 이동`}
         >
-          <p dangerouslySetInnerHTML={{ __html: article.description }} />
+          <Description dangerouslySetInnerHTML={{ __html: article.description }} />
         </Link>
       </NewsCard>
     </NewsContainer>
