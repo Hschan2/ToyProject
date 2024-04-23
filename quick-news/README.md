@@ -174,6 +174,35 @@ Recoil로 검색 값을 저장해 활용하는 방식에서 NextJS의 Navigation
 
 ![반응형](http://naver.me/G1sU69f9)
 
+```
+Example
+
+const media = {
+  tablet: (styles: TemplateStringsArray, ...interpolations: any[]) => css`
+    @media screen and (max-width: 768px) {
+      ${css(styles, ...interpolations)}
+    }
+  `,
+  mobile: (styles: TemplateStringsArray, ...interpolations: any[]) => css`
+    @media screen and (max-width: 480px) {
+      ${css(styles, ...interpolations)}
+    }
+  `,
+}
+
+export const Style = styled.div`
+  // Web ver.
+
+  ${media.tablet`
+    // Tablet ver.
+  `}
+
+  ${media.mobile`
+    Mobile ver.
+  `}
+`
+```
+
 2차 수정으로 태블릿, 모바일 버전을 고려하여 폰트 크기, 버튼 크기와 위치를 조절하였습니다.
 
 #### 더보기 버튼에서 무한스크롤
