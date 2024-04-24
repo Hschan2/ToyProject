@@ -1,87 +1,116 @@
 .navContainer {
-    display: flex;
-    gap: 10px;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 20px;
-    padding-bottom: 15px;
-    box-shadow: rgba(50, 50, 93, 0.35) 0px 50px 100px -15px,
-                rgba(0, 0, 0, 0.35) 0px 30px 60px -25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5px 40px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.navTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.searchContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  margin-left: auto;
 }
 
 .img {
-    max-width: 80px;
-    margin-bottom: 5px;
+  max-width: 60px;
+  margin-left: 40px;
 }
 
-.navContainer .navMenus {
-    font-weight: 600;
-    font-size: 18px;
+.searchTitle {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.searchInput {
+  padding: 6px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.searchBtn {
+  border: none;
+  background: none;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    color: grey;
+  }
 }
 
 .active {
-    color: tomato;
-    text-decoration: none;
+  color: tomato;
+  text-decoration: none;
 }
 
 .nonActive {
-    color: #000;
-    text-decoration: none;
+  color: #000;
+  text-decoration: none;
 }
 
 .navContainer nav {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .search input {
-    position: relative;
-    width: 200px;
-    height: 80px;
-    display: inline-block;
+  position: relative;
+  width: 200px;
+  height: 80px;
+  display: inline-block;
 }
 
 .search input {
-    height: inherit;
-    padding: 7px 30px 7px 7px;
-    border-radius: 10px;
-    border-color: #000;
-    margin: 0 0 10px 0;
+  height: inherit;
+  padding: 7px 30px 7px 7px;
+  border-radius: 10px;
+  border-color: #000;
+  margin: 0 0 10px 0;
 }
 
 /* Chrome, Opera, Safari */
 .search input::-webkit-input-placeholder {
-    color: #000;
-    text-align: center;
+  color: #000;
+  text-align: center;
 }
 
 /* Firefox 18- */
 .search input:-moz-placeholder {
-    color: #000;
-    text-align: center;
+  color: #000;
+  text-align: center;
 }
 
 /* Firefox 19+ */
 .search input::-moz-placeholder {
-    color: #000;
-    text-align: center;
+  color: #000;
+  text-align: center;
 }
 
 /* IE(Edge) 10+ */
 .search input:-ms-input-placeholder {
-    color: #000;
-    text-align: center;
+  color: #000;
+  text-align: center;
 }
 
 .search button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 30px;
-    height: inherit;
-    background: url(https://img.icons8.com/pastel-glyph/2x/cancel.png) center center no-repeat;
-    background-size: 50%;
-    border: none;
-    outline: none;
-    cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: inherit;
+  background: url(https://img.icons8.com/pastel-glyph/2x/cancel.png) center
+    center no-repeat;
+  background-size: 50%;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
