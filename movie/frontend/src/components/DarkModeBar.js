@@ -11,7 +11,7 @@ function DarkModeBar({ handleChange, isChecked }) {
                 checked={isChecked}
                 onChange={handleChange}
             />
-            <label htmlFor='darkModeCheck'>Dark Mode</label>
+            <label htmlFor='darkModeCheck'></label>
         </div>
     );
 }
