@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import MainContent from './components/MainContent';
+import SlideMenus from './components/SlideMenus';
 
 const Popular = lazy(() => import('./pages/Popular'));
 const HighRated = lazy(() => import('./pages/HighRated'));
@@ -14,12 +15,19 @@ const Loading = lazy(() => import('./components/Loading'));
 const ToTop = lazy(() => import('./components/ToTop'));
 
 function App() {
+  const testData = Array.from({ length: 10 }, (_, index) => ({
+    id: index + 1,
+    title: `Slide ${index + 1}`,
+    description: `This is slide number ${index + 1}`,
+    image: `https://via.placeholder.com/400x200?text=Slide${index + 1}`,
+  }));
 
   return (
     <div>
       <Nav />
       <Suspense fallback={<Loading />}>
         <MainContent />
+        <SlideMenus slides={testData} />
         {/* <Routes>
           <Route path="/" element={<Popular />} />
           <Route path="/HighRated" element={<HighRated />} />
