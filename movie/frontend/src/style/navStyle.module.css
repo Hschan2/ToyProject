@@ -13,6 +13,10 @@
   align-items: center;
 }
 
+[data-theme="dark"] .navTitle {
+  color: #fff;
+}
+
 .searchContainer {
   display: flex;
   flex-direction: row;
