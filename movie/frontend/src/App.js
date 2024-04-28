@@ -1,40 +1,25 @@
 import React, { lazy, Suspense } from 'react';
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import MainContent from './components/MainContent';
-import SlideMenus from './components/SlideMenus';
+import SlideItem from './components/SlideItem';
+import { useRecoilState } from 'recoil';
+import { darkModeState } from './components/constants/Store';
 
-const Popular = lazy(() => import('./pages/Popular'));
-const HighRated = lazy(() => import('./pages/HighRated'));
-const Upcoming = lazy(() => import('./pages/Upcoming'));
-const Detail = lazy(() => import('./pages/Detail'));
-const NowPlaying = lazy(() => import('./pages/NowPlaying'));
 const Loading = lazy(() => import('./components/Loading'));
 const ToTop = lazy(() => import('./components/ToTop'));
 
 function App() {
-  const testData = Array.from({ length: 10 }, (_, index) => ({
-    id: index + 1,
-    title: `Slide ${index + 1}`,
-    description: `This is slide number ${index + 1}`,
-    image: `https://via.placeholder.com/400x200?text=Slide${index + 1}`,
-  }));
+  const [isDarkMode, setIsDarkMode] = useRecoilState(darkModeState);
 
   return (
-    <div>
+    <div data-theme={isDarkMode ? "dark" : "light"}>
       <Nav />
       <Suspense fallback={<Loading />}>
         <MainContent />
-        <SlideMenus slides={testData} />
-        {/* <Routes>
-          <Route path="/" element={<Popular />} />
-          <Route path="/HighRated" element={<HighRated />} />
-          <Route path="/NowPlaying" element={<NowPlaying />} />
-          <Route path="/Upcoming" element={<Upcoming />} />
-          <Route path="/Detail/:mTitle/:id" element={<Detail />} />
-        </Routes> */}
+        <SlideItem title="인기영화" />
+        {/* <SlideMenus /> */}
       </Suspense>
       {/* <Footer /> */}
       <ToTop />
