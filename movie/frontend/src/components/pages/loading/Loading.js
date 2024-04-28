@@ -1,7 +1,7 @@
 import React from 'react'
-import styles from '../style/loading.module.css';
-import LottieFiles from './lottieFiles';
-import { LOADING_LOTTIE } from './constants/LottiefilesSrc';
+import styles from '../../../style/loading.module.css';
+import LottieFiles from '../animation/lottieFiles';
+import { LOADING_LOTTIE } from '../../constants/LottiefilesSrc';
 
 /**
  * 로딩 페이지 컴포넌트

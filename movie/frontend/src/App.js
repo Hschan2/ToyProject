@@ -1,14 +1,13 @@
 import React, { lazy, Suspense } from 'react';
 import './App.css';
-import Nav from './components/Nav';
-import Footer from './components/Footer';
-import MainContent from './components/MainContent';
-import SlideItem from './components/SlideItem';
+import MainContent from './components/pages/content/MainContent';
+import SlideItem from './components/pages/content/SlideItem';
 import { useRecoilState } from 'recoil';
 import { darkModeState } from './components/constants/Store';
+import Nav from './components/pages/nav/Nav';
 
-const Loading = lazy(() => import('./components/Loading'));
-const ToTop = lazy(() => import('./components/ToTop'));
+const Loading = lazy(() => import('./components/pages/loading/Loading'));
+const ToTop = lazy(() => import('./components/pages/scroll/ToTop'));
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useRecoilState(darkModeState);

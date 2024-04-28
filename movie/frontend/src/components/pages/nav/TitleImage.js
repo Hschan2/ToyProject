@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import styles from '../style/navStyle.module.css';
-import LottieFiles from './lottieFiles'
-import { MAIN_BANNER_LOTTIE } from './constants/LottiefilesSrc'
+import styles from '../../../style/navStyle.module.css';
+import LottieFiles from '../animation/lottieFiles'
+import { MAIN_BANNER_LOTTIE } from '../../constants/LottiefilesSrc'
 
 function TitleImage() {
     return (

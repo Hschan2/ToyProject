@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../style/darkmode.module.css';
+import styles from '../../../style/darkmode.module.css';
 
 function DarkModeBar({ handleChange, isChecked }) {
     return (

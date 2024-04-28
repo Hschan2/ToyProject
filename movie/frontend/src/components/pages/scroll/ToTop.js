@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from '../style/toTop.module.css';
+import styles from '../../../style/toTop.module.css';
 
 /**
  * 상단으로 이동 버튼 컴포넌트

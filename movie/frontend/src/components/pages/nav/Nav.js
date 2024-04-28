@@ -1,10 +1,10 @@
 import React from 'react';
-import styles from '../style/navStyle.module.css';
+import styles from '../../../style/navStyle.module.css';
 import TitleImage from './TitleImage';
-import SearchBar from './SearchBar';
-import DarkModeBar from './DarkModeBar';
+import SearchBar from '../search/SearchBar';
+import DarkModeBar from '../darkMode/DarkModeBar';
 import { useRecoilState } from 'recoil';
-import { darkModeState } from './constants/Store';
+import { darkModeState } from '../../constants/Store';
 
 /**
  * 상단 메뉴 컴포넌트

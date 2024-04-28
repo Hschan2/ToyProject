@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../style/navStyle.module.css';
+import styles from '../../../style/navStyle.module.css';
 
 function SearchBar() {
     return (

@@ -1,6 +1,6 @@
 import React from 'react'
 import SlideMenus from './SlideMenus'
-import styles from '../style/content.module.css';
+import styles from '../../../style/content.module.css';
 
 function SlideItem({ title }) {
     return (
