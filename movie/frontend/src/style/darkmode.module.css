@@ -28,10 +28,10 @@
 
 .toggle + label::after {
   content: "";
-  width: 20px;
+  width: 21px;
   height: 18px;
   border-radius: 12px;
-  background-color: grey;
+  background-color: #111;
   position: absolute;
   left: 1;
   margin-left: 4px;
@@ -40,4 +40,12 @@
 
 .toggle:checked + label::after {
   transform: translateX(100%);
+}
+
+[data-theme="dark"] .toggle + label::before {
+  background-color: #111;
+}
+
+[data-theme="dark"] .toggle + label::after {
+  background-color: #fff;
 }
