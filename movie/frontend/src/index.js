@@ -5,14 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 // Routing을 위해 Router 설정
 import { BrowserRouter as Router } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <Router>
-      <App />
-    </Router>
+    <RecoilRoot>
+      <Router>
+        <App />
+      </Router>
+    </RecoilRoot>
   </React.StrictMode>
 );
 
