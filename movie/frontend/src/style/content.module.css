@@ -36,76 +36,92 @@
   text-align: left;
 }
 
-/* Slide Carousel */
-.slideContainer {
+.imageText p {
+  color: #D3D3D3;
+}
+
+/* Carousel */
+.card {
   position: relative;
   width: 100%;
-  margin: 0 auto;
-  overflow: hidden;
+  height: 0;
+  padding-top: 60%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 4px;
 }
 
-.slideContent {
-  display: flex;
+.back {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 1rem;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s ease-in-out;
 }
 
-.slide {
-  flex: 0 0 calc(100% / 6);
-  padding: 0 1px;
-  box-sizing: border-box;
-  text-align: center;
-  transition: transform 0.5s ease;
+.card:hover .back {
+  opacity: 1;
 }
 
-/* 수정된 슬라이드 너비 설정 */
-@media (max-width: 1200px) {
-  .slide {
-    flex: 0 0 calc(100% / 5); /* 1200px 이하에서는 슬라이드를 3개로 설정 */
-  }
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #fff;
 }
 
-@media (max-width: 900px) {
-  .slide {
-    flex: 0 0 calc(100% / 4); /* 900px 이하에서는 슬라이드를 2개로 설정 */
-  }
+.description {
+  font-size: 1rem;
+  color: #fff;
 }
 
-@media (max-width: 600px) {
-  .slide {
-    flex: 0 0 calc(100% / 3); /* 600px 이하에서는 슬라이드를 1개로 설정 */
-  }
+/* Carousel Button */
+.carouselContainer {
+  position: relative;
+  margin-bottom: 20px;
 }
 
-.slideImg {
-  max-width: 100%;
-  height: auto;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.slideImg:hover {
-  transform: scale(1.1);
-}
-
-.prevBtn,
-.nextBtn {
+.carouselButton {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 18px;
-  background: rgba(0, 0, 0, 0.2);
-  color: white;
+  background-color: rgba(255, 255, 255, 0.2);
   border: none;
+  outline: none;
   cursor: pointer;
-  padding: 0;
-  z-index: 1;
-  height: 80%;
-  width: 3%;
+  padding: 8px;
+  height: 100%;
+  transition: background-color 0.3s;
+  z-index: 2;
 }
 
-.prevBtn {
+.carouselButton svg {
+  width: 24px;
+  height: 24px;
+  fill: #fff;
+}
+
+.carouselButton:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.prev {
   left: 0;
 }
 
-.nextBtn {
+.next {
   right: 0;
+}
+
+/* SlideItem */
+.itemTitle {
+  font-weight: bold;
+}
+
+[data-theme="dark"] .itemTitle {
+  color: #fff;
 }
