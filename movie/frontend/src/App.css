@@ -13,10 +13,6 @@ body {
   -ms-overflow-style: none;
 }
 
-[data-theme="dark"] body {
-  background-color: #111;
-}
-
 ::-webkit-scrollbar {
   display: none;
 }
