@@ -1,7 +1,7 @@
 import React from 'react'
-import styles from '../../../style/loading.module.css';
 import LottieFiles from '../animation/lottieFiles';
 import { LOADING_LOTTIE } from '../../constants/LottiefilesSrc';
+import { LoadingContainer, LoadingAnimation, Message } from '../../../style/Loading';
 
 /**
  * 로딩 페이지 컴포넌트
@@ -9,10 +9,10 @@ import { LOADING_LOTTIE } from '../../constants/LottiefilesSrc';
  */
 function Loading() {
   return (
-    <div className={styles.container}>
-      <LottieFiles srcLink={LOADING_LOTTIE} style={styles.loading} />
-      <div className={styles.message}>Loading...</div>
-    </div>
+    <LoadingContainer>
+      <LoadingAnimation srcLink={LOADING_LOTTIE} />
+      <Message>Loading...</Message>
+    </LoadingContainer>
   )
 }
 

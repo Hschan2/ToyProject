@@ -1,19 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import styles from '../../../style/navStyle.module.css';
-import LottieFiles from '../animation/lottieFiles'
 import { MAIN_BANNER_LOTTIE } from '../../constants/LottiefilesSrc'
+import { LogoContainer, LogoAnimation, LottieAnimation, LogoTitle } from '../../../style/Nav';
 
 function TitleImage() {
     return (
-        <div>
-            <Link to="/">
-                <div className={styles.navTitle}>
-                    <LottieFiles srcLink={MAIN_BANNER_LOTTIE} style={styles.img} />
-                    <p className={styles.searchTitle}>MOVIE</p>
-                </div>
-            </Link>
-        </div>
+        <Link to="/">
+            <LogoContainer>
+                <LogoAnimation>
+                    <LottieAnimation srcLink={MAIN_BANNER_LOTTIE} />
+                </LogoAnimation>
+                <LogoTitle>MOVIE</LogoTitle>
+            </LogoContainer>
+        </Link>
     )
 }
 

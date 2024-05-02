@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from '../../../style/toTop.module.css';
+import { UpTopButton } from '../../../style/Scroll';
 
 /**
  * 상단으로 이동 버튼 컴포넌트
@@ -35,9 +35,9 @@ function ToTop() {
     return (
         <div>
             {showTopButton && (
-                <button onClick={scrollToTop} className={styles.toTop}>
+                <UpTopButton onClick={scrollToTop}>
                     &#8679;
-                </button>
+                </UpTopButton>
             )}
         </div>
     )

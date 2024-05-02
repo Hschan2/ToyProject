@@ -1,18 +1,15 @@
 import React from 'react'
-import styles from '../../../style/darkmode.module.css';
+import { DarkModeContainer, Toggle, Label, Indicator, Slider } from '../../../style/DarkMode';
 
 function DarkModeBar({ handleChange, isChecked }) {
     return (
-        <div className={styles.toggleContainer}>
-            <input
-                type="checkbox"
-                id="darkModeCheck"
-                className={styles.toggle}
-                checked={isChecked}
-                onChange={handleChange}
-            />
-            <label htmlFor='darkModeCheck'></label>
-        </div>
+        <DarkModeContainer>
+            <Toggle id="darkModeCheck" checked={isChecked} onChange={handleChange} />
+            <Label htmlFor="darkModeCheck">
+                <Indicator />
+                <Slider checked={isChecked} />
+            </Label>
+        </DarkModeContainer>
     );
 }
 

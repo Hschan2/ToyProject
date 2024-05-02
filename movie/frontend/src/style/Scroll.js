@@ -1,4 +1,6 @@
-.toTop {
+import { styled } from "styled-components";
+
+export const UpTopButton = styled.button`
     position: fixed;
     bottom: 50px;
     right: 50px;
@@ -11,4 +13,4 @@
     border-radius: 50%;
     border: none;
     box-shadow: 0 5px 10px #ccc;
-}
+`

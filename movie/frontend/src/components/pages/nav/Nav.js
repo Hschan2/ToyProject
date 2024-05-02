@@ -1,10 +1,10 @@
 import React from 'react';
-import styles from '../../../style/navStyle.module.css';
 import TitleImage from './TitleImage';
 import SearchBar from '../search/SearchBar';
 import DarkModeBar from '../darkMode/DarkModeBar';
 import { useRecoilState } from 'recoil';
 import { darkModeState } from '../../constants/Store';
+import { NavContainer } from '../../../style/Nav';
 
 /**
  * 상단 메뉴 컴포넌트
@@ -14,11 +14,11 @@ function Nav() {
     const [isDarkMode, setIsDarkMode] = useRecoilState(darkModeState);
 
     return (
-        <div className={styles.navContainer}>
+        <NavContainer>
             <TitleImage />
             <SearchBar />
             <DarkModeBar isChecked={isDarkMode} handleChange={() => setIsDarkMode(prev => !prev)} />
-        </div>
+        </NavContainer>
     )
 }
 

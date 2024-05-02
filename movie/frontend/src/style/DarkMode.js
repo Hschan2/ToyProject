@@ -1,34 +1,36 @@
-.toggleContainer {
+import { styled } from "styled-components";
+
+export const DarkModeContainer = styled.div`
   margin-bottom: 22px;
   margin-left: 12px;
-}
+`;
 
-.toggle {
+export const Toggle = styled.input.attrs({ type: 'checkbox' })`
   visibility: hidden;
-}
+`;
 
-.toggle + label {
+export const Label = styled.label`
   display: flex;
   align-items: center;
   font-size: 16px;
   cursor: pointer;
   color: black;
-}
+`;
 
-.toggle + label::before {
+export const Indicator = styled.div`
   content: "";
   width: 48px;
   height: 24px;
   border-radius: 12px;
-  border: 1px solid grey;
-  background-color: #ffffff;
+  border: 1px solid #111;
+  background-color: #FFF;
   margin-right: 4px;
   transition: 250ms ease-in-out;
-}
+`;
 
-.toggle + label::after {
+export const Slider = styled.div`
   content: "";
-  width: 21px;
+  width: 20px;
   height: 18px;
   border-radius: 12px;
   background-color: #111;
@@ -36,16 +38,5 @@
   left: 1;
   margin-left: 4px;
   transition: 250ms ease-in-out;
-}
-
-.toggle:checked + label::after {
-  transform: translateX(100%);
-}
-
-[data-theme="dark"] .toggle + label::before {
-  background-color: #111;
-}
-
-[data-theme="dark"] .toggle + label::after {
-  background-color: #fff;
-}
+  transform: ${props => props.checked ? 'translateX(100%)' : 'translateX(0)'};
+`;

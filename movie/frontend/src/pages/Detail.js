@@ -4,6 +4,7 @@ import GetMovieDetail from '../components/GetMovieDetail';
 import Loading from '../components/Loading';
 import SEO from '../components/SEO';
 import styles from '../style/detail.module.css';
+import { ContainerUnderLine, DetailContainer, DetailImage, DetailInfoContainer, DetailOverview } from '../style/DetailPage';
 
 /**
  * 상세 페이지 출력 컴포넌트
@@ -33,7 +34,7 @@ function Detail() {
     } catch (err) {
       console.log(`${GetMovieDetail} Error: `, err);
     }
-    
+
   };
 
   return (
@@ -42,18 +43,18 @@ function Detail() {
       {!detailData ? (
         <Loading />
       ) : (
-        <div className={styles.container}>
-          <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} className={styles.img} alt={`${title}`} />
+        <DetailContainer>
+          <DetailImage src={`https://image.tmdb.org/t/p/w500/${poster_path}`} alt={`${title}`} />
           <h2>{title || "로딩중..."}</h2>
-          <div className={styles.basicInfo}>
+          <DetailInfoContainer>
             <p>{productCompanyText?.join(', ')}</p>
             <p>{genreText?.join(', ')}</p>
             <p>{runtime} 분</p>
             <p>({vote_average?.toFixed(1)}점 / 10점)</p>
-          </div>
-          <div className={styles.borderBottom}></div>
-          <div className={styles.overview}>{overview}</div>
-        </div>
+          </DetailInfoContainer>
+          <ContainerUnderLine />
+          <DetailOverview>{overview}</DetailOverview>
+        </DetailContainer>
       )}
     </div>
   )
