@@ -6,24 +6,17 @@ import { useRecoilState } from 'recoil';
 import { darkModeState } from './components/constants/Store';
 import Nav from './components/pages/nav/Nav';
 import { ThemeProvider } from 'styled-components';
-import { GlobalStyles } from '@mui/material';
+import { DARK_THEME, LIGHT_THEME } from './style/Common';
+import GlobalStyles from './style/GlobalStyles';
 
 const Loading = lazy(() => import('./components/pages/loading/Loading'));
 const ToTop = lazy(() => import('./components/pages/scroll/ToTop'));
-
-const lightTheme = {
-  body: '#FFF',
-}
-
-const darkTheme = {
-  body: '#111',
-}
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useRecoilState(darkModeState);
 
   return (
-    <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+    <ThemeProvider theme={isDarkMode ? DARK_THEME : LIGHT_THEME}>
       <>
         <GlobalStyles />
         <Nav />

@@ -75,3 +75,13 @@ export const CarouselButton = styled.button`
         right: 0;
     }
 `
+
+// SlideItem
+export const SlideItemContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
+export const ItemTitle = styled.h3`
+    color: ${(props) => props.theme.text};
+`

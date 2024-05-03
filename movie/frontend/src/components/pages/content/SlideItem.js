@@ -1,12 +1,13 @@
 import React from 'react'
 import SlideMenus from './SlideMenus'
+import { ItemTitle, SlideItemContainer } from '../../../style/Carousel'
 
 function SlideItem({ title }) {
     return (
-        <div>
-            <h3>{title}</h3>
+        <SlideItemContainer>
+            <ItemTitle>{title}</ItemTitle>
             <SlideMenus />
-        </div>
+        </SlideItemContainer>
     )
 }
 

@@ -29,6 +29,7 @@ export const LottieAnimation = styled(LottieFiles)`
 export const LogoTitle = styled.p`
     font-size: 24px;
     font-weight: bold;
+    color: ${(props) => props.theme.text}
 `
 
 // Search
@@ -40,22 +41,23 @@ export const SearchContainer = styled.div`
 
 export const SearchInput = styled.input`
     padding: 10px;
-    border: 1px solid #000;
+    border: 1px solid ${(props) => props.theme.border};
     border-radius: 8px 0 0 8px;
     background-color: transparent;
 `
 
 export const SearchButton = styled.button`
-    border-top: 1px solid #000;
-    border-right: 1px solid #000;
-    border-bottom: 1px solid #000;
+    border-top: 1px solid ${(props) => props.theme.border};
+    border-right: 1px solid ${(props) => props.theme.border};
+    border-bottom: 1px solid ${(props) => props.theme.border};
     border-left: none;
     border-radius: 0 8px 8px 0;
-    background: none;
+    background: ${(props) => props.theme.lightBackground};
+    cursor: pointer;
 
     svg {
         width: 20px;
         height: 20px;
-        color: #000;
+        color: ${(props) => props.theme.text};
     }
 `

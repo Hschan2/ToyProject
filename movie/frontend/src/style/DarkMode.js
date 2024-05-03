@@ -22,8 +22,8 @@ export const Indicator = styled.div`
   width: 48px;
   height: 24px;
   border-radius: 12px;
-  border: 1px solid #111;
-  background-color: #FFF;
+  border: 1px solid ${(props) => props.theme.border};
+  background-color: ${(props) => props.theme.background};
   margin-right: 4px;
   transition: 250ms ease-in-out;
 `;
@@ -33,7 +33,7 @@ export const Slider = styled.div`
   width: 20px;
   height: 18px;
   border-radius: 12px;
-  background-color: #111;
+  background-color: ${(props) => props.theme.text};
   position: absolute;
   left: 1;
   margin-left: 4px;
