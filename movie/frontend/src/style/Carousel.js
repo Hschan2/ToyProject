@@ -3,23 +3,33 @@ import { styled } from "styled-components";
 export const SlideCard = styled.article`
     position: relative;
     width: 100%;
-    height: 0;
-    padding-top: 60%;
-    background-size: cover;
-    background-repeat: no-repeat;
+    height: auto;
     border-radius: 4px;
+    overflow: hidden;
+`
+
+export const SlideImage = styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 `
 
 export const ContentCard = styled.div`
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
     right: 0;
+    bottom: 0;
     background: rgba(0, 0, 0, 0.7);
     padding: 1rem;
     border-radius: 4px;
     opacity: 0;
     transition: opacity 0.3s, transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 
     ${SlideCard}:hover & {
         opacity: 1;
@@ -28,14 +38,15 @@ export const ContentCard = styled.div`
 
 export const CardTitle = styled.h1`
     font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
+    font-weight: 600;
     color: #fff;
+    margin: 0;
 `
 
 export const CardDescription = styled.p`
     font-size: 1rem;
     color: #fff;
+    margin: 0;
 `
 
 // Carousel

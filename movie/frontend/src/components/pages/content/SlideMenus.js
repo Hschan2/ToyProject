@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { CardDescription, CardTitle, CarouselButton, CarouselContainer, ContentCard, SlideCard } from '../../../style/Carousel';
+import { CardDescription, CardTitle, CarouselButton, CarouselContainer, ContentCard, SlideCard, SlideImage } from '../../../style/Carousel';
 
 function SlideMenus() {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -88,7 +88,8 @@ function SlideMenus() {
 export default SlideMenus
 
 const Slide = ({ image, title, description }) => (
-    <SlideCard style={{ backgroundImage: `url(${image})` }}>
+    <SlideCard>
+        <SlideImage src={image} alt='Movie Image' loading='lazy' />
         <ContentCard>
             <CardTitle>{title}</CardTitle>
             <CardDescription>{description}</CardDescription>
