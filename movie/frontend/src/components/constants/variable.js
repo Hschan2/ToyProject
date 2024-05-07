@@ -1,0 +1,1 @@
+export const EMPTY_BACKGROUND_IMAGE = "https://t3.ftcdn.net/jpg/02/44/17/82/360_F_244178265_NP4S8WdlZRGYVSkVkxhtiDonSfQPAbyO.jpg";
