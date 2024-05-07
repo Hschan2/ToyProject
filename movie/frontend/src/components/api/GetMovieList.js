@@ -12,6 +12,7 @@ async function GetMovieList(apiUrl) {
     return getData.data.results;
   }
   catch (e) {
+    if (e) throw new Error(e.message);
     console.log(`MovieList `, e);
   }
 }
