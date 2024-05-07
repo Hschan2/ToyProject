@@ -1,49 +1,44 @@
 package com.moive.movie.controller;
 
-import com.moive.movie.model.MovieApiResponse;
+import com.moive.movie.model.MovieDto;
 import com.moive.movie.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/api/movies")
 public class MovieController {
-    private final MovieService movieService;
 
     @Autowired
-    public MovieController(MovieService movieService) {
-        this.movieService = movieService;
-    }
+    private MovieService movieService;
 
-    @GetMapping("/api/popular")
-    public MovieApiResponse popular() {
+    @GetMapping("/popular")
+    public MovieDto getPopularMovies() {
         return movieService.getPopularMovies();
     }
 
-    @GetMapping("/api/highRated")
-    public MovieApiResponse highRated() {
+    @GetMapping("/highRated")
+    public MovieDto getHighRatedMovies() {
         return movieService.getHighRatedMovies();
     }
 
-    @GetMapping("/api/now_playing")
-    public MovieApiResponse nowPlaying() {
+    @GetMapping("/now_playing")
+    public MovieDto getNowPlayingMovies() {
         return movieService.getNowPlayingMovies();
     }
 
-    @GetMapping("/api/upcoming")
-    public MovieApiResponse upcoming() {
+    @GetMapping("/upcoming")
+    public MovieDto getUpcomingMovies() {
         return movieService.getUpcomingMovies();
     }
 
-    @GetMapping("/api/detail/{id}")
-    public MovieApiResponse detail(@PathVariable("id") String id) {
+    @GetMapping("/detail/{id}")
+    public MovieDto getMovieDetail(@PathVariable int id) {
         return movieService.getMovieDetail(id);
     }
 
-    @GetMapping("/api/search")
-    public MovieApiResponse search(@RequestParam String searchText) {
+    @GetMapping("/search")
+    public MovieDto search(@RequestParam String searchText) {
         return movieService.searchMovies(searchText);
     }
 }
