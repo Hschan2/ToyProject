@@ -16,7 +16,7 @@ function Upcoming() {
   }, []);
 
   const getUpcomingData = async () => {
-    const getUpcomingLists = await GetMovieList('/api/upcoming');
+    const getUpcomingLists = await GetMovieList('/upcoming');
     setUpcomingData(getUpcomingLists);
   }
 

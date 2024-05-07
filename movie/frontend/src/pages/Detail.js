@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 import GetMovieDetail from '../components/GetMovieDetail';
 import Loading from '../components/Loading';
 import SEO from '../components/SEO';
-import styles from '../style/detail.module.css';
 import { ContainerUnderLine, DetailContainer, DetailImage, DetailInfoContainer, DetailOverview } from '../style/DetailPage';
 
 /**
@@ -29,7 +28,7 @@ function Detail() {
 
   const getDetailData = async () => {
     try {
-      const getData = await GetMovieDetail(`/api/detail/${id}`);
+      const getData = await GetMovieDetail(`/detail/${id}`);
       setDetailData(getData);
     } catch (err) {
       console.log(`${GetMovieDetail} Error: `, err);

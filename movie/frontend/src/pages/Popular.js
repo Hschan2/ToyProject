@@ -16,7 +16,7 @@ function Popular() {
   }, []);
 
   const getPopularData = async () => {
-    const getPopularLists = await GetMovieList('/api/popular');
+    const getPopularLists = await GetMovieList('/popular');
     setPopularData(getPopularLists);
   }
 

@@ -16,7 +16,7 @@ function NowPlaying() {
   }, []);
 
   const getNowPlayingData = async () => {
-    const getNowPlayingLists = await GetMovieList('/api/now_playing');
+    const getNowPlayingLists = await GetMovieList('/now_playing');
     setNowPlayingData(getNowPlayingLists);
   };
 
