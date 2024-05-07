@@ -66,7 +66,7 @@ export const CarouselButton = styled.button`
     padding: 8px;
     height: 100%;
     transition: background-color 0.3s;
-    z-index: 2;
+    z-index: 999;
 
     &.hover {
         background-color: rgba(255, 255, 255, 0.5);
@@ -95,4 +95,6 @@ export const SlideItemContainer = styled.div`
 
 export const ItemTitle = styled.h3`
     color: ${(props) => props.theme.text};
+    font-weight: 600;
+    font-style: normal;
 `

@@ -6,7 +6,7 @@ export const NavContainer = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    padding: 0 40px;
+    padding: 0 20px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 `
 
@@ -27,8 +27,9 @@ export const LottieAnimation = styled(LottieFiles)`
 `
 
 export const LogoTitle = styled.p`
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 26px;
+    font-weight: 600;
+    font-style: normal;
     color: ${(props) => props.theme.text}
 `
 

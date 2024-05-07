@@ -38,5 +38,5 @@ export const TextContainer = styled.div`
 `
 
 export const Description = styled.p`
-    color: #D3D3D3;
+    color: #DDD;
 `
