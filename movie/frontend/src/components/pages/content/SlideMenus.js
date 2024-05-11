@@ -2,18 +2,23 @@ import React, { useRef, useState } from 'react'
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { CardDescription, CardTitle, CarouselButton, CarouselContainer, ContentCard, SlideCard, SlideImage } from '../../../style/Carousel';
+import { CardTitle, CarouselButton, CarouselContainer, ContentCard, SlideCard, SlideImage } from '../../../style/Carousel';
 import { EMPTY_BACKGROUND_IMAGE } from '../../constants/variable';
-import GetData from '../../api/GetData';
+import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import QueryMovie from '../../api/QueryMovie';
 
-function SlideMenus() {
+function SlideMenus({ apiUrl }) {
     const [currentSlide, setCurrentSlide] = useState(0);
+    const { status, data, error, isFetching } = useQuery({
+        queryKey: ['movieLists', apiUrl],
+        queryFn: () => QueryMovie(apiUrl)
+    });
     const sliderRef = useRef(null);
-    const getMovieData = GetData();
 
     const settings = {
-        dots: false,
-        infinite: false,
+        dots: true,
+        infinite: true,
         speed: 300,
         slidesToShow: 6.15,
         slidesToScroll: 2,
@@ -59,36 +64,37 @@ function SlideMenus() {
     return (
         <CarouselContainer>
             <Slider ref={sliderRef} {...settings} afterChange={handleSlideChange}>
-                {getMovieData.map((slide, index) => (
+                {Array.isArray(data) && data?.map((slide, index) => (
                     <Slide key={index} {...slide} />
                 ))}
             </Slider>
-            {currentSlide !== 0 && (
-                <CarouselButton className="prev" onClick={handlePrevious}>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-                        <path fillRule="evenodd" d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z" clipRule="evenodd" />
-                    </svg>
-                </CarouselButton>
-            )}
-            {currentSlide !== getMovieData.length - 1 && (
-                <CarouselButton className="right" onClick={handleNext}>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-                        <path fillRule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clipRule="evenodd" />
-                    </svg>
-                </CarouselButton>
-            )}
+            <CarouselButton className="prev" onClick={handlePrevious}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                    <path fillRule="evenodd" d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z" clipRule="evenodd" />
+                </svg>
+            </CarouselButton>
+            <CarouselButton className="right" onClick={handleNext}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                    <path fillRule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clipRule="evenodd" />
+                </svg>
+            </CarouselButton>
         </CarouselContainer>
     );
 };
 
 export default SlideMenus
 
-const Slide = ({ image, title, description }) => (
-    <SlideCard>
-        <SlideImage src={image ?? EMPTY_BACKGROUND_IMAGE} alt='Movie Image' loading='lazy' />
-        <ContentCard>
-            <CardTitle>{title}</CardTitle>
-            <CardDescription>{description}</CardDescription>
-        </ContentCard>
-    </SlideCard>
+const Slide = ({ poster_path, title, id }) => (
+    <Link
+        to={`/Detail/${title}/${id}`}
+        state={{ mTitle: title, id: id }}
+        key={id}
+    >
+        <SlideCard>
+            <SlideImage src={`https://image.tmdb.org/t/p/w500/${poster_path}` ?? EMPTY_BACKGROUND_IMAGE} alt='Movie Image' loading='lazy' />
+            <ContentCard>
+                <CardTitle>{title}</CardTitle>
+            </ContentCard>
+        </SlideCard>
+    </Link>
 );
