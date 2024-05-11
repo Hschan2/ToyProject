@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Random;
+
 @Service
 public class MovieService implements IMovieService {
 
@@ -43,7 +45,7 @@ public class MovieService implements IMovieService {
 
     @Override
     public MovieDto getUpcomingMovies() {
-        final String url = API_URL + "/movie/upcoming?api_key=" + apiKey;
+        final String url = API_URL + "/movie/upcoming?api_key=" + apiKey + "&language=ko-KR";;
         MovieDto movieDto = restTemplate.getForObject(url, MovieDto.class);
 
         return movieDto;
@@ -60,6 +62,16 @@ public class MovieService implements IMovieService {
     @Override
     public MovieDto searchMovies(String searchText) {
         final String url = API_URL + "/search/movie?api_key=" + apiKey + "&query=" + searchText + "&language=ko-KR";;
+        MovieDto movieDto = restTemplate.getForObject(url, MovieDto.class);
+
+        return movieDto;
+    }
+
+    @Override
+    public MovieDto getMovieRecommendation() {
+        Random random = new Random();
+        int movie_id = random.nextInt((11986 - 2) + 1) + 2;
+        final String url = API_URL + "/movie/" + movie_id+ "/recommendations?api_key=" + apiKey + "&language=ko-KR&page=1";;
         MovieDto movieDto = restTemplate.getForObject(url, MovieDto.class);
 
         return movieDto;

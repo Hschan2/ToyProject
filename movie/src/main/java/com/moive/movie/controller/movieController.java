@@ -41,4 +41,9 @@ public class MovieController {
     public MovieDto search(@RequestParam String searchText) {
         return movieService.searchMovies(searchText);
     }
+
+    @GetMapping("/recommendation")
+    public MovieDto getMovieRecommendation() {
+        return movieService.getMovieRecommendation();
+    }
 }

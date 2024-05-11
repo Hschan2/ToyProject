@@ -9,4 +9,5 @@ public interface IMovieService {
     MovieDto getNowPlayingMovies();
     MovieDto getUpcomingMovies();
     MovieDto getMovieDetail(int id);
+    MovieDto getMovieRecommendation();
 }
