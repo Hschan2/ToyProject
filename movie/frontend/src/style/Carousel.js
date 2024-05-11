@@ -12,6 +12,11 @@ export const SlideImage = styled.img`
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.3s;
+
+    ${SlideCard}:hover & {
+        transform: scale(1.1);
+    }
 `
 
 export const ContentCard = styled.div`
@@ -30,6 +35,7 @@ export const ContentCard = styled.div`
     align-items: center;
     justify-content: center;
     text-align: center;
+    gap: 10px;
 
     ${SlideCard}:hover & {
         opacity: 1;
@@ -37,14 +43,8 @@ export const ContentCard = styled.div`
 `
 
 export const CardTitle = styled.h1`
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #fff;
-    margin: 0;
-`
-
-export const CardDescription = styled.p`
     font-size: 1rem;
+    font-weight: 600;
     color: #fff;
     margin: 0;
 `
@@ -59,7 +59,7 @@ export const CarouselButton = styled.button`
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(0, 0, 0, 0.3);
     border: none;
     outline: none;
     cursor: pointer;
@@ -68,14 +68,19 @@ export const CarouselButton = styled.button`
     transition: background-color 0.3s;
     z-index: 999;
 
-    &.hover {
-        background-color: rgba(255, 255, 255, 0.5);
-    }
-
     svg {
         width: 24px;
         height: 24px;
         fill: #fff;
+        visibility: hidden;
+    }
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+
+        svg {
+            visibility: visible;
+        }
     }
 
     &.prev {
@@ -91,6 +96,7 @@ export const CarouselButton = styled.button`
 export const SlideItemContainer = styled.div`
     display: flex;
     flex-direction: column;
+    margin: 14px 0;
 `
 
 export const ItemTitle = styled.h3`
