@@ -2006,6 +2006,18 @@
   dependencies:
     tslib "^2.4.0"
 
+"@tanstack/query-core@5.35.5":
+  version "5.35.5"
+  resolved "https://registry.npmjs.org/@tanstack/query-core/-/query-core-5.35.5.tgz"
+  integrity sha512-OMWvlEqG01RfGj+XZb/piDzPp0eZkkHWSDHt2LvE/fd1zWburP/xwm0ghk6Iv8cuPlP+ACFkZviKXK0OVt6lhg==
+
+"@tanstack/react-query@^5.35.5":
+  version "5.35.5"
+  resolved "https://registry.npmjs.org/@tanstack/react-query/-/react-query-5.35.5.tgz"
+  integrity sha512-sppX7L+PVn5GBV3In6zzj0zcKfnZRKhXbX1MfIfKo1OjIq2GMaopvAFOP0x1bRYTUk2ikrdYcQYOozX7PWkb8A==
+  dependencies:
+    "@tanstack/query-core" "5.35.5"
+
 "@testing-library/dom@^8.0.0", "@testing-library/dom@>=7.21.4":
   version "8.20.0"
   resolved "https://registry.npmjs.org/@testing-library/dom/-/dom-8.20.0.tgz"
