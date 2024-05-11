@@ -8,6 +8,9 @@ import Nav from './components/pages/nav/Nav';
 import { ThemeProvider } from 'styled-components';
 import { DARK_THEME, LIGHT_THEME } from './style/Common';
 import GlobalStyles from './style/GlobalStyles';
+import { API_URL } from './constants/api';
+import Footer from './components/pages/footer/Footer';
+import { ContentContainer } from './style/Scroll';
 
 const Loading = lazy(() => import('./components/pages/loading/Loading'));
 const ToTop = lazy(() => import('./components/pages/scroll/ToTop'));
@@ -20,12 +23,15 @@ function App() {
       <>
         <GlobalStyles />
         <Nav />
-        <Suspense fallback={<Loading />}>
-          <MainContent />
-          <SlideItem title="인기영화" />
-          {/* <SlideMenus /> */}
-        </Suspense>
-        {/* <Footer /> */}
+        <ContentContainer>
+          <Suspense fallback={<Loading />}>
+            <MainContent />
+            {API_URL?.map((categories) => {
+              return <SlideItem key={categories.id} {...categories} />
+            })}
+          </Suspense>
+        </ContentContainer>
+        <Footer />
         <ToTop />
       </>
     </ThemeProvider>
