@@ -2,11 +2,11 @@ import React from 'react'
 import SlideMenus from './SlideMenus'
 import { ItemTitle, SlideItemContainer } from '../../../style/Carousel'
 
-function SlideItem({ title }) {
+function SlideItem({ title, url }) {
     return (
         <SlideItemContainer>
             <ItemTitle>{title}</ItemTitle>
-            <SlideMenus />
+            <SlideMenus apiUrl={url}/>
         </SlideItemContainer>
     )
 }
