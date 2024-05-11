@@ -30,7 +30,7 @@ export const LogoTitle = styled.p`
     font-size: 26px;
     font-weight: 600;
     font-style: normal;
-    color: ${(props) => props.theme.text}
+    color: tomato;
 `
 
 // Search
