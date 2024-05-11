@@ -1,18 +1,18 @@
 import { styled } from "styled-components";
 
 export const FooterContainer = styled.div`
+    height: 30px;
     position: relative;
-    min-height: 100%;
-    padding-bottom: 70px;
+    transform: translateY(0%);
+    border-top: 1px solid #D7D7D7;
 `
 
-export const Footer = styled.footer`
-    position: absolute;
-    bottom: 0;
-    padding: 15px 0;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    color: rgba(0, 0, 0, 0.5);
-    font-size: 0.7rem;
+export const FooterContents = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #BFBFBF;
+    font-size: 12px;
+    padding: 10px 0;
 `

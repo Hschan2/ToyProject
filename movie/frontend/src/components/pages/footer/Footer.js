@@ -1,5 +1,5 @@
 import React from 'react'
-import { FooterContainer, Footer } from '../../../style/Footer';
+import { FooterContainer, FooterContents } from '../../../style/Footer';
 
 /**
  * 페이지 하단 컨텐츠 컴포넌트
@@ -12,10 +12,10 @@ function Footer() {
 
     return (
         <FooterContainer>
-            <Footer>
-                <p>It was Developed with React and Spring</p>
-                <p>Copyright &copy; {getCurrentYear()}</p>
-            </Footer>
+            <FooterContents>
+                <span>Developed with React and Spring Boot.</span>
+                <span>Copyright &copy; {getCurrentYear()} by Hong</span>
+            </FooterContents>
         </FooterContainer>
     )
 }
