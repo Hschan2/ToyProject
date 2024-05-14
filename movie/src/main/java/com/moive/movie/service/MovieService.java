@@ -11,6 +11,8 @@ import java.util.Random;
 @Service
 public class MovieService implements IMovieService {
 
+    private Random random = new Random();
+    private int movie_id = random.nextInt((11986 - 2) + 1) + 2;
     private static final String API_URL = "https://api.themoviedb.org/3";
 
     @Autowired
@@ -69,8 +71,6 @@ public class MovieService implements IMovieService {
 
     @Override
     public MovieDto getMovieRecommendation() {
-        Random random = new Random();
-        int movie_id = random.nextInt((11986 - 2) + 1) + 2;
         final String url = API_URL + "/movie/" + movie_id+ "/recommendations?api_key=" + apiKey + "&language=ko-KR&page=1";;
         MovieDto movieDto = restTemplate.getForObject(url, MovieDto.class);
 
