@@ -84,3 +84,64 @@ export const SmallImage = styled.img`
     height: auto;
     z-index: 2;
 `
+
+// Test
+export const Background = styled.div`
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+
+  .Left {
+    top: 50%;
+    left: 5%;
+    transform: translate(-50%, -50%);
+    color: rgba(235, 235, 235, 0.8);
+
+    &:hover {
+      color: rgb(235, 235, 235);
+    }
+  }
+  .Right {
+    top: 50%;
+    left: 95%;
+    transform: translate(-50%, -50%);
+    color: rgba(235, 235, 235, 0.8);
+
+    &:hover {
+      color: rgb(235, 235, 235);
+    }
+  }
+`;
+
+/* bg img slider */
+export const SlideBtn = styled.div`
+  z-index: 100;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  svg {
+    width: 50px;
+    height: 50px;
+  }
+`;
+
+export const ImgContainer = styled.div`
+  display: flex;
+  overflow: hidden;
+`;
+
+export const ImgBox = styled.div`
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+`;
