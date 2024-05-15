@@ -1,12 +1,24 @@
 import axios from 'axios';
+import axiosRetry from 'axios-retry';
 import React from 'react'
+
+axiosRetry(axios, {
+  retries: 3,
+  retryDelay: (retryCount) => {
+    return axiosRetry.exponentialDelay(retryCount);
+  },
+  retryCondition: (error) => {
+    return axiosRetry.isNetworkOrIdempotentRequestError(error) || error.response?.status >= 500;
+  },
+})
 
 const QueryMovie = async (apiUrl) => {
   try {
       const response = await axios.get(apiUrl);
       return response.data.results;
   } catch (error) {
-      throw new Error(`에러 발생: ${error}`);
+    console.error(`에러 발생: ${error}`);
+    return [];
   }
 }
 
