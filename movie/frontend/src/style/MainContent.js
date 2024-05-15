@@ -3,13 +3,13 @@ import { styled } from "styled-components";
 export const Container = styled.div`
     width: 100%;
     height: 400px;
-    background-color: aliceblue;
+    background-color: transparent;
 `
 
 export const ImageContainer = styled.div`
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 400px;
     overflow: hidden;
 `
 
@@ -35,7 +35,7 @@ export const BackImage = styled.img`
 export const TextContainer = styled.div`
     position: absolute;
     top: 50%;
-    left: 300px;
+    left: 270px;
     transform: translate(-50%, -50%);
     color: white;
     text-align: left;
@@ -85,63 +85,22 @@ export const SmallImage = styled.img`
     z-index: 2;
 `
 
-// Test
-export const Background = styled.div`
-  width: 100%;
-  height: 400px;
-  overflow: hidden;
-  position: relative;
-
-  .Left {
-    top: 50%;
-    left: 5%;
-    transform: translate(-50%, -50%);
-    color: rgba(235, 235, 235, 0.8);
-
-    &:hover {
-      color: rgb(235, 235, 235);
+export const SliderContainer = styled.div`
+    .slick-dots {
+        bottom: 16px;
     }
-  }
-  .Right {
-    top: 50%;
-    left: 95%;
-    transform: translate(-50%, -50%);
-    color: rgba(235, 235, 235, 0.8);
 
-    &:hover {
-      color: rgb(235, 235, 235);
+    .slick-dots li button:before {
+        font-size: 12px;
+        color: #FFF;
+        width: 24px;
+        height: 8px;
+        content: '';
+        display: inline-block;
+        background-color: #FFF;
     }
-  }
-`;
 
-/* bg img slider */
-export const SlideBtn = styled.div`
-  z-index: 100;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-
-  svg {
-    width: 50px;
-    height: 50px;
-  }
-`;
-
-export const ImgContainer = styled.div`
-  display: flex;
-  overflow: hidden;
-`;
-
-export const ImgBox = styled.div`
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-
-  img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
+    .slick-dots li.slick-active button:before {
+        background-color: #FFF;
+    }
 `;
