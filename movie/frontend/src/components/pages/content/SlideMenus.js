@@ -86,7 +86,7 @@ export default SlideMenus
 
 const Slide = ({ poster_path, title, id }) => (
     <Link
-        to={`/Detail/${title}/${id}`}
+        to={`/detail/${title}/${id}`}
         state={{ mTitle: title, id: id }}
         key={id}
     >
