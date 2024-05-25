@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import styles from '../style/listStyle.module.css';
+import { Container, MovieBox, MovieImage, MovieTitle } from '../../../style/Contents';
 
 /**
  * 영화 목록 출력 페이지 컴포넌트
@@ -9,20 +9,20 @@ import styles from '../style/listStyle.module.css';
  */
 function MovieLists({ movieList }) {
   return (
-    <div className={styles.container}>
+    <Container>
         {movieList?.map((movie) => (
           <Link
             to={`/Detail/${movie.original_title}/${movie.id}`}
             state={{ mTitle: movie.original_title, id: movie.id }}
             key={movie.id}
           >
-            <div className={styles.movie}>
-              <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} loading='lazy' alt={movie.title} />
-              <h4>{movie.title}</h4>
-            </div>
+            <MovieBox>
+              <MovieImage src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} loading='lazy' alt={movie.title} />
+              <MovieTitle>{movie.title}</MovieTitle>
+            </MovieBox>
           </Link>
         ))}
-    </div>
+    </Container>
   )
 }
 
