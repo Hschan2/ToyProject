@@ -14,8 +14,18 @@ axiosRetry(axios, {
 
 const QueryMovie = async (apiUrl) => {
   try {
-      const response = await axios.get(apiUrl);
-      return response.data.results;
+    const response = await axios.get(apiUrl);
+    return response.data.results;
+  } catch (error) {
+    console.error(`에러 발생: ${error}`);
+    return [];
+  }
+}
+
+export const QuerySearchMovie = async (query) => {
+  try {
+    const response = await axios.get(`http://localhost:8080/api/movies/search?searchText=${query}`);
+    return response.data.results;
   } catch (error) {
     console.error(`에러 발생: ${error}`);
     return [];
