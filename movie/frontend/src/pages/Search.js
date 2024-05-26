@@ -4,6 +4,7 @@ import SEO from '../components/pages/seo/SEO';
 import { QuerySearchMovie } from '../components/api/QueryMovie';
 import { useQuery } from '@tanstack/react-query';
 import MovieLists from '../components/pages/content/MovieLists';
+import Loading from '../components/pages/loading/Loading';
 
 function Search() {
     const location = useLocation();
@@ -17,7 +18,7 @@ function Search() {
     });
 
     if (status === 'loading' || isFetching) {
-        return <div>Loading...</div>;
+        return <Loading/>;
     }
 
     if (status === 'error') {
