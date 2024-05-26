@@ -32,4 +32,14 @@ export const QuerySearchMovie = async (query) => {
   }
 }
 
+export const QueryDetailMovie = async (id) => {
+  try {
+    const response = await axios.get(`http://localhost:8080/api/movies/detail/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`에러 발생: ${error}`);
+    return null;
+  }
+}
+
 export default QueryMovie
