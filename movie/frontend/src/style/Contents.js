@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 
 export const Container = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     padding: 20px;
     gap: 10px;
 `
@@ -25,4 +25,5 @@ export const MovieImage = styled.img`
 export const MovieTitle = styled.h4`
     font-size: 18px;
     text-align: center;
+    color: ${(props) => props.theme.text};
 `

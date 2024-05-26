@@ -53,6 +53,25 @@ export const CardTitle = styled.h1`
 export const CarouselContainer = styled.div`
     position: relative;
     margin-bottom: 20px;
+
+    .slick-dots {
+        text-align: right;
+        bottom: -36px;
+    }
+
+    .slick-dots li button:before {
+        font-size: 12px;
+        color: #FFF;
+        width: 24px;
+        height: 4px;
+        content: '';
+        display: inline-block;
+        background-color: ${(props) => props.theme.text};
+    }
+
+    .slick-dots li.slick-active button:before {
+        background-color: ${(props) => props.theme.text};
+    }
 `
 
 export const CarouselButton = styled.button`
