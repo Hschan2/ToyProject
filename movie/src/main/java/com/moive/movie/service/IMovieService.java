@@ -1,5 +1,6 @@
 package com.moive.movie.service;
 
+import com.moive.movie.model.MovieDetailDto;
 import com.moive.movie.model.MovieDto;
 
 public interface IMovieService {
@@ -8,6 +9,6 @@ public interface IMovieService {
     MovieDto getHighRatedMovies();
     MovieDto getNowPlayingMovies();
     MovieDto getUpcomingMovies();
-    MovieDto getMovieDetail(int id);
+    MovieDetailDto getMovieDetail(int id);
     MovieDto getMovieRecommendation();
 }
