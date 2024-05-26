@@ -1,5 +1,6 @@
 package com.moive.movie.controller;
 
+import com.moive.movie.model.MovieDetailDto;
 import com.moive.movie.model.MovieDto;
 import com.moive.movie.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class MovieController {
     }
 
     @GetMapping("/detail/{id}")
-    public MovieDto getMovieDetail(@PathVariable int id) {
+    public MovieDetailDto getMovieDetail(@PathVariable int id) {
         return movieService.getMovieDetail(id);
     }
 

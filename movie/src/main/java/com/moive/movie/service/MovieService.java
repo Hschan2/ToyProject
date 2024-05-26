@@ -1,5 +1,6 @@
 package com.moive.movie.service;
 
+import com.moive.movie.model.MovieDetailDto;
 import com.moive.movie.model.MovieDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -54,9 +55,9 @@ public class MovieService implements IMovieService {
     }
 
     @Override
-    public MovieDto getMovieDetail(int id) {
+    public MovieDetailDto getMovieDetail(int id) {
         final String url = API_URL + "/movie/" + id + "?api_key=" + apiKey;
-        MovieDto movieDto = restTemplate.getForObject(url, MovieDto.class);
+        MovieDetailDto movieDto = restTemplate.getForObject(url, MovieDetailDto.class);
 
         return movieDto;
     }
