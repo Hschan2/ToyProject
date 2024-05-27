@@ -24,7 +24,12 @@ export const UpTopButton = styled.button`
 `
 
 export const ContentContainer = styled.div`
-    height: auto;
-    min-height: 100%;
-    padding-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh;
+`
+
+export const Content = styled.div`
+    flex: 1;
+    height: 100%;
 `
