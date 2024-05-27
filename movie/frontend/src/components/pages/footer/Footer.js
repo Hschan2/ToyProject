@@ -3,7 +3,7 @@ import { FooterContainer, FooterContents } from '../../../style/Footer';
 
 /**
  * 페이지 하단 컨텐츠 컴포넌트
- * @thisYear 올해(2022년) 값 변수
+ * @thisYear 올해(2024년) 값 변수
  */
 function Footer() {
     const getCurrentYear = () => {
