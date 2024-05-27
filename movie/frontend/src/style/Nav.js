@@ -7,7 +7,7 @@ export const NavContainer = styled.div`
     align-items: center;
     justify-content: flex-start;
     padding: 0 20px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid ${(props) => props.theme.lightBorder};
 `
 
 // Logo
