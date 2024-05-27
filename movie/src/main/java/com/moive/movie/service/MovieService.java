@@ -40,7 +40,7 @@ public class MovieService implements IMovieService {
 
     @Override
     public MovieDto getNowPlayingMovies() {
-        final String url = API_URL + "/movie/now_playing?api_key=" + apiKey + "&language=ko-KR";;
+        final String url = API_URL + "/movie/now_playing?api_key=" + apiKey + "&language=ko-KR";
         MovieDto movieDto = restTemplate.getForObject(url, MovieDto.class);
 
         return movieDto;
@@ -56,7 +56,7 @@ public class MovieService implements IMovieService {
 
     @Override
     public MovieDetailDto getMovieDetail(int id) {
-        final String url = API_URL + "/movie/" + id + "?api_key=" + apiKey;
+        final String url = API_URL + "/movie/" + id + "?api_key=" + apiKey + "&language=ko-KR";
         MovieDetailDto movieDto = restTemplate.getForObject(url, MovieDetailDto.class);
 
         return movieDto;
