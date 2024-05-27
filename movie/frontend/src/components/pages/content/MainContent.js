@@ -6,7 +6,7 @@ import QueryMovie from '../../api/QueryMovie';
 import Slider from 'react-slick';
 
 function MainContent() {
-    const url = 'http://localhost:8080/api/movies/popular';
+    const url = 'http://localhost:8080/api/movies/recommendation';
     const { status, data, error, isFetching } = useQuery({
         queryKey: ['movieLists', url],
         queryFn: () => QueryMovie(url)
