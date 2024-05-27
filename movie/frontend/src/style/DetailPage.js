@@ -2,36 +2,48 @@ import { styled } from "styled-components";
 
 export const DetailContainer = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
-    margin-top: 20px;
+    gap: 40px;
+    margin: 40px 0;
 `
 
 export const DetailImage = styled.img`
+    width: 100%;
+    max-width: 400px;
+    height: auto;
     border-radius: 12px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+`
+
+export const DetailTitle = styled.h1`
+    font-size: 28px;
+    font-weight: bold;
+    color: ${(props) => props.theme.text};
 `
 
 export const DetailInfoContainer = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
     color: rgba(0, 0, 0, 0.8);
     font-size: 12px;
-    margin: -10px 0 12px 0;
+`
 
-    &.p {
-        margin: 2px 0 2px 0;
-    }
+export const InfoSpan = styled.span`
+    margin: 2px 0;
+    color: ${(props) => props.theme.lightText};
+    font-size: 12px;
 `
 
 export const ContainerUnderLine = styled.div`
     width: 100%;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-    margin-bottom: 12px;
+    border-bottom: 1px solid ${(props) => props.theme.lightBorder};
+    margin: 12px 0;
 `
 
 export const DetailOverview = styled.div`
-    margin-bottom: 10px;
+    width: 100%;
+    max-width: 600px;
+    font-size: 16px;
+    color: ${(props) => props.theme.text};
 `

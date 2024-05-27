@@ -1,58 +1,48 @@
-import React, { useEffect, useState, useTransition } from 'react';
-import { useLocation } from 'react-router-dom';
-import GetMovieDetail from '../components/GetMovieDetail';
-import Loading from '../components/Loading';
-import SEO from '../components/SEO';
-import { ContainerUnderLine, DetailContainer, DetailImage, DetailInfoContainer, DetailOverview } from '../style/DetailPage';
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import Loading from '../components/pages/loading/Loading';
+import SEO from '../components/pages/seo/SEO';
+import { ContainerUnderLine, DetailContainer, DetailImage, DetailInfoContainer, DetailOverview, DetailTitle, InfoSpan } from '../style/DetailPage';
+import { useQuery } from '@tanstack/react-query';
+import { QueryDetailMovie } from '../components/api/QueryMovie';
 
 /**
- * 상세 페이지 출력 컴포넌트
- * @startTransition 상태 변화의 지연을 위한 함수
- * @id URL 파라미터로 넘어온 Id 값
- * @detailData 영화 상세 데이터 담을 변수
+ * @param id // 영화 아이디
+ * @returns Detail Information
  */
 function Detail() {
-  const [isPending, startTransition] = useTransition();
-  const { mTitle, id } = useLocation().state;
-  const [detailData, setDetailData] = useState();
-  const { title, poster_path, overview, genres, production_companies, runtime, vote_average } = detailData || [];
+  const { id } = useParams();
+  const { status, data, error, isFetching } = useQuery({
+    queryKey: ['searchResults', id],
+    queryFn: () => QueryDetailMovie(id),
+    enabled: !!id,
+  });
 
-  const genreText = genres?.map((genre) => genre.name);
-  const productCompanyText = production_companies?.map((pc) => pc.name);
+  if (status === 'loading' || isFetching) {
+    return <Loading />;
+  }
 
-  useEffect(() => {
-    startTransition(() => {
-      getDetailData();
-    })
-  }, []);
-
-  const getDetailData = async () => {
-    try {
-      const getData = await GetMovieDetail(`/detail/${id}`);
-      setDetailData(getData);
-    } catch (err) {
-      console.log(`${GetMovieDetail} Error: `, err);
-    }
-
-  };
+  if (status === 'error') {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <div>
-      <SEO title={`${title}`} />
-      {!detailData ? (
+      <SEO title={`${data.title}`} />
+      {!data ? (
         <Loading />
       ) : (
         <DetailContainer>
-          <DetailImage src={`https://image.tmdb.org/t/p/w500/${poster_path}`} alt={`${title}`} />
-          <h2>{title || "로딩중..."}</h2>
+          <DetailImage src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} alt={`${data.title}`} />
           <DetailInfoContainer>
-            <p>{productCompanyText?.join(', ')}</p>
-            <p>{genreText?.join(', ')}</p>
-            <p>{runtime} 분</p>
-            <p>({vote_average?.toFixed(1)}점 / 10점)</p>
+            <DetailTitle>{data.title || "로딩중..."}</DetailTitle>
+            <InfoSpan>프로덕션 | {data.production_companies.map(company => company.name).join(', ')}</InfoSpan>
+            <InfoSpan>장르 | {data.genres.map(genre => genre.name).join(', ')}</InfoSpan>
+            <InfoSpan>상영시간 | {data.runtime} 분</InfoSpan>
+            <InfoSpan>평점 | {data.vote_average?.toFixed(1)}점</InfoSpan>
+            <ContainerUnderLine />
+            <DetailOverview>{data.overview}</DetailOverview>
           </DetailInfoContainer>
-          <ContainerUnderLine />
-          <DetailOverview>{overview}</DetailOverview>
         </DetailContainer>
       )}
     </div>
