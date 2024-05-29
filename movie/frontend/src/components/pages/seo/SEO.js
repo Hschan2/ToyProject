@@ -10,7 +10,7 @@ function Seo({ title }) {
     return (
         <HelmetProvider>
             <Helmet>
-                <title>{title} | Movie</title>
+                <title>{title === "Home" ? "Find Your Movie" : `${title} | Movie`}</title>
             </Helmet>
         </HelmetProvider>
     )

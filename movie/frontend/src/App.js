@@ -14,6 +14,7 @@ import { Content, ContentContainer } from './style/Scroll';
 import { Route, Routes } from 'react-router';
 import Search from './pages/Search';
 import Detail from './pages/Detail';
+import SEO from './components/pages/seo/SEO';
 
 const Loading = lazy(() => import('./components/pages/loading/Loading'));
 const ToTop = lazy(() => import('./components/pages/scroll/ToTop'));
@@ -32,6 +33,7 @@ function App() {
               <Routes>
                 <Route path="/" element={
                   <>
+                    <SEO title="Home" />
                     <MainContent />
                     {API_URL?.map((categories) => (
                       <SlideItem key={categories.id} {...categories} />
