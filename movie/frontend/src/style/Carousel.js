@@ -6,6 +6,9 @@ export const SlideCard = styled.article`
     height: auto;
     border-radius: 4px;
     overflow: hidden;
+
+    padding: 0 4px;
+    margin: 0 20px;
 `
 
 export const SlideImage = styled.img`
@@ -78,11 +81,11 @@ export const CarouselButton = styled.button`
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: transparent;
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 8px;
+    padding: 8px 4px;
     height: 100%;
     transition: background-color 0.3s;
     z-index: 999;
@@ -95,7 +98,7 @@ export const CarouselButton = styled.button`
     }
 
     &:hover {
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.3);
 
         svg {
             visibility: visible;

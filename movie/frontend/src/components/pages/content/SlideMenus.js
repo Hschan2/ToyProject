@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -9,7 +9,6 @@ import { useQuery } from '@tanstack/react-query';
 import QueryMovie from '../../api/QueryMovie';
 
 function SlideMenus({ apiUrl }) {
-    const [currentSlide, setCurrentSlide] = useState(0);
     const { status, data, error, isFetching } = useQuery({
         queryKey: ['movieLists', apiUrl],
         queryFn: () => QueryMovie(apiUrl)
@@ -57,13 +56,17 @@ function SlideMenus({ apiUrl }) {
         sliderRef.current.slickNext();
     };
 
-    const handleSlideChange = index => {
-        setCurrentSlide(index);
-    };
+    if (status === 'loading' || isFetching) {
+        return <div>Loading...</div>;
+    }
+
+    if (status === 'error') {
+        return <div>{error.message}</div>;
+    }
 
     return (
         <CarouselContainer>
-            <Slider ref={sliderRef} {...settings} afterChange={handleSlideChange}>
+            <Slider ref={sliderRef} {...settings}>
                 {Array.isArray(data) && data?.map((slide, index) => (
                     <Slide key={index} {...slide} />
                 ))}
@@ -86,8 +89,7 @@ export default SlideMenus
 
 const Slide = ({ poster_path, title, id }) => (
     <Link
-        to={`/detail/${title}/${id}`}
-        state={{ mTitle: title, id: id }}
+        to={`/detail/${id}`}
         key={id}
     >
         <SlideCard>
