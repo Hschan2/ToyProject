@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import QueryMovie from '../../api/QueryMovie';
 import Slider from 'react-slick';
+import { MainContentSkeleton } from '../loading/Skeleton';
 
 function MainContent() {
     const url = 'http://localhost:8080/api/movies/recommendation';
@@ -25,16 +26,16 @@ function MainContent() {
     };
 
     if (status === 'loading') {
-        return <Container>Loading...</Container>;
+        return <MainContentSkeleton />;
     }
 
     if (status === 'error') {
-        return <Container>{error.message}</Container>;
+        return <MainContentSkeleton />;
     }
 
     return (
         <Container>
-            {data && data.length > 0 && (
+            {data && data.length > 0 ? (
                 <SliderContainer>
                     <Slider {...settings}>
                         {data.map(movie => (
@@ -58,7 +59,7 @@ function MainContent() {
                         ))}
                     </Slider>
                 </SliderContainer>
-            )}
+            ) : <MainContentSkeleton />}
         </Container>
     )
 }

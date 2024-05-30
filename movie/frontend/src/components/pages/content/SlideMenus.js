@@ -7,6 +7,7 @@ import { EMPTY_BACKGROUND_IMAGE } from '../../constants/variable';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import QueryMovie from '../../api/QueryMovie';
+import { CarouselSkeleton } from '../loading/Skeleton';
 
 function SlideMenus({ apiUrl }) {
     const { status, data, error, isFetching } = useQuery({
@@ -57,7 +58,7 @@ function SlideMenus({ apiUrl }) {
     };
 
     if (status === 'loading' || isFetching) {
-        return <div>Loading...</div>;
+        return <CarouselSkeleton />;
     }
 
     if (status === 'error') {
