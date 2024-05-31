@@ -12,7 +12,9 @@ import { CarouselSkeleton } from '../loading/Skeleton';
 function SlideMenus({ apiUrl }) {
     const { status, data, error, isFetching } = useQuery({
         queryKey: ['movieLists', apiUrl],
-        queryFn: () => QueryMovie(apiUrl)
+        queryFn: () => QueryMovie(apiUrl),
+        staleTime: 5 * 60 * 1000,
+        cacheTime: 10 * 60 * 1000,
     });
     const sliderRef = useRef(null);
 
@@ -62,26 +64,33 @@ function SlideMenus({ apiUrl }) {
     }
 
     if (status === 'error') {
-        return <div>{error.message}</div>;
+        return <div>
+            <CarouselSkeleton />
+            {error.message}
+        </div>;
     }
 
     return (
         <CarouselContainer>
-            <Slider ref={sliderRef} {...settings}>
-                {Array.isArray(data) && data?.map((slide, index) => (
-                    <Slide key={index} {...slide} />
-                ))}
-            </Slider>
-            <CarouselButton className="prev" onClick={handlePrevious}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-                    <path fillRule="evenodd" d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z" clipRule="evenodd" />
-                </svg>
-            </CarouselButton>
-            <CarouselButton className="right" onClick={handleNext}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-                    <path fillRule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clipRule="evenodd" />
-                </svg>
-            </CarouselButton>
+            {Array.isArray(data) ? (
+                <>
+                    <Slider ref={sliderRef} {...settings}>
+                        {data?.map((slide, index) => (
+                            <Slide key={index} {...slide} />
+                        ))}
+                    </Slider>
+                    <CarouselButton className="prev" onClick={handlePrevious}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                            <path fillRule="evenodd" d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z" clipRule="evenodd" />
+                        </svg>
+                    </CarouselButton>
+                    <CarouselButton className="right" onClick={handleNext}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                            <path fillRule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clipRule="evenodd" />
+                        </svg>
+                    </CarouselButton>
+                </>
+            ) : <CarouselSkeleton />}
         </CarouselContainer>
     );
 };

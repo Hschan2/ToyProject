@@ -16,6 +16,8 @@ function Detail() {
     queryKey: ['searchResults', id],
     queryFn: () => QueryDetailMovie(id),
     enabled: !!id,
+    staleTime: 5 * 60 * 1000,
+    cacheTime: 10 * 60 * 1000,
   });
 
   if (status === 'loading' || isFetching) {

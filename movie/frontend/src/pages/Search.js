@@ -15,10 +15,12 @@ function Search() {
         queryKey: ['searchResults', query],
         queryFn: () => QuerySearchMovie(query),
         enabled: !!query,
+        staleTime: 5 * 60 * 1000,
+        cacheTime: 10 * 60 * 1000,
     });
 
     if (status === 'loading' || isFetching) {
-        return <Loading/>;
+        return <Loading />;
     }
 
     if (status === 'error') {

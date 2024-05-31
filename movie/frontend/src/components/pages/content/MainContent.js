@@ -10,7 +10,9 @@ function MainContent() {
     const url = 'http://localhost:8080/api/movies/recommendation';
     const { status, data, error, isFetching } = useQuery({
         queryKey: ['movieLists', url],
-        queryFn: () => QueryMovie(url)
+        queryFn: () => QueryMovie(url),
+        staleTime: 5 * 60 * 1000,
+        cacheTime: 10 * 60 * 1000,
     });
 
     const settings = {
@@ -25,12 +27,15 @@ function MainContent() {
         autoplaySpeed: 10000,
     };
 
-    if (status === 'loading') {
+    if (status === 'loading' || isFetching) {
         return <MainContentSkeleton />;
     }
 
     if (status === 'error') {
-        return <MainContentSkeleton />;
+        return <div>
+            <MainContentSkeleton />
+            <p>{error.message}</p>
+        </div>;
     }
 
     return (
