@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 export const SlideCard = styled.article`
     position: relative;
     width: 100%;
-    height: auto;
+    height: 21vh;
     border-radius: 4px;
     overflow: hidden;
 
