@@ -1,5 +1,5 @@
 import React from 'react'
-import { BackImage, Container, Description, DetailButton, ImageContainer, Overlay, SliderContainer, SmallImage, TextContainer } from '../../../style/MainContent';
+import { BackImage, Container, Description, DetailButton, ImageContainer, Overlay, SliderContainer, SmallImage, TextContainer, Title } from '../../../style/MainContent';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import QueryMovie from '../../api/QueryMovie';
@@ -48,7 +48,7 @@ function MainContent() {
                                 <Overlay />
                                 <BackImage src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt='Main Image' loading='lazy' />
                                 <TextContainer>
-                                    <h2>{movie.title}</h2>
+                                    <Title>{movie.title}</Title>
                                     <Description>{movie.overview}</Description>
                                     <Link to={`/detail/${movie.id}`}>
                                         <DetailButton>
