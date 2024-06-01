@@ -14,4 +14,16 @@ export const FooterContents = styled.div`
     color: ${(props) => props.theme.lightText};
     font-size: 12px;
     padding: 10px 0;
+
+    @media (max-width: 768px) {
+        font-size: 10px;
+    }
+
+    @media (max-width: 425px) {
+        font-size: 8px;
+    }
+
+    @media (max-width: 375px) {
+        font-size: 6px;
+    }
 `

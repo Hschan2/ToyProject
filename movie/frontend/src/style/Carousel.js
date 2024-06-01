@@ -3,12 +3,36 @@ import { styled } from "styled-components";
 export const SlideCard = styled.article`
     position: relative;
     width: 100%;
-    height: 21vh;
+    height: 40vh;
     border-radius: 4px;
     overflow: hidden;
 
     padding: 0 4px;
     margin: 0 20px;
+
+    @media (max-width: 1440px) {
+        height: 30vh;
+    }
+
+    @media (max-width: 1024px) {
+        height: 26vh;
+    }
+
+    @media (max-width: 768px) {
+        height: 22vh;
+    }
+
+    @media (max-width: 425px) {
+        height: 18vh;
+    }
+
+    @media (max-width: 375px) {
+        height: 16vh;
+    }
+
+    @media (max-width: 320px) {
+        height: 14vh;
+    }
 `
 
 export const SlideImage = styled.img`
@@ -125,4 +149,14 @@ export const ItemTitle = styled.h3`
     color: ${(props) => props.theme.text};
     font-weight: 600;
     font-style: normal;
+    padding: 0 8px;
+
+    @media (max-width: 425px) {
+        font-size: 18px;
+        padding: 0 4px;
+    }
+
+    @media (max-width: 320px) {
+        font-size: 16px;
+    }
 `

@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 
 export const DarkModeContainer = styled.div`
-  margin-bottom: 22px;
+  margin-bottom: 20px;
   margin-left: 12px;
 `;
 

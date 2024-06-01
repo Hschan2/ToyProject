@@ -21,6 +21,27 @@ export const UpTopButton = styled.button`
     &:hover {
         background: #FF7547;
     }
+
+    @media (max-width: 768px) {
+        width: 45px;
+        height: 45px;
+
+        svg {
+            width: 25px;
+            height: 25px;
+        }
+    }
+
+    @media (max-width: 425px) {
+        width: 35px;
+        height: 35px;
+        right: 30px;
+
+        svg {
+            width: 15px;
+            height: 15px;
+        }
+    }
 `
 
 export const ContentContainer = styled.div`

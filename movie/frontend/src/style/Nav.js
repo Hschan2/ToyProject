@@ -6,8 +6,12 @@ export const NavContainer = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    padding: 0 20px;
+    padding: 0 8px;
     border-bottom: 1px solid ${(props) => props.theme.lightBorder};
+
+    @media (max-width: 425px) {
+        padding: 0 4px;
+    }
 `
 
 // Logo
@@ -19,6 +23,14 @@ export const LogoContainer = styled.div`
 
 export const LogoAnimation = styled.div`
     max-width: 60px;
+
+    @media (max-width: 425px) {
+        max-width: 50px;
+    }
+
+    @media (max-width: 320px) {
+        max-width: 40px;
+    }
 `
 
 export const LottieAnimation = styled(LottieFiles)`
@@ -27,10 +39,22 @@ export const LottieAnimation = styled(LottieFiles)`
 `
 
 export const LogoTitle = styled.p`
-    font-size: 26px;
+    font-size: 30px;
     font-weight: 600;
     font-style: normal;
     color: tomato;
+
+    @media (max-width: 425px) {
+        font-size: 24px;
+    }
+
+    @media (max-width: 375px) {
+        font-size: 22px;
+    }
+
+    @media (max-width: 320px) {
+        font-size: 20px;
+    }
 `
 
 // Search
@@ -46,6 +70,20 @@ export const SearchInput = styled.input`
     border-radius: 8px 0 0 8px;
     color: ${(props) => props.theme.text};
     background-color: transparent;
+
+    @media (max-width: 425px) {
+        width: 120px;
+        font-size: 12px;
+    }
+
+    @media (max-width: 375px) {
+        width: 100px;
+        height: 30px;
+    }
+
+    @media (max-width: 320px) {
+        width: 80px;
+    }
 `
 
 export const SearchButton = styled.button`
@@ -61,5 +99,19 @@ export const SearchButton = styled.button`
         width: 20px;
         height: 20px;
         color: ${(props) => props.theme.text};
+    }
+
+    @media (max-width: 425px) {
+        svg {
+            width: 18px;
+            height: 18px;
+        }
+    }
+
+    @media (max-width: 375px) {
+        svg {
+            width: 15px;
+            height: 15px;
+        }
     }
 `

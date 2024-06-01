@@ -25,3 +25,10 @@ a {
 * {
   box-sizing: border-box;
 }
+
+@media screen and (max-width: 425px) {
+  body {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+}
