@@ -6,12 +6,8 @@ export const NavContainer = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    padding: 0 8px;
+    padding: 0 clamp(4px, 2vw, 8px);
     border-bottom: 1px solid ${(props) => props.theme.lightBorder};
-
-    @media (max-width: 425px) {
-        padding: 0 4px;
-    }
 `
 
 // Logo
@@ -22,15 +18,7 @@ export const LogoContainer = styled.div`
 `
 
 export const LogoAnimation = styled.div`
-    max-width: 60px;
-
-    @media (max-width: 425px) {
-        max-width: 50px;
-    }
-
-    @media (max-width: 320px) {
-        max-width: 40px;
-    }
+    max-width: clamp(40px, 10vw, 60px);
 `
 
 export const LottieAnimation = styled(LottieFiles)`
@@ -39,22 +27,10 @@ export const LottieAnimation = styled(LottieFiles)`
 `
 
 export const LogoTitle = styled.p`
-    font-size: 30px;
+    font-size: clamp(20px, 4vw, 36px);
     font-weight: 600;
     font-style: normal;
     color: tomato;
-
-    @media (max-width: 425px) {
-        font-size: 24px;
-    }
-
-    @media (max-width: 375px) {
-        font-size: 22px;
-    }
-
-    @media (max-width: 320px) {
-        font-size: 20px;
-    }
 `
 
 // Search
@@ -70,19 +46,11 @@ export const SearchInput = styled.input`
     border-radius: 8px 0 0 8px;
     color: ${(props) => props.theme.text};
     background-color: transparent;
-
-    @media (max-width: 425px) {
-        width: 120px;
-        font-size: 12px;
-    }
+    width: clamp(80px, 20vw, 120px);
+    font-size: clamp(12px, 1vw, 14px);
 
     @media (max-width: 375px) {
-        width: 100px;
         height: 30px;
-    }
-
-    @media (max-width: 320px) {
-        width: 80px;
     }
 `
 
@@ -96,22 +64,8 @@ export const SearchButton = styled.button`
     cursor: pointer;
 
     svg {
-        width: 20px;
-        height: 20px;
+        width: clamp(15px, 2vw, 20px);
+        height: clamp(15px, 2vw, 20px);
         color: ${(props) => props.theme.text};
-    }
-
-    @media (max-width: 425px) {
-        svg {
-            width: 18px;
-            height: 18px;
-        }
-    }
-
-    @media (max-width: 375px) {
-        svg {
-            width: 15px;
-            height: 15px;
-        }
     }
 `

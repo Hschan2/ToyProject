@@ -12,18 +12,6 @@ export const FooterContents = styled.div`
     align-items: center;
     justify-content: center;
     color: ${(props) => props.theme.lightText};
-    font-size: 12px;
+    font-size: clamp(6px, 2vw, 12px);
     padding: 10px 0;
-
-    @media (max-width: 768px) {
-        font-size: 10px;
-    }
-
-    @media (max-width: 425px) {
-        font-size: 8px;
-    }
-
-    @media (max-width: 375px) {
-        font-size: 6px;
-    }
 `
