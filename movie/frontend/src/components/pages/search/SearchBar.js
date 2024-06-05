@@ -33,7 +33,7 @@ function SearchBar() {
                 value={searchTerm}
                 onChange={changeInputValue}
                 onKeyUp={pressEnterKey}
-                placeholder='검색어를 입력하세요.'
+                placeholder='영화 검색'
                 alt='검색'
             />
             <SearchButton onClick={handleSearch}>
