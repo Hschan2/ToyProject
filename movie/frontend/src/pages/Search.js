@@ -5,6 +5,7 @@ import { QuerySearchMovie } from '../components/api/QueryMovie';
 import { useQuery } from '@tanstack/react-query';
 import MovieLists from '../components/pages/content/MovieLists';
 import Loading from '../components/pages/loading/Loading';
+import { SearchTitle } from '../style/Contents';
 
 function Search() {
     const location = useLocation();
@@ -30,7 +31,7 @@ function Search() {
     return (
         <div>
             <SEO title={query} />
-            <h2>검색 결과 | {query}</h2>
+            <SearchTitle>검색 결과 | {query}</SearchTitle>
             <MovieLists movieList={data} />
         </div>
     )
