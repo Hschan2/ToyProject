@@ -8,6 +8,9 @@ export const Container = styled.div`
 `
 
 export const MovieBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
 
@@ -22,8 +25,14 @@ export const MovieImage = styled.img`
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 `
 
-export const MovieTitle = styled.h4`
-    font-size: 18px;
+export const MovieTitle = styled.h3`
+    font-size: clamp(14px, 2vw, 24px);
+    font-weight: 600;
     text-align: center;
     color: ${(props) => props.theme.text};
+`
+
+export const SearchTitle = styled.h2`
+    font-size: clamp(20px, 4vw, 32px);
+    margin-left: 8px;
 `

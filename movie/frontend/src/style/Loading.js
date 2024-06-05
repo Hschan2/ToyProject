@@ -35,7 +35,7 @@ export const Skeleton = styled.div`
   background: #E0E0E0;
   border-radius: 4px;
   width: ${(props) => props.width};
-  height: ${(props) => props.height === "380px" ? `clamp(270px, 50vw, 380px)` : `clamp(180px, 10vw, 220px)`};
+  height: ${(props) => props.height === "380px" ? `clamp(250px, 10vw, 400px)` : `clamp(180px, 10vw, 220px)`};
   animation: ${Shimmer} 1.5s infinite linear;
   background: linear-gradient(to right, #E0E0E0 8%, #F0F0F0 18%, #E0E0E0 33%);
   background-size: 800px 104px;

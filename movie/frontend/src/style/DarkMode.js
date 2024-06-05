@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 
 export const DarkModeContainer = styled.div`
   margin-bottom: 20px;
-  margin-left: 12px;
+  margin-left: 14px;
 `;
 
 export const Toggle = styled.input.attrs({ type: 'checkbox' })`

@@ -4,8 +4,13 @@ export const DetailContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 40px;
-    margin: 40px 0;
+    gap: 20px;
+    margin: 20px 0;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+    }
 `
 
 export const DetailImage = styled.img`
@@ -16,7 +21,7 @@ export const DetailImage = styled.img`
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
 `
 
-export const DetailTitle = styled.h1`
+export const DetailTitle = styled.h2`
     font-size: 28px;
     font-weight: bold;
     color: ${(props) => props.theme.text};
@@ -30,7 +35,7 @@ export const DetailInfoContainer = styled.div`
 `
 
 export const InfoSpan = styled.span`
-    margin: 2px 0;
+    margin: 4px 0;
     color: ${(props) => props.theme.lightText};
     font-size: 12px;
 `

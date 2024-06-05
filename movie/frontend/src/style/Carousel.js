@@ -1,10 +1,9 @@
-import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 
 export const SlideCard = styled.article`
     position: relative;
     width: 100%;
-    height: min(30vh, 50vw);
+    height: clamp(20vh, 10vw, 40vh);
     border-radius: 4px;
     overflow: hidden;
     padding: 0 4px;
@@ -45,7 +44,7 @@ export const ContentCard = styled.div`
     }
 `
 
-export const CardTitle = styled.h1`
+export const CardTitle = styled.h2`
     font-size: 1rem;
     font-weight: 600;
     color: #fff;
@@ -74,6 +73,12 @@ export const CarouselContainer = styled.div`
 
     .slick-dots li.slick-active button:before {
         background-color: ${(props) => props.theme.text};
+    }
+
+    @media (max-width: 425px) {
+        .slick-dots {
+            visibility: hidden;
+        }
     }
 `
 
@@ -121,8 +126,8 @@ export const SlideItemContainer = styled.div`
     margin: 14px 0;
 `
 
-export const ItemTitle = styled.h3`
-    font-size: clamp(16px, 4vw, 24px);
+export const ItemTitle = styled.h2`
+    font-size: clamp(14px, 2vw, 24px);
     color: ${(props) => props.theme.text};
     font-weight: 600;
     font-style: normal;

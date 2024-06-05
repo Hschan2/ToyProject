@@ -6,7 +6,7 @@ export const NavContainer = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    padding: 0 clamp(4px, 2vw, 8px);
+    padding: 0 clamp(4px, 100%, 8px);
     border-bottom: 1px solid ${(props) => props.theme.lightBorder};
 `
 
@@ -26,8 +26,8 @@ export const LottieAnimation = styled(LottieFiles)`
     height: auto;
 `
 
-export const LogoTitle = styled.p`
-    font-size: clamp(20px, 4vw, 36px);
+export const LogoTitle = styled.h1`
+    font-size: clamp(20px, 5vw, 40px);
     font-weight: 600;
     font-style: normal;
     color: tomato;
@@ -46,12 +46,9 @@ export const SearchInput = styled.input`
     border-radius: 8px 0 0 8px;
     color: ${(props) => props.theme.text};
     background-color: transparent;
-    width: clamp(80px, 20vw, 120px);
-    font-size: clamp(12px, 1vw, 14px);
-
-    @media (max-width: 375px) {
-        height: 30px;
-    }
+    width: clamp(70px, 15vw, 200px);
+    height: clamp(28px, 4vw, 40px);
+    font-size: clamp(12px, 2vw, 18px);
 `
 
 export const SearchButton = styled.button`
