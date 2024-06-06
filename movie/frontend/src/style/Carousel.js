@@ -127,7 +127,7 @@ export const SlideItemContainer = styled.div`
 `
 
 export const ItemTitle = styled.h2`
-    font-size: clamp(14px, 2vw, 24px);
+    font-size: clamp(16px, 2vw, 24px);
     color: ${(props) => props.theme.text};
     font-weight: 600;
     font-style: normal;

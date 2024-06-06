@@ -27,7 +27,7 @@ export const LottieAnimation = styled(LottieFiles)`
 `
 
 export const LogoTitle = styled.h1`
-    font-size: clamp(20px, 5vw, 40px);
+    font-size: clamp(20px, 4vw, 32px);
     font-weight: 600;
     font-style: normal;
     color: tomato;
@@ -46,9 +46,9 @@ export const SearchInput = styled.input`
     border-radius: 8px 0 0 8px;
     color: ${(props) => props.theme.text};
     background-color: transparent;
-    width: clamp(70px, 15vw, 200px);
-    height: clamp(28px, 4vw, 40px);
-    font-size: clamp(12px, 2vw, 18px);
+    width: clamp(70px, 15vw, 180px);
+    height: clamp(28px, 4vw, 36px);
+    font-size: clamp(12px, 2vw, 14px);
 `
 
 export const SearchButton = styled.button`

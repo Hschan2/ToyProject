@@ -2,14 +2,14 @@ import { styled } from "styled-components";
 
 export const Container = styled.div`
     width: 100%;
-    height: clamp(250px, 10vw, 400px);
+    height: clamp(300px, 20vw, 450px);
     background-color: transparent;
 `
 
 export const ImageContainer = styled.div`
     position: relative;
     width: 100%;
-    height: clamp(250px, 10vw, 400px);
+    height: clamp(300px, 20vw, 450px);
     overflow: hidden;
 `
 
@@ -34,8 +34,8 @@ export const BackImage = styled.img`
 
 export const TextContainer = styled.div`
     position: absolute;
-    top: 50%;
-    left: clamp(90px, 10vw, 420px);
+    top: clamp(45%, 5%, 50%);
+    left: clamp(95px, 14vw, 340px);
     transform: translate(-50%, -50%);
     color: white;
     text-align: left;
@@ -86,7 +86,7 @@ export const DetailButton = styled.button`
 
 export const SmallImage = styled.img`
     position: absolute;
-    top: 50%;
+    top: clamp(48%, 5%, 50%);
     right: 5%;
     transform: translate(0, -50%);
     width: clamp(90px, 10vw, 180px);
