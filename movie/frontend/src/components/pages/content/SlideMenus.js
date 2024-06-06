@@ -72,7 +72,7 @@ function SlideMenus({ apiUrl }) {
 
     return (
         <CarouselContainer>
-            {Array.isArray(data) ? (
+            {data && data.length > 0 ? (
                 <>
                     <Slider ref={sliderRef} {...settings}>
                         {data?.map((slide, index) => (
