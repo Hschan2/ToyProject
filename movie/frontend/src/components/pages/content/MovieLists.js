@@ -12,8 +12,7 @@ function MovieLists({ movieList }) {
     <Container>
         {movieList?.map((movie) => (
           <Link
-            to={`/Detail/${movie.original_title}/${movie.id}`}
-            state={{ mTitle: movie.original_title, id: movie.id }}
+            to={`/detail/${movie.id}`}
             key={movie.id}
           >
             <MovieBox>
