@@ -6,13 +6,13 @@ export const LoadingContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 150px;
+    margin-top: ${(props) => props.stat === 'error' ? '0' : '150px'};
 `
 
 export const LoadingAnimation = styled(LottieFiles)`
   display: inline-block;
-  width: 250px;
-  height: 250px;
+  width: ${(props) => props.stat === 'error' ? '100px' : '250px'};
+  height: ${(props) => props.stat === 'error' ? '100px' : '250px'};
 `;
 
 export const Message = styled.p`

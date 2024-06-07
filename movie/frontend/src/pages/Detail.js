@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import Loading from '../components/pages/loading/Loading';
+import Loading, { Error404, Error500 } from '../components/pages/loading/Loading';
 import SEO from '../components/pages/seo/SEO';
 import { ContainerUnderLine, DetailContainer, DetailImage, DetailInfoContainer, DetailOverview, DetailTitle, InfoSpan } from '../style/DetailPage';
 import { useQuery } from '@tanstack/react-query';
@@ -24,8 +24,10 @@ function Detail() {
     return <Loading />;
   }
 
-  if (status === 'error') {
-    return <div>Error: {error.message}</div>;
+  if (error) {
+    return error.status === 404
+      ? <Error404 /> : error.status === 500
+        ? <Error500 /> : <Loading />;
   }
 
   return (

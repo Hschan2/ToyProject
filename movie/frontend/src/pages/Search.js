@@ -4,7 +4,7 @@ import SEO from '../components/pages/seo/SEO';
 import { QuerySearchMovie } from '../components/api/QueryMovie';
 import { useQuery } from '@tanstack/react-query';
 import MovieLists from '../components/pages/content/MovieLists';
-import Loading from '../components/pages/loading/Loading';
+import Loading, { Error404, Error500 } from '../components/pages/loading/Loading';
 import { SearchTitle } from '../style/Contents';
 
 function Search() {
@@ -24,8 +24,10 @@ function Search() {
         return <Loading />;
     }
 
-    if (status === 'error') {
-        return <div>Error: {error.message}</div>;
+    if (error) {
+        return error.status === 404
+            ? <Error404 /> : error.status === 500
+                ? <Error500 /> : <Loading />;
     }
 
     return (

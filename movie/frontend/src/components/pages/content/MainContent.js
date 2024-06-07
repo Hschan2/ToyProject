@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import QueryMovie from '../../api/QueryMovie';
 import Slider from 'react-slick';
 import { MainContentSkeleton } from '../loading/Skeleton';
+import { Error404, Error500 } from '../loading/Loading';
 
 function MainContent() {
     const url = 'http://localhost:8080/api/movies/recommendation';
@@ -31,11 +32,10 @@ function MainContent() {
         return <MainContentSkeleton />;
     }
 
-    if (status === 'error') {
-        return <div>
-            <MainContentSkeleton />
-            <p>{error.message}</p>
-        </div>;
+    if (error) {
+        return error.status === 404
+            ? <Error404 status="error" /> : error.status === 500
+                ? <Error500 status="error" /> : <MainContentSkeleton />;
     }
 
     return (

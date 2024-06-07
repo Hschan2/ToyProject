@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import QueryMovie from '../../api/QueryMovie';
 import { CarouselSkeleton } from '../loading/Skeleton';
+import { Error404, Error500 } from '../loading/Loading';
 
 function SlideMenus({ apiUrl }) {
     const { status, data, error, isFetching } = useQuery({
@@ -63,11 +64,10 @@ function SlideMenus({ apiUrl }) {
         return <CarouselSkeleton />;
     }
 
-    if (status === 'error') {
-        return <div>
-            <CarouselSkeleton />
-            {error.message}
-        </div>;
+    if (error) {
+        return error.status === 404
+            ? <Error404 status="error" /> : error.status === 500
+                ? <Error500 status="error" /> : <CarouselSkeleton />;
     }
 
     return (

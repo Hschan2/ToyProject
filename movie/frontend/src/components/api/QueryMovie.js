@@ -18,6 +18,13 @@ const QueryMovie = async (apiUrl) => {
     return response.data.results;
   } catch (error) {
     console.error(`에러 발생: ${error}`);
+    if (error.response) {
+      const status = error.response.status;
+      if (status === 404 || status === 500) {
+        throw { status, message: error.response.statusText };
+      }
+    }
+
     return [];
   }
 }
@@ -28,6 +35,13 @@ export const QuerySearchMovie = async (query) => {
     return response.data.results;
   } catch (error) {
     console.error(`에러 발생: ${error}`);
+    if (error.response) {
+      const status = error.response.status;
+      if (status === 404 || status === 500) {
+        throw { status, message: error.response.statusText };
+      }
+    }
+
     return [];
   }
 }
@@ -38,6 +52,13 @@ export const QueryDetailMovie = async (id) => {
     return response.data;
   } catch (error) {
     console.error(`에러 발생: ${error}`);
+    if (error.response) {
+      const status = error.response.status;
+      if (status === 404 || status === 500) {
+        throw { status, message: error.response.statusText };
+      }
+    }
+
     return null;
   }
 }
