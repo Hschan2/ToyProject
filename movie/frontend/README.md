@@ -12,7 +12,7 @@
 
 또한, 인기 영화, 신작 영화, 평가순 영화 등 다양한 카테고리의 영화 목록들을 확인할 수 있습니다.   
 
-![movie project](https://github.com/Hschan2/ToyProject/blob/master/movie/frontend/public/screen-recording.gif?raw=true)
+![movie project](https://blog.kakaocdn.net/dn/eq2vKk/btsHQBLHKd3/W2Wn1Pd1fsQ0Lp4VhwqG81/img.gif)
 
 <br/>
 
@@ -41,14 +41,18 @@
 
 #### 라이브러리
 ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
-![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
+![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
 ![lottie_files](https://img.shields.io/badge/lottie-files-%236DB33F.svg?style=for-the-badge&logo=lottie-files&logoColor=white)
+![recoil](https://img.shields.io/badge/Recoil-3578E5?style=for-the-badge&logo=recoil&logoColor=white)
+![React Slick](https://img.shields.io/badge/React_Slick-CA4245?style=for-the-badge&logo=react-slick&logoColor=white)
 
 #### 통신
 ![Axios](https://img.shields.io/badge/axios-%23323330.svg?style=for-the-badge)
+![React Query](https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white)
 
 #### 개발 도구
 ![VSCode](https://img.shields.io/badge/VSCODE-007ACC?style=for-the-badge&logo=visual studio code&logoColor=white)
+![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
 ![NPM](https://img.shields.io/badge/NPM-CB3837?style=for-the-badge)
 ![Webpack](https://img.shields.io/badge/Webpack-8DD6F9?style=for-the-badge)
 
@@ -59,14 +63,28 @@
 ```
 src
 ├─ components
+    ├─ api
+    ├─ constants
+    └─ pages
+        ├─ animation
+        ├─ content
+        ├─ darkMode
+        ├─ footer
+        ├─ loading
+        ├─ nav
+        ├─ scroll
+        ├─ search
+        └─ seo
+├─ constants
+├─ hooks
 ├─ images
-│
 ├─ pages
-│
 ├─ style
 │
 ├─ App.js
-└─ index.js
+├─ index.js
+├─ package.json
+└─ README.md
 ```
 
 <br/>
@@ -74,24 +92,59 @@ src
 
 ## 페이지 및 주요 기능
 
-#### 공통
-* 상단 이동 버튼 구현
-* 고정된 Navbar 구현
-* Lottie Files로 애니메이션 로고 구현
-* themoviedb API 활용
-* 영화 데이터를 불러오지 못할 때, Loading 페이지 출력
+### 페이지
+#### 메인 페이지
+* 메인 슬라이드 콘텐츠
+* 카테고리 별 슬라이드 콘텐츠
 <p align="center">
   <img 
-  src="https://github.com/Hschan2/ToyProject/blob/master/movie/frontend/src/images/loading.png?raw=true" 
+  src="https://blog.kakaocdn.net/dn/eq2vKk/btsHQBLHKd3/W2Wn1Pd1fsQ0Lp4VhwqG81/img.gif" 
   width="400">
 </p>
 
-#### 카테고리
-* 인기작, 개봉예정작, 현재개봉작, 높은 평가작의 영화 목록들 출력
+#### 자세한 페이지
+* 자세히 보기 버튼 클릭 또는 카테고리 별 영화 이미지 클릭 시 자세한 페이지 이동
+<p align="center">
+  <img 
+  src="https://blog.kakaocdn.net/dn/oUgVl/btsHSe2y3n7/oL1dEk6MBkq8toDkkN7rz1/img.gif" 
+  width="400">
+</p>
 
-#### 상세페이지
-* themoviedb API에서 가져온 ID값을 기준으로 상세페이지 구현
-* 제목, 장르, 제작사, 영화 시간, 평가 점수, 상세 내용 출력
+#### 로딩 페이지
+* 페이지 로딩
+<p align="center">
+  <img 
+  src="https://blog.kakaocdn.net/dn/ynYky/btsHQSNaKdH/fkvaFoCPxcJbWwgY0sgtcK/img.gif" 
+  width="400">
+</p>
+   
+* 데이터 불러오는 과정에서 스켈레톤 로딩
+<p align="center">
+  <img 
+  src="https://blog.kakaocdn.net/dn/dEEL3J/btsHRvDYLDL/aibSimFu7HMtdt6fVuUU6k/img.gif" 
+  width="400">
+</p>
+
+#### 검색 페이지
+* 영화 검색
+<p align="center">
+  <img 
+  src="https://blog.kakaocdn.net/dn/lg8JZ/btsHQT6queb/2MrZFPU1nOUArHJ479YJp0/img.gif" 
+  width="400">
+</p>
+
+### 기능
+#### 다크모드
+<p align="center">
+  <img 
+  src="https://blog.kakaocdn.net/dn/cnSyjL/btsHQjkcVP9/IuqoiR5KVQHKBlYSmTpBkK/img.gif" 
+  width="400">
+</p>
+
+### 그 외 기능
+* 상단 이동 버튼 구현
+* Lottie Files로 애니메이션 로고 구현
+* React-Slick 라이브러리를 활용해 슬라이드 구현 (커스텀 스타일 적용)
 
 <br/>
 
@@ -114,7 +167,6 @@ src
 
 ## 개발 예정 목록
 * Intersection Observer API을 이용해 무한 스크롤 구현
-* Redux 라이브러리를 활용해 영화 검색 기능 구현
 
 <br/>
 
