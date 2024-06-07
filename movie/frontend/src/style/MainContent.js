@@ -35,7 +35,7 @@ export const BackImage = styled.img`
 export const TextContainer = styled.div`
     position: absolute;
     top: clamp(45%, 5%, 50%);
-    left: clamp(95px, 14vw, 340px);
+    left: clamp(95px, 30vw, 420px);
     transform: translate(-50%, -50%);
     color: white;
     text-align: left;
@@ -43,7 +43,7 @@ export const TextContainer = styled.div`
 `
 
 export const Title = styled.h2`
-    width: 150px;
+    width: clamp(150px, 30vw, 350px);
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -51,7 +51,7 @@ export const Title = styled.h2`
 
 export const Description = styled.p`
     color: #DDD;
-    width: clamp(150px, 20vw, 720px);
+    width: clamp(150px, 50vw, 700px);
     font-size: clamp(14px, 2vw, 12px);
     text-overflow: ellipsis;
     overflow: hidden;

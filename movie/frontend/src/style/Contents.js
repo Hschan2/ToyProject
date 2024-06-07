@@ -35,4 +35,5 @@ export const MovieTitle = styled.h3`
 export const SearchTitle = styled.h2`
     font-size: clamp(20px, 4vw, 32px);
     margin-left: 8px;
+    color: ${(props) => props.theme.text};
 `
