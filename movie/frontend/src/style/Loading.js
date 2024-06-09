@@ -1,6 +1,7 @@
 import { keyframes, styled } from "styled-components";
 import LottieFiles from "../components/pages/animation/lottieFiles";
 
+// Loading
 export const LoadingContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -31,6 +32,7 @@ export const Shimmer = keyframes`
   }
 `
 
+// Skeleton
 export const Skeleton = styled.div`
   background: #E0E0E0;
   border-radius: 4px;
@@ -45,4 +47,19 @@ export const Skeleton = styled.div`
 export const SkeletonLayout = styled.div`
   display: flex;
   flex-direction: row;
+`
+
+// Error
+export const ErrorContainer = styled.div`
+  width: 100%;
+  height: ${(props) => props.stat === 'main' ? 'clamp(300px, 20vw, 450px)' : props.stat === 'carousel' ? 'clamp(20vh, 10vw, 40vh)' : 'clamp(500px, 10vw, 600px)'};
+  display: flex;
+  flex-direction: row;
+  align-item: center;
+  justify-content: center;
+  border: 1px solid #000;
+`
+
+export const ErrorMessage = styled.h2`
+  font-weight: 600;
 `
