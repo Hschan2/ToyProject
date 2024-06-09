@@ -1,6 +1,6 @@
 import React from 'react'
 import LottieFiles from '../animation/lottieFiles';
-import { ERROR_404, ERROR_500, LOADING_LOTTIE } from '../../constants/LottiefilesSrc';
+import { ERROR_404, ERROR_500, LOADING_LOTTIE } from '../../constants/FileLink';
 import { LoadingContainer, LoadingAnimation, Message } from '../../../style/Loading';
 
 /**

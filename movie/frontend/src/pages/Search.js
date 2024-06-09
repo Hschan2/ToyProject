@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { lazy } from 'react'
 import { useLocation } from 'react-router'
 import SEO from '../components/pages/seo/SEO';
 import { QuerySearchMovie } from '../components/api/QueryMovie';
 import { useQuery } from '@tanstack/react-query';
-import MovieLists from '../components/pages/content/MovieLists';
-import Loading, { Error404, Error500 } from '../components/pages/loading/Loading';
+import Loading from '../components/pages/loading/Loading';
+import { Error404, Error500 } from '../components/pages/loading/Error';
 import { SearchTitle } from '../style/Contents';
+
+const MovieLists = lazy(() => import('../components/pages/content/MovieLists'));
 
 function Search() {
     const location = useLocation();

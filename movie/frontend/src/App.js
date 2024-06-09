@@ -1,23 +1,24 @@
 import React, { lazy, Suspense } from 'react';
 import './App.css';
-import MainContent from './components/pages/content/MainContent';
-import SlideItem from './components/pages/content/SlideItem';
 import { useRecoilState } from 'recoil';
 import { darkModeState } from './components/constants/Store';
 import Nav from './components/pages/nav/Nav';
 import { ThemeProvider } from 'styled-components';
-import { DARK_THEME, LIGHT_THEME } from './style/Common';
+import { DARK_THEME, LIGHT_THEME } from './style/ThemeStyle';
 import GlobalStyles from './style/GlobalStyles';
-import { API_URL } from './constants/api';
+import { API_URL } from './components/constants/api';
 import Footer from './components/pages/footer/Footer';
 import { Content, ContentContainer } from './style/Scroll';
 import { Route, Routes } from 'react-router';
-import Search from './pages/Search';
-import Detail from './pages/Detail';
 import SEO from './components/pages/seo/SEO';
+import Loading from './components/pages/loading/Loading';
+import ToUp from './components/pages/scroll/ToUp';
+import { Error404 } from './components/pages/loading/Error';
 
-const Loading = lazy(() => import('./components/pages/loading/Loading'));
-const ToTop = lazy(() => import('./components/pages/scroll/ToTop'));
+const MainContent = lazy(() => import('./components/pages/content/MainContent'));
+const SlideCategory = lazy(() => import('./components/pages/content/SlideCategory'));
+const Search = lazy(() => import('./pages/Search'));
+const Detail = lazy(() => import('./pages/Detail'));
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useRecoilState(darkModeState);
@@ -36,7 +37,7 @@ function App() {
                     <SEO title="Home" />
                     <MainContent />
                     {API_URL?.map((categories) => (
-                      <SlideItem key={categories.id} {...categories} />
+                      <SlideCategory key={categories.id} {...categories} />
                     ))}
                   </>
                 } />
@@ -47,7 +48,7 @@ function App() {
           </Content>
           <Footer />
         </ContentContainer>
-        <ToTop />
+        <ToUp />
       </>
     </ThemeProvider>
   );

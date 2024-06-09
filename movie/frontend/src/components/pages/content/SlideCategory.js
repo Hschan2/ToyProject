@@ -1,5 +1,5 @@
 import React from 'react'
-import SlideMenus from './SlideMenus'
+import SlideMenus from './SlideCarousel'
 import { ItemTitle, SlideItemContainer } from '../../../style/Carousel'
 
 function SlideItem({ title, url }) {

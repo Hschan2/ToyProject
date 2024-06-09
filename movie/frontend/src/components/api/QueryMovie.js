@@ -12,6 +12,11 @@ axiosRetry(axios, {
   },
 })
 
+/**
+ * 
+ * @param {*} apiUrl 카테고리 API URL
+ * @returns 카테고리 별 영화 데이터(배열/객체)
+ */
 const QueryMovie = async (apiUrl) => {
   try {
     const response = await axios.get(apiUrl);
@@ -29,6 +34,10 @@ const QueryMovie = async (apiUrl) => {
   }
 }
 
+/**
+ * @param {*} query 검색 단어
+ * @returns 검색 단어에 맞는 영화 데이터(배열/객체)
+ */
 export const QuerySearchMovie = async (query) => {
   try {
     const response = await axios.get(`http://localhost:8080/api/movies/search?searchText=${query}`);
@@ -46,6 +55,10 @@ export const QuerySearchMovie = async (query) => {
   }
 }
 
+/**
+ * @param {*} id 영화 ID
+ * @returns 해당 ID에 맞는 영화 데이터(객체)
+ */
 export const QueryDetailMovie = async (id) => {
   try {
     const response = await axios.get(`http://localhost:8080/api/movies/detail/${id}`);

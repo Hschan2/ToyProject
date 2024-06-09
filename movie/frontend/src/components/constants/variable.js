@@ -1,1 +1,0 @@
-export const EMPTY_BACKGROUND_IMAGE = 'https://via.placeholder.com/500x500';

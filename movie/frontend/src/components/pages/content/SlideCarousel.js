@@ -3,12 +3,12 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { CardTitle, CarouselButton, CarouselContainer, ContentCard, SlideCard, SlideImage } from '../../../style/Carousel';
-import { EMPTY_BACKGROUND_IMAGE } from '../../constants/variable';
+import { EMPTY_BACKGROUND_IMAGE } from '../../constants/FileLink';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import QueryMovie from '../../api/QueryMovie';
 import { CarouselSkeleton } from '../loading/Skeleton';
-import { Error404, Error500 } from '../loading/Loading';
+import { Error404, Error500 } from '../loading/Error';
 
 function SlideMenus({ apiUrl }) {
     const { status, data, error, isFetching } = useQuery({

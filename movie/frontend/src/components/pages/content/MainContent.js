@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import QueryMovie from '../../api/QueryMovie';
 import Slider from 'react-slick';
 import { MainContentSkeleton } from '../loading/Skeleton';
-import { Error404, Error500 } from '../loading/Loading';
+import { Error404, Error500 } from '../loading/Error';
 
 function MainContent() {
     const url = 'http://localhost:8080/api/movies/recommendation';

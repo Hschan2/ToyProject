@@ -1,7 +1,7 @@
 import React from 'react';
 import TitleImage from './TitleImage';
-import SearchBar from '../search/SearchBar';
-import DarkModeBar from '../darkMode/DarkModeBar';
+import SearchBar from './SearchBar';
+import DarkModeBar from './DarkModeBar';
 import { useRecoilState } from 'recoil';
 import { darkModeState } from '../../constants/Store';
 import { NavContainer } from '../../../style/Nav';
