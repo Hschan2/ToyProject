@@ -52,14 +52,25 @@ export const SkeletonLayout = styled.div`
 // Error
 export const ErrorContainer = styled.div`
   width: 100%;
-  height: ${(props) => props.stat === 'main' ? 'clamp(300px, 20vw, 450px)' : props.stat === 'carousel' ? 'clamp(20vh, 10vw, 40vh)' : 'clamp(500px, 10vw, 600px)'};
+  height: ${(props) => props.stat === 'main' ? 'clamp(300px, 20vw, 450px)' : props.stat === 'carousel' ? 'clamp(20vh, 10vw, 40vh)' : 'clamp(350px, 10vw, 500px)'};
   display: flex;
-  flex-direction: row;
-  align-item: center;
+  flex-direction: column;
   justify-content: center;
-  border: 1px solid #000;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+
+  svg {
+    width: clamp(50px, 10vw, 150px);
+    height: clamp(50px, 10vw, 150px);
+    color: #FF0F0F;
+  }
 `
 
-export const ErrorMessage = styled.h2`
+export const ErrorTitle = styled.h2`
   font-weight: 600;
+  font-size: clamp(18px, 2vw, 32px);
+`
+
+export const ErrorMessage = styled.span`
+  font-size: clamp(14px, 1vw, 20px);
 `

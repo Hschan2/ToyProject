@@ -52,7 +52,7 @@ export const Title = styled.h2`
 export const Description = styled.p`
     color: #DDD;
     width: clamp(150px, 50vw, 700px);
-    font-size: clamp(14px, 2vw, 12px);
+    font-size: clamp(12px, 2vw, 14px);
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
