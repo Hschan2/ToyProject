@@ -26,7 +26,11 @@ const QueryMovie = async (apiUrl) => {
     if (error.response) {
       const status = error.response.status;
       if (status === 404 || status === 500) {
-        throw { status, message: error.response.statusText };
+        throw {
+          status,
+          message: error.response.statusText,
+          errorMessage: error.response.data?.message || 'No Error Message'
+        };
       }
     }
 
@@ -47,7 +51,11 @@ export const QuerySearchMovie = async (query) => {
     if (error.response) {
       const status = error.response.status;
       if (status === 404 || status === 500) {
-        throw { status, message: error.response.statusText };
+        throw {
+          status,
+          message: error.response.statusText,
+          errorMessage: error.response.data?.message || 'No Error Message'
+        };
       }
     }
 
@@ -68,7 +76,11 @@ export const QueryDetailMovie = async (id) => {
     if (error.response) {
       const status = error.response.status;
       if (status === 404 || status === 500) {
-        throw { status, message: error.response.statusText };
+        throw {
+          status,
+          message: error.response.statusText,
+          errorMessage: error.response.data?.message || 'No Error Message'
+        };
       }
     }
 
