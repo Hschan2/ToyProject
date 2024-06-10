@@ -5,16 +5,12 @@ import { useQuery } from '@tanstack/react-query';
 import QueryMovie from '../../api/QueryMovie';
 import Slider from 'react-slick';
 import { MainContentSkeleton } from '../loading/Skeleton';
-import { Error404, Error500 } from '../loading/Error';
+import { ErrorHandling } from '../../../hooks/ErrorHandling';
+import { useCarouselQuery } from '../../../hooks/useMovieQuery';
+import { RECOMMENDATION_URL } from '../../constants/api';
 
 function MainContent() {
-    const url = 'http://localhost:8080/api/movies/recommendation';
-    const { status, data, error, isFetching } = useQuery({
-        queryKey: ['movieLists', url],
-        queryFn: () => QueryMovie(url),
-        staleTime: 5 * 60 * 1000,
-        cacheTime: 10 * 60 * 1000,
-    });
+    const { status, data, error, isFetching } = useCarouselQuery(RECOMMENDATION_URL);
 
     const settings = {
         dots: true,
@@ -33,9 +29,7 @@ function MainContent() {
     }
 
     if (error) {
-        return error.status === 404
-            ? <Error404 status="error" /> : error.status === 500
-                ? <Error500 status="error" /> : <MainContentSkeleton />;
+        return <ErrorHandling error={error} viewName="main" />
     }
 
     return (

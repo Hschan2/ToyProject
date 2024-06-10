@@ -5,18 +5,12 @@ import 'slick-carousel/slick/slick-theme.css';
 import { CardTitle, CarouselButton, CarouselContainer, ContentCard, SlideCard, SlideImage } from '../../../style/Carousel';
 import { EMPTY_BACKGROUND_IMAGE } from '../../constants/FileLink';
 import { Link } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import QueryMovie from '../../api/QueryMovie';
 import { CarouselSkeleton } from '../loading/Skeleton';
-import { Error404, Error500 } from '../loading/Error';
+import { ErrorHandling } from '../../../hooks/ErrorHandling';
+import { useCarouselQuery } from '../../../hooks/useMovieQuery';
 
 function SlideMenus({ apiUrl }) {
-    const { status, data, error, isFetching } = useQuery({
-        queryKey: ['movieLists', apiUrl],
-        queryFn: () => QueryMovie(apiUrl),
-        staleTime: 5 * 60 * 1000,
-        cacheTime: 10 * 60 * 1000,
-    });
+    const { status, data, error, isFetching } = useCarouselQuery(apiUrl);
     const sliderRef = useRef(null);
 
     const settings = {
@@ -65,9 +59,7 @@ function SlideMenus({ apiUrl }) {
     }
 
     if (error) {
-        return error.status === 404
-            ? <Error404 status="error" /> : error.status === 500
-                ? <Error500 status="error" /> : <CarouselSkeleton />;
+        return <ErrorHandling error={error} viewName="carousel" />
     }
 
     return (

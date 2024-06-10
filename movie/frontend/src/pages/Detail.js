@@ -1,11 +1,10 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import Loading from '../components/pages/loading/Loading';
-import { Error404, Error500 } from '../components/pages/loading/Error';
 import SEO from '../components/pages/seo/SEO';
 import { ContainerUnderLine, DetailContainer, DetailImage, DetailInfoContainer, DetailOverview, DetailTitle, InfoSpan } from '../style/DetailPage';
-import { useQuery } from '@tanstack/react-query';
-import { QueryDetailMovie } from '../components/api/QueryMovie';
+import { ErrorHandling } from '../hooks/ErrorHandling';
+import { useDetailQuery } from '../hooks/useMovieQuery';
 
 /**
  * @param id // 영화 아이디
@@ -13,23 +12,15 @@ import { QueryDetailMovie } from '../components/api/QueryMovie';
  */
 function Detail() {
   const { id } = useParams();
-  const { status, data, error, isFetching } = useQuery({
-    queryKey: ['searchResults', id],
-    queryFn: () => QueryDetailMovie(id),
-    enabled: !!id,
-    staleTime: 5 * 60 * 1000,
-    cacheTime: 10 * 60 * 1000,
-  });
+  const { status, data, error, isFetching } = useDetailQuery(id);
 
   if (status === 'loading' || isFetching) {
     return <Loading />;
   }
 
   if (error) {
-    return error.status === 404
-      ? <Error404 /> : error.status === 500
-        ? <Error500 /> : <Loading />;
-  }
+    return <ErrorHandling error={error} />
+}
 
   return (
     <div>
