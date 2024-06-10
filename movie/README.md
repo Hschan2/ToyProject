@@ -98,7 +98,7 @@ src
 
 <p align="center">
   <img 
-  src="https://blog.kakaocdn.net/dn/eq2vKk/btsHQBLHKd3/W2Wn1Pd1fsQ0Lp4VhwqG81/img.gif" 
+  src="https://blog.kakaocdn.net/dn/b5ClQ1/btsHTVoM9Gv/0asxMcuDALr4ovNOOq2D20/img.gif" 
   width="400">
 </p>
 
@@ -133,11 +133,9 @@ src
 
 <p align="center">
   <img 
-  src="https://blog.kakaocdn.net/dn/lg8JZ/btsHQT6queb/2MrZFPU1nOUArHJ479YJp0/img.gif" 
+  src="https://blog.kakaocdn.net/dn/cqR4D8/btsHUy0WFcU/clhihfT0n1AZaXQUwKiK2K/img.gif" 
   width="400">
 </p>
-
-![Alt text](image-1.png)
 
 ### 기능
 #### 다크모드
