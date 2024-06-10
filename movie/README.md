@@ -12,7 +12,7 @@
 
 또한, 인기 영화, 신작 영화, 평가순 영화 등 다양한 카테고리의 영화 목록들을 확인할 수 있습니다.   
 
-![movie project](https://blog.kakaocdn.net/dn/eq2vKk/btsHQBLHKd3/W2Wn1Pd1fsQ0Lp4VhwqG81/img.gif)
+![Image](image.png)
 
 <br/>
 
