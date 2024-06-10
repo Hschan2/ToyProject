@@ -1,30 +1,10 @@
 import React, { useState } from 'react'
 import { SearchButton, SearchContainer, SearchInput } from '../../../style/Nav';
 import { useNavigate } from 'react-router';
+import { useSearchEvent } from '../../../hooks/useSearchEvent';
 
 function SearchBar() {
-    const [searchTerm, setSearchTerm] = useState('');
-    const navigate = useNavigate();
-
-    const changeInputValue = (e) => {
-        setSearchTerm(e.target.value);
-    }
-
-    const handleSearch = () => {
-        if (searchTerm.trim()) {
-            navigate(`/search?query=${encodeURIComponent(searchTerm)}`);
-        }
-
-        if (!searchTerm.trim()) {
-            alert('검색어를 입력해주세요.');
-        }
-    }
-
-    const pressEnterKey = (e) => {
-        if (e.key === 'Enter') {
-            handleSearch();
-        }
-    }
+    const { searchTerm, changeInputValue, handleSearch, pressEnterKey } = useSearchEvent();
 
     return (
         <SearchContainer>
