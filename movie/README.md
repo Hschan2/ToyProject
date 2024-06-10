@@ -24,12 +24,11 @@
 ## 영화 정보 서비스 개발자
 
 ### 프론트엔드
-| [홍성찬](https://github.com/Hschan2) |.
-| :---: |
-| ![](https://avatars.githubusercontent.com/u/39434913?v=4) |
-| 카테고리 별 영화 목록 출력 <br/> 상세 페이지 구현 <br/> 전체 디자인 |
+|[홍성찬](https://github.com/Hschan2)|
+|:---:|
+|![](https://avatars.githubusercontent.com/u/39434913?v=4)|
+|카테고리 별 영화 목록 출력<br/>상세 페이지 구현<br/>전체 디자인|
 
-<br/>
 <br/>
 
 ## 기술 스택
@@ -51,7 +50,7 @@
 ![React Query](https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white)
 
 #### 개발 도구
-![VSCode](https://img.shields.io/badge/VSCODE-007ACC?style=for-the-badge&logo=visual studio code&logoColor=white)
+![VSCode](https://img.shields.io/badge/VSCODE-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
 ![NPM](https://img.shields.io/badge/NPM-CB3837?style=for-the-badge)
 ![Webpack](https://img.shields.io/badge/Webpack-8DD6F9?style=for-the-badge)
@@ -96,6 +95,7 @@ src
 #### 메인 페이지
 * 메인 슬라이드 콘텐츠
 * 카테고리 별 슬라이드 콘텐츠
+
 <p align="center">
   <img 
   src="https://blog.kakaocdn.net/dn/eq2vKk/btsHQBLHKd3/W2Wn1Pd1fsQ0Lp4VhwqG81/img.gif" 
@@ -104,6 +104,7 @@ src
 
 #### 자세한 페이지
 * 자세히 보기 버튼 클릭 또는 카테고리 별 영화 이미지 클릭 시 자세한 페이지 이동
+
 <p align="center">
   <img 
   src="https://blog.kakaocdn.net/dn/oUgVl/btsHSe2y3n7/oL1dEk6MBkq8toDkkN7rz1/img.gif" 
@@ -112,6 +113,7 @@ src
 
 #### 로딩 페이지
 * 페이지 로딩
+
 <p align="center">
   <img 
   src="https://blog.kakaocdn.net/dn/ynYky/btsHQSNaKdH/fkvaFoCPxcJbWwgY0sgtcK/img.gif" 
@@ -119,6 +121,7 @@ src
 </p>
    
 * 데이터 불러오는 과정에서 스켈레톤 로딩
+
 <p align="center">
   <img 
   src="https://blog.kakaocdn.net/dn/dEEL3J/btsHRvDYLDL/aibSimFu7HMtdt6fVuUU6k/img.gif" 
@@ -127,6 +130,7 @@ src
 
 #### 검색 페이지
 * 영화 검색
+
 <p align="center">
   <img 
   src="https://blog.kakaocdn.net/dn/lg8JZ/btsHQT6queb/2MrZFPU1nOUArHJ479YJp0/img.gif" 
