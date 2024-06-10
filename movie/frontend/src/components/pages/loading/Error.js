@@ -3,7 +3,11 @@ import { ErrorContainer, ErrorMessage } from "../../../style/Loading";
 export function Error404({ status }) {
     return (
         <ErrorContainer stat={status}>
-            <ErrorMessage>404 Error | 페이지를 찾을 수 없습니다.</ErrorMessage>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+            </svg>
+            <h2>404 Error</h2>
+            <ErrorMessage>페이지를 찾을 수 없습니다.</ErrorMessage>
         </ErrorContainer>
     )
 }
@@ -11,7 +15,11 @@ export function Error404({ status }) {
 export function Error500({ status }) {
     return (
         <ErrorContainer stat={status}>
-            <ErrorMessage>500 Error | 데이터를 가져오지 못했습니다.</ErrorMessage>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+            </svg>
+            <h2>500 Error</h2>
+            <ErrorMessage>데이터 요청을 실패하였습니다.</ErrorMessage>
         </ErrorContainer>
     )
 }
