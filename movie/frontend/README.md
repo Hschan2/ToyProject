@@ -98,7 +98,7 @@ src
 
 <p align="center">
   <img 
-  src="https://blog.kakaocdn.net/dn/b5ClQ1/btsHTVoM9Gv/0asxMcuDALr4ovNOOq2D20/img.gif" 
+  src="https://github.com/Hschan2/ToyProject/blob/master/movie/frontend/src/images/main.gif?raw=true" 
   width="400">
 </p>
 
@@ -133,7 +133,7 @@ src
 
 <p align="center">
   <img 
-  src="https://blog.kakaocdn.net/dn/cqR4D8/btsHUy0WFcU/clhihfT0n1AZaXQUwKiK2K/img.gif" 
+  src="https://github.com/Hschan2/ToyProject/blob/master/movie/frontend/src/images/search.gif?raw=true" 
   width="400">
 </p>
 
