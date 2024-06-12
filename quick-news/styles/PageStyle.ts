@@ -20,6 +20,7 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   height: 100vh;
 `
+
 export const Nav = styled.nav`
   display: flex;
   background-color: ${(props) => props.theme.lightBackground};
