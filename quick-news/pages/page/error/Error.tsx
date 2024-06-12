@@ -1,5 +1,5 @@
 import { NextPageContext } from 'next'
-import Custom404 from '../../error/Error404'
+import CustomError from '../../error/Error'
 
 export default function Error({
   statusCode,
@@ -8,7 +8,7 @@ export default function Error({
   statusCode: number
   message: string
 }) {
-  return <Custom404 statusCode={statusCode} message={message} />
+  return <CustomError statusCode={statusCode} message={message} />
 }
 
 Error.getInitialProps = ({ res, err }: NextPageContext) => {

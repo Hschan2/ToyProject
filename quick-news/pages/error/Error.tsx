@@ -8,10 +8,15 @@ export default function Custom404({
   statusCode: number
   message: string
 }) {
+  const image =
+    statusCode === 500
+      ? 'https://t4.ftcdn.net/jpg/05/92/91/99/360_F_592919939_IrEOZvIZuxDGZNsZlCfdOBBtEz8OoFkd.jpg'
+      : 'https://png.pngtree.com/png-vector/20210827/ourmid/pngtree-error-404-page-not-found-png-image_3832696.jpg'
+
   return (
     <Wrapper>
       <Image
-        src="https://png.pngtree.com/png-vector/20210827/ourmid/pngtree-error-404-page-not-found-png-image_3832696.jpg"
+        src={image}
         width={400}
         height={400}
         loading="lazy"
