@@ -22,3 +22,4 @@ export const API_URL = [
 ]
 
 export const LATEST_MOVIE_URL = "http://localhost:8080/api/movies/highRated";
+export const RECOMMENDATION_URL = 'http://localhost:8080/api/movies/recommendation';

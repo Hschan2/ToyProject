@@ -1,4 +1,3 @@
-import React from 'react'
 import { Skeleton, SkeletonLayout } from '../../../style/Loading';
 
 export function CarouselSkeleton() {

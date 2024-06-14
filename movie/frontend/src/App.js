@@ -13,7 +13,6 @@ import { Route, Routes } from 'react-router';
 import SEO from './components/pages/seo/SEO';
 import Loading from './components/pages/loading/Loading';
 import ToUp from './components/pages/scroll/ToUp';
-import { Error404 } from './components/pages/loading/Error';
 
 const MainContent = lazy(() => import('./components/pages/content/MainContent'));
 const SlideCategory = lazy(() => import('./components/pages/content/SlideCategory'));

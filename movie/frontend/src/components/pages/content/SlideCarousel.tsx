@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -9,9 +9,13 @@ import { CarouselSkeleton } from '../loading/Skeleton';
 import { ErrorHandling } from '../../../hooks/ErrorHandling';
 import { useCarouselQuery } from '../../../hooks/useMovieQuery';
 
-function SlideMenus({ apiUrl }) {
+type SlideMenuProps = {
+    apiUrl: string;
+}
+
+function SlideMenus({ apiUrl }: SlideMenuProps) {
     const { status, data, error, isFetching } = useCarouselQuery(apiUrl);
-    const sliderRef = useRef(null);
+    const sliderRef = useRef<Slider | null>(null);
 
     const settings = {
         dots: true,
@@ -47,14 +51,14 @@ function SlideMenus({ apiUrl }) {
     };
 
     const handlePrevious = () => {
-        sliderRef.current.slickPrev();
+        sliderRef.current?.slickPrev();
     };
 
     const handleNext = () => {
-        sliderRef.current.slickNext();
+        sliderRef.current?.slickNext();
     };
 
-    if (status === 'loading' || isFetching) {
+    if (status === 'pending' || isFetching) {
         return <CarouselSkeleton />;
     }
 
@@ -64,7 +68,7 @@ function SlideMenus({ apiUrl }) {
 
     return (
         <CarouselContainer>
-            {data && data.length > 0 ? (
+            {data && data?.length > 0 ? (
                 <>
                     <Slider ref={sliderRef} {...settings}>
                         {data?.map((slide, index) => (
@@ -89,7 +93,13 @@ function SlideMenus({ apiUrl }) {
 
 export default SlideMenus
 
-const Slide = ({ poster_path, title, id }) => (
+type SlideProps = {
+    poster_path: string;
+    title: string;
+    id: string | number;
+}
+
+const Slide = ({ poster_path, title, id }: SlideProps) => (
     <Link
         to={`/detail/${id}`}
         key={id}

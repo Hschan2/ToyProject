@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import { MAIN_BANNER_LOTTIE } from '../../constants/FileLink'
 import { LogoContainer, LogoAnimation, LottieAnimation, LogoTitle } from '../../../style/Nav';

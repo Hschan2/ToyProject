@@ -1,8 +1,18 @@
 import { keyframes, styled } from "styled-components";
 import LottieFiles from "../components/pages/animation/lottieFiles";
 
+interface LoadingProps {
+  stat?: 'main' | 'carousel' | 'error' | string | null;
+}
+
+interface SkeletonProps {
+  width: string;
+  height: string;
+  margin: string;
+}
+
 // Loading
-export const LoadingContainer = styled.div`
+export const LoadingContainer = styled.div<LoadingProps>`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -10,7 +20,7 @@ export const LoadingContainer = styled.div`
     margin-top: ${(props) => props.stat === 'error' ? '0' : '150px'};
 `
 
-export const LoadingAnimation = styled(LottieFiles)`
+export const LoadingAnimation = styled(LottieFiles)<LoadingProps>`
   display: inline-block;
   width: ${(props) => props.stat === 'error' ? '100px' : '250px'};
   height: ${(props) => props.stat === 'error' ? '100px' : '250px'};
@@ -33,9 +43,8 @@ export const Shimmer = keyframes`
 `
 
 // Skeleton
-export const Skeleton = styled.div`
+export const Skeleton = styled.div<SkeletonProps>`
   background: #E0E0E0;
-  border-radius: 4px;
   width: ${(props) => props.width};
   height: ${(props) => props.height === "380px" ? `clamp(250px, 10vw, 400px)` : `clamp(180px, 10vw, 220px)`};
   animation: ${Shimmer} 1.5s infinite linear;
@@ -50,7 +59,7 @@ export const SkeletonLayout = styled.div`
 `
 
 // Error
-export const ErrorContainer = styled.div`
+export const ErrorContainer = styled.div<LoadingProps>`
   width: 100%;
   height: ${(props) => props.stat === 'main' ? 'clamp(300px, 20vw, 450px)' : props.stat === 'carousel' ? 'clamp(20vh, 10vw, 40vh)' : 'clamp(350px, 10vw, 500px)'};
   display: flex;

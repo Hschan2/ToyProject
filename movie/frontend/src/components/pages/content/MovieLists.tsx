@@ -1,13 +1,13 @@
-import React from 'react'
 import { Link } from 'react-router-dom';
 import { Container, MovieBox, MovieImage, MovieTitle } from '../../../style/Contents';
+import { MovieListProps } from '../../types/MovieTypes';
 
 /**
  * 영화 목록 출력 페이지 컴포넌트
  * @movieList 영화 목록들이 담긴 파라미터
  * @returns 영화 목록들이 담긴 파라미터의 길이만큼 반복해서 출력
  */
-function MovieLists({ movieList }) {
+function MovieLists({ movieList }: MovieListProps) {
   return (
     <Container>
         {movieList?.map((movie) => (

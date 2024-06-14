@@ -1,8 +1,12 @@
-import React from 'react'
 import SlideMenus from './SlideCarousel'
 import { ItemTitle, SlideItemContainer } from '../../../style/Carousel'
 
-function SlideItem({ title, url }) {
+type SlideItemProps = {
+    title: string | null;
+    url: string;
+}
+
+function SlideItem({ title, url }: SlideItemProps) {
     return (
         <SlideItemContainer>
             <ItemTitle>{title}</ItemTitle>

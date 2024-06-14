@@ -1,5 +1,9 @@
 import { styled } from "styled-components";
 
+interface SliderProps {
+  checked: boolean;
+}
+
 export const DarkModeContainer = styled.div`
   margin-bottom: 20px;
   margin-left: 14px;
@@ -28,7 +32,7 @@ export const Indicator = styled.div`
   transition: 250ms ease-in-out;
 `;
 
-export const Slider = styled.div`
+export const Slider = styled.div<SliderProps>`
   content: "";
   width: 20px;
   height: 18px;

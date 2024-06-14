@@ -1,6 +1,5 @@
-import React from 'react'
 import { LOADING_LOTTIE } from '../../constants/FileLink';
-import { LoadingContainer, LoadingAnimation, Message } from '../../../style/Loading';
+import { LoadingContainer, LoadingAnimation } from '../../../style/Loading';
 
 /**
  * 로딩 페이지 컴포넌트

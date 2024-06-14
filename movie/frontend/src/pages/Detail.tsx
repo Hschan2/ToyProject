@@ -1,4 +1,3 @@
-import React from 'react';
 import { useParams } from 'react-router-dom';
 import Loading from '../components/pages/loading/Loading';
 import SEO from '../components/pages/seo/SEO';
@@ -14,13 +13,13 @@ function Detail() {
   const { id } = useParams();
   const { status, data, error, isFetching } = useDetailQuery(id);
 
-  if (status === 'loading' || isFetching) {
+  if (status === 'pending' || isFetching) {
     return <Loading />;
   }
 
   if (error) {
-    return <ErrorHandling error={error} />
-}
+    return <ErrorHandling error={error} viewName="Detail" />
+  }
 
   return (
     <div>

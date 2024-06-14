@@ -1,6 +1,4 @@
-import React, { useState } from 'react'
 import { SearchButton, SearchContainer, SearchInput } from '../../../style/Nav';
-import { useNavigate } from 'react-router';
 import { useSearchEvent } from '../../../hooks/useSearchEvent';
 
 function SearchBar() {

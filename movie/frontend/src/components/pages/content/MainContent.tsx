@@ -1,8 +1,5 @@
-import React from 'react'
 import { BackImage, Container, Description, DetailButton, ImageContainer, Overlay, SliderContainer, SmallImage, TextContainer, Title } from '../../../style/MainContent';
 import { Link } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import QueryMovie from '../../api/QueryMovie';
 import Slider from 'react-slick';
 import { MainContentSkeleton } from '../loading/Skeleton';
 import { ErrorHandling } from '../../../hooks/ErrorHandling';
@@ -24,7 +21,7 @@ function MainContent() {
         autoplaySpeed: 10000,
     };
 
-    if (status === 'loading' || isFetching) {
+    if (status === 'pending' || isFetching) {
         return <MainContentSkeleton />;
     }
 

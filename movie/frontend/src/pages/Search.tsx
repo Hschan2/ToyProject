@@ -1,8 +1,6 @@
-import React, { lazy } from 'react'
+import { lazy } from 'react'
 import { useLocation } from 'react-router'
 import SEO from '../components/pages/seo/SEO';
-import { QuerySearchMovie } from '../components/api/QueryMovie';
-import { useQuery } from '@tanstack/react-query';
 import Loading from '../components/pages/loading/Loading';
 import { SearchTitle } from '../style/Contents';
 import { ErrorHandling } from '../hooks/ErrorHandling';
@@ -17,19 +15,19 @@ function Search() {
 
     const { status, data, error, isFetching } = useSearchQuery(query);
 
-    if (status === 'loading' || isFetching) {
+    if (status === 'pending' || isFetching) {
         return <Loading />;
     }
 
     if (error) {
-        return <ErrorHandling error={error} />
+        return <ErrorHandling error={error} viewName="search" />
     }
 
     return (
         <div>
             <SEO title={query} />
             <SearchTitle>검색 결과 | {query}</SearchTitle>
-            <MovieLists movieList={data} />
+            <MovieLists movieList={data ?? []} />
         </div>
     )
 }
