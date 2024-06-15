@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import './App.css';
 import { useRecoilState } from 'recoil';
 import { darkModeState } from './components/constants/Store';
