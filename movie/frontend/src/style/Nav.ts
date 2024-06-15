@@ -53,6 +53,10 @@ export const SearchInput = styled.input`
   width: clamp(70px, 15vw, 180px);
   height: clamp(28px, 4vw, 36px);
   font-size: clamp(12px, 2vw, 14px);
+
+  &::placeholder {
+    color: ${(props) => props.theme.lightText};
+  }
 `;
 
 export const SearchButton = styled.button`
