@@ -1,4 +1,8 @@
-import { QueryFunction, useQuery } from "@tanstack/react-query";
+import {
+  QueryFunction,
+  UseQueryOptions,
+  useQuery,
+} from "@tanstack/react-query";
 import QueryMovie, {
   QueryDetailMovie,
   QuerySearchMovie,
@@ -13,18 +17,26 @@ type UseMovieQueryOptions<T> = {
   key: unknown[];
   queryFn: QueryFunction<T>;
   enabled?: boolean;
+  staleTime?: number;
+  cacheTime?: number;
 };
 
 export const useMovieQuery = <T>({
   key,
   queryFn,
   enabled = true,
+  staleTime = 1000 * 60 * 10,
+  cacheTime = 1000 * 60 * 30,
 }: UseMovieQueryOptions<T>) => {
-  return useQuery<T>({
+  const options = {
     queryKey: key,
     queryFn: queryFn,
     enabled: enabled,
-  });
+    staleTime: staleTime,
+    cacheTime: cacheTime,
+  };
+
+  return useQuery<T>(options);
 };
 
 export const useSearchQuery = (query: string | null) => {
