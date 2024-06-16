@@ -1,6 +1,12 @@
-import { Link } from 'react-router-dom';
-import { Container, MovieBox, MovieImage, MovieTitle } from '../../../style/Contents';
-import { MovieListProps } from '../../types/MovieTypes';
+import { Link } from "react-router-dom";
+import {
+  Container,
+  MovieBox,
+  MovieImage,
+  MovieTitle,
+} from "../../../style/Contents";
+import { MovieListProps } from "../../types/MovieTypes";
+import useIntersectionObserver from "../../../hooks/useIntersectionObserver";
 
 /**
  * 영화 목록 출력 페이지 컴포넌트
@@ -8,21 +14,29 @@ import { MovieListProps } from '../../types/MovieTypes';
  * @returns 영화 목록들이 담긴 파라미터의 길이만큼 반복해서 출력
  */
 function MovieLists({ movieList }: MovieListProps) {
+  const { containerRef, loading, page, hasMore } = useIntersectionObserver({
+    callback: () => {},
+    options: { threshold: 0.5 },
+    movieListLength: movieList.length,
+  });
+
   return (
-    <Container>
-        {movieList?.map((movie) => (
-          <Link
-            to={`/detail/${movie.id}`}
-            key={movie.id}
-          >
-            <MovieBox>
-              <MovieImage src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} loading='lazy' alt={movie.title} />
-              <MovieTitle>{movie.title}</MovieTitle>
-            </MovieBox>
-          </Link>
-        ))}
+    <Container ref={containerRef}>
+      {movieList?.map((movie) => (
+        <Link to={`/detail/${movie.id}`} key={movie.id}>
+          <MovieBox>
+            <MovieImage
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              loading="lazy"
+              alt={movie.title}
+            />
+            <MovieTitle>{movie.title}</MovieTitle>
+          </MovieBox>
+        </Link>
+      ))}
+      {loading && hasMore && <p>Loading...</p>}
     </Container>
-  )
+  );
 }
 
-export default MovieLists
+export default MovieLists;
