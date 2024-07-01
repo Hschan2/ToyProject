@@ -53,7 +53,13 @@ export const NavTitle = styled.h1`
 
 export const NavDisplay = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 0.75em;
+  justify-content: center;
+
+  ${media.mobile`
+    padding: 0 12px;
+  `}
 `
 
 export const LinkStyle = styled.div<{ isActive: boolean }>`
@@ -77,8 +83,8 @@ export const LinkStyle = styled.div<{ isActive: boolean }>`
   `}
 
   ${media.mobile`
-    width: 2rem;
-    font-size: 0.5rem;
+    width: 3.125rem;
+    font-size: 0.55rem;
     padding: 0.3rem 0.4rem;
   `}
 `

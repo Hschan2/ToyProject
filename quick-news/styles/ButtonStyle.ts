@@ -253,5 +253,9 @@ export const SaveButton = styled.button`
 
   ${media.mobile`
     font-size: 0.75rem;
+
+    &.newsHome {
+      margin-top: 8px;
+    }
   `}
 `

@@ -97,7 +97,7 @@ export const LimitLineTitle = styled.h3`
   text-overflow: ellipsis;
 
   ${media.mobile`
-    max-width: 280px;
+    max-width: 240px;
     font-size: ${newsValueSize.large};
   `}
 `
