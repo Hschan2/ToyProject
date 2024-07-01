@@ -42,6 +42,10 @@ export const SearchContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-left: auto;
+
+  @media (max-width: 425px) {
+    visibility: hidden;
+  }
 `;
 
 export const SearchInput = styled.input`
