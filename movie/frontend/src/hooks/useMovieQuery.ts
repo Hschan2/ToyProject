@@ -1,6 +1,5 @@
 import {
   QueryFunction,
-  UseQueryOptions,
   useQuery,
 } from "@tanstack/react-query";
 import QueryMovie, {
