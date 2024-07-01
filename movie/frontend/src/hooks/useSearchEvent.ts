@@ -23,10 +23,17 @@ export const useSearchEvent = () => {
     }
   };
 
+  const wordSearch = (title: string) => {
+    if (title.trim()) {
+      navigate(`/search?query=${encodeURIComponent(title.trim())}`);
+    }
+  };
+
   return {
     searchTerm,
     changeInputValue,
     handleSearch,
     pressEnterKey,
+    wordSearch,
   };
 };
