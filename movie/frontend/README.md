@@ -137,6 +137,12 @@ src
   width="400">
 </p>
 
+<p align="center">
+  <img 
+  src="https://github.com/Hschan2/ToyProject/blob/master/movie/frontend/src/images/mobile_searching.gif?raw=true" 
+  width="400">
+</p>
+
 ### 기능
 #### 다크모드
 <p align="center">
