@@ -1,6 +1,5 @@
 import { useLocation } from "react-router";
 import { BottomMenuButton, BottomMenuWrapper } from "../../../style/Scroll";
-import { Link } from "react-router-dom";
 
 function BottomMenu() {
   const location = useLocation();

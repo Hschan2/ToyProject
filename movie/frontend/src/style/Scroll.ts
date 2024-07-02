@@ -22,6 +22,10 @@ export const UpTopButton = styled.button`
   &:hover {
     background: #ff7547;
   }
+
+  @media (max-width: 425px) {
+    bottom: 80px;
+  }
 `;
 
 export const ContentContainer = styled.div`
@@ -58,6 +62,8 @@ export const BottomMenuButton = styled(Link)<{ active?: string }>`
   justify-content: center;
   padding: 8px 0;
   border: none;
+  border-left: 1px solid ${(props) => props.theme.background};
+  border-right: 1px solid ${(props) => props.theme.background};
   background-color: ${(props) => props.theme.background};
   color: ${(props) => (props.active === "true" ? props.theme.text : "#999999")};
   gap: 4px;
