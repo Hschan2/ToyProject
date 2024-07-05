@@ -1,5 +1,16 @@
 import { ReactElement } from 'react'
 
+interface INewsBase {
+  id: number | string
+  title: string
+  description: string
+  pubDate?: number
+  author?: string
+  url?: string
+  urlToImage?: string
+  publishedAt?: string
+}
+
 export interface ILocation {
   latitude: number | null
   longitude: number | null
@@ -12,36 +23,16 @@ export interface IWeather {
   temp: number
 }
 
-export interface NaverNewsProps {
-  id: number
-  title: string
+export interface NaverNewsProps extends INewsBase {
   link: string
   image: string
-  description: string
-  pubDate: number
 }
 
-export interface CategoryNewsProps {
-  id: string
-  author: string
-  title: string
-  description: string
-  url: string
-  urlToImage: string
-  publishedAt: string
-}
+export interface CategoryNewsProps extends INewsBase {}
 
-export interface StorageNewsProps {
-  id: number | string
-  title: string
+export interface StorageNewsProps extends INewsBase {
   link?: string
   image?: string
-  description: string
-  pubDate?: number
-  author?: string
-  url?: string
-  urlToImage?: string
-  publishedAt?: string
 }
 
 export interface MoreButtonProps {
