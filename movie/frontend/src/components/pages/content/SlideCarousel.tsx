@@ -96,7 +96,7 @@ export default SlideMenus
 type SlideProps = {
     poster_path: string;
     title: string;
-    id: string | number;
+    id?: string | number;
 }
 
 const Slide = ({ poster_path, title, id }: SlideProps) => (

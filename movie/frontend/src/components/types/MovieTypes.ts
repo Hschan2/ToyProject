@@ -1,25 +1,20 @@
-export interface MovieDetailProps {
+interface IMovieBase {
+  id?: number;
   title: string;
   poster_path: string;
+  overview?: string;
+}
+
+export interface MovieDetailProps extends IMovieBase {
   production_companies: { name: string }[];
   genres: { name: string }[];
   runtime: number;
   vote_average: number;
-  overview: string;
 }
 
-export interface MovieItemProps {
-  id: number;
-  poster_path: string;
-  title: string;
-}
+export interface MovieItemProps extends IMovieBase {}
 
-export interface MovieCarouselItemProps {
-  id: number;
-  poster_path: string;
-  title: string;
-  overview: string;
-}
+export interface MovieCarouselItemProps extends IMovieBase {}
 
 export interface MovieListProps {
   movieList: MovieItemProps[];
