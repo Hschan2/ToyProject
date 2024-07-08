@@ -6,7 +6,7 @@ interface INewsBase {
   description: string
   pubDate?: number
   author?: string
-  url?: string
+  url?: string | undefined
   urlToImage?: string
   publishedAt?: string
 }
