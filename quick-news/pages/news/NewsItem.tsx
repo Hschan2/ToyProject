@@ -23,8 +23,12 @@ function NewsItem({ article }: NaverNewsList) {
       <NewsCard>
         <TitleSaveContainer className="newsHome">
           <Link
-            href={article.link}
-            target="_blank"
+            href={{
+              pathname: '/page/detail/Index',
+              query: { article: JSON.stringify(article) },
+            }}
+            as="../page/detail/Index"
+            passHref
             title={`${article.title} 페이지로 이동`}
           >
             <LimitLineTitle
@@ -43,11 +47,17 @@ function NewsItem({ article }: NaverNewsList) {
           {moment(article.pubDate).format('YYYY-MM-DD HH:mm')}
         </DateTime>
         <Link
-          href={article.link}
-          target="_blank"
+          href={{
+            pathname: '/page/detail/Index',
+            query: { article: JSON.stringify(article) },
+          }}
+          as="../page/detail/Index"
+          passHref
           title={`${article.title} 페이지로 이동`}
         >
-          <Description dangerouslySetInnerHTML={{ __html: article.description }} />
+          <Description
+            dangerouslySetInnerHTML={{ __html: article.description }}
+          />
         </Link>
       </NewsCard>
     </NewsContainer>

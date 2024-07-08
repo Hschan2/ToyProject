@@ -24,8 +24,12 @@ function NewsCategoryItem({ article }: CategoryNewsList) {
       <NewsCard>
         <TitleSaveContainer>
           <Link
-            href={article.url}
-            target="_blank"
+            href={{
+              pathname: '/page/detail/Index',
+              query: { article: JSON.stringify(article) },
+            }}
+            as="../page/detail/Index"
+            passHref
             title={`${article.title} 페이지로 이동`}
           >
             <LimitLineTitle>{article.title.split(' - ')[0]}</LimitLineTitle>
@@ -39,8 +43,12 @@ function NewsCategoryItem({ article }: CategoryNewsList) {
         </DateOfNews>
         <Author>{article.author}</Author>
         <Link
-          href={article.url}
-          target="_blank"
+          href={{
+            pathname: '/page/detail/Index',
+            query: { article: JSON.stringify(article) },
+          }}
+          as="../page/detail/Index"
+          passHref
           title={`${article.title} 페이지로 이동`}
         >
           <Description>{article.description ?? ''}</Description>
