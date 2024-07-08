@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import { COMMON_COLOR } from '../utils/ColorValue'
+import Link from 'next/link'
 
 const media = {
   tablet: (styles: TemplateStringsArray, ...interpolations: any[]) => css`
@@ -106,4 +107,70 @@ export const Description = styled.p`
   ${media.mobile`
     font-size: ${newsValueSize.small};
   `}
+`
+
+// Detail
+export const DetailWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 20px;
+
+  ${media.mobile`
+    padding: 0 20px;
+  `}
+`
+
+export const DetailTitle = styled.h2`
+  font-size: clamp(18px, 4vw, 32px);
+  color: ${(props) => props.theme.text};
+  width: 80%;
+`
+
+export const DetailPubDate = styled.span`
+  font-size: clamp(12px, 1vw, 14px);
+  color: ${(props) => props.theme.lightText};
+  padding: 2px 0;
+`
+
+export const DetailAuthor = styled.span`
+  font-size: clamp(14px, 2vw, 16px);
+  color: ${(props) => props.theme.text};
+  padding: 2px 0;
+`
+
+export const DetailImage = styled.img`
+  width: 100%;
+  height: 40vh;
+  padding: 8px 0;
+  object-fit: cover;
+
+  ${media.mobile`
+    height: 30vh;
+  `}
+`
+
+export const DetailDes = styled.p`
+  color: ${(props) => props.theme.text};
+`
+
+export const LinkContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+`
+
+export const DetailLink = styled(Link)`
+  width: 20%;
+  text-align: center;
+  padding: 8px;
+  margin-top: 12px;
+  border: 1px solid ${(props) => props.theme.border};
+  border-radius: 36px;
+  background-color: ${COMMON_COLOR};
+  color: ${(props) => props.theme.reverseText};
+  font-size: clamp(8px, 1.5vw, 16px);
 `
