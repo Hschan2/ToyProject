@@ -19,6 +19,7 @@ declare module 'styled-components' {
     border: string
     shadow: string
     mainColor: string
+    reverseText: string
   }
 }
 
