@@ -2,10 +2,12 @@ import Head from 'next/head'
 import { useLayoutEffect, useState } from 'react'
 import useCurrentUrl from '../../utils/Router'
 import { SEOProps } from '../../utils/types/type'
+import useHTMLParse from '@/utils/hooks/useHTMLParse'
 
 export default function SEO({ title, description }: SEOProps) {
   const nowLocation = useCurrentUrl()
   const [isPageLoaded, setIsPageLoaded] = useState(false)
+  const parseTitle = useHTMLParse(title)
 
   useLayoutEffect(() => {
     setIsPageLoaded(true)
@@ -13,7 +15,7 @@ export default function SEO({ title, description }: SEOProps) {
 
   return (
     <Head>
-      <title>{isPageLoaded ? `퀵 뉴스 | ${title}` : '퀵 뉴스'}</title>
+      <title>{isPageLoaded ? `퀵 뉴스 | ${parseTitle}` : '퀵 뉴스'}</title>
       <meta
         name="description"
         content={description || '뉴스 빠르게 확인하기'}
