@@ -33,7 +33,7 @@ export const FooterContents = styled.footer`
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  color: grey;
+  color: ${(props) => props.theme.footer};
   font-size: 0.6rem;
 
   ${media.tablet`

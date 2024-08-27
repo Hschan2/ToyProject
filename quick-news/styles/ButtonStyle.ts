@@ -259,3 +259,26 @@ export const SaveButton = styled.button`
     }
   `}
 `
+
+// 날씨 가져오기 버튼
+export const GetLocationButton = styled.button`
+  background: none;
+  border: 1px solid ${(props) => props.theme.border};
+  border-radius: 8px;
+  color: ${(props) => props.theme.lightText};
+  padding: 4px 6px;
+  font-size: 0.75rem;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid ${(props) => props.theme.lightText};
+  }
+
+  ${media.tablet`
+    font-size: 0.625rem;
+  `}
+
+  ${media.mobile`
+    font-size: 0.5rem;
+  `}
+`

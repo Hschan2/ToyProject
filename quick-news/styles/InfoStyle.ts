@@ -34,6 +34,7 @@ export const DateTime = styled.p`
 
 export const TimeWeather = styled.div`
   display: flex;
+  align-items: center;
   gap: 10px;
   margin-bottom: 10px;
   color: ${(props) => props.theme.lightText};

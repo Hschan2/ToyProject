@@ -91,11 +91,12 @@ export const NewsContainer = styled.div`
   flex-direction: column;
 `
 
-export const LimitLineTitle = styled.h3`
+export const LimitLineTitle = styled.h2`
   max-width: 560px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 1rem;
 
   ${media.mobile`
     max-width: 240px;
