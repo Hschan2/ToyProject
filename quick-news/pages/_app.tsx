@@ -20,6 +20,7 @@ declare module 'styled-components' {
     shadow: string
     mainColor: string
     reverseText: string
+    footer: string
   }
 }
 
