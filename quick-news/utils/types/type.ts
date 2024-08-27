@@ -15,6 +15,7 @@ export interface ILocation {
   latitude: number | null
   longitude: number | null
   error: string | null
+  requestLocation: () => void
 }
 
 export interface IWeather {

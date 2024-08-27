@@ -1,16 +1,22 @@
 import { useEffect, useState } from 'react'
 import { ILocation, IWeather } from '../../utils/types/type'
 import useGeolocation from '../../utils/Geolocation'
+import { GetLocationButton } from '@/styles/ButtonStyle'
 
 export default function Weather() {
-  const { latitude, longitude, error }: ILocation = useGeolocation()
+  const { latitude, longitude, error, requestLocation }: ILocation =
+    useGeolocation()
   const [weatherData, setWeatherData] = useState<IWeather | null>(null)
-  const [loading, setLoading] = useState<boolean>(false)
+
+  const getLocation = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    if (window.confirm('현재 위치를 가져올까요?')) {
+      requestLocation()
+    }
+  }
 
   useEffect(() => {
-    if (!latitude || !longitude) {
-      return undefined
-    }
+    if (!latitude || !longitude) return
 
     const abortController = new AbortController()
 
@@ -29,7 +35,6 @@ export default function Weather() {
           description: weather[0].description,
           temp: main.temp,
         })
-        setLoading(true)
       } catch (err) {
         console.error(`날씨를 가져오지 못했습니다. : ${err}`)
         throw new Error(`날씨 정보 가져오기 실패: ${err}`)
@@ -43,22 +48,21 @@ export default function Weather() {
     }
   }, [latitude, longitude])
 
-  if (error) {
-    return <div>{error}</div>
-  }
-
-  if (!loading) {
-    return <p>날씨 가져오는 중...</p>
-  }
-
-  if (!weatherData) {
-    return <p>날씨 정보가 없습니다.</p>
-  }
-
   return (
     <div>
-      {weatherData.name} {Math.floor(weatherData.temp)}˚{' '}
-      {weatherData.description}
+      {error && <span>{error}</span>}
+      {!latitude || !longitude ? (
+        <GetLocationButton onClick={getLocation}>
+          날씨 가져오기
+        </GetLocationButton>
+      ) : !weatherData ? (
+        <span>날씨 정보가 없습니다.</span>
+      ) : (
+        <>
+          {weatherData.name} {Math.floor(weatherData.temp)}˚{' '}
+          {weatherData.description}
+        </>
+      )}
     </div>
   )
 }

@@ -6,7 +6,7 @@ export default function useGeolocation(): ILocation {
   const [longitude, setLongitude] = useState<number | null>(null)
   const [error, setError] = useState<string | null>(null)
 
-  useEffect(() => {
+  const requestLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -20,7 +20,7 @@ export default function useGeolocation(): ILocation {
     } else {
       setError('이 브라우저에서 위치를 가져올 수 없습니다.')
     }
-  }, [])
+  }
 
-  return { latitude, longitude, error }
+  return { latitude, longitude, error, requestLocation }
 }
