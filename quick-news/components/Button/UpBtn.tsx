@@ -20,7 +20,7 @@ export default function MoveUp() {
   }
 
   return showButton ? (
-    <UpButton onClick={handleClick}>
+    <UpButton onClick={handleClick} aria-label="상단이동">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"

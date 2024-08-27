@@ -56,7 +56,11 @@ export default function SearchButton() {
 
   return (
     <SearchContainer>
-      <SearchingButton type="button" onClick={handleToggleInput}>
+      <SearchingButton
+        type="button"
+        onClick={handleToggleInput}
+        aria-label="뉴스검색"
+      >
         <FontAwesomeIcon icon={faSearch} size="1x" />
       </SearchingButton>
       {isInputVisible && (

@@ -8,7 +8,12 @@ export default function MoreViewButton({
   children,
 }: MoreButtonProps) {
   return (
-    <MoreButton type="button" onClick={onClick} disabled={disabled}>
+    <MoreButton
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      aria-label="더보기"
+    >
       {children}
     </MoreButton>
   )

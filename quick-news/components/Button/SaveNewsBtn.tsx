@@ -9,7 +9,7 @@ function SavedNewsButton() {
     router.push(`/page/saved/savedNews`, undefined, { shallow: true })
   }
   return (
-    <SavedNewsBtn onClick={navigateSavedNews}>
+    <SavedNewsBtn onClick={navigateSavedNews} aria-label="뉴스저장">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"

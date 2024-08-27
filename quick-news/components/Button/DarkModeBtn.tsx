@@ -11,7 +11,10 @@ function DarkModeButton() {
   }
 
   return (
-    <DarkModeBtn onClick={changeDarkMode}>
+    <DarkModeBtn
+      onClick={changeDarkMode}
+      aria-label={isDarkMode ? '다크모드로' : '라이트모드로'}
+    >
       {isDarkMode ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
