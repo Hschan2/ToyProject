@@ -10,6 +10,7 @@ import {
   LinkContainer,
 } from '@/styles/NewsStyle'
 import { NaverNewsProps } from '@/utils/types/type'
+import { format } from 'date-fns'
 import moment from 'moment'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
@@ -18,6 +19,7 @@ function Detail() {
   const router = useRouter()
   const { article } = router.query
   const [articleData, setArticleData] = useState<NaverNewsProps | null>(null)
+  const publishedDate = articleData?.pubDate || articleData?.publishedAt
 
   useEffect(() => {
     if (article) {
@@ -42,20 +44,21 @@ function Detail() {
         <DetailLink
           href={articleData.link || articleData.url || '#'}
           target="_blank"
+          rel="noopener noreferrer"
         >
           자세히 보기 →
         </DetailLink>
       </LinkContainer>
       {articleData.author && <DetailAuthor>{articleData.author}</DetailAuthor>}
       <DetailPubDate>
-        {moment(articleData.pubDate || articleData.publishedAt).format(
-          'YYYY-MM-DD HH:mm',
-        )}
+        {publishedDate && format(new Date(publishedDate), 'yyyy-MM-dd HH:mm')}
       </DetailPubDate>
       <DetailImage
         src={articleData.urlToImage || '/news_image.jpg'}
         loading="lazy"
         alt={articleData.title}
+        width="420"
+        height="240"
       />
       <DetailDes
         dangerouslySetInnerHTML={{ __html: articleData.description ?? '' }}
