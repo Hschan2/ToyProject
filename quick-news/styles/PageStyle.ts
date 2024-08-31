@@ -34,6 +34,7 @@ export const Nav = styled.nav`
 
 export const NavTitle = styled.h1`
   font-family: 'Georgia', sans-serif;
+  font-display: swap;
   font-size: 2.5rem;
   color: ${(props) => props.theme.mainColor};
   margin: 0.3125rem 0;
@@ -87,20 +88,4 @@ export const LinkStyle = styled.div<{ isActive: boolean }>`
     font-size: 0.55rem;
     padding: 0.3rem 0.4rem;
   `}
-`
-
-export const TimelineScrollContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 0.1875rem;
-  background-color: ${(props) => props.theme.background};
-`
-
-export const TimelineScrollBar = styled.div<{ progress: number }>`
-  height: 100%;
-  background-color: ${COMMON_COLOR};
-  transition: width 0.1s;
-  ${(props) => `width: ${props.progress}%`};
 `

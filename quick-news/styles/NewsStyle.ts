@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 import { COMMON_COLOR } from '../utils/ColorValue'
 import Link from 'next/link'
+import React from 'react'
 
 const media = {
   tablet: (styles: TemplateStringsArray, ...interpolations: any[]) => css`
@@ -96,7 +97,8 @@ export const LimitLineTitle = styled.h2`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  font-display: swap;
 
   ${media.mobile`
     max-width: 240px;
@@ -104,11 +106,15 @@ export const LimitLineTitle = styled.h2`
   `}
 `
 
-export const Description = styled.p`
+export const Description = React.memo(styled.p`
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   ${media.mobile`
     font-size: ${newsValueSize.small};
   `}
-`
+`)
 
 // Detail
 export const DetailWrapper = styled.div`
