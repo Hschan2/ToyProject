@@ -4,25 +4,13 @@ import {
   LoadingLottie,
   LoadingMessage,
 } from '../../styles/LoadingStyle'
+import loading from '../../public/lottie/loading.json'
 
 export default function Loading() {
-  const lottieFilesSrc =
-    'https://assets1.lottiefiles.com/packages/lf20_jv0xz0qi.json'
-  const [animationData, setAnimationData] = useState(null)
+  const [animationData, setAnimationData] = useState<object | null>(null)
 
   useEffect(() => {
-    const fetchAnimationData = async () => {
-      try {
-        const response = await fetch(lottieFilesSrc)
-        const jsonData = await response.json()
-        setAnimationData(jsonData)
-      } catch (error) {
-        console.error(`로딩 애니메이션 동작 실패: ${error}`)
-        throw new Error(`로딩 애니메이션 실패: ${error}`)
-      }
-    }
-
-    fetchAnimationData()
+    setAnimationData(loading)
   }, [])
 
   if (!animationData) {
@@ -31,7 +19,7 @@ export default function Loading() {
 
   return (
     <LoadingContainer>
-      <LoadingLottie loop animationData={animationData} play />;
+      <LoadingLottie loop animationData={animationData} play />
       <LoadingMessage>Loading Error...</LoadingMessage>
     </LoadingContainer>
   )
