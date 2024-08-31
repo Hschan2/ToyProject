@@ -1,15 +1,16 @@
 import Head from 'next/head'
-import { useLayoutEffect, useState } from 'react'
+import { useState } from 'react'
 import useCurrentUrl from '../../utils/Router'
 import { SEOProps } from '../../utils/types/type'
 import useHTMLParse from '@/utils/hooks/useHTMLParse'
+import useCheckEffect from '@/utils/hooks/useCheckEffect'
 
 export default function SEO({ title, description }: SEOProps) {
   const nowLocation = useCurrentUrl()
   const [isPageLoaded, setIsPageLoaded] = useState(false)
   const parseTitle = useHTMLParse(title)
 
-  useLayoutEffect(() => {
+  useCheckEffect(() => {
     setIsPageLoaded(true)
   }, [])
 
@@ -48,6 +49,7 @@ export default function SEO({ title, description }: SEOProps) {
       />
       <meta name="twitter:label1" content="Category" />
       <meta name="twitter:data1" content="Latest Updates" />
+      <link rel="preload" href="https://lottiefiles.com" />
     </Head>
   )
 }
