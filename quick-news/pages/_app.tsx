@@ -4,9 +4,16 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { Provider } from 'react-redux'
 import { RecoilRoot } from 'recoil'
 import { createGlobalStyle } from 'styled-components'
-import Layout from './page/layout/Layout'
-import Error from './page/error/Error'
 import { store } from '../utils/store/Store'
+import dynamic from 'next/dynamic'
+import Head from 'next/head'
+
+const Layout = dynamic(() => import('./page/layout/Layout'), {
+  ssr: false,
+})
+const Error = dynamic(() => import('./page/error/Error'), {
+  ssr: false,
+})
 
 const queryClient = new QueryClient()
 
@@ -27,10 +34,12 @@ declare module 'styled-components' {
 const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Newsreader_60pt-BoldItalic';
-    src: url('/fonts/Newsreader_60pt-BoldItalic.ttf') format('truetype');
+    src: local('Noto Sans KR Light'),
+      url('/fonts/Newsreader_60pt-BoldItalic.woff') format('woff'),
+      url('/fonts/Newsreader_60pt-BoldItalic.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
-    font-display: fallback;
+    font-display: swap;
   }
   body {
     background-color: ${(props) => props.theme.background}
@@ -46,6 +55,15 @@ export default function App({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
         <Provider store={store}>
+          <Head>
+            <link
+              rel="preload"
+              href="/fonts/Newsreader_60pt-BoldItalic.ttf"
+              as="font"
+              type="font/ttf"
+              crossOrigin="anonymous"
+            />
+          </Head>
           <Layout>
             <div>
               <GlobalStyle />
