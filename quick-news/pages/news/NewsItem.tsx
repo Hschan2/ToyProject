@@ -1,6 +1,5 @@
-import moment from 'moment'
 import Link from 'next/link'
-import React from 'react'
+import React, { useCallback } from 'react'
 import {
   Description,
   LimitLineTitle,
@@ -11,12 +10,17 @@ import {
 import { DateTime } from '../../styles/InfoStyle'
 import { NaverNewsList } from '../../utils/types/type'
 import { SaveButton } from '../../styles/ButtonStyle'
-import { SaveNewsInStorage } from '../../utils/storage/Storage'
+import { format } from 'date-fns'
 
 function NewsItem({ article }: NaverNewsList) {
-  const onSaveNews = () => {
-    SaveNewsInStorage({ article })
-  }
+  const onSaveNews = useCallback(async () => {
+    try {
+      const { SaveNewsInStorage } = await import('../../utils/storage/Storage')
+      SaveNewsInStorage({ article })
+    } catch (error) {
+      console.error('뉴스 저장 에러', error)
+    }
+  }, [article])
 
   return (
     <NewsContainer key={article.id}>
@@ -44,7 +48,8 @@ function NewsItem({ article }: NaverNewsList) {
           </SaveButton>
         </TitleSaveContainer>
         <DateTime>
-          {moment(article.pubDate).format('YYYY-MM-DD HH:mm')}
+          {article.pubDate &&
+            format(new Date(article.pubDate), 'yyyy-MM-dd HH:mm')}
         </DateTime>
         <Link
           href={{
@@ -55,9 +60,7 @@ function NewsItem({ article }: NaverNewsList) {
           passHref
           title={`${article.title} 페이지로 이동`}
         >
-          <Description
-            dangerouslySetInnerHTML={{ __html: article.description }}
-          />
+          <Description>{article.description}</Description>
         </Link>
       </NewsCard>
     </NewsContainer>

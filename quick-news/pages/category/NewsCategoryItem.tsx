@@ -1,6 +1,5 @@
-import moment from 'moment'
 import Link from 'next/link'
-import React from 'react'
+import React, { useCallback } from 'react'
 import {
   Author,
   DateOfNews,
@@ -11,13 +10,18 @@ import {
   TitleSaveContainer,
 } from '../../styles/NewsStyle'
 import { CategoryNewsList } from '../../utils/types/type'
-import { SaveNewsInStorage } from '../../utils/storage/Storage'
 import { SaveButton } from '../../styles/ButtonStyle'
+import { format } from 'date-fns'
 
 function NewsCategoryItem({ article }: CategoryNewsList) {
-  const onSaveNews = () => {
-    SaveNewsInStorage({ article })
-  }
+  const onSaveNews = useCallback(async () => {
+    try {
+      const { SaveNewsInStorage } = await import('../../utils/storage/Storage')
+      SaveNewsInStorage({ article })
+    } catch (error) {
+      console.error('뉴스 저장 에러', error)
+    }
+  }, [article])
 
   return (
     <NewsContainer key={article.id}>
@@ -39,7 +43,8 @@ function NewsCategoryItem({ article }: CategoryNewsList) {
           </SaveButton>
         </TitleSaveContainer>
         <DateOfNews>
-          {moment(article.publishedAt).format('YYYY-MM-DD HH:mm')}
+          {article.pubDate &&
+            format(new Date(article.pubDate), 'yyyy-MM-dd HH:mm')}
         </DateOfNews>
         <Author>{article.author}</Author>
         <Link
