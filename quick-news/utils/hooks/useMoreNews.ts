@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
 import { MAX_PAGE_COUNT } from '../Constants'
 
-export default function useMoreNews(initialPageSize = 20) {
+export default function useMoreNews(initialPageSize = 10) {
   const [pageSize, setPageSize] = useState(initialPageSize)
   const [isAllLoaded, setIsAllLoaded] = useState(false)
 
