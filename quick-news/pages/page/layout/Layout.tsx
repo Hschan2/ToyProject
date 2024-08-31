@@ -7,25 +7,21 @@ import { DARK_THEME, LIGHT_THEME } from '../../../utils/ColorValue'
 
 const LazyMoveUp = lazy(() => import('../../../components/Button/UpBtn'))
 const LazyNavbar = lazy(() => import('../../../components/Nav/Index'))
-const LazyTimelineScroll = lazy(() => import('../../scroll/TimelineScroll'))
 const LazyNotificationModal = lazy(
   () => import('../../modal/NotificationModal'),
 )
 const LazyLoading = lazy(() => import('../../loading/Loading'))
-const LazyDarkModeButton = dynamic(
+const DynamicSearchButton = dynamic(
+  () => import('../../../components/Button/SearchBtn'),
+)
+const DynamicDarkModeButton = dynamic(
   () => import('../../../components/Button/DarkModeBtn'),
   {
     ssr: false,
   },
 )
-const LazySavedNewsButton = dynamic(
+const DynamicSavedNewsButton = dynamic(
   () => import('../../../components/Button/SaveNewsBtn'),
-  {
-    ssr: false,
-  },
-)
-const DynamicSearchButton = dynamic(
-  () => import('../../../components/Button/SearchBtn'),
   {
     ssr: false,
   },
@@ -39,11 +35,10 @@ export default function Layout({ children }: { children: JSX.Element }) {
       <Suspense fallback={<LazyLoading />}>
         <LazyNavbar />
         <div>{children}</div>
-        <LazyDarkModeButton />
-        <LazySavedNewsButton />
+        <DynamicDarkModeButton />
+        <DynamicSavedNewsButton />
         <LazyMoveUp />
         <DynamicSearchButton />
-        <LazyTimelineScroll />
         <LazyNotificationModal />
       </Suspense>
     </ThemeProvider>

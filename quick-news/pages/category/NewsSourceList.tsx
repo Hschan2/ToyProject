@@ -1,12 +1,19 @@
 import { lazy } from 'react'
+import dynamic from 'next/dynamic'
 import 'moment/locale/ko'
-import { CategoryNewsProps, NewsSourceListProps } from '../../utils/types/type'
+import {
+  CategoryNewsProps,
+  CommonNewsListProps,
+  NewsSourceListProps,
+} from '../../utils/types/type'
 import useMoreNews from '../../utils/hooks/useMoreNews'
 import CategoriesNewsFetch from '../fetch/CategoriesNewsFetch'
 import useInfiniteScroll from '../../utils/hooks/useInfiniteScroll'
-import RenderNewsPage from '../page/render/RenderNewsPage'
 
 const NewsCategoryItem = lazy(() => import('./NewsCategoryItem'))
+const RenderNewsPage = dynamic(() => import('../page/render/RenderNewsPage'), {
+  ssr: false,
+}) as React.ComponentType<CommonNewsListProps<CategoryNewsProps>>
 
 export default function NewsSourceList(props: NewsSourceListProps) {
   const { category } = props
