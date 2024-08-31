@@ -4,6 +4,17 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        <script
+          data-partytown-config
+          dangerouslySetInnerHTML={{
+            __html: `
+              partytown = {
+                lib: "/_next/static/~partytown/",
+                debug: true
+              };
+            `,
+          }}
+        />
         <link
           type="image/png"
           sizes="16x16"
