@@ -1,6 +1,5 @@
-import { useEffect } from 'react'
 import axios from 'axios'
-import { useQuery, useQueryClient } from 'react-query'
+import { useQuery } from 'react-query'
 import { MAX_PAGE_COUNT } from '../../utils/Constants'
 import { NaverNewsLists, NaverNewsProps } from '../../utils/types/type'
 
@@ -19,8 +18,6 @@ export default function NaverNewsFetch(
   pageSize: number,
   queryValue = '오늘의주요뉴스',
 ) {
-  const queryClient = useQueryClient()
-
   const { data: news, isLoading } = useQuery(
     ['news', queryValue],
     async () => fetchNews(queryValue),
@@ -29,12 +26,6 @@ export default function NaverNewsFetch(
       cacheTime: 30 * 60 * 1000,
     },
   )
-
-  useEffect(() => {
-    if (news) {
-      queryClient.setQueryData(['news', queryValue], news)
-    }
-  }, [queryValue, news, queryClient])
 
   const visibleNews = news?.slice(0, pageSize)
 
