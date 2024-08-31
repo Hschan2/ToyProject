@@ -22,6 +22,19 @@ const nextConfig = {
             key: 'Access-Control-Allow-Headers',
             value: 'X-Requested-With, Accept, Content-Type, Authorization',
           },
+          {
+            key: 'Cache-Control',
+            value: 'max-age=3600, public',
+          },
+        ],
+      },
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'max-age=3600, public',
+          },
         ],
       },
     ]
@@ -47,6 +60,40 @@ const nextConfig = {
       },
     ]
   },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        'core-js/modules': 'core-js-pure/stable',
+      };
+      config.target = 'web';
+    }
+    return config;
+  },
+  experimental: {
+    optimizeCss: false,
+    nextScriptWorkers: true,
+  },
+  image: {
+    domain: ['png.pngtree.com'],
+  },
+  babel: {
+    presets: [
+      [
+        'next/babel',
+        {
+          targets: {
+            esmodules: true,
+            browsers: ['>1%', 'last 2 versions', 'not dead', 'not ie 11'], // 브라우저 타겟 설정
+          },
+        },
+      ],
+    ],
+  },
 }
 
-module.exports = nextConfig
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
+
+module.exports = withBundleAnalyzer(nextConfig)
