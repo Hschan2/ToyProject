@@ -1,11 +1,11 @@
 import React, { useEffect, useState, lazy, Suspense } from 'react'
 import { Nav, NavDisplay, NavTitle } from '../../styles/PageStyle'
 import { TimeWeather } from '../../styles/InfoStyle'
-import NavLink from '../../pages/link/Link'
-import Loading from '../../pages/loading/Loading'
 
 const Today = lazy(() => import('../Info/Today'))
 const Weather = lazy(() => import('../Info/Weather'))
+const NavLink = lazy(() => import('../../pages/link/Link'))
+const Loading = lazy(() => import('../../pages/loading/Loading'))
 
 export default function Navbar() {
   const [isMounted, setIsMounted] = useState(false)
