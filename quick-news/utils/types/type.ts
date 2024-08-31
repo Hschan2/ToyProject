@@ -90,7 +90,7 @@ export interface NewsSourceListProps {
 export interface CommonNewsListProps<T> {
   visibleNews: T[] | undefined
   isLoading?: boolean
-  itemRenderer: (item: T) => ReactElement
+  itemRenderer: (item: T) => React.ReactElement
 }
 
 export interface NavLinkProps {

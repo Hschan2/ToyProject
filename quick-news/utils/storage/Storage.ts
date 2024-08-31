@@ -11,13 +11,13 @@ const CheckInStorage = ({ article, storedNews }: StorageNewsList) => {
 }
 
 export const SaveNewsInStorage = ({ article }: StorageNewsList) => {
-  const storedNews = JSON.parse(localStorage.getItem('news')!) || []
+  const storedNews = JSON.parse(localStorage.getItem('news') || '[]')
 
   if (CheckInStorage({ article, storedNews })) {
     alert('이미 저장되었습니다.')
   } else {
-    storedNews.push(article)
-    localStorage.setItem('news', JSON.stringify(storedNews))
+    const updatedNews = [...storedNews, article]
+    localStorage.setItem('news', JSON.stringify(updatedNews))
     alert('뉴스를 저장했습니다.')
   }
 }
