@@ -11,7 +11,6 @@ import {
 } from '@/styles/NewsStyle'
 import { NaverNewsProps } from '@/utils/types/type'
 import { format } from 'date-fns'
-import moment from 'moment'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 
