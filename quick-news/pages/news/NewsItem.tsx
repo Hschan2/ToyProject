@@ -11,6 +11,7 @@ import { DateTime } from '../../styles/InfoStyle'
 import { NaverNewsList } from '../../utils/types/type'
 import { SaveButton } from '../../styles/ButtonStyle'
 import { format } from 'date-fns'
+import { StripHtmlTags } from '../../utils/StripHtml'
 
 function NewsItem({ article }: NaverNewsList) {
   const onSaveNews = useCallback(async () => {
@@ -35,9 +36,7 @@ function NewsItem({ article }: NaverNewsList) {
             passHref
             title={`${article.title} 페이지로 이동`}
           >
-            <LimitLineTitle
-              dangerouslySetInnerHTML={{ __html: article.title }}
-            />
+            <LimitLineTitle>{StripHtmlTags(article.title)}</LimitLineTitle>
           </Link>
           <SaveButton
             onClick={onSaveNews}
@@ -60,7 +59,7 @@ function NewsItem({ article }: NaverNewsList) {
           passHref
           title={`${article.title} 페이지로 이동`}
         >
-          <Description>{article.description}</Description>
+          <Description>{StripHtmlTags(article.description)}</Description>
         </Link>
       </NewsCard>
     </NewsContainer>
