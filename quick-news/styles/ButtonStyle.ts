@@ -255,7 +255,7 @@ export const SaveButton = styled.button`
     font-size: 0.75rem;
 
     &.newsHome {
-      margin-top: 8px;
+      margin-top: 10px;
     }
   `}
 `

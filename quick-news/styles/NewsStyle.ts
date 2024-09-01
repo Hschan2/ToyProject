@@ -83,7 +83,7 @@ export const TitleSaveContainer = styled.div`
   gap: ${newsValueSize.small};
 
   &.newsHome {
-    height: 40px;
+    height: 30px;
   }
 `
 
