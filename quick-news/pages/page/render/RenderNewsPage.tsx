@@ -1,9 +1,9 @@
-import React, { Suspense, lazy, useCallback, useRef } from 'react'
+import React, { useCallback, useRef } from 'react'
+import dynamic from 'next/dynamic'
 import useVisibility from '../../../utils/hooks/useVisibility'
 import { CommonNewsListProps } from '../../../utils/types/type'
-import Skeleton from '../../loading/Skeleton'
 
-const Loading = lazy(() => import('../../loading/Loading'))
+const Skeleton = dynamic(() => import('../../loading/Skeleton'), { ssr: false })
 
 export default function RenderNewsPage<T>({
   visibleNews,
@@ -19,15 +19,16 @@ export default function RenderNewsPage<T>({
   )
 
   return (
-    <Suspense fallback={<Loading />}>
-      <div ref={newsListRef}>
-        {visibleNews?.map((item, index) => (
+    <div ref={newsListRef}>
+      {isLoading ? (
+        <Skeleton />
+      ) : (
+        visibleNews?.map((item, index) => (
           <React.Fragment key={index}>
             {isVisible && memoizedItemRenderer(item)}
           </React.Fragment>
-        ))}
-      </div>
-      {!isLoading ? '' : <Skeleton />}
-    </Suspense>
+        ))
+      )}
+    </div>
   )
 }
