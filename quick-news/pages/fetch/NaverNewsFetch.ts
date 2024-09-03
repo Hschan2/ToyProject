@@ -24,6 +24,7 @@ export default function NaverNewsFetch(
     {
       refetchOnWindowFocus: false,
       cacheTime: 30 * 60 * 1000,
+      staleTime: 5 * 60 * 1000,
     },
   )
 
