@@ -9,10 +9,12 @@ import {
   DetailWrapper,
   LinkContainer,
 } from '@/styles/NewsStyle'
+import { StripHtmlTags } from '@/utils/StripHtml'
 import { NaverNewsProps } from '@/utils/types/type'
 import { format } from 'date-fns'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
+import Image from 'next/image'
 
 function Detail() {
   const router = useRouter()
@@ -37,9 +39,7 @@ function Detail() {
     <DetailWrapper>
       <SEO title={articleData.title} description={articleData.description} />
       <LinkContainer>
-        <DetailTitle
-          dangerouslySetInnerHTML={{ __html: articleData.title }}
-        ></DetailTitle>
+        <DetailTitle>{StripHtmlTags(articleData.title)}</DetailTitle>
         <DetailLink
           href={articleData.link || articleData.url || '#'}
           target="_blank"
@@ -52,16 +52,16 @@ function Detail() {
       <DetailPubDate>
         {publishedDate && format(new Date(publishedDate), 'yyyy-MM-dd HH:mm')}
       </DetailPubDate>
-      <DetailImage
-        src={articleData.urlToImage || '/news_image.jpg'}
-        loading="lazy"
-        alt={articleData.title}
-        width="420"
-        height="240"
-      />
-      <DetailDes
-        dangerouslySetInnerHTML={{ __html: articleData.description ?? '' }}
-      ></DetailDes>
+      <DetailImage>
+        <Image
+          src={articleData.urlToImage || '/news_image.jpg'}
+          alt={articleData.title}
+          loading="lazy"
+          width={640}
+          height={360}
+        />
+      </DetailImage>
+      <DetailDes>{StripHtmlTags(articleData.description ?? '')}</DetailDes>
     </DetailWrapper>
   )
 }
