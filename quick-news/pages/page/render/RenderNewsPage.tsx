@@ -18,16 +18,18 @@ export default function RenderNewsPage<T>({
     [itemRenderer],
   )
 
+  if (isLoading) return <Skeleton />
+
   return (
     <div ref={newsListRef}>
-      {isLoading ? (
-        <Skeleton />
-      ) : (
+      {visibleNews?.length ? (
         visibleNews?.map((item, index) => (
           <React.Fragment key={index}>
             {isVisible && memoizedItemRenderer(item)}
           </React.Fragment>
         ))
+      ) : (
+        <Skeleton />
       )}
     </div>
   )
