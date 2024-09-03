@@ -1,4 +1,4 @@
-import { lazy } from 'react'
+import { lazy, useCallback } from 'react'
 import dynamic from 'next/dynamic'
 import 'moment/locale/ko'
 import {
@@ -22,8 +22,11 @@ export default function NewsSourceList(props: NewsSourceListProps) {
 
   useInfiniteScroll({ handleLoadMore, isAllLoaded })
 
-  const renderNewsItem = (article: CategoryNewsProps) => (
-    <NewsCategoryItem key={article.id} article={article} />
+  const renderNewsItem = useCallback(
+    (article: CategoryNewsProps) => (
+      <NewsCategoryItem key={article.id} article={article} />
+    ),
+    [],
   )
 
   return (

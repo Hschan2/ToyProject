@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import dynamic from 'next/dynamic'
 import 'moment/locale/ko'
 import useMoreNews from '../../utils/hooks/useMoreNews'
@@ -19,8 +19,11 @@ export default function NewsLists() {
 
   useInfiniteScroll({ handleLoadMore, isAllLoaded })
 
-  const renderNewsItem = (article: NaverNewsProps) => (
-    <NewsItem key={article.id} article={article} />
+  const renderNewsItem = useCallback(
+    (article: NaverNewsProps) => (
+      <NewsItem key={article.id} article={article} />
+    ),
+    [],
   )
 
   return (
