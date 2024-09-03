@@ -246,6 +246,7 @@ export const SaveButton = styled.button`
   border: none;
   color: ${(props) => props.theme.lightText};
   cursor: pointer;
+  font-size: 1rem;
 
   &.newsHome {
     margin-top: 20px;
@@ -255,7 +256,7 @@ export const SaveButton = styled.button`
     font-size: 0.75rem;
 
     &.newsHome {
-      margin-top: 10px;
+      margin-top: 12px;
     }
   `}
 `

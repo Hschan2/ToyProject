@@ -22,6 +22,7 @@ const infoFontSize = {
 export const DateTime = styled.p`
   font-size: ${infoFontSize.desktop};
   color: ${(props) => props.theme.lightText};
+  margin-top: 0
 
   ${media.tablet`
     font-size: ${infoFontSize.tablet};

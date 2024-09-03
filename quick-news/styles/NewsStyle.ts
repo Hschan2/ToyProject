@@ -17,8 +17,8 @@ const media = {
 }
 
 const cardPadding = {
-  desktop: '1.25rem 1rem',
-  tablet: '0.9rem 1rem',
+  desktop: '0.725rem 1rem',
+  tablet: '0.675rem 1rem',
   mobile: '0.625rem 1rem',
 }
 
@@ -64,7 +64,6 @@ export const Author = styled.p`
 export const DateOfNews = styled.p`
   font-size: ${newsValueSize.middle};
   color: ${(props) => props.theme.lightText};
-  margin-top: -${newsValueSize.small};
 
   ${media.tablet`
     font-size: ${newsValueSize.small};
@@ -83,7 +82,7 @@ export const TitleSaveContainer = styled.div`
   gap: ${newsValueSize.small};
 
   &.newsHome {
-    height: 30px;
+    height: 35px;
   }
 `
 
@@ -108,8 +107,7 @@ export const LimitLineTitle = styled.h2`
 
 export const Description = React.memo(styled.p`
   white-space: normal;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: ${newsValueSize.middle};
 
   ${media.mobile`
     font-size: ${newsValueSize.small};
@@ -146,14 +144,22 @@ export const DetailAuthor = styled.span`
   padding: 2px 0;
 `
 
-export const DetailImage = styled.img`
+export const DetailImage = styled.div`
   width: 100%;
-  height: 40vh;
   padding: 8px 0;
-  object-fit: cover;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 30vh;
+  }
 
   ${media.mobile`
-    height: 30vh;
+    height: 21vh;
+
+    img {
+      height: 20vh;
+    }
   `}
 `
 
