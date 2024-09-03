@@ -1,3 +1,4 @@
+import 'core-js/actual'
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { QueryClient, QueryClientProvider } from 'react-query'
@@ -33,16 +34,16 @@ declare module 'styled-components' {
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
-    font-family: 'Newsreader_60pt-BoldItalic';
+    font-family: 'NewsCycle-Bold';
     src: local('Noto Sans KR Light'),
-      url('/fonts/Newsreader_60pt-BoldItalic.woff') format('woff'),
-      url('/fonts/Newsreader_60pt-BoldItalic.ttf') format('truetype');
-    font-weight: bold;
+      url('/fonts/NewsCycle-Bold.woff') format('woff'),
+      url('/fonts/NewsCycle-Bold.ttf') format('truetype');
     font-style: normal;
     font-display: swap;
   }
   body {
-    background-color: ${(props) => props.theme.background}
+    background-color: ${(props) => props.theme.background};
+    font-family: 'NewsCycle-Bold', 'sans-serif';
   }
 `
 
@@ -58,17 +59,17 @@ export default function App({ Component, pageProps }: AppProps) {
           <Head>
             <link
               rel="preload"
-              href="/fonts/Newsreader_60pt-BoldItalic.ttf"
+              href="/fonts/NewsCycle-Bold.woff"
               as="font"
-              type="font/ttf"
+              type="font/woff"
               crossOrigin="anonymous"
             />
           </Head>
           <Layout>
-            <div>
+            <>
               <GlobalStyle />
               <Component {...pageProps} />
-            </div>
+            </>
           </Layout>
         </Provider>
       </RecoilRoot>
