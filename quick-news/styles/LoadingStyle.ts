@@ -82,6 +82,6 @@ export const SkeletonLine = styled.div`
   background-size: 100% 200%;
   animation: ${loadingAnimation} 1s infinite;
   width: 100%;
-  height: 200px;
+  height: 180px;
   margin-bottom: 5px;
 `
