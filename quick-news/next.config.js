@@ -1,3 +1,7 @@
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
@@ -34,6 +38,51 @@ const nextConfig = {
           {
             key: 'Cache-Control',
             value: 'max-age=3600, public',
+          },
+        ],
+      },
+      {
+        source: '/fonts/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          }
+        ]
+      },
+      {
+        source: '/icons8-news-doodle-16.png',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/icons8-news-doodle-32.png',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/icons8-news-doodle-96.png',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
           },
         ],
       },
@@ -74,26 +123,10 @@ const nextConfig = {
     optimizeCss: false,
     nextScriptWorkers: true,
   },
-  image: {
-    domain: ['png.pngtree.com'],
-  },
-  babel: {
-    presets: [
-      [
-        'next/babel',
-        {
-          targets: {
-            esmodules: true,
-            browsers: ['>1%', 'last 2 versions', 'not dead', 'not ie 11'], // 브라우저 타겟 설정
-          },
-        },
-      ],
-    ],
+  images: {
+    domains: ['png.pngtree.com'],
+    minimumCacheTTL: 60,
   },
 }
-
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
 
 module.exports = withBundleAnalyzer(nextConfig)
