@@ -44,6 +44,7 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.25.4",
+    "@babel/preset-typescript": "^7.24.7",
     "@builder.io/partytown": "^0.10.2",
     "@types/core-js": "^2.5.8",
     "@types/styled-components": "^5.1.26",
