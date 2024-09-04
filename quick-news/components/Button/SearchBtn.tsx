@@ -1,3 +1,4 @@
+import 'core-js/modules/es.string.trim'
 import React, { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import {
