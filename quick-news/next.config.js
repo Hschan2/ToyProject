@@ -96,16 +96,7 @@ const nextConfig = {
       },
       {
         source: '/api/:path*',
-        destination: 'https://quick-news-hschan2.vercel.app/api/:path*',
-      },
-      {
-        source: '/api/:path*',
         destination: 'https://quick-news-tau.vercel.app/api/:path*',
-      },
-      {
-        source: '/api/:path*',
-        destination:
-          'https://quick-news-git-master-hschan2.vercel.app/api/:path*',
       },
     ]
   },
