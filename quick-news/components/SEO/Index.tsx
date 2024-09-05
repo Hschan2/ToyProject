@@ -2,8 +2,8 @@ import Head from 'next/head'
 import { useState } from 'react'
 import useCurrentUrl from '../../utils/Router'
 import { SEOProps } from '../../utils/types/type'
-import useHTMLParse from '@/utils/hooks/useHTMLParse'
-import useCheckEffect from '@/utils/hooks/useCheckEffect'
+import useHTMLParse from '../../utils/hooks/useHTMLParse'
+import useCheckEffect from '../../utils/hooks/useCheckEffect'
 
 export default function SEO({ title, description }: SEOProps) {
   const nowLocation = useCurrentUrl()

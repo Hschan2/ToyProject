@@ -28,7 +28,7 @@ const DynamicSavedNewsButton = dynamic(
 )
 
 export default function Layout({ children }: { children: JSX.Element }) {
-  const [isDarkMode, setIsDarkMode] = useRecoilState(DARK_MODE_VALUE)
+  const [isDarkMode] = useRecoilState(DARK_MODE_VALUE)
 
   return (
     <ThemeProvider theme={isDarkMode ? DARK_THEME : LIGHT_THEME}>

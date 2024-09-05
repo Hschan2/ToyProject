@@ -1,4 +1,3 @@
-import 'core-js/modules/es.string.trim'
 import React, { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import {
@@ -23,6 +22,13 @@ export default function SearchButton() {
     setSearchTerm(event.target.value)
   }
 
+  const saveNewsValue = () => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('searchValue', searchTerm)
+    }
+    prevSearchTerm.current = searchTerm.trim()
+  }
+
   const handleSearch = () => {
     router.push(`/page/search/search?q=${searchTerm}`, undefined, {
       shallow: true,
@@ -40,13 +46,6 @@ export default function SearchButton() {
     if (prevSearchTerm.current === searchTerm.trim()) return
 
     handleSearch()
-  }
-
-  const saveNewsValue = () => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('searchValue', searchTerm)
-    }
-    prevSearchTerm.current = searchTerm.trim()
   }
 
   useEffect(() => {

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import React, { useCallback } from 'react'
+import { format } from 'date-fns'
 import {
   Author,
   DateOfNews,
@@ -11,7 +12,6 @@ import {
 } from '../../styles/NewsStyle'
 import { CategoryNewsList } from '../../utils/types/type'
 import { SaveButton } from '../../styles/ButtonStyle'
-import { format } from 'date-fns'
 
 function NewsCategoryItem({ article }: CategoryNewsList) {
   const onSaveNews = useCallback(async () => {
@@ -19,7 +19,9 @@ function NewsCategoryItem({ article }: CategoryNewsList) {
       const { SaveNewsInStorage } = await import('../../utils/storage/Storage')
       SaveNewsInStorage({ article })
     } catch (error) {
-      console.error('뉴스 저장 에러', error)
+      if (process.env.NODE_ENV !== 'production') {
+        console.error('뉴스 저장 에러', error)
+      }
     }
   }, [article])
 

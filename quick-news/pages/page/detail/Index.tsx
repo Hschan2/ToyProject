@@ -1,4 +1,8 @@
-import SEO from '@/components/SEO/Index'
+import React, { useEffect, useState } from 'react'
+import { format } from 'date-fns'
+import { useRouter } from 'next/router'
+import Image from 'next/image'
+import SEO from '../../../components/SEO/Index'
 import {
   DetailAuthor,
   DetailDes,
@@ -8,13 +12,9 @@ import {
   DetailTitle,
   DetailWrapper,
   LinkContainer,
-} from '@/styles/NewsStyle'
-import { StripHtmlTags } from '@/utils/StripHtml'
-import { NaverNewsProps } from '@/utils/types/type'
-import { format } from 'date-fns'
-import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
-import Image from 'next/image'
+} from '../../../styles/NewsStyle'
+import { StripHtmlTags } from '../../../utils/StripHtml'
+import { NaverNewsProps } from '../../../utils/types/type'
 
 function Detail() {
   const router = useRouter()
@@ -28,7 +28,9 @@ function Detail() {
         const articleString = Array.isArray(article) ? article[0] : article
         setArticleData(JSON.parse(articleString))
       } catch (error) {
-        console.error(error)
+        if (process.env.NODE_ENV !== 'production') {
+          console.error('데이터 가져오기 실패', error)
+        }
       }
     }
   }, [article])

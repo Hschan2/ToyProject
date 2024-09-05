@@ -5,9 +5,9 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { Provider } from 'react-redux'
 import { RecoilRoot } from 'recoil'
 import { createGlobalStyle } from 'styled-components'
-import { store } from '../utils/store/Store'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
+import { store } from '../utils/store/Store'
 
 const Layout = dynamic(() => import('./page/layout/Layout'), {
   ssr: false,

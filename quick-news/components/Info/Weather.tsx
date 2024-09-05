@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ILocation, IWeather } from '../../utils/types/type'
 import useGeolocation from '../../utils/Geolocation'
-import { GetLocationButton } from '@/styles/ButtonStyle'
+import { GetLocationButton } from '../../styles/ButtonStyle'
 
 export default function Weather() {
   const { latitude, longitude, error, requestLocation }: ILocation =
@@ -16,8 +16,6 @@ export default function Weather() {
   }
 
   useEffect(() => {
-    if (!latitude || !longitude) return
-
     const abortController = new AbortController()
 
     const fetchWeatherData = async () => {
@@ -27,7 +25,7 @@ export default function Weather() {
           { signal: abortController.signal },
         )
 
-        if (!response.ok) throw new Error('위도와 경도가 부정확합니다.')
+        if (!response.ok) return
 
         const { name, weather, main } = await response.json()
         setWeatherData({
@@ -36,8 +34,9 @@ export default function Weather() {
           temp: main.temp,
         })
       } catch (err) {
-        console.error(`날씨를 가져오지 못했습니다. : ${err}`)
-        throw new Error(`날씨 정보 가져오기 실패: ${err}`)
+        if (process.env.NODE_ENV !== 'production') {
+          console.error(`날씨를 가져오지 못했습니다. : ${err}`)
+        }
       }
     }
 
@@ -48,21 +47,24 @@ export default function Weather() {
     }
   }, [latitude, longitude])
 
+  if (!latitude || !longitude) {
+    return (
+      <GetLocationButton onClick={getLocation}>날씨 가져오기</GetLocationButton>
+    )
+  }
+
+  if (!weatherData) {
+    return <span>날씨 정보가 없습니다.</span>
+  }
+
+  if (error) {
+    return <span>{error}</span>
+  }
+
   return (
-    <div>
-      {error && <span>{error}</span>}
-      {!latitude || !longitude ? (
-        <GetLocationButton onClick={getLocation}>
-          날씨 가져오기
-        </GetLocationButton>
-      ) : !weatherData ? (
-        <span>날씨 정보가 없습니다.</span>
-      ) : (
-        <>
-          {weatherData.name} {Math.floor(weatherData.temp)}˚{' '}
-          {weatherData.description}
-        </>
-      )}
-    </div>
+    <>
+      {weatherData.name} {Math.floor(weatherData.temp)}˚{' '}
+      {weatherData.description}
+    </>
   )
 }

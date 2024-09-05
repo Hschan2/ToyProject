@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import React, { useCallback } from 'react'
+import { format } from 'date-fns'
 import {
   Description,
   LimitLineTitle,
@@ -10,7 +11,6 @@ import {
 import { DateTime } from '../../styles/InfoStyle'
 import { NaverNewsList } from '../../utils/types/type'
 import { SaveButton } from '../../styles/ButtonStyle'
-import { format } from 'date-fns'
 import { StripHtmlTags } from '../../utils/StripHtml'
 
 function NewsItem({ article }: NaverNewsList) {
@@ -19,7 +19,9 @@ function NewsItem({ article }: NaverNewsList) {
       const { SaveNewsInStorage } = await import('../../utils/storage/Storage')
       SaveNewsInStorage({ article })
     } catch (error) {
-      console.error('뉴스 저장 에러', error)
+      if (process.env.NODE_ENV !== 'production') {
+        console.error('뉴스 저장 에러', error)
+      }
     }
   }, [article])
 

@@ -1,5 +1,6 @@
 function SavedNewsData(pageSize: number) {
-  const savedArticles = JSON.parse(localStorage.getItem('news')!) || []
+  const getSavedArticles = localStorage.getItem('news')
+  const savedArticles = getSavedArticles ? JSON.parse(getSavedArticles) : []
 
   const visibleNews = savedArticles?.slice().reverse().slice(0, pageSize)
 
