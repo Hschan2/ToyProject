@@ -1,5 +1,6 @@
 import React, { useCallback, useRef } from 'react'
 import dynamic from 'next/dynamic'
+import { nanoid } from '@reduxjs/toolkit'
 import useVisibility from '../../../utils/hooks/useVisibility'
 import { CommonNewsListProps } from '../../../utils/types/type'
 
@@ -23,8 +24,8 @@ export default function RenderNewsPage<T>({
   return (
     <div ref={newsListRef}>
       {visibleNews?.length ? (
-        visibleNews?.map((item, index) => (
-          <React.Fragment key={index}>
+        visibleNews?.map((item) => (
+          <React.Fragment key={nanoid()}>
             {isVisible && memoizedItemRenderer(item)}
           </React.Fragment>
         ))
