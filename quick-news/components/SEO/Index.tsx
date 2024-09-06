@@ -49,7 +49,7 @@ export default function SEO({ title, description }: SEOProps) {
       />
       <meta name="twitter:label1" content="Category" />
       <meta name="twitter:data1" content="Latest Updates" />
-      <link rel="preload" href="https://lottiefiles.com" />
+      <link rel="preload" href="https://lottiefiles.com" as="lottiefiles" />
     </Head>
   )
 }
