@@ -10,18 +10,21 @@ export default function Document() {
           sizes="16x16"
           rel="icon"
           href="/icons8-news-doodle-16.png"
+          as='icon-16'
         />
         <link
           type="image/png"
           sizes="32x32"
           rel="icon"
           href="/icons8-news-doodle-32.png"
+          as='icon-32'
         />
         <link
           type="image/png"
           sizes="96x96"
           rel="icon"
           href="/icons8-news-doodle-96.png"
+          as='icon-96'
         />
         <meta name="description" content="뉴스 빠르게 확인하기" />
       </Head>
