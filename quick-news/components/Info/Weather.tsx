@@ -16,6 +16,8 @@ export default function Weather() {
   }
 
   useEffect(() => {
+    if (!latitude || !longitude) return
+
     const abortController = new AbortController()
 
     const fetchWeatherData = async () => {
