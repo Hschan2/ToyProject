@@ -34,7 +34,7 @@ export const LogoTitle = styled.h1`
   font-size: clamp(20px, 4vw, 32px);
   font-weight: 600;
   font-style: normal;
-  color: tomato;
+  color: ${(props) => props.theme.title};
 `;
 
 // Search

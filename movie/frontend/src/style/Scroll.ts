@@ -65,7 +65,7 @@ export const BottomMenuButton = styled(Link)<{ active?: string }>`
   border-left: 1px solid ${(props) => props.theme.background};
   border-right: 1px solid ${(props) => props.theme.background};
   background-color: ${(props) => props.theme.background};
-  color: ${(props) => (props.active === "true" ? props.theme.text : "#999999")};
+  color: ${(props) => (props.active === "true" ? props.theme.text : "#777")};
   gap: 4px;
   font-size: 14px;
 
