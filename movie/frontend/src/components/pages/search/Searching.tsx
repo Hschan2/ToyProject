@@ -32,7 +32,7 @@ function Searching() {
           placeholder="영화 검색"
           alt="검색"
         />
-        <SearchingButton onClick={handleSearch}>
+        <SearchingButton onClick={handleSearch} aria-label="Search Button">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -50,7 +50,11 @@ function Searching() {
       {data && (
         <SearchingButtonWrapper>
           {data?.map((movie, index) => (
-            <SearchingWordButton key={index} onClick={() => wordSearch(movie.title)}>
+            <SearchingWordButton
+              key={index}
+              onClick={() => wordSearch(movie.title)}
+              aria-label="추천 검색어 버튼"
+            >
               <span> {index + 1}.</span>
               <SearchingWordTitle>{movie.title}</SearchingWordTitle>
             </SearchingWordButton>
