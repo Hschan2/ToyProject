@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import { COMMON_COLOR } from '../utils/ColorValue'
 
 const media = {
   tablet: (styles: TemplateStringsArray, ...interpolations: any[]) => css`
@@ -24,7 +23,7 @@ export const Wrapper = styled.div`
 export const Nav = styled.nav`
   display: flex;
   background-color: ${(props) => props.theme.lightBackground};
-  gap: 1em;
+  gap: 0.4em;
   flex-direction: column;
   align-items: center;
   padding: 1.25rem 0;
@@ -33,9 +32,8 @@ export const Nav = styled.nav`
 `
 
 export const NavTitle = styled.h1`
-  font-family: 'Georgia', sans-serif;
-  font-display: swap;
   font-size: 2.5rem;
+  font-weight: 800;
   color: ${(props) => props.theme.mainColor};
   margin: 0.3125rem 0;
   -webkit-user-select: none;
