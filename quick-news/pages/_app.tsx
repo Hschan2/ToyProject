@@ -34,7 +34,7 @@ declare module 'styled-components' {
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
-    font-family: 'NewsCycle-Bold';
+    font-family: 'NewsCycle-Bold', 'sans-serif';
     src: local('Noto Sans KR Light'),
       url('/fonts/NewsCycle-Bold.woff') format('woff'),
       url('/fonts/NewsCycle-Bold.ttf') format('truetype');
