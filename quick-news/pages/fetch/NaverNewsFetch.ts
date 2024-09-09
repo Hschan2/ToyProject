@@ -19,9 +19,10 @@ export default function NaverNewsFetch(
   queryValue = '오늘의주요뉴스',
 ) {
   const { data: news, isLoading } = useQuery(
-    ['news', queryValue],
+    ['news', queryValue, pageSize],
     async () => fetchNews(queryValue),
     {
+      keepPreviousData: true,
       refetchOnWindowFocus: false,
       cacheTime: 30 * 60 * 1000,
       staleTime: 5 * 60 * 1000,
