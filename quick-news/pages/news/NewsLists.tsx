@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { lazy, useCallback } from 'react'
 import dynamic from 'next/dynamic'
 import 'moment/locale/ko'
 import useMoreNews from '../../utils/hooks/useMoreNews'
@@ -7,7 +7,7 @@ import useInfiniteScroll from '../../utils/hooks/useInfiniteScroll'
 import { CommonNewsListProps, NaverNewsProps } from '../../utils/types/type'
 import Loading from '../loading/Loading'
 
-const NewsItem = dynamic(() => import('./NewsItem'), { ssr: false })
+const NewsItem = lazy(() => import('./NewsItem'))
 const RenderNewsPage = dynamic(() => import('../page/render/RenderNewsPage'), {
   ssr: false,
   loading: () => <Loading />,
@@ -16,8 +16,7 @@ const RenderNewsPage = dynamic(() => import('../page/render/RenderNewsPage'), {
 export default function NewsLists() {
   const { pageSize, handleLoadMore, isAllLoaded } = useMoreNews()
   const { visibleNews, isLoading } = NaverNewsFetch(pageSize)
-
-  useInfiniteScroll({ handleLoadMore, isAllLoaded })
+  const targetRef = useInfiniteScroll({ handleLoadMore, isAllLoaded })
 
   const renderNewsItem = useCallback(
     (article: NaverNewsProps) => (
@@ -27,10 +26,13 @@ export default function NewsLists() {
   )
 
   return (
-    <RenderNewsPage
-      visibleNews={visibleNews}
-      isLoading={isLoading}
-      itemRenderer={renderNewsItem}
-    />
+    <>
+      <RenderNewsPage
+        visibleNews={visibleNews}
+        isLoading={isLoading}
+        itemRenderer={renderNewsItem}
+      />
+      <div ref={targetRef}></div>
+    </>
   )
 }

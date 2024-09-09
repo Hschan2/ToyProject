@@ -19,8 +19,7 @@ export default function NewsSourceList(props: NewsSourceListProps) {
   const { category } = props
   const { pageSize, handleLoadMore, isAllLoaded } = useMoreNews()
   const { visibleNews, isLoading } = CategoriesNewsFetch(category, pageSize)
-
-  useInfiniteScroll({ handleLoadMore, isAllLoaded })
+  const targetRef = useInfiniteScroll({ handleLoadMore, isAllLoaded })
 
   const renderNewsItem = useCallback(
     (article: CategoryNewsProps) => (
@@ -30,10 +29,13 @@ export default function NewsSourceList(props: NewsSourceListProps) {
   )
 
   return (
-    <RenderNewsPage
-      visibleNews={visibleNews}
-      isLoading={isLoading}
-      itemRenderer={renderNewsItem}
-    />
+    <>
+      <RenderNewsPage
+        visibleNews={visibleNews}
+        isLoading={isLoading}
+        itemRenderer={renderNewsItem}
+      />
+      <div ref={targetRef}></div>
+    </>
   )
 }
