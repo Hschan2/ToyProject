@@ -1,4 +1,4 @@
-import { lazy, useCallback } from 'react'
+import { useCallback } from 'react'
 import dynamic from 'next/dynamic'
 import 'moment/locale/ko'
 import {
@@ -9,10 +9,16 @@ import {
 import useMoreNews from '../../utils/hooks/useMoreNews'
 import CategoriesNewsFetch from '../fetch/CategoriesNewsFetch'
 import useInfiniteScroll from '../../utils/hooks/useInfiniteScroll'
+import Skeleton from '../loading/Skeleton'
+import Loading from '../loading/Loading'
 
-const NewsCategoryItem = lazy(() => import('./NewsCategoryItem'))
+const NewsCategoryItem = dynamic(() => import('./NewsCategoryItem'), {
+  ssr: false,
+  loading: () => <Skeleton />,
+})
 const RenderNewsPage = dynamic(() => import('../page/render/RenderNewsPage'), {
   ssr: false,
+  loading: () => <Loading />,
 }) as React.ComponentType<CommonNewsListProps<CategoryNewsProps>>
 
 export default function NewsSourceList(props: NewsSourceListProps) {
