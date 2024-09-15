@@ -1,11 +1,10 @@
 import React, { useEffect, useState, lazy, Suspense } from 'react'
 import { Nav, NavDisplay, NavTitle } from '../../styles/PageStyle'
 import { TimeWeather } from '../../styles/InfoStyle'
-import Loading from '../../pages/loading/Loading'
+import NavLink from '../../pages/link/Link'
 
 const Today = lazy(() => import('../Info/Today'))
 const Weather = lazy(() => import('../Info/Weather'))
-const NavLink = lazy(() => import('../../pages/link/Link'))
 
 export default function Navbar() {
   const [isMounted, setIsMounted] = useState(false)
@@ -22,7 +21,7 @@ export default function Navbar() {
     <Nav>
       <NavTitle>Quick News</NavTitle>
       <TimeWeather>
-        <Suspense fallback={<Loading />}>
+        <Suspense fallback={<span>Loading...</span>}>
           <Today />
           <Weather />
         </Suspense>
