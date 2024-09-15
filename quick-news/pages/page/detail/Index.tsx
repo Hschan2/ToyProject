@@ -56,7 +56,7 @@ function Detail() {
       </DetailPubDate>
       <DetailImage>
         <Image
-          src={articleData.urlToImage || '/news_image.jpg'}
+          src={articleData.urlToImage || '/news_image.webp'}
           alt={articleData.title}
           loading="lazy"
           width={640}
