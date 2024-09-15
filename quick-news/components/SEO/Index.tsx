@@ -21,7 +21,6 @@ export default function SEO({ title, description }: SEOProps) {
         name="description"
         content={description || '뉴스 빠르게 확인하기'}
       />
-
       <meta
         property="og:url"
         content={`https://quick-news-tau.vercel.app/${nowLocation}`}
@@ -49,7 +48,7 @@ export default function SEO({ title, description }: SEOProps) {
       />
       <meta name="twitter:label1" content="Category" />
       <meta name="twitter:data1" content="Latest Updates" />
-      <link rel="preload" href="https://lottiefiles.com" as="lottiefiles" />
+      {/* <link rel="preload" href="https://lottiefiles.com" as="lottiefiles" /> */}
     </Head>
   )
 }
