@@ -51,6 +51,8 @@ export const LoadingLottie = styled(Lottie)`
   display: inline-block;
   width: 15.625rem;
   height: 15.625rem;
+  max-width: 100%;
+  max-height: 100%;
 
   ${media.tablet`
     width: 12.5rem;
@@ -68,7 +70,7 @@ const loadingAnimation = keyframes`
     opacity: 1;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.7;
   }
 `
 
@@ -84,4 +86,5 @@ export const SkeletonLine = styled.div`
   width: 100%;
   height: 180px;
   margin-bottom: 5px;
+  will-change: opacity;
 `

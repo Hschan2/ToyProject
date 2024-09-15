@@ -1,5 +1,4 @@
 import styled, { css, keyframes } from 'styled-components'
-import { COMMON_COLOR } from '../utils/ColorValue'
 
 const media = {
   tablet: (styles: TemplateStringsArray, ...interpolations: any[]) => css`
@@ -15,6 +14,8 @@ const media = {
 }
 
 export const UpButton = styled.div`
+  width: clamp(35px, 5vw, 50px);
+  height: clamp(35px, 5vw, 50px);
   position: fixed;
   color: ${(props) => props.theme.text};
   border: 1px solid ${(props) => props.theme.border};
@@ -65,6 +66,7 @@ export const SearchContainer = styled.div`
 `
 
 export const SearchInput = styled.input`
+  height: 40px;
   padding: 0.6rem;
   border: 0.0625rem solid ${(props) => props.theme.border};
   border-radius: 0.5rem;
@@ -89,6 +91,8 @@ export const SearchInput = styled.input`
 `
 
 export const SearchingButton = styled.button`
+  width: clamp(35px, 5vw, 50px);
+  height: clamp(35px, 5vw, 50px);
   position: fixed;
   color: ${(props) => props.theme.text};
   border: 1px solid ${(props) => props.theme.border};
@@ -138,35 +142,9 @@ export const InputWrapper = styled.div`
   `}
 `
 
-export const MoreButton = styled.button`
-  margin: 1.25rem auto;
-  padding: 0.5rem 1rem;
-  font-size: 0.8rem;
-  background-color: ${COMMON_COLOR};
-  color: ${(props) => props.theme.text};
-  border: none;
-  border-radius: 1.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-
-  &:disabled {
-    background-color: #ccc;
-    cursor: default;
-  }
-
-  ${media.tablet`
-    padding: 0.45rem 0.9rem;
-    font-size: 0.75rem;
-  `}
-
-  ${media.mobile`
-    margin: 1.75rem auto;
-    padding: 0.35rem 0.75rem;
-    font-size: 0.5rem;
-  `}
-`
-
 export const DarkModeBtn = styled.button`
+  width: clamp(35px, 5vw, 50px);
+  height: clamp(35px, 5vw, 50px);
   position: fixed;
   color: ${(props) => props.theme.text};
   border: 1px solid ${(props) => props.theme.border};
@@ -200,6 +178,8 @@ export const DarkModeBtn = styled.button`
 `
 
 export const SavedNewsBtn = styled.button`
+  width: clamp(35px, 5vw, 50px);
+  height: clamp(35px, 5vw, 50px);
   position: fixed;
   color: ${(props) => props.theme.text};
   border: 1px solid ${(props) => props.theme.border};

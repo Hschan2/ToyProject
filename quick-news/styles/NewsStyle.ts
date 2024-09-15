@@ -148,17 +148,16 @@ export const DetailImage = styled.div`
   width: 100%;
   padding: 8px 0;
   position: relative;
+  aspect-ratio: 16 / 9;
 
   img {
     width: 100%;
-    height: 30vh;
+    height: auto;
   }
 
   ${media.mobile`
-    height: 21vh;
-
     img {
-      height: 20vh;
+      height: auto;
     }
   `}
 `

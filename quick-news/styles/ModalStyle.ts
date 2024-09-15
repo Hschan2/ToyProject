@@ -40,6 +40,7 @@ export const ModalContent = styled.div`
   box-shadow: 0px 0.125rem 0.625rem rgba(0, 0, 0, 0.1);
   max-width: 25rem;
   width: 100%;
+  height: auto;
 
   ${media.tablet`
     max-width: 22rem;
