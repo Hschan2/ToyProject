@@ -36,12 +36,6 @@ export interface StorageNewsProps extends INewsBase {
   image?: string
 }
 
-export interface MoreButtonProps {
-  onClick: () => void
-  disabled: boolean
-  children: React.ReactNode
-}
-
 export interface SEOProps {
   title: string
   description: string
