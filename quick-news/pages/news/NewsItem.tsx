@@ -52,17 +52,6 @@ function NewsItem({ article }: NaverNewsList) {
           {article.pubDate &&
             format(new Date(article.pubDate), 'yyyy-MM-dd HH:mm')}
         </DateTime>
-        <Link
-          href={{
-            pathname: '/page/detail/Index',
-            query: { article: JSON.stringify(article) },
-          }}
-          as="../page/detail/Index"
-          passHref
-          title={`${article.title} 페이지로 이동`}
-        >
-          <Description>{StripHtmlTags(article.description)}</Description>
-        </Link>
       </NewsCard>
     </NewsContainer>
   )

@@ -49,17 +49,6 @@ function NewsCategoryItem({ article }: CategoryNewsList) {
             format(new Date(article.pubDate), 'yyyy-MM-dd HH:mm')}
         </DateOfNews>
         <Author>{article.author}</Author>
-        <Link
-          href={{
-            pathname: '/page/detail/Index',
-            query: { article: JSON.stringify(article) },
-          }}
-          as="../page/detail/Index"
-          passHref
-          title={`${article.title} 페이지로 이동`}
-        >
-          <Description>{article.description ?? ''}</Description>
-        </Link>
       </NewsCard>
     </NewsContainer>
   )
