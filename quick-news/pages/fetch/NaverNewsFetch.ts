@@ -1,14 +1,18 @@
-import axios from 'axios'
+import axios, { CancelTokenSource } from 'axios'
 import { useQuery } from 'react-query'
 import { MAX_PAGE_COUNT } from '../../utils/Constants'
 import { NaverNewsLists, NaverNewsProps } from '../../utils/types/type'
 
-const fetchNews = async (queryValue: string): Promise<NaverNewsProps[]> => {
+const fetchNews = async (
+  queryValue: string,
+  cancelToken: CancelTokenSource['token'],
+): Promise<NaverNewsProps[]> => {
   const { data } = await axios.get<NaverNewsLists>('/api/naver-news-proxy', {
     params: {
       q: queryValue,
       pageCount: MAX_PAGE_COUNT,
     },
+    cancelToken,
   })
 
   return data.items
@@ -20,7 +24,13 @@ export default function NaverNewsFetch(
 ) {
   const { data: news, isLoading } = useQuery(
     ['news', queryValue, pageSize],
-    async () => fetchNews(queryValue),
+    async ({ signal }) => {
+      const source = axios.CancelToken.source()
+      signal?.addEventListener('abort', () => {
+        source.cancel('Query 요청 중단')
+      })
+      return fetchNews(queryValue, source.token)
+    },
     {
       keepPreviousData: true,
       refetchOnWindowFocus: false,
