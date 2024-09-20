@@ -13,14 +13,16 @@ export default function Loading() {
     setAnimationData(loading)
   }, [])
 
-  if (!animationData) {
-    return <div>LottieFile Error</div>
-  }
-
   return (
     <LoadingContainer>
-      <LoadingLottie loop animationData={animationData} play />
-      <LoadingMessage>Loading Error...</LoadingMessage>
+      {animationData ? (
+        <>
+          <LoadingLottie loop animationData={animationData} play />
+          <LoadingMessage>Loading Error...</LoadingMessage>
+        </>
+      ) : (
+        <div>No LottieFile</div>
+      )}
     </LoadingContainer>
   )
 }
