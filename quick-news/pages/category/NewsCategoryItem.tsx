@@ -4,7 +4,6 @@ import { format } from 'date-fns'
 import {
   Author,
   DateOfNews,
-  Description,
   LimitLineTitle,
   NewsCard,
   NewsContainer,

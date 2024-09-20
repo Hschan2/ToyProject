@@ -228,16 +228,8 @@ export const SaveButton = styled.button`
   cursor: pointer;
   font-size: 1rem;
 
-  &.newsHome {
-    margin-top: 20px;
-  }
-
   ${media.mobile`
     font-size: 0.75rem;
-
-    &.newsHome {
-      margin-top: 12px;
-    }
   `}
 `
 

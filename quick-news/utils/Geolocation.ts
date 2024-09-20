@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { ILocation } from './types/type'
 
 export default function useGeolocation(): ILocation {

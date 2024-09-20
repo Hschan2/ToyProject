@@ -80,10 +80,6 @@ export const TitleSaveContainer = styled.div`
   align-content: center;
   align-self: center;
   gap: ${newsValueSize.small};
-
-  &.newsHome {
-    height: 35px;
-  }
 `
 
 export const NewsContainer = styled.div`

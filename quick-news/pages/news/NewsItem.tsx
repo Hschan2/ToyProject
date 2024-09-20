@@ -2,7 +2,6 @@ import Link from 'next/link'
 import React, { useCallback } from 'react'
 import { format } from 'date-fns'
 import {
-  Description,
   LimitLineTitle,
   NewsCard,
   NewsContainer,
@@ -28,7 +27,7 @@ function NewsItem({ article }: NaverNewsList) {
   return (
     <NewsContainer key={article.id}>
       <NewsCard>
-        <TitleSaveContainer className="newsHome">
+        <TitleSaveContainer>
           <Link
             href={{
               pathname: '/page/detail/Index',
@@ -42,7 +41,6 @@ function NewsItem({ article }: NaverNewsList) {
           </Link>
           <SaveButton
             onClick={onSaveNews}
-            className="newsHome"
             title="뉴스 저장"
           >
             저장
