@@ -6,7 +6,6 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   const { query } = req
-  const source = axios.CancelToken.source()
   res.setHeader('Access-Control-Allow-Origin', '*')
   try {
     const apiResponse = await axios.get(
@@ -22,7 +21,6 @@ export default async function handler(
           start: 1,
           sort: 'sim',
         },
-        cancelToken: source.token,
       },
     )
     res.status(200).json(apiResponse.data)
@@ -31,9 +29,5 @@ export default async function handler(
       console.error('네이버 뉴스 데이터 불러오기 에러', error)
     }
     res.status(500).json({ message: 'Internal Server Error' })
-  }
-
-  return () => {
-    source.cancel('API 요청 중단')
   }
 }
