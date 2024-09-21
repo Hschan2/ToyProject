@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { GetServerSideProps } from 'next'
 import dynamic from 'next/dynamic'
 import 'moment/locale/ko'
@@ -45,8 +45,11 @@ export default function NewsLists({
     }
   }, [visibleNews, pageSize])
 
-  const renderNewsItem = (article: NaverNewsProps) => (
-    <NewsItem key={article.id} article={article} />
+  const renderNewsItem = useCallback(
+    (article: NaverNewsProps) => (
+      <NewsItem key={article.id} article={article} />
+    ),
+    [],
   )
 
   return (
