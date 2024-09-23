@@ -7,9 +7,7 @@ import { RecoilRoot } from 'recoil'
 import { createGlobalStyle } from 'styled-components'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
 import { store } from '../utils/store/Store'
-import useScrollRestoration from '@/utils/hooks/useScrollRestoration'
 
 const Layout = dynamic(() => import('./page/layout/Layout'), {
   ssr: false,
@@ -50,9 +48,6 @@ const GlobalStyle = createGlobalStyle`
 `
 
 export default function App({ Component, pageProps }: AppProps) {
-  const router = useRouter()
-  const scrollableDivRef = useScrollRestoration(router)
-
   if (pageProps.statusCode && pageProps.statusCode !== 200) {
     return <Error {...pageProps} />
   }
@@ -73,12 +68,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <Layout>
             <>
               <GlobalStyle />
-              <div
-                ref={scrollableDivRef}
-                style={{ overflow: 'auto', height: '100vh' }}
-              >
-                <Component {...pageProps} />
-              </div>
+              <Component {...pageProps} />
             </>
           </Layout>
         </Provider>
