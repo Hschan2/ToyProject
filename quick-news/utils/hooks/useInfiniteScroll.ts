@@ -10,12 +10,15 @@ export default function useInfiniteScroll({
   const targetRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    const observerCallback = debounce((entries: IntersectionObserverEntry[]) => {
-      const [entry] = entries
-      if (entry.isIntersecting && !isAllLoaded) {
-        handleLoadMore()
-      }
-    }, 500)
+    const observerCallback = debounce(
+      (entries: IntersectionObserverEntry[]) => {
+        const [entry] = entries
+        if (entry.isIntersecting && !isAllLoaded) {
+          handleLoadMore()
+        }
+      },
+      500,
+    )
 
     observerRef.current = new IntersectionObserver(observerCallback, {
       root: null,
@@ -34,6 +37,12 @@ export default function useInfiniteScroll({
       }
     }
   }, [handleLoadMore, isAllLoaded])
+
+  useEffect(() => {
+    if (isAllLoaded && observerRef.current) {
+      observerRef.current.disconnect()
+    }
+  }, [isAllLoaded])
 
   return targetRef
 }
