@@ -8,7 +8,6 @@ const Skeleton = dynamic(() => import('../../loading/Skeleton'), { ssr: false })
 
 export default function RenderNewsPage<T>({
   visibleNews,
-  isLoading,
   itemRenderer,
 }: CommonNewsListProps<T>) {
   const newsListRef = useRef<HTMLDivElement | null>(null)
@@ -18,8 +17,6 @@ export default function RenderNewsPage<T>({
     (item: T) => itemRenderer(item),
     [itemRenderer],
   )
-
-  if (isLoading) return <Skeleton />
 
   return (
     <div ref={newsListRef}>

@@ -24,7 +24,7 @@ const RenderNewsPage = dynamic(() => import('../page/render/RenderNewsPage'), {
 export default function NewsSourceList(props: NewsSourceListProps) {
   const { category } = props
   const { pageSize, handleLoadMore, isAllLoaded } = useMoreNews()
-  const { visibleNews, isLoading } = CategoriesNewsFetch(category, pageSize)
+  const { visibleNews } = CategoriesNewsFetch(category, pageSize)
   const targetRef = useInfiniteScroll({ handleLoadMore, isAllLoaded })
 
   const renderNewsItem = useCallback(
@@ -38,7 +38,6 @@ export default function NewsSourceList(props: NewsSourceListProps) {
     <>
       <RenderNewsPage
         visibleNews={visibleNews}
-        isLoading={isLoading}
         itemRenderer={renderNewsItem}
       />
       <div ref={targetRef}></div>
