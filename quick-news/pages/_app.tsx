@@ -1,13 +1,14 @@
 import 'core-js/actual'
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
+import { useRouter } from 'next/router'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { Provider } from 'react-redux'
 import { RecoilRoot } from 'recoil'
 import { createGlobalStyle } from 'styled-components'
 import dynamic from 'next/dynamic'
-import Head from 'next/head'
 import { store } from '../utils/store/Store'
+import useScrollRestoration from '../utils/hooks/useScrollRestoration'
 
 const Layout = dynamic(() => import('./page/layout/Layout'), {
   ssr: false,
@@ -48,6 +49,9 @@ const GlobalStyle = createGlobalStyle`
 `
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter()
+  const scrollableDivRef = useScrollRestoration(router)
+
   if (pageProps.statusCode && pageProps.statusCode !== 200) {
     return <Error {...pageProps} />
   }
@@ -56,21 +60,17 @@ export default function App({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
         <Provider store={store}>
-          <Head>
-            <link
-              rel="preload"
-              href="/fonts/NewsCycle-Bold.woff"
-              as="font"
-              type="font/woff"
-              crossOrigin="anonymous"
-            />
-          </Head>
-          <Layout>
-            <>
-              <GlobalStyle />
-              <Component {...pageProps} />
-            </>
-          </Layout>
+          <div
+            ref={scrollableDivRef}
+            style={{ overflow: 'auto', height: '100vh' }}
+          >
+            <Layout>
+              <>
+                <GlobalStyle />
+                <Component {...pageProps} />
+              </>
+            </Layout>
+          </div>
         </Provider>
       </RecoilRoot>
     </QueryClientProvider>
