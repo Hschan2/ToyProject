@@ -2,8 +2,6 @@ import React, { useCallback } from 'react'
 import 'moment/locale/ko'
 import dynamic from 'next/dynamic'
 import { CommonNewsListProps, NaverNewsProps } from '../../utils/types/type'
-import useMoreNews from '../../utils/hooks/useMoreNews'
-import NaverNewsFetch from '../fetch/NaverNewsFetch'
 import useInfiniteScroll from '../../utils/hooks/useInfiniteScroll'
 import Skeleton from '../loading/Skeleton'
 import Loading from '../loading/Loading'
@@ -23,8 +21,6 @@ interface NewsProps {
 }
 
 export default function NewsLists({ newsData }: NewsProps) {
-  // const { pageSize, handleLoadMore, isAllLoaded } = useMoreNews()
-  // const { visibleNews } = NaverNewsFetch(pageSize)
   const { visibleNews, loadMoreNews, hasMoreNews } = useAdditionNews(
     newsData,
     10,
@@ -44,7 +40,7 @@ export default function NewsLists({ newsData }: NewsProps) {
   return (
     <>
       <RenderNewsPage visibleNews={visibleNews} itemRenderer={renderNewsItem} />
-      <div ref={targetRef}></div>
+      {hasMoreNews && <div ref={targetRef}></div>}
     </>
   )
 }
