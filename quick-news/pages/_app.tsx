@@ -9,7 +9,9 @@ import { createGlobalStyle } from 'styled-components'
 import dynamic from 'next/dynamic'
 import { store } from '../utils/store/Store'
 import useScrollRestoration from '../utils/hooks/useScrollRestoration'
+import { lazy } from 'react'
 
+const LazyMoveUp = lazy(() => import('../components/Button/UpBtn'))
 const Layout = dynamic(() => import('./page/layout/Layout'), {
   ssr: false,
 })
@@ -68,6 +70,7 @@ export default function App({ Component, pageProps }: AppProps) {
               <>
                 <GlobalStyle />
                 <Component {...pageProps} />
+                <LazyMoveUp scrollableDivRef={scrollableDivRef} />
               </>
             </Layout>
           </div>

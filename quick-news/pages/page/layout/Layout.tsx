@@ -6,7 +6,6 @@ import { DARK_MODE_VALUE } from '../../../utils/Constants'
 import { DARK_THEME, LIGHT_THEME } from '../../../utils/ColorValue'
 import Loading from '../../loading/Loading'
 
-const LazyMoveUp = lazy(() => import('../../../components/Button/UpBtn'))
 const LazyNavbar = lazy(() => import('../../../components/Nav/Index'))
 const LazyNotificationModal = lazy(
   () => import('../../modal/NotificationModal'),
@@ -37,7 +36,6 @@ export default function Layout({ children }: { children: JSX.Element }) {
         <div>{children}</div>
         <DynamicDarkModeButton />
         <DynamicSavedNewsButton />
-        <LazyMoveUp />
         <DynamicSearchButton />
         <LazyNotificationModal />
       </Suspense>

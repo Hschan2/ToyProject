@@ -1,22 +1,35 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { UpButton } from '../../styles/ButtonStyle'
 
-export default function MoveUp() {
+interface MoveUpProps {
+  scrollableDivRef: React.RefObject<HTMLDivElement>
+}
+
+export default function MoveUp({ scrollableDivRef }: MoveUpProps) {
   const [showButton, setShowButton] = useState(false)
 
   const handleScroll = useCallback(() => {
-    setShowButton(window.scrollY > 100)
-  }, [])
+    if (scrollableDivRef.current) {
+      setShowButton(scrollableDivRef.current?.scrollTop > 100)
+    }
+  }, [scrollableDivRef])
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
+    const scrollableDiv = scrollableDivRef.current
+    if (scrollableDiv) {
+      scrollableDiv.addEventListener('scroll', handleScroll)
     }
-  }, [handleScroll])
+    return () => {
+      if (scrollableDiv) {
+        scrollableDiv.removeEventListener('scroll', handleScroll)
+      }
+    }
+  }, [handleScroll, scrollableDivRef])
 
   const handleClick = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    if (scrollableDivRef.current) {
+      scrollableDivRef.current.scrollTo({ top: 0, behavior: 'smooth' })
+    }
   }
 
   return showButton ? (
