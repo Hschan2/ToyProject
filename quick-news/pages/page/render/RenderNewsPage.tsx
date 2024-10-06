@@ -26,7 +26,7 @@ export default function RenderNewsPage<T>({
             {isVisible && memoizedItemRenderer(item)}
           </React.Fragment>
         ))
-      ) : (
+      ) : visibleNews?.length === 0 ? null : (
         <Skeleton />
       )}
     </div>
