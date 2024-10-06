@@ -12,6 +12,9 @@ const LazyNotificationModal = lazy(
 )
 const DynamicSearchButton = dynamic(
   () => import('../../../components/Button/SearchBtn'),
+  {
+    ssr: false,
+  },
 )
 const DynamicDarkModeButton = dynamic(
   () => import('../../../components/Button/DarkModeBtn'),
