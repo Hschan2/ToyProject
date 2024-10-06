@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react'
-import { UpButton } from '../../styles/ButtonStyle'
+import { SideButton } from '../../styles/ButtonStyle'
 
 interface MoveUpProps {
   scrollableDivRef: React.RefObject<HTMLDivElement>
@@ -33,7 +33,7 @@ export default function MoveUp({ scrollableDivRef }: MoveUpProps) {
   }
 
   return showButton ? (
-    <UpButton onClick={handleClick} aria-label="상단이동">
+    <SideButton onClick={handleClick} aria-label="상단이동" purpose="Up">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -46,6 +46,6 @@ export default function MoveUp({ scrollableDivRef }: MoveUpProps) {
           clipRule="evenodd"
         />
       </svg>
-    </UpButton>
+    </SideButton>
   ) : null
 }

@@ -1,5 +1,24 @@
 import styled, { css, keyframes } from 'styled-components'
 
+interface SideButtonProps {
+  purpose: 'Up' | 'DarkMode' | 'SavedNews' | 'Search'
+}
+
+const getBottomValue = (purpose: SideButtonProps['purpose']) => {
+  switch (purpose) {
+    case 'Up':
+      return '100px'
+    case 'Search':
+      return '170px'
+    case 'SavedNews':
+      return '240px'
+    case 'DarkMode':
+      return '310px'
+    default:
+      return '100px'
+  }
+}
+
 const media = {
   tablet: (styles: TemplateStringsArray, ...interpolations: any[]) => css`
     @media screen and (max-width: 768px) {
@@ -12,42 +31,6 @@ const media = {
     }
   `,
 }
-
-export const UpButton = styled.div`
-  width: clamp(35px, 5vw, 50px);
-  height: clamp(35px, 5vw, 50px);
-  position: fixed;
-  color: ${(props) => props.theme.text};
-  border: 1px solid ${(props) => props.theme.border};
-  border-radius: 50%;
-  padding: 0.875rem 0.875rem 0.75rem 0.875rem;
-  bottom: 100px;
-  right: 40px;
-  cursor: pointer;
-  font-size: 1.125rem;
-  user-select: none;
-  background-color: ${(props) => props.theme.background};
-
-  svg {
-    width: 1.125rem;
-    height: 1.125rem;
-  }
-
-  ${media.tablet`
-    font-size: 0.9rem;
-  `}
-
-  ${media.mobile`
-    padding: 0.5rem 0.5rem 0.45rem 0.6rem;
-    bottom: 90px;
-    right: 20px;
-
-    svg {
-      width: 0.925rem;
-      height: 0.925rem;
-    }
-  `}
-`
 
 export const slideIn = keyframes`
   from {
@@ -90,42 +73,6 @@ export const SearchInput = styled.input`
   `}
 `
 
-export const SearchingButton = styled.button`
-  width: clamp(35px, 5vw, 50px);
-  height: clamp(35px, 5vw, 50px);
-  position: fixed;
-  color: ${(props) => props.theme.text};
-  border: 1px solid ${(props) => props.theme.border};
-  border-radius: 50%;
-  padding: 0.875rem 0.875rem 0.75rem 0.875rem;
-  bottom: 170px;
-  right: 40px;
-  cursor: pointer;
-  font-size: 1.125rem;
-  user-select: none;
-  background-color: ${(props) => props.theme.background};
-
-  svg {
-    width: 1.125rem;
-    height: 1.125rem;
-  }
-
-  ${media.tablet`
-    font-size: 0.9rem;
-  `}
-
-  ${media.mobile`
-    padding: 0.5rem 0.5rem 0.45rem 0.6rem;
-    bottom: 150px;
-    right: 20px;
-
-    svg {
-      width: 0.925rem;
-      height: 0.925rem;
-    }
-  `}
-`
-
 export const InputWrapper = styled.div`
   position: fixed;
   bottom: 175px;
@@ -142,7 +89,7 @@ export const InputWrapper = styled.div`
   `}
 `
 
-export const DarkModeBtn = styled.button`
+export const SideButton = styled.button<SideButtonProps>`
   width: clamp(35px, 5vw, 50px);
   height: clamp(35px, 5vw, 50px);
   position: fixed;
@@ -150,7 +97,7 @@ export const DarkModeBtn = styled.button`
   border: 1px solid ${(props) => props.theme.border};
   border-radius: 50%;
   padding: 0.875rem 0.875rem 0.75rem 0.875rem;
-  bottom: 310px;
+  bottom: ${(props) => getBottomValue(props.purpose)};
   right: 40px;
   cursor: pointer;
   user-select: none;
@@ -162,48 +109,16 @@ export const DarkModeBtn = styled.button`
   }
 
   ${media.tablet`
-    font-size: 0.9rem;
-  `}
-
-  ${media.mobile`
-    padding: 0.5rem 0.5rem 0.45rem 0.6rem;
-    bottom: 270px;
-    right: 20px;
-
+    padding: 0.7rem 0.7rem 0.5rem 0.7rem;
     svg {
-      width: 0.925rem;
-      height: 0.925rem;
+      width: 1rem;
+      height: 1rem;
     }
   `}
-`
-
-export const SavedNewsBtn = styled.button`
-  width: clamp(35px, 5vw, 50px);
-  height: clamp(35px, 5vw, 50px);
-  position: fixed;
-  color: ${(props) => props.theme.text};
-  border: 1px solid ${(props) => props.theme.border};
-  border-radius: 50%;
-  padding: 0.875rem 0.875rem 0.75rem 0.875rem;
-  bottom: 240px;
-  right: 40px;
-  cursor: pointer;
-  user-select: none;
-  background-color: ${(props) => props.theme.background};
-
-  svg {
-    width: 1.125rem;
-    height: 1.125rem;
-  }
-
-  ${media.tablet`
-    font-size: 0.9rem;
-  `}
 
   ${media.mobile`
-    padding: 0.5rem 0.5rem 0.45rem 0.6rem;
-    bottom: 210px;
-    right: 20px;
+    padding: 0.6rem 0.5rem 0.45rem 0.6rem;
+    right: 30px;
 
     svg {
       width: 0.925rem;

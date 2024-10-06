@@ -4,7 +4,7 @@ import {
   InputWrapper,
   SearchContainer,
   SearchInput,
-  SearchingButton,
+  SideButton,
 } from '../../styles/ButtonStyle'
 
 export default function SearchButton() {
@@ -54,10 +54,11 @@ export default function SearchButton() {
 
   return (
     <SearchContainer>
-      <SearchingButton
+      <SideButton
         type="button"
         onClick={handleToggleInput}
         aria-label="뉴스검색"
+        purpose="Search"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +72,7 @@ export default function SearchButton() {
             clipRule="evenodd"
           />
         </svg>
-      </SearchingButton>
+      </SideButton>
       {isInputVisible && (
         <InputWrapper>
           <SearchInput

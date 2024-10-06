@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { useRecoilState } from 'recoil'
-import { DarkModeBtn } from '../../styles/ButtonStyle'
+import { SideButton } from '../../styles/ButtonStyle'
 import { DARK_MODE_VALUE } from '../../utils/Constants'
 
 function DarkModeButton() {
@@ -11,9 +11,10 @@ function DarkModeButton() {
   }, [isDarkMode])
 
   return (
-    <DarkModeBtn
+    <SideButton
       onClick={changeDarkMode}
       aria-label={isDarkMode ? '다크모드로' : '라이트모드로'}
+      purpose="DarkMode"
     >
       {isDarkMode ? (
         <svg
@@ -38,7 +39,7 @@ function DarkModeButton() {
           />
         </svg>
       )}
-    </DarkModeBtn>
+    </SideButton>
   )
 }
 
