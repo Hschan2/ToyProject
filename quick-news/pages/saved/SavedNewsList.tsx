@@ -17,11 +17,7 @@ function SavedNewsList() {
   )
 
   return (
-    <RenderNewsPage
-      visibleNews={visibleNews}
-      isLoading={false}
-      itemRenderer={renderNewsItem}
-    />
+    <RenderNewsPage visibleNews={visibleNews} itemRenderer={renderNewsItem} />
   )
 }
 
