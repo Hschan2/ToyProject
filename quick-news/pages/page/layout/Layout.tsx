@@ -28,6 +28,12 @@ const DynamicSavedNewsButton = dynamic(
     ssr: false,
   },
 )
+const DynamicBottomButton = dynamic(
+  () => import('../../../components/Button/BottomButton'),
+  {
+    ssr: false,
+  },
+)
 
 export default function Layout({ children }: { children: JSX.Element }) {
   const [isDarkMode] = useRecoilState(DARK_MODE_VALUE)
@@ -40,6 +46,7 @@ export default function Layout({ children }: { children: JSX.Element }) {
         <DynamicDarkModeButton />
         <DynamicSavedNewsButton />
         <DynamicSearchButton />
+        <DynamicBottomButton />
         <LazyNotificationModal />
       </Suspense>
     </ThemeProvider>
