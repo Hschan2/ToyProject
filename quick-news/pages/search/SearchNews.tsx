@@ -15,19 +15,17 @@ export default function SearchNews() {
     searchParams.get('q') ||
     (typeof window !== 'undefined' && localStorage.getItem('searchValue')) ||
     ''
-  const { visibleNews, isLoading } = NaverNewsFetch(pageSize, searchedValue)
-
-  useInfiniteScroll({ handleLoadMore, isAllLoaded })
+  const { visibleNews } = NaverNewsFetch(pageSize, searchedValue)
+  const targetRef = useInfiniteScroll({ handleLoadMore, isAllLoaded })
 
   const renderNewsItem = (article: NaverNewsProps) => (
     <NewsItem key={article.id} article={article} />
   )
 
   return (
-    <RenderNewsPage
-      visibleNews={visibleNews}
-      isLoading={isLoading}
-      itemRenderer={renderNewsItem}
-    />
+    <>
+      <RenderNewsPage visibleNews={visibleNews} itemRenderer={renderNewsItem} />
+      <div ref={targetRef}></div>
+    </>
   )
 }
