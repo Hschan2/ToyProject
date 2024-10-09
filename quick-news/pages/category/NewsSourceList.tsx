@@ -40,7 +40,7 @@ export default function NewsSourceList(props: NewsSourceListProps) {
         visibleNews={visibleNews}
         itemRenderer={renderNewsItem}
       />
-      <div ref={targetRef}></div>
+      {!isAllLoaded && <div ref={targetRef}></div>}
     </>
   )
 }

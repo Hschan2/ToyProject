@@ -25,7 +25,7 @@ export default function SearchNews() {
   return (
     <>
       <RenderNewsPage visibleNews={visibleNews} itemRenderer={renderNewsItem} />
-      <div ref={targetRef}></div>
+      {!isAllLoaded && <div ref={targetRef}></div>}
     </>
   )
 }
