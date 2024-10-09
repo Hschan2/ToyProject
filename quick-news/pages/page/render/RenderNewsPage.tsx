@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'
 import { nanoid } from '@reduxjs/toolkit'
 import useVisibility from '../../../utils/hooks/useVisibility'
 import { CommonNewsListProps } from '../../../utils/types/type'
+import NoDataPage from '../../../pages/error/NoDataPage'
 
 const Skeleton = dynamic(() => import('../../loading/Skeleton'), { ssr: false })
 
@@ -18,6 +19,8 @@ export default function RenderNewsPage<T>({
     [itemRenderer],
   )
 
+  if (visibleNews?.length === 0) return <NoDataPage />
+
   return (
     <div ref={newsListRef}>
       {visibleNews?.length ? (
@@ -26,7 +29,7 @@ export default function RenderNewsPage<T>({
             {isVisible && memoizedItemRenderer(item)}
           </React.Fragment>
         ))
-      ) : visibleNews?.length === 0 ? null : (
+      ) : (
         <Skeleton />
       )}
     </div>
