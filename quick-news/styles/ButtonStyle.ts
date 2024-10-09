@@ -239,6 +239,7 @@ export const TMContainer = styled.div`
   justify-content: center;
   gap: 4px;
   margin-top: 24px;
+  padding: 0 12px;
 `
 
 export const TMInput = styled.input`
