@@ -7,9 +7,10 @@ interface SliderProps {
 export const DarkModeContainer = styled.div`
   margin-bottom: 20px;
   margin-left: 14px;
+  position: relative;
 `;
 
-export const Toggle = styled.input.attrs({ type: 'checkbox' })`
+export const Toggle = styled.input.attrs({ type: "checkbox" })`
   visibility: hidden;
 `;
 
@@ -19,6 +20,7 @@ export const Label = styled.label`
   font-size: 16px;
   cursor: pointer;
   color: black;
+  position: relative;
 `;
 
 export const Indicator = styled.div`
@@ -42,5 +44,6 @@ export const Slider = styled.div<SliderProps>`
   left: 1;
   margin-left: 4px;
   transition: 250ms ease-in-out;
-  transform: ${props => props.checked ? 'translateX(100%)' : 'translateX(0)'};
+  transform: ${(props) =>
+    props.checked ? "translateX(100%)" : "translateX(0)"};
 `;

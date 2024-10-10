@@ -1,4 +1,3 @@
-import React from 'react'
 import { DarkModeContainer, Toggle, Label, Indicator, Slider } from '../../../style/DarkMode';
 
 type DarkModeProps = {
