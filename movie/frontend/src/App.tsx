@@ -15,6 +15,7 @@ import Loading from "./components/pages/loading/Loading";
 import ToUp from "./components/pages/scroll/ToUp";
 import BottomMenu from "./components/pages/scroll/BottomMenu";
 import Searching from "./components/pages/search/Searching";
+import useScrollRestoration from "./hooks/useScrollRestoration";
 
 const MainContent = lazy(
   () => import("./components/pages/content/MainContent")
@@ -27,10 +28,11 @@ const Detail = lazy(() => import("./pages/Detail"));
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useRecoilState(darkModeState);
+  const scrollableDivRef = useScrollRestoration();
 
   return (
     <ThemeProvider theme={isDarkMode ? DARK_THEME : LIGHT_THEME}>
-      <>
+      <div ref={scrollableDivRef} style={{ overflow: "auto", height: "100vh" }}>
         <GlobalStyles />
         <Nav />
         <ContentContainer>
@@ -59,7 +61,7 @@ function App() {
           <Footer />
         </ContentContainer>
         <ToUp />
-      </>
+      </div>
     </ThemeProvider>
   );
 }
