@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { format } from 'date-fns'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
@@ -68,4 +68,4 @@ function Detail() {
   )
 }
 
-export default Detail
+export default memo(Detail)
