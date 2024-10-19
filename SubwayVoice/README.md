@@ -1,79 +1,96 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Subway Voice
 
-# Getting Started
+<br/>
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+### **지하철 목소리** - 각 역에 가까워질 때마다 목소리로 알려줍니다
 
-## Step 1: Start the Metro Server
+<br/>
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+`지하철 목소리`는 각 역에 가까워지거나 도착할 때마다 목소리로 알려줍니다. 우리는 출·퇴근을 하거나, 지하철을 이용할 때, 모니터를 확인하지 못하는 경우가 발생해 현재 어떤 역에 도착했는지 알지 못하는 경우가 발생합니다. 이를 방지하기 위해서, `지하철 목소리`는 역에 가까워지거나 도착할 때마다 목소리로 알려줌으로써 사용자가 역을 바로 알 수 있도록 도와줍니다.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+<br/>
 
-```bash
-# using npm
+## 지하철 목소리 개발자
+
+### 모바일
+
+|                           [홍성찬](https://github.com/Hschan2)                            |
+| :---------------------------------------------------------------------------------------: |
+| <img src="https://avatars.githubusercontent.com/u/39434913?v=4" width="100" height="100"> |
+|                         지하철 목소리 전체 개발 <br/> 전체 디자인                         |
+
+<br/>
+
+## 기술 스택
+
+#### 프레임워크
+
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![React Native](https://img.shields.io/badge/react_native-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+
+#### 라이브러리
+
+![Eslint](https://img.shields.io/badge/Eslint-4B0082?style=flat-square&logo=Eslint&logoColor=white)
+![Prettier](https://img.shields.io/badge/prettier-FF69B4?style=flat-square&logo=prettier&logoColor=white)
+
+#### 개발 도구
+
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+![NPM](https://img.shields.io/badge/NPM-CB3837?style=for-the-badge)
+
+<br/>
+
+## 폴더 구조
+
+```
+├─ android
+├─ ios
+│
+├─ App.tsx
+├─ index.js
+├─ jest.config.js
+├─ metro.config.js
+├─ package.json
+├─ tsconfig.json
+│
+└─ README.md
+```
+
+<br/>
+
+## 스케치
+#### 메인 화면
+![Main](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcGNkoS%2FbtsKc1fwOjo%2FC5cRfPRdT3bv91r0UiZNbk%2Fimg.png)
+
+#### 경로 검색
+![Searching](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FrqOOi%2FbtsKcjufuVa%2FJB5pNrhg50lkjka1wPwYg1%2Fimg.png)
+
+#### 경로 진행
+![Progressing](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FFUcAN%2FbtsKc1mgJqx%2FHG2wRbjPFWwMRdoMhxhbc1%2Fimg.png)
+
+<br/>
+
+## 기술 선택
+
+#### React-Native를 선택한 이유
+
+가장 익숙한 언어인 `React`와 비슷한 기술이기 때문에 `React-Native`를 선택했습니다. 그리고, 안드로이드와 IOS를 동시에 개발이 가능하다는 장점이 있다는 것도 하나의 이유입니다.
+
+## 이 프로젝트를 개발한 이유
+
+지하철을 이용할 때, 가끔씩 모니터를 확인할 수 없는 상황을 마주하였습니다. 그럴 때마다, 창밖을 확인하는 등 불편한 상황들이 많았습니다. 그래서 이런 상황을 방지하기 위해서 각 역에 근접하거나, 도착할 때 해당 역을 목소리로 알려줌으로써 모니터를 확인하지 않아도 역 확인을 할 수 있기 위해 기획하였습니다.
+
+## 프로젝트 주요 타겟
+
+지하철 이용 시, 역을 확인하기 어려운 상황을 자주 마주했던 사람
+
+## 실행
+
+```
+npm install
+
 npm start
 
-# OR using Yarn
-yarn start
+// npm run android
+// npm run ios
 ```
-
-## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### For iOS
-
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
