@@ -12,8 +12,8 @@ const DynamicFooter = dynamic(
 )
 
 export default function Contents({
-  title,
-  description,
+  title = '주요 뉴스',
+  description = '주요 뉴스들을 확인하세요',
   children,
 }: ContentsProps) {
   return (
