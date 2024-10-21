@@ -1,12 +1,17 @@
 import React, { lazy } from 'react'
+import dynamic from 'next/dynamic'
 import { useSearchParams } from 'next/navigation'
 import useMoreNews from '../../utils/hooks/useMoreNews'
 import NaverNewsFetch from '../fetch/NaverNewsFetch'
 import useInfiniteScroll from '../../utils/hooks/useInfiniteScroll'
-import { NaverNewsProps } from '../../utils/types/type'
-import RenderNewsPage from '../page/render/RenderNewsPage'
+import { CommonNewsListProps, NaverNewsProps } from '../../utils/types/type'
+import Loading from '../loading/Loading'
 
 const NewsItem = lazy(() => import('../news/NewsItem'))
+const RenderNewsPage = dynamic(() => import('../page/render/RenderNewsPage'), {
+  ssr: false,
+  loading: () => <Loading />,
+}) as React.ComponentType<CommonNewsListProps<NaverNewsProps>>
 
 export default function SearchNews() {
   const { pageSize, handleLoadMore, isAllLoaded } = useMoreNews()
