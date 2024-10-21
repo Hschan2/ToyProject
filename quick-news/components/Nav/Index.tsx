@@ -1,10 +1,12 @@
 import React, { useEffect, useState, lazy, Suspense } from 'react'
 import { Nav, NavDisplay, NavTitle } from '../../styles/PageStyle'
 import { TimeWeather } from '../../styles/InfoStyle'
-import NavLink from '../../pages/link/Link'
+import { NEWS_CATEGORIES } from '../../utils/Constants'
+import { NewsCategories } from '../../utils/types/type'
 
 const Today = lazy(() => import('../Info/Today'))
 const Weather = lazy(() => import('../Info/Weather'))
+const NavLink = lazy(() => import('../../pages/link/Link'))
 
 export default function Navbar() {
   const [isMounted, setIsMounted] = useState(false)
@@ -27,14 +29,13 @@ export default function Navbar() {
         </Suspense>
       </TimeWeather>
       <NavDisplay>
-        <NavLink href="/" category="주요뉴스" />
-        <NavLink href="/page/category/total" category="종합" />
-        <NavLink href="/page/category/business" category="경제" />
-        <NavLink href="/page/category/entertainment" category="연예" />
-        <NavLink href="/page/category/sports" category="스포츠" />
-        <NavLink href="/page/category/technology" category="테크" />
-        <NavLink href="/page/category/health" category="건강" />
-        <NavLink href="/page/category/science" category="과학" />
+        {NEWS_CATEGORIES.map((categories: NewsCategories) => (
+          <NavLink
+            category={categories.category}
+            title={categories.title}
+            key={categories.category}
+          />
+        ))}
       </NavDisplay>
     </Nav>
   )
