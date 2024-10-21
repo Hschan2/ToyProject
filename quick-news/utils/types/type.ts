@@ -78,7 +78,7 @@ export interface StorageNewsLists {
 }
 
 export interface NewsSourceListProps {
-  category?: string
+  category?: string | undefined
 }
 
 export interface CommonNewsListProps<T> {
@@ -87,6 +87,12 @@ export interface CommonNewsListProps<T> {
 }
 
 export interface NavLinkProps {
+  category: string
+  title: string
+}
+
+export interface NewsCategories {
   href: string
   category: string
+  title: string
 }
