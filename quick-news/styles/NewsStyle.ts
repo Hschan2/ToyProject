@@ -116,10 +116,7 @@ export const DetailWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   margin-top: 20px;
-
-  ${media.mobile`
-    padding: 0 20px;
-  `}
+  padding: 0 20px;
 `
 
 export const DetailTitle = styled.h2`
