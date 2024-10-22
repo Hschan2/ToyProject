@@ -13,6 +13,7 @@ export const newsApi = createApi({
           process.env.NEXT_PUBLIC_NEWS_API_KEY
         }${newCategory ? `&category=${newCategory}` : ''}`,
       }),
+      keepUnusedDataFor: 60,
     }),
   }),
 })

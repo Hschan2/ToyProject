@@ -7,6 +7,10 @@ export default async function handler(
 ) {
   const { query } = req
   res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader(
+    'Cache-Control',
+    'public, max-age=300, stale-while-revalidate=59',
+  )
   try {
     const apiResponse = await axios.get(
       `https://openapi.naver.com/v1/search/news.json`,

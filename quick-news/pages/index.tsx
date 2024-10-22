@@ -1,5 +1,6 @@
 import { NaverNewsProps } from '@/utils/types/type'
 import axios from 'axios'
+import { GetServerSidePropsContext } from 'next'
 import { lazy } from 'react'
 
 const LazyNewsLists = lazy(() => import('./news/NewsLists'))
@@ -20,9 +21,15 @@ export default function Home({ news }: NewsProps) {
   )
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const { res } = context
   const query = '오늘의주요뉴스'
   const url = 'https://openapi.naver.com/v1/search/news.json'
+
+  res.setHeader(
+    'Cache-Control',
+    'public, max-age=300, stale-while-revalidate=59',
+  )
 
   try {
     const response = await axios.get(url, {
