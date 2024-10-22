@@ -5,10 +5,10 @@ import {
   CategoryNewsProps,
   CommonNewsListProps,
   NewsSourceListProps,
-} from '../../utils/types/type'
-import useMoreNews from '../../utils/hooks/useMoreNews'
+} from '../../types/type'
+import useMoreNews from '../../hooks/useMoreNews'
 import CategoriesNewsFetch from '../fetch/CategoriesNewsFetch'
-import useInfiniteScroll from '../../utils/hooks/useInfiniteScroll'
+import useInfiniteScroll from '../../hooks/useInfiniteScroll'
 import Skeleton from '../loading/Skeleton'
 import Loading from '../loading/Loading'
 

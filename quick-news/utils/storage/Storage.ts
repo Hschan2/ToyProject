@@ -1,4 +1,4 @@
-import { StorageNewsList, StorageNewsProps } from '@/utils/types/type'
+import { StorageNewsList, StorageNewsProps } from '@/types/type'
 
 const CheckInStorage = ({ article, storedNews }: StorageNewsList) => {
   const isAlreadySaved = storedNews?.some(

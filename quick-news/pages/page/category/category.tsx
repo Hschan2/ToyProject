@@ -23,7 +23,7 @@ const categoriesInfo = {
   science: { title: '과학뉴스', description: '과학 관련 뉴스들을 확인하세요' },
 }
 
-export default function NewsPage() {
+export default function CategoryNewsPage() {
   const router = useRouter()
   const { category } = router.query
   const categoryString = category as string

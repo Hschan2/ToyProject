@@ -9,7 +9,7 @@ import {
   NewsContainer,
   TitleSaveContainer,
 } from '../../styles/NewsStyle'
-import { CategoryNewsList } from '../../utils/types/type'
+import { CategoryNewsList } from '../../types/type'
 import { SaveButton } from '../../styles/ButtonStyle'
 
 function NewsCategoryItem({ article }: CategoryNewsList) {

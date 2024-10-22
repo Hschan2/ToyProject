@@ -8,10 +8,10 @@ import { RecoilRoot } from 'recoil'
 import { createGlobalStyle } from 'styled-components'
 import dynamic from 'next/dynamic'
 import { store } from '../utils/store/Store'
-import useScrollRestoration from '../utils/hooks/useScrollRestoration'
+import useScrollRestoration from '../hooks/useScrollRestoration'
 import { lazy } from 'react'
 
-const LazyMoveUp = lazy(() => import('../components/Button/UpBtn'))
+const LazyMoveUp = lazy(() => import('../components/button/UpBtn'))
 const Layout = dynamic(() => import('./page/layout/Layout'), {
   ssr: false,
 })

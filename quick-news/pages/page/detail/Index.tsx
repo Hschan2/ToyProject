@@ -2,7 +2,7 @@ import React, { memo, useEffect, useState } from 'react'
 import { format } from 'date-fns'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import SEO from '../../../components/SEO/Index'
+import SEO from '../../../components/seo/Index'
 import {
   DetailAuthor,
   DetailDes,
@@ -14,7 +14,7 @@ import {
   LinkContainer,
 } from '../../../styles/NewsStyle'
 import { StripHtmlTags } from '../../../utils/StripHtml'
-import { NaverNewsProps } from '../../../utils/types/type'
+import { NaverNewsProps } from '../../../types/type'
 
 function Detail() {
   const router = useRouter()

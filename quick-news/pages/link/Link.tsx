@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import React, { memo, useMemo } from 'react'
 import { LinkStyle } from '../../styles/PageStyle'
-import { NavLinkProps } from '../../utils/types/type'
+import { NavLinkProps } from '../../types/type'
 import Link from 'next/link'
 
 function NavLink({ category, title }: NavLinkProps) {

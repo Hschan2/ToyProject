@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ILocation } from './types/type'
+import { ILocation } from '../types/type'
 
 export default function useGeolocation(): ILocation {
   const [latitude, setLatitude] = useState<number | null>(null)

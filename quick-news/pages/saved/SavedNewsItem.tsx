@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { format } from 'date-fns'
-import { StorageNewsList } from '../../utils/types/type'
+import { StorageNewsList } from '../../types/type'
 import { SaveButton } from '../../styles/ButtonStyle'
 import { DateTime } from '../../styles/InfoStyle'
 import {

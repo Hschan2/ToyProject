@@ -1,4 +1,4 @@
-import { NaverNewsProps } from '@/utils/types/type'
+import { NaverNewsProps } from '@/types/type'
 import axios from 'axios'
 import { GetServerSidePropsContext } from 'next'
 import { lazy } from 'react'

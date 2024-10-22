@@ -1,7 +1,7 @@
 import axios, { CancelTokenSource } from 'axios'
 import { useQuery } from 'react-query'
 import { MAX_PAGE_COUNT } from '../../utils/Constants'
-import { NaverNewsLists, NaverNewsProps } from '../../utils/types/type'
+import { NaverNewsLists, NaverNewsProps } from '../../types/type'
 
 const fetchNews = async (
   queryValue: string,

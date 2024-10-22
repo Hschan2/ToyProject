@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react'
 import 'moment/locale/ko'
 import dynamic from 'next/dynamic'
-import { CommonNewsListProps, NaverNewsProps } from '../../utils/types/type'
-import useInfiniteScroll from '../../utils/hooks/useInfiniteScroll'
+import { CommonNewsListProps, NaverNewsProps } from '../../types/type'
+import useInfiniteScroll from '../../hooks/useInfiniteScroll'
 import Skeleton from '../loading/Skeleton'
 import Loading from '../loading/Loading'
-import useAdditionNews from '@/utils/hooks/useAdditionNews'
+import useAdditionNews from '@/hooks/useAdditionNews'
 
 const NewsItem = dynamic(() => import('./NewsItem'), {
   ssr: false,

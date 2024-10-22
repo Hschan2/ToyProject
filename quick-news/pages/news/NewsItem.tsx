@@ -8,7 +8,7 @@ import {
   TitleSaveContainer,
 } from '../../styles/NewsStyle'
 import { DateTime } from '../../styles/InfoStyle'
-import { NaverNewsList } from '../../utils/types/type'
+import { NaverNewsList } from '../../types/type'
 import { SaveButton } from '../../styles/ButtonStyle'
 import { StripHtmlTags } from '../../utils/StripHtml'
 

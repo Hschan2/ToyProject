@@ -1,8 +1,8 @@
 import React, { lazy, memo, useCallback, useRef } from 'react'
 import dynamic from 'next/dynamic'
 import { nanoid } from '@reduxjs/toolkit'
-import useVisibility from '../../../utils/hooks/useVisibility'
-import { CommonNewsListProps } from '../../../utils/types/type'
+import useVisibility from '../../../hooks/useVisibility'
+import { CommonNewsListProps } from '../../../types/type'
 
 const Skeleton = dynamic(() => import('../../loading/Skeleton'), { ssr: false })
 const NoDataPage = lazy(() => import('../../../pages/error/NoDataPage'))

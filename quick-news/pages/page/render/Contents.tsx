@@ -1,11 +1,11 @@
 import React, { lazy } from 'react'
 import dynamic from 'next/dynamic'
-import { ContentsProps } from '../../../utils/types/type'
+import { ContentsProps } from '../../../types/type'
 import { Wrapper } from '../../../styles/PageStyle'
 
-const LazySEO = lazy(() => import('../../../components/SEO/Index'))
+const LazySEO = lazy(() => import('../../../components/seo/Index'))
 const DynamicFooter = dynamic(
-  () => import('../../../components/Footer/Index'),
+  () => import('../../../components/footer/Index'),
   {
     ssr: false,
   },

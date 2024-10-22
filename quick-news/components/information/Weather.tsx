@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ILocation, IWeather } from '../../utils/types/type'
+import { ILocation, IWeather } from '../../types/type'
 import useGeolocation from '../../utils/Geolocation'
 import { GetLocationButton } from '../../styles/ButtonStyle'
 
