@@ -1,117 +1,118 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
   View,
+  Button,
+  Platform,
+  PermissionsAndroid,
+  Alert,
+  StyleSheet,
 } from 'react-native';
+import NaverMapView, {Marker} from 'react-native-nmap';
+import {PERMISSIONS, request, RESULTS} from 'react-native-permissions';
+import Geolocation from '@react-native-community/geolocation';
+import {NavigationContainer} from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
+import RouteSearch from './RouteSearch';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+type Location = {
+  latitude: number;
+  longitude: number;
+};
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+type HomeScreenProps = {
+  navigation: {
+    navigate: (screen: string) => void;
+  };
+};
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+const Stack = createStackNavigator();
 
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+  const [location, setLocation] = useState<Location | null>(null);
+  const [permissionGranted, setPermissionGranted] = useState(false);
+  const navigation = useNavigation();
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  useEffect(() => {
+    requestLocationPermission();
+  }, []);
+
+  const requestLocationPermission = async () => {
+    try {
+      let permission;
+      if (Platform.OS === 'android') {
+        permission = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        );
+        setPermissionGranted(permission === PermissionsAndroid.RESULTS.GRANTED);
+      } else {
+        const result = await request(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE);
+        setPermissionGranted(result === RESULTS.GRANTED);
+      }
+
+      if (permissionGranted) {
+        getCurrentLocation();
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  };
+
+  const getCurrentLocation = () => {
+    Geolocation.getCurrentPosition(
+      position => {
+        const {latitude, longitude} = position.coords;
+        setLocation({latitude, longitude});
+      },
+      error => {
+        Alert.alert('Error', 'Unable to fetch location');
+        console.error(error);
+      },
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
+    );
+  };
+
+  const handleRouteSearch = () => {
+    if (!permissionGranted) {
+      requestLocationPermission();
+    } else {
+      navigation.navigate('RouteSearch');
+    }
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" options={{ title: 'Naver Map' }}>
+          {(props: HomeScreenProps) => (
+            <View style={{ flex: 1 }}>
+              <NaverMapView
+                style={{ flex: 1 }}
+                center={{
+                  latitude: location ? location.latitude : 37.5665, // 기본값: 서울
+                  longitude: location ? location.longitude : 126.9780,
+                  zoom: 15,
+                }}
+              >
+                {location && <Marker coordinate={location} />} {/* 현재 위치 마커 */}
+              </NaverMapView>
+              <View style={styles.buttonContainer}>
+                <Button title="경로 탐색" onPress={handleRouteSearch} />
+              </View>
+            </View>
+          )}
+        </Stack.Screen>
+        <Stack.Screen name="RouteSearch" component={RouteSearch} options={{ title: '경로 탐색' }} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
   );
 }
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
+  buttonContainer: {
+    padding: 10,
+    backgroundColor: '#fff',
   },
 });
 
