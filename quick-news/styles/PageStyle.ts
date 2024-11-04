@@ -55,6 +55,7 @@ export const NavDisplay = styled.div`
   flex-wrap: wrap;
   gap: 0.75em;
   justify-content: center;
+  content-visibility: auto;
 
   ${media.mobile`
     padding: 0 12px;

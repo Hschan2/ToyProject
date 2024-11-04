@@ -151,6 +151,8 @@ export const BottomBtnContainer = styled.div`
   width: 100px;
   height: 300px;
   border: 1px solid black;
+  content-visibility: auto;
+  contain-intrinsic-size: 300px;
 `
 
 export const SaveButton = styled.button`
@@ -198,6 +200,8 @@ export const BottomMenuWrapper = styled.div`
   bottom: 0;
   background-color: ${(props) => props.theme.background};
   visibility: hidden;
+  content-visibility: auto;
+  contain-intrinsic-size: 60px;
 
   ${media.tablet`
     visibility: visible;
@@ -240,6 +244,8 @@ export const TMContainer = styled.div`
   gap: 4px;
   margin-top: 24px;
   padding: 0 12px;
+  content-visibility: auto;
+  contain-intrinsic-size: 60px;
 `
 
 export const TMInput = styled.input`

@@ -20,6 +20,8 @@ export const LoadingContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 5.375rem;
+  content-visibility: auto;
+  contain-intrinsic-size: 300px;
 
   ${media.tablet`
     margin-top: 4.25rem;
@@ -77,6 +79,8 @@ const loadingAnimation = keyframes`
 export const SkeletonLoader = styled.div`
   display: flex;
   flex-direction: column;
+  content-visibility: auto;
+  contain-intrinsic-size: 300px;
 `
 
 export const SkeletonLine = styled.div`

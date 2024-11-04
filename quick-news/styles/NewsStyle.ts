@@ -34,6 +34,7 @@ export const NewsCard = styled.div`
   padding: ${cardPadding.desktop};
   border-bottom: 0.25px solid ${(props) => props.theme.border};
   color: ${(props) => props.theme.text};
+  content-visibility: auto;
 
   &:hover {
     border-left: 0.1875rem solid ${COMMON_COLOR};
@@ -117,6 +118,7 @@ export const DetailWrapper = styled.div`
   width: 100%;
   margin-top: 20px;
   padding: 0 20px;
+  content-visibility: auto;
 `
 
 export const DetailTitle = styled.h2`

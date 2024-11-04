@@ -31,6 +31,8 @@ export const ModalOverlay = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  content-visibility: auto;
+  contain-intrinsic-size: 100vh 100vw;
 `
 
 export const ModalContent = styled.div`
@@ -41,6 +43,8 @@ export const ModalContent = styled.div`
   max-width: 25rem;
   width: 100%;
   height: auto;
+  content-visibility: auto;
+  contain-intrinsic-size: 400px 400px;
 
   ${media.tablet`
     max-width: 22rem;
