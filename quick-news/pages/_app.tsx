@@ -7,15 +7,15 @@ import { Provider } from 'react-redux'
 import { RecoilRoot } from 'recoil'
 import { createGlobalStyle } from 'styled-components'
 import dynamic from 'next/dynamic'
-import { store } from '../utils/store/Store'
-import useScrollRestoration from '../hooks/useScrollRestoration'
+import { store } from './common/utils/store'
+import useScrollRestoration from './common/hooks/useScrollRestoration'
 import { lazy } from 'react'
 
-const LazyMoveUp = lazy(() => import('../components/button/UpBtn'))
-const Layout = dynamic(() => import('./page/layout/Layout'), {
+const LazyMoveUp = lazy(() => import('./features/layout/components/to-up-button'))
+const Layout = dynamic(() => import('./features/layout/layout'), {
   ssr: false,
 })
-const Error = dynamic(() => import('./page/error/Error'), {
+const Error = dynamic(() => import('./common/error/news-error'), {
   ssr: false,
 })
 

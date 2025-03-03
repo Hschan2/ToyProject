@@ -3,8 +3,8 @@ import axios from 'axios'
 import { GetServerSidePropsContext } from 'next'
 import { lazy } from 'react'
 
-const LazyNewsLists = lazy(() => import('./news/NewsLists'))
-const LazyContents = lazy(() => import('./page/render/Contents'))
+const LazyNewsLists = lazy(() => import('./features/news/components/news-list'))
+const LazyContents = lazy(() => import('./features/news/components/news-contents'))
 
 interface NewsProps {
   news: NaverNewsProps[]
