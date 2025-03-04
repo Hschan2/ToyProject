@@ -1,30 +1,30 @@
 import { lazy, Suspense } from "react";
 import "./App.css";
 import { useRecoilState } from "recoil";
-import { darkModeState } from "./components/constants/Store";
-import Nav from "./components/pages/nav/Nav";
+import { darkModeState } from "./common/store/store";
+import Nav from "./common/nav/nav";
 import { ThemeProvider } from "styled-components";
 import { DARK_THEME, LIGHT_THEME } from "./style/ThemeStyle";
 import GlobalStyles from "./style/GlobalStyles";
-import { API_URL } from "./components/constants/api";
-import Footer from "./components/pages/footer/Footer";
-import { Content, ContentContainer } from "./style/Scroll";
+import { API_URL } from "./features/movie/api/movie-api-link";
+import Footer from "./common/footer/footer";
+import { Content, ContentContainer } from "./common/scroll/style/scroll-style";
 import { Route, Routes } from "react-router";
-import SEO from "./components/pages/seo/SEO";
-import Loading from "./components/pages/loading/Loading";
-import ToUp from "./components/pages/scroll/ToUp";
-import BottomMenu from "./components/pages/scroll/BottomMenu";
-import Searching from "./components/pages/search/Searching";
-import useScrollRestoration from "./hooks/useScrollRestoration";
+import SEO from "./common/seo/seo";
+import ToUp from "./common/layout/to-up-button";
+import BottomMenu from "./common/layout/mobile-bottom-menu";
+import Searching from "./features/search/search";
+import useScrollRestoration from "./common/scroll/hooks/useScrollRestoration";
+import Loading from "./common/loading/loading";
 
 const MainContent = lazy(
-  () => import("./components/pages/content/MainContent")
+  () => import("./features/movie/movie-main-slide")
 );
 const SlideCategory = lazy(
-  () => import("./components/pages/content/SlideCategory")
+  () => import("./features/movie/movie-catetories")
 );
-const Search = lazy(() => import("./pages/Search"));
-const Detail = lazy(() => import("./pages/Detail"));
+const Search = lazy(() => import("./features/search/search-result"));
+const Detail = lazy(() => import("./features/movie/detail"));
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useRecoilState(darkModeState);
