@@ -1,6 +1,7 @@
+import { DateProps } from "@/app/types/date_type";
 import React from "react";
 
-function WorkContract() {
+function WorkContract({ date }: DateProps) {
   return (
     <main className="flex-grow w-full max-w-4xl bg-white p-6 rounded-lg shadow-md">
       <h2 className="text-center text-lg font-bold mb-4">표준근로 계약서</h2>
@@ -91,23 +92,11 @@ function WorkContract() {
         </div>
 
         {/* 날짜 */}
-        <div className="text-center">
+        <div className="text-center py-3">
           <label>날짜 :</label>
-          <input
-            type="text"
-            className="border rounded px-2 py-1 ml-2 w-12"
-            placeholder="년"
-          />
-          <input
-            type="text"
-            className="border rounded px-2 py-1 ml-2 w-12"
-            placeholder="월"
-          />
-          <input
-            type="text"
-            className="border rounded px-2 py-1 ml-2 w-12"
-            placeholder="일"
-          />
+          <span className=" rounded px-1 py-1 ml-1 w-12">{date.year}년</span>
+          <span className=" rounded px-1 py-1 ml-1 w-12">{date.month}월</span>
+          <span className=" rounded px-1 py-1 ml-1 w-12">{date.day}일</span>
         </div>
 
         {/* 사인 */}
