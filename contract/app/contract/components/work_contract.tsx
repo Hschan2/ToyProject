@@ -92,11 +92,10 @@ function WorkContract({ date }: DateProps) {
         </div>
 
         {/* 날짜 */}
-        <div className="text-center py-3">
-          <label>날짜 :</label>
-          <span className=" rounded px-1 py-1 ml-1 w-12">{date.year}년</span>
-          <span className=" rounded px-1 py-1 ml-1 w-12">{date.month}월</span>
-          <span className=" rounded px-1 py-1 ml-1 w-12">{date.day}일</span>
+        <div className="text-center mt-6">
+          <p>
+            날짜: {date.year}년 {date.month}월 {date.day}일
+          </p>
         </div>
 
         {/* 사인 */}
