@@ -16,7 +16,7 @@ function NonDisclosureAgreement({ date }: DateProps) {
   };
 
   return (
-    <div className="flex flex-col items-center bg-gray-100 p-6">
+    <div id="contract-root" className="flex flex-col items-center bg-gray-100 p-6">
       <header className="w-full max-w-4xl p-6 text-center font-bold text-2xl">
         비밀유지계약서
       </header>

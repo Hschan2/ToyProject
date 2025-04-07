@@ -5,7 +5,7 @@ function LeaseContract({ date }: DateProps) {
   const [leaseType, setLeaseType] = useState(""); // 전세 or 월세 선택
 
   return (
-    <div className="max-w-3xl mx-auto p-10 border border-gray-300 rounded-lg shadow-md bg-white">
+    <div id="contract-root" className="max-w-3xl mx-auto p-10 border border-gray-300 rounded-lg shadow-md bg-white">
       <h2 className="text-xl font-semibold text-center mb-6">
         부동산 임대차 계약서
       </h2>
@@ -47,25 +47,25 @@ function LeaseContract({ date }: DateProps) {
             <tr>
               <td className="border p-2 bg-gray-100 w-1/4">소재지</td>
               <td className="border p-2">
-                <input type="text" className="w-full border p-2 rounded-md" />
+                <input type="text" className="w-full p-2 border-b-1 border-b" />
               </td>
             </tr>
             <tr>
               <td className="border p-2 bg-gray-100">토지 지목</td>
               <td className="border p-2">
-                <input type="text" className="w-full border p-2 rounded-md" />
+                <input type="text" className="w-full p-2 border-b-1 border-b" />
               </td>
             </tr>
             <tr>
               <td className="border p-2 bg-gray-100">면적</td>
               <td className="border p-2">
-                <input type="text" className="w-full border p-2 rounded-md" />
+                <input type="text" className="w-full p-2 border-b-1 border-b" />
               </td>
             </tr>
             <tr>
               <td className="border p-2 bg-gray-100">건물 구조</td>
               <td className="border p-2">
-                <input type="text" className="w-full border p-2 rounded-md" />
+                <input type="text" className="w-full p-2 border-b-1 border-b" />
               </td>
             </tr>
           </tbody>
@@ -80,25 +80,25 @@ function LeaseContract({ date }: DateProps) {
             <tr>
               <td className="border p-2 bg-gray-100 w-1/4">전세금</td>
               <td className="border p-2">
-                <input type="text" className="w-full border p-2 rounded-md" />
+                <input type="text" className="w-full p-2 border-b-1 border-b" />
               </td>
             </tr>
             <tr>
               <td className="border p-2 bg-gray-100">월세금</td>
               <td className="border p-2">
-                <input type="text" className="w-full border p-2 rounded-md" />
+                <input type="text" className="w-full p-2 border-b-1 border-b" />
               </td>
             </tr>
             <tr>
               <td className="border p-2 bg-gray-100">계약기간</td>
               <td className="border p-2">
-                <input type="text" className="w-full border p-2 rounded-md" />
+                <input type="text" className="w-full p-2 border-b-1 border-b" />
               </td>
             </tr>
             <tr>
               <td className="border p-2 bg-gray-100">지불일</td>
               <td className="border p-2">
-                <input type="date" className="w-full border p-2 rounded-md" />
+                <input type="date" className="w-full p-2 border-b-1 border-b" />
               </td>
             </tr>
           </tbody>
@@ -122,25 +122,25 @@ function LeaseContract({ date }: DateProps) {
             <tr>
               <td className="border p-2 bg-gray-100 w-1/4">임대인 성명</td>
               <td className="border p-2">
-                <input type="text" className="w-full border p-2 rounded-md" />
+                <input type="text" className="w-full p-2 border-b-1 border-b" />
               </td>
             </tr>
             <tr>
               <td className="border p-2 bg-gray-100">임대인 주소</td>
               <td className="border p-2">
-                <input type="text" className="w-full border p-2 rounded-md" />
+                <input type="text" className="w-full p-2 border-b-1 border-b" />
               </td>
             </tr>
             <tr>
               <td className="border p-2 bg-gray-100">임차인 성명</td>
               <td className="border p-2">
-                <input type="text" className="w-full border p-2 rounded-md" />
+                <input type="text" className="w-full p-2 border-b-1 border-b" />
               </td>
             </tr>
             <tr>
               <td className="border p-2 bg-gray-100">임차인 주소</td>
               <td className="border p-2">
-                <input type="text" className="w-full border p-2 rounded-md" />
+                <input type="text" className="w-full p-2 border-b-1 border-b" />
               </td>
             </tr>
           </tbody>
