@@ -1,9 +1,21 @@
-import { DateProps } from "@/app/types/date_type";
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { ContractProps } from "../types/contract-type";
 
-function LongAgreement({ date }: DateProps) {
+function LongAgreement({ date, onRenderComplete }: ContractProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      onRenderComplete?.();
+    }
+  }, []);
+
   return (
-    <div id="contract-root" className="flex flex-col items-center bg-gray-50 p-6">
+    <div
+      id="contract-root"
+      ref={containerRef}
+      className="flex flex-col items-center bg-gray-50 p-6"
+    >
       <header className="w-full max-w-4xl p-6 text-center font-bold text-2xl">
         <h2>차용증</h2>
       </header>
@@ -13,7 +25,10 @@ function LongAgreement({ date }: DateProps) {
           {/* 채권자 정보 */}
           <div>
             <label>채권자 성명 :</label>
-            <input type="text" className="border-b-1 border-b px-2 py-1 ml-2 w-48" />
+            <input
+              type="text"
+              className="border-b-1 border-b px-2 py-1 ml-2 w-48"
+            />
           </div>
           <div>
             <label>주민등록번호 :</label>
@@ -25,17 +40,26 @@ function LongAgreement({ date }: DateProps) {
           </div>
           <div>
             <label>주소 :</label>
-            <input type="text" className="border-b-1 border-b px-2 py-1 ml-2 w-64" />
+            <input
+              type="text"
+              className="border-b-1 border-b px-2 py-1 ml-2 w-64"
+            />
           </div>
           <div>
             <label>연락처 :</label>
-            <input type="text" className="border-b-1 border-b px-2 py-1 ml-2 w-48" />
+            <input
+              type="text"
+              className="border-b-1 border-b px-2 py-1 ml-2 w-48"
+            />
           </div>
 
           {/* 채무자 정보 */}
           <div>
             <label>채무자 성명 :</label>
-            <input type="text" className="border-b-1 border-b px-2 py-1 ml-2 w-48" />
+            <input
+              type="text"
+              className="border-b-1 border-b px-2 py-1 ml-2 w-48"
+            />
           </div>
           <div>
             <label>주민등록번호 :</label>
@@ -47,11 +71,17 @@ function LongAgreement({ date }: DateProps) {
           </div>
           <div>
             <label>주소 :</label>
-            <input type="text" className="border-b-1 border-b px-2 py-1 ml-2 w-64" />
+            <input
+              type="text"
+              className="border-b-1 border-b px-2 py-1 ml-2 w-64"
+            />
           </div>
           <div>
             <label>연락처 :</label>
-            <input type="text" className="border-b-1 border-b px-2 py-1 ml-2 w-48" />
+            <input
+              type="text"
+              className="border-b-1 border-b px-2 py-1 ml-2 w-48"
+            />
           </div>
 
           {/* 차용금액 및 조건 */}

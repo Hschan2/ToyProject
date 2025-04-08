@@ -1,11 +1,22 @@
-import { DateProps } from "@/app/types/date_type";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { ContractProps } from "../types/contract-type";
 
-function LeaseContract({ date }: DateProps) {
-  const [leaseType, setLeaseType] = useState(""); // 전세 or 월세 선택
+function LeaseContract({ date, onRenderComplete }: ContractProps) {
+  const [leaseType, setLeaseType] = useState("");
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      onRenderComplete?.();
+    }
+  }, []);
 
   return (
-    <div id="contract-root" className="max-w-3xl mx-auto p-10 border border-gray-300 rounded-lg shadow-md bg-white">
+    <div
+      id="contract-root"
+      ref={containerRef}
+      className="max-w-3xl mx-auto p-10 border border-gray-300 rounded-lg shadow-md bg-white"
+    >
       <h2 className="text-xl font-semibold text-center mb-6">
         부동산 임대차 계약서
       </h2>

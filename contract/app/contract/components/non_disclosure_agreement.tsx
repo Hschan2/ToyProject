@@ -1,7 +1,7 @@
-import { DateProps } from "@/app/types/date_type";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { ContractProps } from "../types/contract-type";
 
-function NonDisclosureAgreement({ date }: DateProps) {
+function NonDisclosureAgreement({ date, onRenderComplete }: ContractProps) {
   const [formData, setFormData] = useState({
     name: "",
     idNumber: "",
@@ -10,13 +10,24 @@ function NonDisclosureAgreement({ date }: DateProps) {
     contractDate: "",
     signer: "",
   });
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  useEffect(() => {
+    if (containerRef.current) {
+      onRenderComplete?.();
+    }
+  }, []);
+
   return (
-    <div id="contract-root" className="flex flex-col items-center bg-gray-100 p-6">
+    <div
+      id="contract-root"
+      ref={containerRef}
+      className="flex flex-col items-center bg-gray-100 p-6"
+    >
       <header className="w-full max-w-4xl p-6 text-center font-bold text-2xl">
         비밀유지계약서
       </header>
@@ -32,7 +43,7 @@ function NonDisclosureAgreement({ date }: DateProps) {
               name="address"
               value={formData.address}
               onChange={handleChange}
-              className="border rounded px-2 py-1 w-full"
+              className="border-b-1 border-b px-2 py-1 w-full"
             />
           </div>
 
@@ -44,7 +55,7 @@ function NonDisclosureAgreement({ date }: DateProps) {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="border rounded px-2 py-1 w-full"
+                className="border-b-1 border-b px-2 py-1 w-full"
               />
             </div>
             <div>
@@ -54,7 +65,7 @@ function NonDisclosureAgreement({ date }: DateProps) {
                 name="idNumber"
                 value={formData.idNumber}
                 onChange={handleChange}
-                className="border rounded px-2 py-1 w-full"
+                className="border-b-1 border-b px-2 py-1 w-full"
               />
             </div>
           </div>
@@ -66,11 +77,11 @@ function NonDisclosureAgreement({ date }: DateProps) {
               name="company"
               value={formData.company}
               onChange={handleChange}
-              className="border rounded px-2 py-1 w-full"
+              className="border-b-1 border-b px-2 py-1 w-full"
             />
           </div>
 
-          <section className="border-t pt-4">
+          <section className="border rounded p-4">
             <p>
               본인은, 회사의 기밀을 보호하기 위해 아래 사항을 준수할 것을
               서약합니다:
@@ -90,7 +101,7 @@ function NonDisclosureAgreement({ date }: DateProps) {
                 name="contractDate"
                 value={formData.contractDate}
                 onChange={handleChange}
-                className="border rounded px-2 py-1 w-full"
+                className="border-b-1 border-b px-2 py-1 w-full"
               />
             </div>
             <div>
@@ -100,7 +111,7 @@ function NonDisclosureAgreement({ date }: DateProps) {
                 name="signer"
                 value={formData.signer}
                 onChange={handleChange}
-                className="border rounded px-2 py-1 w-full"
+                className="border-b-1 border-b px-2 py-1 w-full"
               />
             </div>
           </div>
