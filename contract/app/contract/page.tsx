@@ -21,6 +21,7 @@ type ContractType =
 
 function ContractPage() {
   const [selectedTab, setSelectedTab] = useState<ContractType>("근로계약서");
+  const [isRendered, setIsRendered] = useState(false);
   const today = useTodayDate();
 
   const exportAsTextPDF = async () => {
@@ -41,7 +42,7 @@ function ContractPage() {
   };
 
   const exportAsWord = () => {
-    const element = document.querySelector("#contract-root"); // 🧩 현재 렌더링된 계약서 영역
+    const element = document.querySelector("#contract-root");
     if (!element) return;
 
     const html = `
@@ -56,18 +57,64 @@ function ContractPage() {
     saveAs(converted, `${selectedTab}.docx`);
   };
 
+  const handleExportPDF = () => {
+    if (!isRendered) {
+      alert("계약서 로딩이 아직 완료되지 않았습니다.");
+      return;
+    }
+    exportAsTextPDF();
+  };
+
+  const handleExportWord = () => {
+    if (!isRendered) {
+      alert("계약서 로딩이 아직 완료되지 않았습니다.");
+      return;
+    }
+    exportAsWord();
+  };
+
+  const handleTabChange = (tab: ContractType) => {
+    setSelectedTab(tab);
+    setIsRendered(false);
+  };
+
   const renderContract = () => {
     switch (selectedTab) {
       case "근로계약서":
-        return <WorkContract date={today} />;
+        return (
+          <WorkContract
+            date={today}
+            onRenderComplete={() => setIsRendered(true)}
+          />
+        );
       case "차용증":
-        return <LongAgreement date={today} />;
+        return (
+          <LongAgreement
+            date={today}
+            onRenderComplete={() => setIsRendered(true)}
+          />
+        );
       case "임대차계약서":
-        return <LeaseContract date={today} />;
+        return (
+          <LeaseContract
+            date={today}
+            onRenderComplete={() => setIsRendered(true)}
+          />
+        );
       case "금전대차":
-        return <MoneyLending date={today} />;
+        return (
+          <MoneyLending
+            date={today}
+            onRenderComplete={() => setIsRendered(true)}
+          />
+        );
       case "비밀유지협약서":
-        return <NonDisclosureAgreement date={today} />;
+        return (
+          <NonDisclosureAgreement
+            date={today}
+            onRenderComplete={() => setIsRendered(true)}
+          />
+        );
       default:
         return <div className="text-center">계약서를 선택하세요.</div>;
     }
@@ -76,9 +123,9 @@ function ContractPage() {
   return (
     <Layout
       selectedTab={selectedTab}
-      setSelectedTab={setSelectedTab}
-      onExportPDF={exportAsTextPDF}
-      onExportWord={exportAsWord}
+      setSelectedTab={handleTabChange}
+      onExportPDF={handleExportPDF}
+      onExportWord={handleExportWord}
     >
       {renderContract()}
     </Layout>
