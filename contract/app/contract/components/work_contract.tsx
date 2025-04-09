@@ -6,13 +6,12 @@ function WorkContract({ date, onRenderComplete }: ContractProps) {
 
   useEffect(() => {
     if (containerRef.current) {
-      onRenderComplete?.();
+      onRenderComplete();
     }
   }, []);
 
   return (
     <div
-      id="contract-root"
       ref={containerRef}
       className="flex-grow w-full max-w-4xl bg-white p-6 rounded-lg shadow-md"
     >

@@ -58,7 +58,10 @@ const Layout = ({
       </nav>
 
       {/* 계약서 내용 */}
-      <main className="flex-grow w-full max-w-4xl bg-white p-6 rounded-lg shadow-md">
+      <main
+        id="contract-root"
+        className="flex-grow w-full max-w-4xl bg-white p-6 rounded-lg shadow-md"
+      >
         {children}
       </main>
 

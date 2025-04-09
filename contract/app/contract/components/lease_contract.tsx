@@ -7,13 +7,12 @@ function LeaseContract({ date, onRenderComplete }: ContractProps) {
 
   useEffect(() => {
     if (containerRef.current) {
-      onRenderComplete?.();
+      onRenderComplete();
     }
   }, []);
 
   return (
     <div
-      id="contract-root"
       ref={containerRef}
       className="max-w-3xl mx-auto p-10 border border-gray-300 rounded-lg shadow-md bg-white"
     >

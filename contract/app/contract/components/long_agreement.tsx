@@ -6,13 +6,12 @@ function LongAgreement({ date, onRenderComplete }: ContractProps) {
 
   useEffect(() => {
     if (containerRef.current) {
-      onRenderComplete?.();
+      onRenderComplete();
     }
   }, []);
 
   return (
     <div
-      id="contract-root"
       ref={containerRef}
       className="flex flex-col items-center bg-gray-50 p-6"
     >

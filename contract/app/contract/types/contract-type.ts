@@ -4,5 +4,5 @@ export interface ContractProps {
     month: string;
     day: string;
   };
-  onRenderComplete?: () => void;
+  onRenderComplete: () => void;
 }

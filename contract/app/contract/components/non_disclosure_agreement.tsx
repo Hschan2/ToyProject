@@ -18,13 +18,12 @@ function NonDisclosureAgreement({ date, onRenderComplete }: ContractProps) {
 
   useEffect(() => {
     if (containerRef.current) {
-      onRenderComplete?.();
+      onRenderComplete();
     }
   }, []);
 
   return (
     <div
-      id="contract-root"
       ref={containerRef}
       className="flex flex-col items-center bg-gray-100 p-6"
     >

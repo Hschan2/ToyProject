@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import htmlDocx from "html-docx-js/dist/html-docx";
 import { saveAs } from "file-saver";
 import Layout from "../components/layout";
@@ -22,7 +22,23 @@ type ContractType =
 function ContractPage() {
   const [selectedTab, setSelectedTab] = useState<ContractType>("근로계약서");
   const [isRendered, setIsRendered] = useState(false);
+  const [exportType, setExportType] = useState<"pdf" | "word" | null>(null);
   const today = useTodayDate();
+
+  useEffect(() => {
+    if (isRendered && exportType === "pdf") {
+      exportAsTextPDF();
+      setExportType(null);
+    }
+    if (isRendered && exportType === "word") {
+      exportAsWord();
+      setExportType(null);
+    }
+  }, [isRendered, exportType]);
+
+  useEffect(() => {
+    setIsRendered(false);
+  }, [selectedTab]);
 
   const exportAsTextPDF = async () => {
     const element = document.querySelector("#contract-root");
@@ -62,7 +78,7 @@ function ContractPage() {
       alert("계약서 로딩이 아직 완료되지 않았습니다.");
       return;
     }
-    exportAsTextPDF();
+    setExportType("pdf");
   };
 
   const handleExportWord = () => {
@@ -70,7 +86,7 @@ function ContractPage() {
       alert("계약서 로딩이 아직 완료되지 않았습니다.");
       return;
     }
-    exportAsWord();
+    setExportType("word");
   };
 
   const handleTabChange = (tab: ContractType) => {
