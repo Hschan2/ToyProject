@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { ContractProps } from "../types/contract-type";
 
-function NonDisclosureAgreement({ date, onRenderComplete }: ContractProps) {
+function NonDisclosureAgreement({ date }: ContractProps) {
   const [formData, setFormData] = useState({
     name: "",
     idNumber: "",
@@ -10,120 +10,106 @@ function NonDisclosureAgreement({ date, onRenderComplete }: ContractProps) {
     contractDate: "",
     signer: "",
   });
-  const containerRef = useRef<HTMLDivElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  useEffect(() => {
-    if (containerRef.current) {
-      onRenderComplete();
-    }
-  }, []);
-
   return (
-    <div
-      ref={containerRef}
-      className="flex flex-col items-center bg-gray-100 p-6"
-    >
-      <header className="w-full max-w-4xl p-6 text-center font-bold text-2xl">
-        비밀유지계약서
-      </header>
+    <div className="flex flex-col items-center bg-gray-100 p-6">
+      <h2 className="text-center text-lg font-bold mb-4">비밀유지계약서</h2>
 
       <main className="w-full max-w-4xl bg-white p-6 rounded-lg shadow-md">
-        <form className="space-y-4 text-sm">
-          <p>아래와 같이 비밀유지 계약을 체결합니다.</p>
+        <p>아래와 같이 비밀유지 계약을 체결합니다.</p>
 
+        <div>
+          <label className="block font-semibold">주소:</label>
+          <input
+            type="text"
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+            className="border-b-1 border-b px-2 py-1 w-full"
+          />
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block font-semibold">주소:</label>
+            <label className="block font-semibold">성명:</label>
             <input
               type="text"
-              name="address"
-              value={formData.address}
+              name="name"
+              value={formData.name}
               onChange={handleChange}
               className="border-b-1 border-b px-2 py-1 w-full"
             />
           </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block font-semibold">성명:</label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                className="border-b-1 border-b px-2 py-1 w-full"
-              />
-            </div>
-            <div>
-              <label className="block font-semibold">주민등록번호:</label>
-              <input
-                type="text"
-                name="idNumber"
-                value={formData.idNumber}
-                onChange={handleChange}
-                className="border-b-1 border-b px-2 py-1 w-full"
-              />
-            </div>
-          </div>
-
           <div>
-            <label className="block font-semibold">소속:</label>
+            <label className="block font-semibold">주민등록번호:</label>
             <input
               type="text"
-              name="company"
-              value={formData.company}
+              name="idNumber"
+              value={formData.idNumber}
               onChange={handleChange}
               className="border-b-1 border-b px-2 py-1 w-full"
             />
           </div>
+        </div>
 
-          <section className="border rounded p-4">
-            <p>
-              본인은, 회사의 기밀을 보호하기 위해 아래 사항을 준수할 것을
-              서약합니다:
-            </p>
-            <ul className="list-disc pl-6 space-y-2 text-gray-700">
-              <li>비밀 정보를 제3자에게 제공하지 않으며, 보안을 유지할 것</li>
-              <li>회사의 승인 없이 내부 정보를 무단 사용하지 않을 것</li>
-              <li>계약 종료 후에도 기밀 유지 의무를 지속할 것</li>
-            </ul>
-          </section>
+        <div>
+          <label className="block font-semibold">소속:</label>
+          <input
+            type="text"
+            name="company"
+            value={formData.company}
+            onChange={handleChange}
+            className="border-b-1 border-b px-2 py-1 w-full"
+          />
+        </div>
 
-          <div className="grid grid-cols-2 gap-4 border-t pt-4">
-            <div>
-              <label className="block font-semibold">계약 날짜:</label>
-              <input
-                type="date"
-                name="contractDate"
-                value={formData.contractDate}
-                onChange={handleChange}
-                className="border-b-1 border-b px-2 py-1 w-full"
-              />
-            </div>
-            <div>
-              <label className="block font-semibold">서명자:</label>
-              <input
-                type="text"
-                name="signer"
-                value={formData.signer}
-                onChange={handleChange}
-                className="border-b-1 border-b px-2 py-1 w-full"
-              />
-            </div>
-          </div>
+        <section className="border rounded p-4">
+          <p>
+            본인은, 회사의 기밀을 보호하기 위해 아래 사항을 준수할 것을
+            서약합니다:
+          </p>
+          <ul className="list-disc pl-6 space-y-2 text-gray-700">
+            <li>비밀 정보를 제3자에게 제공하지 않으며, 보안을 유지할 것</li>
+            <li>회사의 승인 없이 내부 정보를 무단 사용하지 않을 것</li>
+            <li>계약 종료 후에도 기밀 유지 의무를 지속할 것</li>
+          </ul>
+        </section>
 
-          <div className="text-center pt-6">
-            <p className="text-sm">서명:</p>
+        <div className="grid grid-cols-2 gap-4 border-t pt-4">
+          <div>
+            <label className="block font-semibold">계약 날짜:</label>
             <input
-              type="text"
-              className="border-b border-black w-48 text-center"
-              placeholder="서명 입력"
+              type="date"
+              name="contractDate"
+              value={formData.contractDate}
+              onChange={handleChange}
+              className="border-b-1 border-b px-2 py-1 w-full"
             />
           </div>
-        </form>
+          <div>
+            <label className="block font-semibold">서명자:</label>
+            <input
+              type="text"
+              name="signer"
+              value={formData.signer}
+              onChange={handleChange}
+              className="border-b-1 border-b px-2 py-1 w-full"
+            />
+          </div>
+        </div>
+
+        <div className="text-center pt-6">
+          <p className="text-sm">서명:</p>
+          <input
+            type="text"
+            className="border-b border-black w-48 text-center"
+            placeholder="서명 입력"
+          />
+        </div>
       </main>
 
       <div className="text-center mt-6">

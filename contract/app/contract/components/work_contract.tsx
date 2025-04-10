@@ -1,20 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { ContractProps } from "../types/contract-type";
 
-function WorkContract({ date, onRenderComplete }: ContractProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (containerRef.current) {
-      onRenderComplete();
-    }
-  }, []);
-
+function WorkContract({ date }: ContractProps) {
   return (
-    <div
-      ref={containerRef}
-      className="flex-grow w-full max-w-4xl bg-white p-6 rounded-lg shadow-md"
-    >
+    <div className="flex-grow w-full max-w-4xl bg-white p-6 rounded-lg shadow-md">
       <h2 className="text-center text-lg font-bold mb-4">표준근로 계약서</h2>
       <main className="space-y-4 text-sm">
         <div>

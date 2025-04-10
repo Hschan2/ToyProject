@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import htmlDocx from "html-docx-js/dist/html-docx";
 import { saveAs } from "file-saver";
 import Layout from "../components/layout";
@@ -21,40 +21,22 @@ type ContractType =
 
 function ContractPage() {
   const [selectedTab, setSelectedTab] = useState<ContractType>("근로계약서");
-  const [isRendered, setIsRendered] = useState(false);
-  const [exportType, setExportType] = useState<"pdf" | "word" | null>(null);
+  const printRef = useRef<HTMLDivElement>(null);
   const today = useTodayDate();
 
-  useEffect(() => {
-    if (isRendered && exportType === "pdf") {
-      exportAsTextPDF();
-      setExportType(null);
-    }
-    if (isRendered && exportType === "word") {
-      exportAsWord();
-      setExportType(null);
-    }
-  }, [isRendered, exportType]);
-
-  useEffect(() => {
-    setIsRendered(false);
-  }, [selectedTab]);
-
   const exportAsTextPDF = async () => {
-    const element = document.querySelector("#contract-root");
-    if (!element) return;
+    if (!printRef.current) return;
+    const html2pdf = (await import('html2pdf.js')).default;
 
-    const html2pdf = (await import("html2pdf.js")).default;
-
-    const opt = {
-      margin: 1,
-      filename: `${selectedTab}.pdf`,
-      image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
-    };
-
-    html2pdf().set(opt).from(element).save();
+    html2pdf()
+      .set({
+        margin: 0,
+        filename: `${selectedTab}.pdf`,
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+      })
+      .from(printRef.current)
+      .save();
   };
 
   const exportAsWord = () => {
@@ -73,64 +55,18 @@ function ContractPage() {
     saveAs(converted, `${selectedTab}.docx`);
   };
 
-  const handleExportPDF = () => {
-    if (!isRendered) {
-      alert("계약서 로딩이 아직 완료되지 않았습니다.");
-      return;
-    }
-    setExportType("pdf");
-  };
-
-  const handleExportWord = () => {
-    if (!isRendered) {
-      alert("계약서 로딩이 아직 완료되지 않았습니다.");
-      return;
-    }
-    setExportType("word");
-  };
-
-  const handleTabChange = (tab: ContractType) => {
-    setSelectedTab(tab);
-    setIsRendered(false);
-  };
-
   const renderContract = () => {
     switch (selectedTab) {
       case "근로계약서":
-        return (
-          <WorkContract
-            date={today}
-            onRenderComplete={() => setIsRendered(true)}
-          />
-        );
+        return <WorkContract date={today} />;
       case "차용증":
-        return (
-          <LongAgreement
-            date={today}
-            onRenderComplete={() => setIsRendered(true)}
-          />
-        );
+        return <LongAgreement date={today} />;
       case "임대차계약서":
-        return (
-          <LeaseContract
-            date={today}
-            onRenderComplete={() => setIsRendered(true)}
-          />
-        );
+        return <LeaseContract date={today} />;
       case "금전대차":
-        return (
-          <MoneyLending
-            date={today}
-            onRenderComplete={() => setIsRendered(true)}
-          />
-        );
+        return <MoneyLending date={today} />;
       case "비밀유지협약서":
-        return (
-          <NonDisclosureAgreement
-            date={today}
-            onRenderComplete={() => setIsRendered(true)}
-          />
-        );
+        return <NonDisclosureAgreement date={today} />;
       default:
         return <div className="text-center">계약서를 선택하세요.</div>;
     }
@@ -139,11 +75,11 @@ function ContractPage() {
   return (
     <Layout
       selectedTab={selectedTab}
-      setSelectedTab={handleTabChange}
-      onExportPDF={handleExportPDF}
-      onExportWord={handleExportWord}
+      setSelectedTab={setSelectedTab}
+      onExportPDF={exportAsTextPDF}
+      onExportWord={exportAsWord}
     >
-      {renderContract()}
+      <div id="contract-root" ref={printRef}>{renderContract()}</div>
     </Layout>
   );
 }

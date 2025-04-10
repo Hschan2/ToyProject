@@ -1,21 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { ContractProps } from "../types/contract-type";
 
-function LeaseContract({ date, onRenderComplete }: ContractProps) {
+function LeaseContract({ date }: ContractProps) {
   const [leaseType, setLeaseType] = useState("");
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (containerRef.current) {
-      onRenderComplete();
-    }
-  }, []);
 
   return (
-    <div
-      ref={containerRef}
-      className="max-w-3xl mx-auto p-10 border border-gray-300 rounded-lg shadow-md bg-white"
-    >
+    <div className="max-w-3xl mx-auto p-10 border border-gray-300 rounded-lg shadow-md bg-white">
       <h2 className="text-xl font-semibold text-center mb-6">
         부동산 임대차 계약서
       </h2>
@@ -50,7 +40,7 @@ function LeaseContract({ date, onRenderComplete }: ContractProps) {
       </div>
 
       {/* 부동산 정보 */}
-      <section className="border border-gray-300 p-4 rounded-lg mb-6">
+      <div className="border border-gray-300 p-4 rounded-lg mb-6">
         <h3 className="text-lg font-semibold mb-3">1. 부동산의 표시</h3>
         <table className="w-full border-collapse border border-gray-300">
           <tbody>
@@ -80,10 +70,10 @@ function LeaseContract({ date, onRenderComplete }: ContractProps) {
             </tr>
           </tbody>
         </table>
-      </section>
+      </div>
 
       {/* 계약 내용 */}
-      <section className="border border-gray-300 p-4 rounded-lg mb-6">
+      <div className="border border-gray-300 p-4 rounded-lg mb-6">
         <h3 className="text-lg font-semibold mb-3">2. 계약 내용</h3>
         <table className="w-full border-collapse border border-gray-300">
           <tbody>
@@ -113,19 +103,19 @@ function LeaseContract({ date, onRenderComplete }: ContractProps) {
             </tr>
           </tbody>
         </table>
-      </section>
+      </div>
 
       {/* 특약사항 */}
-      <section className="border border-gray-300 p-4 rounded-lg mb-6">
+      <div className="border border-gray-300 p-4 rounded-lg mb-6">
         <h3 className="text-lg font-semibold mb-3">3. 특약사항</h3>
         <textarea
           className="w-full border p-2 rounded-md h-24"
           placeholder="특약사항을 입력하세요."
         ></textarea>
-      </section>
+      </div>
 
       {/* 계약자 정보 */}
-      <section className="border border-gray-300 p-4 rounded-lg">
+      <div className="border border-gray-300 p-4 rounded-lg">
         <h3 className="text-lg font-semibold mb-3">계약자 정보</h3>
         <table className="w-full border-collapse border border-gray-300">
           <tbody>
@@ -155,7 +145,7 @@ function LeaseContract({ date, onRenderComplete }: ContractProps) {
             </tr>
           </tbody>
         </table>
-      </section>
+      </div>
 
       {/* 날짜 */}
       <div className="text-center mt-6">
