@@ -1,11 +1,11 @@
 import React, { lazy, memo, useCallback, useRef } from 'react'
 import dynamic from 'next/dynamic'
 import { nanoid } from '@reduxjs/toolkit'
-import useVisibility from '../../../../hooks/useVisibility'
 import { CommonNewsListProps } from '../../../../types/type'
+import useVisibility from '@/pages/common/hooks/useVisibility'
 
-const Skeleton = dynamic(() => import('../../../common/loading/skeleton'), { ssr: false })
-const NoDataPage = lazy(() => import('../../../pages/error/NoDataPage'))
+const Skeleton = dynamic(() => import('@/pages/common/loading/skeleton'), { ssr: false })
+const NoDataPage = lazy(() => import('@/pages/common/error/no-data-page'))
 
 function RenderNewsPage<T>({
   visibleNews,

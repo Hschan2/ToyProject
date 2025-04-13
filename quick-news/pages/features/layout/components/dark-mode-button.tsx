@@ -1,7 +1,7 @@
+import { DARK_MODE_VALUE } from '@/pages/common/utils/page-constants'
 import React, { useCallback } from 'react'
 import { useRecoilState } from 'recoil'
-import { SideButton } from '../../styles/ButtonStyle'
-import { DARK_MODE_VALUE } from '../../utils/Constants'
+import { SideButton } from '../style/button-style'
 
 function DarkModeButton() {
   const [isDarkMode, setIsDarkMode] = useRecoilState(DARK_MODE_VALUE)

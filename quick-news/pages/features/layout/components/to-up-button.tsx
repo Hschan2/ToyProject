@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react'
-import { SideButton } from '../../styles/ButtonStyle'
+import { SideButton } from '../style/button-style'
 
 interface MoveUpProps {
   scrollableDivRef: React.RefObject<HTMLDivElement>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-import { SideButton } from '../../styles/ButtonStyle'
+import { SideButton } from '../style/button-style'
 
 function SavedNewsButton() {
   const router = useRouter()
@@ -8,6 +8,7 @@ function SavedNewsButton() {
   const navigateSavedNews = () => {
     router.push(`/page/saved/savedNews`, undefined, { shallow: true })
   }
+
   return (
     <SideButton
       onClick={navigateSavedNews}

@@ -23,7 +23,7 @@ const DynamicDarkModeButton = dynamic(
   },
 )
 const DynamicSavedNewsButton = dynamic(
-  () => import('./components/search-button'),
+  () => import('./components/save-news-button'),
   {
     ssr: false,
   },

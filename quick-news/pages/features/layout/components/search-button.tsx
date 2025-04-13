@@ -1,11 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
-import {
-  InputWrapper,
-  SearchContainer,
-  SearchInput,
-  SideButton,
-} from '../../styles/ButtonStyle'
+import { InputWrapper, SearchContainer, SearchInput, SideButton } from '../style/button-style'
 
 export default function SearchButton() {
   const [isInputVisible, setInputVisible] = useState(false)
