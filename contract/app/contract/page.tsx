@@ -12,7 +12,6 @@ import NonDisclosureAgreement from "./components/non_disclosure_agreement";
 import useTodayDate from "../hooks/useTodayDate";
 
 type ContractType =
-  | "기본계약서"
   | "근로계약서"
   | "차용증"
   | "임대차계약서"
@@ -24,9 +23,33 @@ function ContractPage() {
   const printRef = useRef<HTMLDivElement>(null);
   const today = useTodayDate();
 
+  const removePlaceholder = () => {
+    const inputs = document.querySelectorAll("input");
+    inputs.forEach((input) => {
+      input.removeAttribute("placeholder");
+    });
+  };
+
+  const replaceEmptyInputsWithSpan = () => {
+    const inputs = document.querySelectorAll("input");
+    inputs.forEach((input) => {
+      if (input.value.trim() === "") {
+        const span = document.createElement("span");
+        span.className = input.className;
+        span.textContent = "";
+        input.parentNode?.replaceChild(span, input);
+      }
+    });
+  };
+
   const exportAsTextPDF = async () => {
     if (!printRef.current) return;
-    const html2pdf = (await import('html2pdf.js')).default;
+    const html2pdf = (await import("html2pdf.js")).default;
+
+    await new Promise((resolve) => setTimeout(resolve, 100));
+
+    removePlaceholder();
+    replaceEmptyInputsWithSpan();
 
     html2pdf()
       .set({
@@ -36,12 +59,16 @@ function ContractPage() {
         jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
       })
       .from(printRef.current)
-      .save();
+      .save()
+      .catch((error: any) => console.error(`PDF 생성 오류: ${error}`));
   };
 
   const exportAsWord = () => {
     const element = document.querySelector("#contract-root");
     if (!element) return;
+
+    removePlaceholder();
+    replaceEmptyInputsWithSpan();
 
     const html = `
     <!DOCTYPE html>
@@ -67,8 +94,6 @@ function ContractPage() {
         return <MoneyLending date={today} />;
       case "비밀유지협약서":
         return <NonDisclosureAgreement date={today} />;
-      default:
-        return <div className="text-center">계약서를 선택하세요.</div>;
     }
   };
 
@@ -79,7 +104,9 @@ function ContractPage() {
       onExportPDF={exportAsTextPDF}
       onExportWord={exportAsWord}
     >
-      <div id="contract-root" ref={printRef}>{renderContract()}</div>
+      <div id="contract-root" ref={printRef} className="flex justify-center">
+        {renderContract() || <span>계약서 내용을 불러오는 중입니다.</span>}
+      </div>
     </Layout>
   );
 }
