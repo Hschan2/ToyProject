@@ -3,7 +3,6 @@
 import { ReactNode } from "react";
 
 const tabs = [
-  "기본계약서",
   "근로계약서",
   "차용증",
   "임대차계약서",
