@@ -1,8 +1,12 @@
 import { useRouter } from 'next/router'
-import { lazy } from 'react'
+import { lazy, useEffect, useMemo } from 'react'
 
-const LazyNewsSourceList = lazy(() => import('./components/category-news-list'))
-const LazyContents = lazy(() => import('./components/news-contents'))
+const LazyNewsSourceList = lazy(
+  () => import('../features/news/components/category-news-list'),
+)
+const LazyContents = lazy(
+  () => import('../features/news/components/news-contents'),
+)
 
 const categoriesInfo = {
   total: { title: '종합 뉴스', description: '종합 뉴스를 확인하세요' },
@@ -25,21 +29,25 @@ const categoriesInfo = {
 
 export default function CategoryNewsPage() {
   const router = useRouter()
-  const { category } = router.query
-  const categoryString = category as string
+  const categoryString = useMemo(() => {
+    return typeof router.query.category === 'string'
+      ? router.query.category
+      : null
+  }, [router.query.category])
 
-  if (!(categoryString in categoriesInfo)) {
-    return <p>잘못된 경로입니다.</p>
-  }
+  useEffect(() => {
+    console.log('router query: ', router.query.category);
+  }, [router.query.category])
+
+  if (!categoryString) return <p>로딩 중...</p>
+  if (!(categoryString in categoriesInfo)) return <p>잘못된 경로입니다.</p>
 
   const { title, description } =
     categoriesInfo[categoryString as keyof typeof categoriesInfo]
 
   return (
     <LazyContents title={title} description={description}>
-      <LazyNewsSourceList
-        {...(categoryString !== 'total' && { category: categoryString })}
-      />
+      <LazyNewsSourceList category={categoryString} />
     </LazyContents>
   )
 }

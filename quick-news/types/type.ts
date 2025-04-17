@@ -78,7 +78,7 @@ export interface StorageNewsLists {
 }
 
 export interface NewsSourceListProps {
-  category?: string | undefined
+  category: string
 }
 
 export interface CommonNewsListProps<T> {

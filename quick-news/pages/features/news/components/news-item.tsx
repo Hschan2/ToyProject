@@ -15,7 +15,9 @@ import { StripHtmlTags } from '../../../common/utils/strip-html'
 function NewsItem({ article }: NaverNewsList) {
   const onSaveNews = useCallback(async () => {
     try {
-      const { SaveNewsInStorage } = await import('../../../common/utils/storage')
+      const { SaveNewsInStorage } = await import(
+        '../../../common/utils/storage'
+      )
       SaveNewsInStorage({ article })
     } catch (error) {
       if (process.env.NODE_ENV !== 'production') {
@@ -24,25 +26,26 @@ function NewsItem({ article }: NaverNewsList) {
     }
   }, [article])
 
+  const onClickNews = () => {
+    localStorage.setItem(`article-${article.link}`, JSON.stringify(article))
+  }
+
   return (
     <NewsContainer key={article.id}>
       <NewsCard>
         <TitleSaveContainer>
           <Link
             href={{
-              pathname: '/page/detail/Index',
-              query: { article: JSON.stringify(article) },
+              pathname: '/page/detail',
+              query: { key: encodeURIComponent(article.link) },
             }}
-            as="../page/detail/Index"
-            passHref
+            as={`/page/detail/${article.title}`}
+            onClick={onClickNews}
             title={`${article.title} 페이지로 이동`}
           >
             <LimitLineTitle>{StripHtmlTags(article.title)}</LimitLineTitle>
           </Link>
-          <SaveButton
-            onClick={onSaveNews}
-            title="뉴스 저장"
-          >
+          <SaveButton onClick={onSaveNews} title="뉴스 저장">
             저장
           </SaveButton>
         </TitleSaveContainer>

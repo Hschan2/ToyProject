@@ -15,7 +15,9 @@ import { SaveButton } from '../../layout/style/button-style'
 function NewsCategoryItem({ article }: CategoryNewsList) {
   const onSaveNews = useCallback(async () => {
     try {
-      const { SaveNewsInStorage } = await import('../../../common/utils/storage')
+      const { SaveNewsInStorage } = await import(
+        '../../../common/utils/storage'
+      )
       SaveNewsInStorage({ article })
     } catch (error) {
       if (process.env.NODE_ENV !== 'production') {
@@ -24,16 +26,25 @@ function NewsCategoryItem({ article }: CategoryNewsList) {
     }
   }, [article])
 
+  const onClickNews = () => {
+    localStorage.setItem('selectedArticle', JSON.stringify(article))
+  }
+
   return (
     <NewsContainer key={article.id}>
       <NewsCard>
         <TitleSaveContainer>
           <Link
             href={{
-              pathname: '/page/detail/Index',
-              query: { article: JSON.stringify(article) },
+              pathname: '/page/detail',
+              query: {
+                key: encodeURIComponent(
+                  article.url ?? article.title + article.pubDate,
+                ),
+              },
             }}
-            as="../page/detail/Index"
+            onClick={onClickNews}
+            as={`/page/detail/${article.title}`}
             passHref
             title={`${article.title} 페이지로 이동`}
           >

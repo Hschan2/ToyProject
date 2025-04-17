@@ -1,8 +1,8 @@
 import { toast } from 'react-toastify'
 import { useFetchNewsQuery } from '../../../common/api/news-api'
 
-export default function CategoriesNewsFetch(
-  category: string | undefined,
+export default function useCategoriesNewsFetch(
+  category: string = 'total',
   pageSize: number,
 ) {
   const { data: articles, isLoading, error } = useFetchNewsQuery(category)

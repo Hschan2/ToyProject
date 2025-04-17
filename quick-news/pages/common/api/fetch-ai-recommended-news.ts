@@ -1,0 +1,32 @@
+import { NextApiRequest, NextApiResponse } from 'next'
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
+  const newsList = req.body.newsList
+  const formattedInput = newsList
+    .map(
+      (n: any, i: number) =>
+        `(${i + 1}) 제목: ${n.title}\n내용: ${n.description}`,
+    )
+    .join('\n\n')
+  const prompt = `다음은 여러 개의 뉴스 기사들입니다. 가장 중요하거나 눈에 띄거나 추천하는 뉴스 1개만 골라주세요. 형식: JSON (title, image, link, author, description, pubDate, publishedAt) ${formattedInput}`
+
+  const response = await fetch(
+    'https://api-inference.huggingface.co/models/google/flan-t5-base',
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_HUGGING_FACE_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        inputs: prompt,
+      }),
+    },
+  )
+
+  const data = await response.json()
+  res.status(200).json({ recommended: data })
+}

@@ -7,10 +7,10 @@ import {
   NewsSourceListProps,
 } from '../../../../types/type'
 import useMoreNews from '../hooks/useMoreNews'
-import CategoriesNewsFetch from '../fetch/fetch-categories-news-data'
 import useInfiniteScroll from '../../../common/hooks/useInfiniteScroll'
 import Skeleton from '../../../common/loading/skeleton'
 import Loading from '../../../common/loading/loading'
+import useCategoriesNewsFetch from '../fetch/fetch-categories-news-data'
 
 const NewsCategoryItem = dynamic(() => import('./category-news-item'), {
   ssr: false,
@@ -24,7 +24,7 @@ const RenderNewsPage = dynamic(() => import('./rendered-news'), {
 export default function NewsSourceList(props: NewsSourceListProps) {
   const { category } = props
   const { pageSize, handleLoadMore, isAllLoaded } = useMoreNews()
-  const { visibleNews } = CategoriesNewsFetch(category, pageSize)
+  const { visibleNews } = useCategoriesNewsFetch(category, pageSize)
   const targetRef = useInfiniteScroll({ handleLoadMore, isAllLoaded })
 
   const renderNewsItem = useCallback(
@@ -36,10 +36,7 @@ export default function NewsSourceList(props: NewsSourceListProps) {
 
   return (
     <>
-      <RenderNewsPage
-        visibleNews={visibleNews}
-        itemRenderer={renderNewsItem}
-      />
+      <RenderNewsPage visibleNews={visibleNews} itemRenderer={renderNewsItem} />
       {!isAllLoaded && <div ref={targetRef}></div>}
     </>
   )

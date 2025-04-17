@@ -1,8 +1,7 @@
 import React, { memo, useEffect, useState } from 'react'
 import { format } from 'date-fns'
-import { useRouter } from 'next/router'
 import Image from 'next/image'
-import SEO from '../../common/seo/seo'
+import SEO from '../common/seo/seo'
 import {
   DetailAuthor,
   DetailDes,
@@ -12,28 +11,32 @@ import {
   DetailTitle,
   DetailWrapper,
   LinkContainer,
-} from './style/news-style'
-import { StripHtmlTags } from '../../common/utils/strip-html'
-import { NaverNewsProps } from '../../../types/type'
+} from '../features/news/style/news-style'
+import { StripHtmlTags } from '../common/utils/strip-html'
+import { NaverNewsProps } from '../../types/type'
+import { useRouter } from 'next/router'
 
 function Detail() {
   const router = useRouter()
-  const { article } = router.query
+  const { key } = router.query
   const [articleData, setArticleData] = useState<NaverNewsProps | null>(null)
   const publishedDate = articleData?.pubDate || articleData?.publishedAt
 
   useEffect(() => {
-    if (article) {
-      try {
-        const articleString = Array.isArray(article) ? article[0] : article
-        setArticleData(JSON.parse(articleString))
-      } catch (error) {
-        if (process.env.NODE_ENV !== 'production') {
-          console.error('데이터 가져오기 실패', error)
+    if (key) {
+      const decodedKey = decodeURIComponent(key as string)
+      const storedArticle = localStorage.getItem(`article-${decodedKey}`)
+      if (storedArticle) {
+        try {
+          setArticleData(JSON.parse(storedArticle))
+        } catch (error) {
+          if (process.env.NODE_ENV !== 'production') {
+            console.error('데이터 가져오기 실패', error)
+          }
         }
       }
     }
-  }, [article])
+  }, [key])
 
   if (!articleData) return <div>데이터를 가져오지 못했습니다.</div>
 

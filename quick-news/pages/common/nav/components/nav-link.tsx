@@ -6,23 +6,16 @@ import Link from 'next/link'
 
 function NavLink({ category, title }: NavLinkProps) {
   const router = useRouter()
-  const { path, query } = useMemo(() => {
-    const path = category === '' ? '/' : '/page/category/category'
-    const query = category === '' ? undefined : { category }
-    return { path, query }
+  const path = useMemo(() => {
+    return category === '' ? '/' : `/page/${category}`
   }, [category])
+  const isActive = useMemo(() => {
+    return router.asPath.replace(/\?.*$/, '') === path
+  }, [router.asPath, path])
 
   return (
-    <Link
-      href={{
-        pathname: path,
-        query: query,
-      }}
-      passHref
-    >
-      <LinkStyle isActive={router.query.category === query?.category}>
-        {title}
-      </LinkStyle>
+    <Link href={path} passHref>
+      <LinkStyle isActive={isActive}>{title}</LinkStyle>
     </Link>
   )
 }

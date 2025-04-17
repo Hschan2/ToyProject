@@ -128,7 +128,7 @@ export const DetailTitle = styled.h2`
 `
 
 export const DetailPubDate = styled.span`
-  font-size: clamp(12px, 1vw, 14px);
+  font-size: clamp(13px, 1.5vw, 16px);
   color: ${(props) => props.theme.lightText};
   padding: 2px 0;
 `

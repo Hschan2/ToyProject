@@ -4,7 +4,9 @@ import { nanoid } from '@reduxjs/toolkit'
 import { CommonNewsListProps } from '../../../../types/type'
 import useVisibility from '@/pages/common/hooks/useVisibility'
 
-const Skeleton = dynamic(() => import('@/pages/common/loading/skeleton'), { ssr: false })
+const Skeleton = dynamic(() => import('@/pages/common/loading/skeleton'), {
+  ssr: false,
+})
 const NoDataPage = lazy(() => import('@/pages/common/error/no-data-page'))
 
 function RenderNewsPage<T>({
