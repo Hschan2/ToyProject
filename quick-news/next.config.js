@@ -100,10 +100,6 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/:path*',
-        destination: 'https://openapi.naver.com/:path*',
-      },
-      {
         source: '/api/:path*',
         destination: 'https://quick-news-tau.vercel.app/api/:path*',
       },
