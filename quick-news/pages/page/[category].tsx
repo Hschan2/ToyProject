@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { lazy, useEffect, useMemo } from 'react'
+import { Suspense, lazy, useEffect, useMemo } from 'react'
 
 const LazyNewsSourceList = lazy(
   () => import('../features/news/components/category-news-list'),
@@ -32,11 +32,7 @@ export default function CategoryNewsPage() {
   const categoryString = useMemo(() => {
     return typeof router.query.category === 'string'
       ? router.query.category
-      : null
-  }, [router.query.category])
-
-  useEffect(() => {
-    console.log('router query: ', router.query.category);
+      : 'total'
   }, [router.query.category])
 
   if (!categoryString) return <p>로딩 중...</p>
@@ -46,8 +42,10 @@ export default function CategoryNewsPage() {
     categoriesInfo[categoryString as keyof typeof categoriesInfo]
 
   return (
-    <LazyContents title={title} description={description}>
-      <LazyNewsSourceList category={categoryString} />
-    </LazyContents>
+    <Suspense fallback={<div>로딩 중...</div>}>
+      <LazyContents title={title} description={description}>
+        <LazyNewsSourceList category={categoryString} />
+      </LazyContents>
+    </Suspense>
   )
 }

@@ -2,6 +2,7 @@ import { NaverNewsProps } from '@/types/type'
 import axios from 'axios'
 import { GetServerSidePropsContext } from 'next'
 import { lazy } from 'react'
+import { getRecommendedNews } from './api/fetch-ai-recommended-news'
 
 const LazyNewsLists = lazy(() => import('./features/news/components/news-list'))
 const LazyContents = lazy(
@@ -19,7 +20,7 @@ export default function Home({ news, recommendedNews }: NewsProps) {
       title="오늘의 주요뉴스"
       description="오늘의 주요뉴스를 확인하세요"
     >
-      {/* {recommendedNews && (
+      {recommendedNews ? (
         <div>
           <h2>AI 추천 뉴스</h2>
           <p>{recommendedNews.title}</p>
@@ -27,7 +28,7 @@ export default function Home({ news, recommendedNews }: NewsProps) {
             자세히 보기
           </a>
         </div>
-      )} */}
+      ) : null}
       <LazyNewsLists newsData={news} />
     </LazyContents>
   )
@@ -58,18 +59,12 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     })
 
     const newsItems = response.data.items
-    // const aiResponse = await axios.post(
-    //   '/pages/common/api/fetch-ai-recommended-news',
-    //   {
-    //     news: newsItems,
-    //   },
-    // )
-    // const recommendedNews = aiResponse.data
+    const recommended = await getRecommendedNews(newsItems)
 
     return {
       props: {
-        news: response.data.items,
-        // recommendedNews,
+        news: newsItems,
+        recommendedNews: recommended,
       },
     }
   } catch (error) {
@@ -77,7 +72,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     return {
       props: {
         news: [],
-        // recommendedNews: null,
+        recommendedNews: null,
       },
     }
   }

@@ -1,5 +1,5 @@
+import { newsApi } from '@/pages/api/news-api'
 import { configureStore } from '@reduxjs/toolkit'
-import { newsApi } from '../api/news-api'
 
 export const store = configureStore({
   reducer: {

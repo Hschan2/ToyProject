@@ -1,5 +1,5 @@
+import { useFetchNewsQuery } from '@/pages/api/news-api'
 import { toast } from 'react-toastify'
-import { useFetchNewsQuery } from '../../../common/api/news-api'
 
 export default function useCategoriesNewsFetch(
   category: string = 'total',
@@ -14,7 +14,7 @@ export default function useCategoriesNewsFetch(
     }
   }
 
-  const visibleNews = articles?.articles.slice(0, pageSize)
+  const visibleNews = articles?.articles.slice(0, pageSize) || []
 
   return { visibleNews, isLoading }
 }

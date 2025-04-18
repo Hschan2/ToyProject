@@ -13,18 +13,18 @@ import Loading from '../../../common/loading/loading'
 import useCategoriesNewsFetch from '../fetch/fetch-categories-news-data'
 
 const NewsCategoryItem = dynamic(() => import('./category-news-item'), {
-  ssr: false,
   loading: () => <Skeleton />,
+  ssr: true,
 })
 const RenderNewsPage = dynamic(() => import('./rendered-news'), {
-  ssr: false,
   loading: () => <Loading />,
+  ssr: false,
 }) as React.ComponentType<CommonNewsListProps<CategoryNewsProps>>
 
 export default function NewsSourceList(props: NewsSourceListProps) {
   const { category } = props
   const { pageSize, handleLoadMore, isAllLoaded } = useMoreNews()
-  const { visibleNews } = useCategoriesNewsFetch(category, pageSize)
+  const { visibleNews, isLoading } = useCategoriesNewsFetch(category, pageSize)
   const targetRef = useInfiniteScroll({ handleLoadMore, isAllLoaded })
 
   const renderNewsItem = useCallback(
@@ -33,6 +33,8 @@ export default function NewsSourceList(props: NewsSourceListProps) {
     ),
     [],
   )
+
+  if (isLoading) return <Loading />
 
   return (
     <>

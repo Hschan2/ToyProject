@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { MAX_PAGE_COUNT } from '../utils/page-constants'
+import { MAX_PAGE_COUNT } from '../common/utils/page-constants'
 
 const fromToday = new Date().toISOString().split('T')[0]
 
