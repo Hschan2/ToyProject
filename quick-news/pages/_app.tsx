@@ -1,5 +1,6 @@
 import 'core-js/actual'
 import '@/styles/globals.css'
+import { lazy } from 'react'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { QueryClient, QueryClientProvider } from 'react-query'
@@ -7,15 +8,14 @@ import { Provider } from 'react-redux'
 import { RecoilRoot } from 'recoil'
 import { createGlobalStyle } from 'styled-components'
 import dynamic from 'next/dynamic'
-import { store } from './common/utils/store'
-import useScrollRestoration from './common/hooks/useScrollRestoration'
-import { lazy } from 'react'
+import { store } from '../store'
+import useScrollRestoration from '../hooks/useScrollRestoration'
 
-const LazyMoveUp = lazy(() => import('./features/layout/components/to-up-button'))
-const Layout = dynamic(() => import('./features/layout/layout'), {
+const LazyMoveUp = lazy(() => import('../components/button/to-up-button'))
+const Layout = dynamic(() => import('../components/layout/layout'), {
   ssr: false,
 })
-const Error = dynamic(() => import('./common/error/news-error'), {
+const Error = dynamic(() => import('../components/error/news-error'), {
   ssr: false,
 })
 

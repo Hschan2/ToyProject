@@ -1,7 +1,9 @@
 import React, { lazy } from 'react'
 
-const LazyContents = lazy(() => import('../features/news/components/news-contents'))
-const LazySavedNewsList = lazy(() => import('../features/news/components/save-news-list'))
+const LazyContents = lazy(() => import('../../components/layout/news-contents'))
+const LazySavedNewsList = lazy(
+  () => import('../../components/news/save-news-list'),
+)
 
 function SavedNews() {
   return (

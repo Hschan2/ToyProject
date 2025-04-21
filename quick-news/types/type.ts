@@ -1,6 +1,4 @@
-import { ReactElement } from 'react'
-
-interface INewsBase {
+export interface INewsBase {
   id: number | string
   title: string
   description: string
@@ -28,8 +26,6 @@ export interface NaverNewsProps extends INewsBase {
   link: string
   image: string
 }
-
-export interface CategoryNewsProps extends INewsBase {}
 
 export interface StorageNewsProps extends INewsBase {
   link?: string
@@ -61,11 +57,11 @@ export interface NaverNewsLists {
 }
 
 export interface CategoryNewsList {
-  article: CategoryNewsProps
+  article: INewsBase
 }
 
 export interface CategoryNewsLists {
-  articles: CategoryNewsProps[]
+  articles: INewsBase[]
 }
 
 export interface StorageNewsList {
@@ -95,4 +91,17 @@ export interface NewsCategories {
   href: string
   category: string
   title: string
+}
+
+export type NewsCategoryType =
+  | 'total'
+  | 'business'
+  | 'entertainment'
+  | 'sports'
+  | 'technology'
+  | 'health'
+  | 'science'
+
+export interface CategoryNewsFetchProps {
+  category: NewsCategoryType
 }

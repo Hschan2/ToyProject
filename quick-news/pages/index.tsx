@@ -1,13 +1,11 @@
-import { NaverNewsProps } from '@/types/type'
 import axios from 'axios'
 import { GetServerSidePropsContext } from 'next'
 import { lazy } from 'react'
-import { getRecommendedNews } from './api/fetch-ai-recommended-news'
+import { getRecommendedNews } from '../lib/fetch-ai-recommended-news'
+import { NaverNewsProps } from '../types/type'
 
-const LazyNewsLists = lazy(() => import('./features/news/components/news-list'))
-const LazyContents = lazy(
-  () => import('./features/news/components/news-contents'),
-)
+const LazyNewsLists = lazy(() => import('../components/news/news-list'))
+const LazyContents = lazy(() => import('../components/layout/news-contents'))
 
 interface NewsProps {
   news: NaverNewsProps[]
@@ -76,4 +74,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       },
     }
   }
+}
+
+Home.defaultProps = {
+  recommendedNews: undefined,
 }

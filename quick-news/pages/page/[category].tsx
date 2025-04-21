@@ -1,12 +1,10 @@
 import { useRouter } from 'next/router'
-import { Suspense, lazy, useEffect, useMemo } from 'react'
+import { Suspense, lazy, useMemo } from 'react'
 
 const LazyNewsSourceList = lazy(
-  () => import('../features/news/components/category-news-list'),
+  () => import('../../components/news/category-news-list'),
 )
-const LazyContents = lazy(
-  () => import('../features/news/components/news-contents'),
-)
+const LazyContents = lazy(() => import('../../components/layout/news-contents'))
 
 const categoriesInfo = {
   total: { title: '종합 뉴스', description: '종합 뉴스를 확인하세요' },
