@@ -21,8 +21,7 @@ const RenderNewsPage = dynamic(() => import('./rendered-news'), {
   ssr: false,
 }) as React.ComponentType<CommonNewsListProps<INewsBase>>
 
-export default function NewsSourceList(props: NewsSourceListProps) {
-  const { category } = props
+export default function NewsSourceList({ category }: NewsSourceListProps) {
   const { pageSize, handleLoadMore, isAllLoaded } = useMoreNews()
   const { visibleNews, isLoading } = useCategoriesNewsFetch(category, pageSize)
   const targetRef = useInfiniteScroll({ handleLoadMore, isAllLoaded })

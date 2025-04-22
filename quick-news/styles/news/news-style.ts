@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
-import { COMMON_COLOR } from '../../../../constants/theme'
 import Link from 'next/link'
 import React from 'react'
+import { COMMON_COLOR } from '../../constants/theme'
 
 const media = {
   tablet: (styles: TemplateStringsArray, ...interpolations: any[]) => css`
