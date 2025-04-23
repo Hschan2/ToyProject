@@ -1,26 +1,33 @@
 import Parser from 'rss-parser'
 import { CategoryNewsFetchProps } from '../../types/type'
 
-const parser = new Parser()
+const parser = new Parser({
+  requestOptions: {
+    headers: {
+      'User-Agent':
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+    },
+  },
+})
 
 const getRSSUrl = (category: string) => {
   switch (category) {
     case 'total':
-      return 'https://news.naver.com/main/rss/main.naver?sid1=001'
+      return 'https://api.newswire.co.kr/rss/all'
     case 'business':
-      return 'https://news.naver.com/main/rss/main.naver?sid1=101'
+      return 'https://api.newswire.co.kr/rss/industry/100'
+    case 'finance':
+      return 'https://api.newswire.co.kr/rss/industry/200'
     case 'entertainment':
-      return 'https://news.naver.com/main/rss/main.naver?sid1=106'
+      return 'https://api.newswire.co.kr/rss/industry/1207'
     case 'sports':
-      return 'https://news.naver.com/main/rss/main.naver?sid1=105'
+      return 'https://api.newswire.co.kr/rss/industry/1307'
     case 'health':
-      return 'https://news.naver.com/main/rss/main.naver?sid1=108'
+      return 'https://api.newswire.co.kr/rss/industry/1000'
     case 'technology':
-      return 'https://news.google.com/rss/search?q=technology&hl=ko&gl=KR&ceid=KR:ko' // Google News
-    case 'science':
-      return 'https://news.google.com/rss/search?q=science&hl=ko&gl=KR&ceid=KR:ko' // Google News
+      return 'https://api.newswire.co.kr/rss/industry/600'
     default:
-      return 'https://news.naver.com/main/rss/main.naver?sid1=001'
+      return 'https://api.newswire.co.kr/rss/all'
   }
 }
 
@@ -30,14 +37,19 @@ export const fetchNewsFromRSS = async (
   const categoryStr =
     typeof category === 'string' ? category : category.category
   const url = getRSSUrl(categoryStr)
-  const feed = await parser.parseURL(url)
 
-  return feed.items.map((item, idx) => ({
-    id: idx.toString(),
-    title: item.title ?? '제목없음',
-    link: item.link ?? '#',
-    description: item.contentSnippet ?? '',
-    pubDate: item.pubDate ? new Date(item.pubDate).getTime() : Date.now(),
-    source: 'naver',
-  }))
+  try {
+    const feed = await parser.parseURL(url)
+    return feed.items.map((item, idx) => ({
+      id: idx.toString(),
+      title: item.title ?? '제목없음',
+      link: item.link ?? '#',
+      description: item.contentSnippet || item.content || item.summary || '',
+      pubDate: item.pubDate ? new Date(item.pubDate).getTime() : Date.now(),
+      source: 'newswire',
+    }))
+  } catch (error) {
+    console.error(`RSS 파싱 실패 - ${category}`, error)
+    throw new Error(`RSS 파싱 실패 (${category})`)
+  }
 }

@@ -22,7 +22,7 @@ const categoriesInfo = {
     description: '테크 관련 뉴스들을 확인하세요',
   },
   health: { title: '건강뉴스', description: '건강 관련 뉴스들을 확인하세요' },
-  science: { title: '과학뉴스', description: '과학 관련 뉴스들을 확인하세요' },
+  finance: { title: '금융뉴스', description: '금융 관련 뉴스들을 확인하세요' },
 }
 
 export default function CategoryNewsPage() {

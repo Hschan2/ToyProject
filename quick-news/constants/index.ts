@@ -22,6 +22,11 @@ export const NEWS_CATEGORIES = [
     title: '경제',
   },
   {
+    href: '/page/finance',
+    category: 'finance',
+    title: '금융',
+  },
+  {
     href: '/page/entertainment',
     category: 'entertainment',
     title: '연예',
@@ -40,10 +45,5 @@ export const NEWS_CATEGORIES = [
     href: '/page/health',
     category: 'health',
     title: '건강',
-  },
-  {
-    href: '/page/science',
-    category: 'science',
-    title: '과학',
   },
 ]

@@ -18,7 +18,7 @@ export default function Loading() {
       {animationData ? (
         <>
           <LoadingLottie loop animationData={animationData} play />
-          <LoadingMessage>Loading Error...</LoadingMessage>
+          <LoadingMessage>Loading...</LoadingMessage>
         </>
       ) : (
         <div>No LottieFile</div>

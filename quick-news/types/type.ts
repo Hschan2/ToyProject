@@ -100,7 +100,7 @@ export type NewsCategoryType =
   | 'sports'
   | 'technology'
   | 'health'
-  | 'science'
+  | 'finance'
 
 export interface CategoryNewsFetchProps {
   category: NewsCategoryType
