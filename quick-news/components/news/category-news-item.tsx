@@ -25,7 +25,7 @@ function NewsCategoryItem({ article }: CategoryNewsList) {
   }, [article])
 
   const onClickNews = () => {
-    localStorage.setItem('selectedArticle', JSON.stringify(article))
+    localStorage.setItem(`article-${article.link}`, JSON.stringify(article))
   }
 
   return (
@@ -35,15 +35,10 @@ function NewsCategoryItem({ article }: CategoryNewsList) {
           <Link
             href={{
               pathname: '/page/detail',
-              query: {
-                key: encodeURIComponent(
-                  article.url ?? article.title + article.pubDate,
-                ),
-              },
+              query: { key: encodeURIComponent(article.link) },
             }}
             onClick={onClickNews}
             as={`/page/detail/${article.title}`}
-            passHref
             title={`${article.title} 페이지로 이동`}
           >
             <LimitLineTitle>{article.title.split(' - ')[0]}</LimitLineTitle>

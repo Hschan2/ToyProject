@@ -4,7 +4,7 @@ export interface INewsBase {
   description: string
   pubDate?: number
   author?: string
-  url?: string | undefined
+  url?: string
   urlToImage?: string
   publishedAt?: string
 }
@@ -57,11 +57,11 @@ export interface NaverNewsLists {
 }
 
 export interface CategoryNewsList {
-  article: INewsBase
+  article: NaverNewsProps
 }
 
 export interface CategoryNewsLists {
-  articles: INewsBase[]
+  articles: NaverNewsProps[]
 }
 
 export interface StorageNewsList {
