@@ -2,15 +2,14 @@ import axios from 'axios'
 import { GetServerSidePropsContext } from 'next'
 import { lazy } from 'react'
 import { getRecommendedNews } from '../lib/fetch-ai-recommended-news'
-import { NaverNewsProps } from '../types/type'
+import { NaverNewsProps, NewsProps } from '../types/type'
+import {
+  RecommendedLink,
+  RecommendedSection,
+} from '../styles/news/ai-recommend-style'
 
 const LazyNewsLists = lazy(() => import('../components/news/news-list'))
 const LazyContents = lazy(() => import('../components/layout/news-contents'))
-
-interface NewsProps {
-  news: NaverNewsProps[]
-  recommendedNews?: NaverNewsProps
-}
 
 export default function Home({ news, recommendedNews }: NewsProps) {
   return (
@@ -18,6 +17,21 @@ export default function Home({ news, recommendedNews }: NewsProps) {
       title="오늘의 주요뉴스"
       description="오늘의 주요뉴스를 확인하세요"
     >
+      {recommendedNews && (
+        <RecommendedSection>
+          <h2>📰 AI 추천 뉴스</h2>
+          <div>
+            <RecommendedLink
+              href={recommendedNews.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {recommendedNews.title}
+            </RecommendedLink>
+            <p>{recommendedNews.description}</p>
+          </div>
+        </RecommendedSection>
+      )}
       <LazyNewsLists newsData={news} />
     </LazyContents>
   )
@@ -47,11 +61,13 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       },
     })
 
-    const newsItems = response.data.items
+    const newsItems: NaverNewsProps[] = response.data.items
+    const recommendedNews = await getRecommendedNews(newsItems)
 
     return {
       props: {
         news: newsItems,
+        recommendedNews,
       },
     }
   } catch (error) {
@@ -59,6 +75,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     return {
       props: {
         news: [],
+        recommendedNews: null,
       },
     }
   }

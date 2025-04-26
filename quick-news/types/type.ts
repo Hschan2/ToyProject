@@ -105,3 +105,9 @@ export type NewsCategoryType =
 export interface CategoryNewsFetchProps {
   category: NewsCategoryType
 }
+
+// index.tsx
+export interface NewsProps {
+  news: NaverNewsProps[]
+  recommendedNews?: NaverNewsProps
+}
