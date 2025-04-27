@@ -1,12 +1,14 @@
 import axios from 'axios'
 import { GetServerSidePropsContext } from 'next'
 import { lazy } from 'react'
+import { format } from 'date-fns'
 import { getRecommendedNews } from '../lib/fetch-ai-recommended-news'
 import { NaverNewsProps, NewsProps } from '../types/type'
 import {
   RecommendedLink,
   RecommendedSection,
 } from '../styles/news/ai-recommend-style'
+import { StripHtmlTags } from '../utils/html'
 
 const LazyNewsLists = lazy(() => import('../components/news/news-list'))
 const LazyContents = lazy(() => import('../components/layout/news-contents'))
@@ -26,9 +28,13 @@ export default function Home({ news, recommendedNews }: NewsProps) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {recommendedNews.title}
+              {StripHtmlTags(recommendedNews.title)}
             </RecommendedLink>
-            <p>{recommendedNews.description}</p>
+            <p>{StripHtmlTags(recommendedNews.description)}</p>
+            <p>
+              {recommendedNews.pubDate &&
+                format(new Date(recommendedNews.pubDate), 'yyyy-MM-dd HH:mm')}
+            </p>
           </div>
         </RecommendedSection>
       )}

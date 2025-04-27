@@ -14,25 +14,33 @@ export async function getRecommendedNews(newsList: NaverNewsProps[]) {
     return cachedRecommendedNews
   }
 
-  const prompt = `다음은 여러 개의 뉴스 기사들입니다. 가장 중요한 뉴스 1개만 골라주세요. JSON 형식으로 다음과 같이 응답해주세요:
-{
-  "title": "제목",
-  "link": "링크",
-  "description": "간단한 설명",
-  "image: "뉴스 이미지",
-  "pubDate": "작성날짜"
-}
+  const prompt = `당신은 중요한 뉴스를 고르는 AI입니다.
 
-뉴스 목록:
-${newsList
-  .map(
-    (n, i) =>
-      `${i + 1}. 제목: ${n.title}, 링크: ${n.link}, 설명: ${
-        n.description
-      }, 날짜: ${n.pubDate || n.publishedAt}`,
-  )
-  .join('\n')}
-`
+  아래는 여러 개의 뉴스 기사입니다. 그중에서 가장 중요한 뉴스 1개를 선택해서,
+  반드시 **아래 JSON 형식 그대로** 응답하세요.
+  
+  - 설명을 추가하거나, JSON 외의 글자는 절대 쓰지 마세요.
+  - JSON key 이름은 꼭 그대로 사용하세요.
+  
+  반드시 이 형태로만 응답하세요:
+  {
+    "title": "제목",
+    "link": "링크",
+    "description": "간단한 설명",
+    "image": "뉴스 이미지",
+    "pubDate": "작성날짜"
+  }
+  
+  뉴스 목록:
+  ${newsList
+    .map(
+      (n, i) =>
+        `${i + 1}. 제목: ${n.title}, 링크: ${n.link}, 설명: ${
+          n.description
+        }, 날짜: ${n.pubDate || n.publishedAt}`,
+    )
+    .join('\n')}
+  `
 
   try {
     const referer =
@@ -43,7 +51,7 @@ ${newsList
     const response = await axios.post(
       'https://openrouter.ai/api/v1/chat/completions',
       {
-        model: 'openchat/openchat-3.5',
+        model: 'mistralai/mistral-7b-instruct:free',
         messages: [
           { role: 'system', content: '당신은 중요한 뉴스를 고르는 AI입니다.' },
           { role: 'user', content: prompt },
@@ -53,7 +61,7 @@ ${newsList
         headers: {
           Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
           'Content-Type': 'application/json',
-          'HTTP-Referer': referer,
+          Referer: referer,
           'X-Title': 'Quick-News',
         },
         timeout: 5000,
@@ -76,7 +84,14 @@ ${newsList
       return null
     }
   } catch (error) {
-    console.error('추천 뉴스 파싱 실패:', error)
+    if (axios.isAxiosError(error)) {
+      console.error(
+        '추천 뉴스 파싱 실패:',
+        JSON.stringify(error.response?.data, null, 2),
+      )
+    } else {
+      console.error('추천 뉴스 파싱 실패:', error)
+    }
     return null
   }
 }
