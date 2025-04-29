@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import axios from 'axios'
-import { NaverNewsProps } from '../../types/type'
+import { NaverNewsProps, RecommendNewsRequest } from '../../types/type'
 
 let cachedRecommendedNews: NaverNewsProps | null = null
 
@@ -8,13 +8,16 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  if (cachedRecommendedNews) return res.status(200).json(cachedRecommendedNews)
-
   if (req.method !== 'POST') {
     return res.status(405).json({ message: '요청을 허용할 수 없습니다.' })
   }
 
-  const newsList: NaverNewsProps[] = req.body
+  const { newsList, sourceType } = JSON.parse(req.body) as RecommendNewsRequest
+
+  if (sourceType === 'main' && cachedRecommendedNews)
+    return res.status(200).json(cachedRecommendedNews)
+
+  // const newsList: NaverNewsProps[] = req.body
 
   const prompt = `당신은 중요한 뉴스를 고르는 AI입니다.
 
@@ -76,8 +79,15 @@ ${newsList
     }
 
     const parsed = JSON.parse(result)
-    cachedRecommendedNews = parsed
-    return res.status(200).json(parsed)
+    const { pubDate, ...rest } = parsed
+
+    const safePared = !Number.isNaN(new Date(pubDate).getTime())
+      ? { ...rest, pubDate }
+      : { ...rest }
+
+    if (sourceType === 'main') cachedRecommendedNews = safePared
+
+    return res.status(200).json(safePared)
   } catch (error) {
     console.error('추천 뉴스 파싱 실패:', error)
     return res.status(500).json({ message: '추천 뉴스 요청 실패' })

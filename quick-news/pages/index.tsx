@@ -11,7 +11,7 @@ export default function Home({ news }: NewsProps) {
       title="오늘의 주요뉴스"
       description="오늘의 주요뉴스를 확인하세요"
     >
-      <RecommendedNews newsList={news} />
+      <RecommendedNews newsList={news} sourceType="main" />
       <NewsLists newsData={news} />
     </Contents>
   )

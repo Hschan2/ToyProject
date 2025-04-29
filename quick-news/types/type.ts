@@ -111,3 +111,9 @@ export interface NewsProps {
   news: NaverNewsProps[]
   recommendedNews?: NaverNewsProps
 }
+
+// AI
+export type RecommendNewsRequest = {
+  newsList: NaverNewsProps[]
+  sourceType: 'main' | 'category'
+}

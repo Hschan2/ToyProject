@@ -1,20 +1,23 @@
 import { useEffect, useState } from 'react'
-import { format } from 'date-fns'
 import { NaverNewsProps } from '../../types/type'
 import {
   RecommendedLink,
   RecommendedSection,
 } from '../../styles/news/ai-recommend-style'
 import { StripHtmlTags } from '../../utils/html'
+import { useFormattedDate } from '../../hooks/useFormattedDate'
 
 export default function RecommendedNews({
   newsList,
+  sourceType,
 }: {
   newsList: NaverNewsProps[]
+  sourceType: string
 }) {
   const [recommendedNews, setRecommendedNews] = useState<NaverNewsProps | null>(
     null,
   )
+  const formattedDate = useFormattedDate(recommendedNews?.pubDate)
 
   useEffect(() => {
     async function fetchRecommendedNews() {
@@ -24,7 +27,7 @@ export default function RecommendedNews({
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(newsList),
+          body: JSON.stringify({ newsList, sourceType }),
         })
         const data = await res.json()
         setRecommendedNews(data)
@@ -37,7 +40,7 @@ export default function RecommendedNews({
   }, [newsList])
 
   if (!recommendedNews) {
-    return <div>AI가 뉴스를 추천하고 있어요.</div>
+    return <RecommendedSection>AI가 뉴스를 추천하고 있어요.</RecommendedSection>
   }
 
   return (
@@ -52,10 +55,7 @@ export default function RecommendedNews({
           {StripHtmlTags(recommendedNews.title)}
         </RecommendedLink>
         <p>{StripHtmlTags(recommendedNews.description)}</p>
-        <p>
-          {recommendedNews.pubDate &&
-            format(new Date(recommendedNews.pubDate), 'yyyy-MM-dd HH:mm')}
-        </p>
+        {formattedDate && <p>{formattedDate}</p>}
       </div>
     </RecommendedSection>
   )

@@ -14,5 +14,5 @@ export default function useCategoriesNewsFetch(
 
   const visibleNews = articles?.slice(0, pageSize) || []
 
-  return { visibleNews, isLoading }
+  return { visibleNews, isLoading, articles }
 }
