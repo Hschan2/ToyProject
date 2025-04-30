@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { NaverNewsProps } from '../../types/type'
+import { BasicNewsProps } from '../../types/type'
 import {
   RecommendedLink,
   RecommendedSection,
@@ -11,10 +11,10 @@ export default function RecommendedNews({
   newsList,
   sourceType,
 }: {
-  newsList: NaverNewsProps[]
+  newsList: BasicNewsProps[]
   sourceType: string
 }) {
-  const [recommendedNews, setRecommendedNews] = useState<NaverNewsProps | null>(
+  const [recommendedNews, setRecommendedNews] = useState<BasicNewsProps | null>(
     null,
   )
   const formattedDate = useFormattedDate(recommendedNews?.pubDate)

@@ -14,12 +14,12 @@ import {
   LinkContainer,
 } from '../../styles/news/news-style'
 import { StripHtmlTags } from '../../utils/html'
-import { NaverNewsProps } from '../../types/type'
+import { BasicNewsProps } from '../../types/type'
 
 function Detail() {
   const router = useRouter()
   const { key } = router.query
-  const [articleData, setArticleData] = useState<NaverNewsProps | null>(null)
+  const [articleData, setArticleData] = useState<BasicNewsProps | null>(null)
   const publishedDate = articleData?.pubDate || articleData?.publishedAt
 
   useEffect(() => {

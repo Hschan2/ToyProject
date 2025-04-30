@@ -1,12 +1,12 @@
 import axios, { CancelTokenSource } from 'axios'
 import { useQuery } from 'react-query'
 import { MAX_PAGE_COUNT } from '../../constants'
-import { NaverNewsLists, NaverNewsProps } from '../../types/type'
+import { NaverNewsLists, BasicNewsProps } from '../../types/type'
 
 const fetchNews = async (
   queryValue: string,
   cancelToken: CancelTokenSource['token'],
-): Promise<NaverNewsProps[]> => {
+): Promise<BasicNewsProps[]> => {
   const { data } = await axios.get<NaverNewsLists>('/api/naver-news-proxy', {
     params: {
       q: queryValue,

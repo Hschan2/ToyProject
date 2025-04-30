@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import axios from 'axios'
-import { NaverNewsProps, RecommendNewsRequest } from '../../types/type'
+import { BasicNewsProps, RecommendNewsRequest } from '../../types/type'
 
-let cachedRecommendedNews: NaverNewsProps | null = null
+let cachedRecommendedNews: BasicNewsProps | null = null
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,12 +12,10 @@ export default async function handler(
     return res.status(405).json({ message: '요청을 허용할 수 없습니다.' })
   }
 
-  const { newsList, sourceType } = JSON.parse(req.body) as RecommendNewsRequest
+  const { newsList, sourceType } = req.body as RecommendNewsRequest
 
   if (sourceType === 'main' && cachedRecommendedNews)
     return res.status(200).json(cachedRecommendedNews)
-
-  // const newsList: NaverNewsProps[] = req.body
 
   const prompt = `당신은 중요한 뉴스를 고르는 AI입니다.
 

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { GetStaticPropsContext } from 'next'
-import { NaverNewsProps, NewsProps } from '../types/type'
+import { BasicNewsProps, NewsProps } from '../types/type'
 import RecommendedNews from '../components/news/recommended-news'
 import NewsLists from '../components/news/news-list'
 import Contents from '../components/layout/news-contents'
@@ -35,7 +35,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
       },
     })
 
-    const newsItems: NaverNewsProps[] = response.data.items
+    const newsItems: BasicNewsProps[] = response.data.items
 
     return {
       props: {

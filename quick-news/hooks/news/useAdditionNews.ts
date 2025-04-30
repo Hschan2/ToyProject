@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react'
-import { NaverNewsProps } from '../../types/type'
+import { BasicNewsProps } from '../../types/type'
 
 export default function useAdditionNews(
-  initialNews: NaverNewsProps[],
+  initialNews: BasicNewsProps[],
   pageSize: number,
 ) {
   const [currentPage, setCurrentPage] = useState(1)

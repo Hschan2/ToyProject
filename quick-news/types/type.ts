@@ -22,7 +22,7 @@ export interface IWeather {
   temp: number
 }
 
-export interface NaverNewsProps extends INewsBase {
+export interface BasicNewsProps extends INewsBase {
   link: string
   image: string
 }
@@ -49,19 +49,19 @@ export interface InfiniteScrollProps {
 }
 
 export interface NaverNewsList {
-  article: NaverNewsProps
+  article: BasicNewsProps
 }
 
 export interface NaverNewsLists {
-  items: NaverNewsProps[]
+  items: BasicNewsProps[]
 }
 
 export interface CategoryNewsList {
-  article: NaverNewsProps
+  article: BasicNewsProps
 }
 
 export interface CategoryNewsLists {
-  articles: NaverNewsProps[]
+  articles: BasicNewsProps[]
 }
 
 export interface StorageNewsList {
@@ -108,12 +108,12 @@ export interface CategoryNewsFetchProps {
 
 // index.tsx
 export interface NewsProps {
-  news: NaverNewsProps[]
-  recommendedNews?: NaverNewsProps
+  news: BasicNewsProps[]
+  recommendedNews?: BasicNewsProps
 }
 
 // AI
 export type RecommendNewsRequest = {
-  newsList: NaverNewsProps[]
+  newsList: BasicNewsProps[]
   sourceType: 'main' | 'category'
 }

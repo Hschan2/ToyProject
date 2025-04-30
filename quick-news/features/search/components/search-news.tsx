@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import useMoreNews from '../../../hooks/news/useMoreNews'
 import NaverNewsFetch from '../../../lib/news/naver-news-fetch'
 import useInfiniteScroll from '../../../hooks/useInfiniteScroll'
-import { CommonNewsListProps, NaverNewsProps } from '../../../types/type'
+import { CommonNewsListProps, BasicNewsProps } from '../../../types/type'
 import Loading from '../../../components/loading/loading'
 import { useSearchQuery } from '../hooks/useSearchQuery'
 
@@ -14,7 +14,7 @@ const RenderNewsPage = dynamic(
     ssr: false,
     loading: () => <Loading />,
   },
-) as React.ComponentType<CommonNewsListProps<NaverNewsProps>>
+) as React.ComponentType<CommonNewsListProps<BasicNewsProps>>
 
 export default function SearchNews() {
   const { searchValue } = useSearchQuery()
@@ -22,7 +22,7 @@ export default function SearchNews() {
   const { visibleNews } = NaverNewsFetch(pageSize, searchValue)
   const targetRef = useInfiniteScroll({ handleLoadMore, isAllLoaded })
 
-  const renderNewsItem = (article: NaverNewsProps) => (
+  const renderNewsItem = (article: BasicNewsProps) => (
     <NewsItem key={article.id} article={article} />
   )
 

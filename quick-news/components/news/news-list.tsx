@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import 'moment/locale/ko'
 import dynamic from 'next/dynamic'
-import { CommonNewsListProps, NaverNewsProps } from '../../types/type'
+import { CommonNewsListProps, BasicNewsProps } from '../../types/type'
 import useInfiniteScroll from '../../hooks/useInfiniteScroll'
 import Skeleton from '../loading/skeleton'
 import Loading from '../loading/loading'
@@ -14,10 +14,10 @@ const NewsItem = dynamic(() => import('./news-item'), {
 const RenderNewsPage = dynamic(() => import('./rendered-news'), {
   ssr: false,
   loading: () => <Loading />,
-}) as React.ComponentType<CommonNewsListProps<NaverNewsProps>>
+}) as React.ComponentType<CommonNewsListProps<BasicNewsProps>>
 
 interface NewsProps {
-  newsData: NaverNewsProps[]
+  newsData: BasicNewsProps[]
 }
 
 export default function NewsLists({ newsData }: NewsProps) {
@@ -31,7 +31,7 @@ export default function NewsLists({ newsData }: NewsProps) {
   })
 
   const renderNewsItem = useCallback(
-    (article: NaverNewsProps) => (
+    (article: BasicNewsProps) => (
       <NewsItem key={article.id} article={article} />
     ),
     [],

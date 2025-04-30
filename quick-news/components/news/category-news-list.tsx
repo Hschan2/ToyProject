@@ -4,7 +4,7 @@ import 'moment/locale/ko'
 import {
   CommonNewsListProps,
   NewsSourceListProps,
-  NaverNewsProps,
+  BasicNewsProps,
 } from '../../types/type'
 import useMoreNews from '../../hooks/news/useMoreNews'
 import useInfiniteScroll from '../../hooks/useInfiniteScroll'
@@ -20,7 +20,7 @@ const NewsCategoryItem = dynamic(() => import('./category-news-item'), {
 const RenderNewsPage = dynamic(() => import('./rendered-news'), {
   loading: () => <Loading />,
   ssr: false,
-}) as React.ComponentType<CommonNewsListProps<NaverNewsProps>>
+}) as React.ComponentType<CommonNewsListProps<BasicNewsProps>>
 
 export default function NewsSourceList({ category }: NewsSourceListProps) {
   const { pageSize, handleLoadMore, isAllLoaded } = useMoreNews()
@@ -31,7 +31,7 @@ export default function NewsSourceList({ category }: NewsSourceListProps) {
   const targetRef = useInfiniteScroll({ handleLoadMore, isAllLoaded })
 
   const renderNewsItem = useCallback(
-    (article: NaverNewsProps) => (
+    (article: BasicNewsProps) => (
       <NewsCategoryItem key={article.id} article={article} />
     ),
     [],
