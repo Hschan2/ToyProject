@@ -16,7 +16,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4">
-      <h1 className="text-xl font-bold mb-4">사진 자동 보정</h1>
+      <h1 className="text-xl font-bold mb-4">사진 AI 자동 보정</h1>
       <label className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded cursor-pointer mb-4">
         사진 첨부
         <input

@@ -1,27 +1,9 @@
 import { useCanvasImage } from "@/hooks/useCanvasImage";
 import { EditProps } from "@/types/Edit";
 import { useEffect, useState } from "react";
-import { FilterButtons } from "./FilterButtons";
 import { downloadCanvas } from "@/utils/downloadCanvas";
-
-const filters = [
-  {
-    label: "따뜻하게",
-    value: "brightness(1.2) saturate(1.4)",
-  },
-  {
-    label: "차갑게",
-    value: "brightness(0.9) contrast(1.3)",
-  },
-  {
-    label: "강한 색감",
-    value: "saturate(1.8)",
-  },
-  {
-    label: "고대비",
-    value: "contrast(1.4)",
-  },
-];
+import { callOpenRouterAPI } from "@/utils/openRouter";
+import { styles } from "@/constants/filterStyles";
 
 const ImageEditor = ({ imageSrc }: EditProps) => {
   const [filter, setFilter] = useState("none");
@@ -31,18 +13,57 @@ const ImageEditor = ({ imageSrc }: EditProps) => {
     drawImage(filter);
   }, [drawImage, filter]);
 
+  const handleStyleSelect = async (brand: string, tone: string) => {
+    try {
+      const values = await callOpenRouterAPI(brand, tone);
+      const {
+        brightness = 1,
+        contrast = 1,
+        saturate = 1,
+        grayscale = 0,
+        sepia = 0,
+        invert = 0,
+        hueRotate = 0,
+        opacity = 1,
+        blur = 0,
+      } = values;
+      const cssFilter = `
+        brightness(${brightness})
+        contrast(${contrast})
+        saturate(${saturate})
+        grayscale(${grayscale})
+        sepia(${sepia})
+        invert(${invert})
+        hue-rotate(${hueRotate}deg)
+        opacity(${opacity})
+        blur(${blur}px)
+      `
+        .replace(/\s+/g, " ")
+        .trim();
+      setFilter(cssFilter);
+    } catch (error) {
+      console.error("API 오류:", error);
+    }
+  };
+
   return (
     <div className="flex flex-col items-center mt-6">
       <canvas
         ref={canvasRef}
-        className="border shadow-md mb-4 max-w-[70%] h-auto"
+        className="border shadow-md mb-4 max-w-[50%] h-auto"
       />
 
-      <FilterButtons
-        filters={filters}
-        selected={filter}
-        onSelect={(value) => setFilter(value)}
-      />
+      <div className="grid grid-cols-4 gap-2 mb-4">
+        {styles.map(({ brand, tone }) => (
+          <button
+            key={`${brand}-${tone}`}
+            className="bg-gray-100 text-black px-3 py-2 rounded border hover:bg-gray-200"
+            onClick={() => handleStyleSelect(brand, tone)}
+          >
+            {brand} - {tone}
+          </button>
+        ))}
+      </div>
 
       <div className="flex gap-4 justify-center">
         <button
