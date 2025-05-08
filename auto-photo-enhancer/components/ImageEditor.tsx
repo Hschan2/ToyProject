@@ -3,7 +3,8 @@ import { EditProps } from "@/types/Edit";
 import { useEffect, useState } from "react";
 import { downloadCanvas } from "@/utils/downloadCanvas";
 import { callOpenRouterAPI } from "@/utils/openRouter";
-import { styles } from "@/constants/filterStyles";
+import { moodStyles, styles } from "@/constants/filterStyles";
+import { generateCssFilter } from "@/utils/generateCssFilter";
 
 const ImageEditor = ({ imageSrc }: EditProps) => {
   const [filter, setFilter] = useState("none");
@@ -16,30 +17,7 @@ const ImageEditor = ({ imageSrc }: EditProps) => {
   const handleStyleSelect = async (brand: string, tone: string) => {
     try {
       const values = await callOpenRouterAPI(brand, tone);
-      const {
-        brightness = 1,
-        contrast = 1,
-        saturate = 1,
-        grayscale = 0,
-        sepia = 0,
-        invert = 0,
-        hueRotate = 0,
-        opacity = 1,
-        blur = 0,
-      } = values;
-      const cssFilter = `
-        brightness(${brightness})
-        contrast(${contrast})
-        saturate(${saturate})
-        grayscale(${grayscale})
-        sepia(${sepia})
-        invert(${invert})
-        hue-rotate(${hueRotate}deg)
-        opacity(${opacity})
-        blur(${blur}px)
-      `
-        .replace(/\s+/g, " ")
-        .trim();
+      const cssFilter = generateCssFilter(values);
       setFilter(cssFilter);
     } catch (error) {
       console.error("API 오류:", error);
@@ -61,6 +39,18 @@ const ImageEditor = ({ imageSrc }: EditProps) => {
             onClick={() => handleStyleSelect(brand, tone)}
           >
             {brand} - {tone}
+          </button>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-4 gap-2 mb-4">
+        {moodStyles.map(({ title, tone }) => (
+          <button
+            key={`${title}-${tone}`}
+            className="bg-gray-100 text-black px-3 py-2 rounded border hover:bg-gray-200"
+            onClick={() => setFilter(generateCssFilter(tone))}
+          >
+            {title}
           </button>
         ))}
       </div>

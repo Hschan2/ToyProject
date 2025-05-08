@@ -2,8 +2,8 @@ import axios from "axios";
 import { OpenRouterResponse } from "@/types/api";
 
 export const generatePrompt = (brand: string, tone: string) => `
-당신은 이미지 색감 보정 전문가입니다. ${brand} 카메라 스타일의 ${tone}으로 보정하고 싶습니다.
-아래 JSON 형식으로 보정값을 알려주세요. 설명은 하지 마세요.
+당신은 이미지 색감 보정 전문가입니다. pillter_, 5gilsu, picn2k의 사진 스타일을 참고하여, ${brand} 카메라의 ${tone}한 분위기의 사진을 만들고 싶습니다.
+CSS filter로 사용할 수 있도록 아래와 같은 JSON 형식으로 필터 조정값만 반환해주세요. 설명은 포함하지 마세요.
 
 예시.
 {
