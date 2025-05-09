@@ -8,6 +8,7 @@ import { generateCssFilter } from "@/utils/generateCssFilter";
 
 const ImageEditor = ({ imageSrc }: EditProps) => {
   const [filter, setFilter] = useState("none");
+  const [loadingButton, setLoadingButton] = useState<string | null>(null);
   const { canvasRef, drawImage } = useCanvasImage(imageSrc);
 
   useEffect(() => {
@@ -15,12 +16,16 @@ const ImageEditor = ({ imageSrc }: EditProps) => {
   }, [drawImage, filter]);
 
   const handleStyleSelect = async (brand: string, tone: string) => {
+    const key = `${brand}-${tone}`;
+    setLoadingButton(key);
     try {
       const values = await callOpenRouterAPI(brand, tone);
       const cssFilter = generateCssFilter(values);
       setFilter(cssFilter);
     } catch (error) {
       console.error("API 오류:", error);
+    } finally {
+      setLoadingButton(null);
     }
   };
 
@@ -32,15 +37,44 @@ const ImageEditor = ({ imageSrc }: EditProps) => {
       />
 
       <div className="grid grid-cols-4 gap-2 mb-4">
-        {styles.map(({ brand, tone }) => (
-          <button
-            key={`${brand}-${tone}`}
-            className="bg-gray-100 text-black px-3 py-2 rounded border hover:bg-gray-200"
-            onClick={() => handleStyleSelect(brand, tone)}
-          >
-            {brand} - {tone}
-          </button>
-        ))}
+        {styles.map(({ brand, tone }) => {
+          const key = `${brand}-${tone}`;
+          const isLoading = loadingButton === key;
+
+          return (
+            <button
+              key={`${brand}-${tone}`}
+              className="flex items-center justify-center bg-gray-100 text-black px-3 py-2 rounded border hover:bg-gray-200"
+              onClick={() => handleStyleSelect(brand, tone)}
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <svg
+                  className="animate-spin h-4 w-4 text-gray-700"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                  />
+                </svg>
+              ) : (
+                `${brand} - ${tone}`
+              )}
+            </button>
+          );
+        })}
       </div>
 
       <div className="grid grid-cols-4 gap-2 mb-4">
