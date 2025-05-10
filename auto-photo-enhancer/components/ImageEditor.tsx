@@ -9,6 +9,7 @@ import { generateCssFilter } from "@/utils/generateCssFilter";
 const ImageEditor = ({ imageSrc }: EditProps) => {
   const [filter, setFilter] = useState("none");
   const [loadingButton, setLoadingButton] = useState<string | null>(null);
+  const [selectedKey, setSelectedKey] = useState<string | null>(null);
   const { canvasRef, drawImage } = useCanvasImage(imageSrc);
 
   useEffect(() => {
@@ -36,7 +37,7 @@ const ImageEditor = ({ imageSrc }: EditProps) => {
         className="border shadow-md mb-4 max-w-[50%] h-auto"
       />
 
-      <div className="grid grid-cols-4 gap-2 mb-4">
+      <div className="flex flex-wrap justify-center gap-2 mb-4 px-10">
         {styles.map(({ brand, tone }) => {
           const key = `${brand}-${tone}`;
           const isLoading = loadingButton === key;
@@ -44,8 +45,15 @@ const ImageEditor = ({ imageSrc }: EditProps) => {
           return (
             <button
               key={`${brand}-${tone}`}
-              className="flex items-center justify-center bg-gray-100 text-black px-3 py-2 rounded border hover:bg-gray-200"
-              onClick={() => handleStyleSelect(brand, tone)}
+              className={`${
+                selectedKey === `${brand} - ${tone}`
+                  ? "bg-black text-white"
+                  : "bg-white text-black border"
+              } flex items-center justify-center w-auto text-sm px-3 py-2 rounded-full hover:bg-neutral-200`}
+              onClick={() => {
+                handleStyleSelect(brand, tone);
+                setSelectedKey(`${brand} - ${tone}`);
+              }}
               disabled={isLoading}
             >
               {isLoading ? (
@@ -70,21 +78,28 @@ const ImageEditor = ({ imageSrc }: EditProps) => {
                   />
                 </svg>
               ) : (
-                `${brand} - ${tone}`
+                `AI ${brand} - ${tone}`
               )}
             </button>
           );
         })}
       </div>
 
-      <div className="grid grid-cols-4 gap-2 mb-4">
+      <div className="flex flex-wrap justify-center gap-2 mb-4 px-10">
         {moodStyles.map(({ title, tone }) => (
           <button
             key={`${title}-${tone}`}
-            className="bg-gray-100 text-black px-3 py-2 rounded border hover:bg-gray-200"
-            onClick={() => setFilter(generateCssFilter(tone))}
+            className={`${
+              selectedKey === `${title}`
+                ? "bg-black text-white"
+                : "bg-white text-black border"
+            } flex items-center justify-center w-auto text-sm px-3 py-2 rounded-full hover:bg-neutral-200`}
+            onClick={() => {
+              setFilter(generateCssFilter(tone));
+              setSelectedKey(title);
+            }}
           >
-            {title}
+            기본 - {title}
           </button>
         ))}
       </div>

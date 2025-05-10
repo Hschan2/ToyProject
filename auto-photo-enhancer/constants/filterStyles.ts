@@ -73,7 +73,7 @@ export const moodStyles = [
     },
   },
   {
-    title: "미니멀 / 클린 룩",
+    title: "미니멀 클린",
     tone: {
       brightness: 1.15,
       contrast: 0.95,
