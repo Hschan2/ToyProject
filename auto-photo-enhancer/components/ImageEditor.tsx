@@ -5,10 +5,74 @@ import { downloadCanvas } from "@/utils/downloadCanvas";
 import { callOpenRouterAPI } from "@/utils/openRouter";
 import { moodStyles, styles } from "@/constants/filterStyles";
 import { generateCssFilter } from "@/utils/generateCssFilter";
+import { Palette, Sparkle } from "lucide-react";
+
+const LoadingSpinner = () => (
+  <svg
+    className="animate-spin h-4 w-4 text-gray-700"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+  >
+    <circle
+      className="opacity-25"
+      cx="12"
+      cy="12"
+      r="10"
+      stroke="currentColor"
+      strokeWidth="4"
+    />
+    <path
+      className="opacity-75"
+      fill="currentColor"
+      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+    />
+  </svg>
+);
+
+const FilterButton = ({
+  label,
+  selected,
+  loading,
+  onClick,
+  mood,
+}: {
+  label: string;
+  selected: boolean;
+  loading?: boolean;
+  onClick: () => void;
+  mood: boolean;
+}) => {
+  const base =
+    "flex items-center justify-center w-auto text-sm px-3 py-2 rounded-full";
+  const selectedStyle = "bg-black text-white border hover:bg-neutral-700";
+  const unselectedStyle = "bg-white text-black border hover:bg-neutral-200";
+
+  return (
+    <button
+      className={`${base} ${selected ? selectedStyle : unselectedStyle}`}
+      onClick={onClick}
+      disabled={loading}
+    >
+      {loading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          {mood === true ? (
+            <Palette className="w-4 h-4 mr-1" />
+          ) : (
+            <Sparkle className="w-4 h-4 mr-1" />
+          )}
+          {label}
+        </>
+      )}
+    </button>
+  );
+};
 
 const ImageEditor = ({ imageSrc }: EditProps) => {
   const [filter, setFilter] = useState("none");
-  const [loadingButton, setLoadingButton] = useState<string | null>(null);
+  const [loadingKey, setLoadingKey] = useState<string | null>(null);
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
   const { canvasRef, drawImage } = useCanvasImage(imageSrc);
 
@@ -18,17 +82,24 @@ const ImageEditor = ({ imageSrc }: EditProps) => {
 
   const handleStyleSelect = async (brand: string, tone: string) => {
     const key = `${brand}-${tone}`;
-    setLoadingButton(key);
+    setSelectedKey(`${brand}-${tone}`);
+    setLoadingKey(key);
     try {
       const values = await callOpenRouterAPI(brand, tone);
-      const cssFilter = generateCssFilter(values);
-      setFilter(cssFilter);
+      setFilter(generateCssFilter(values));
     } catch (error) {
       console.error("API 오류:", error);
     } finally {
-      setLoadingButton(null);
+      setLoadingKey(null);
     }
   };
+
+  const handleMoodStyleClick = (title: string, tone: string) => {
+    setSelectedKey(title);
+    setFilter(tone);
+  };
+
+  const isSelected = (key: string) => selectedKey === key;
 
   return (
     <div className="flex flex-col items-center mt-6">
@@ -40,71 +111,33 @@ const ImageEditor = ({ imageSrc }: EditProps) => {
       <div className="flex flex-wrap justify-center gap-2 mb-4 px-10">
         {styles.map(({ brand, tone }) => {
           const key = `${brand}-${tone}`;
-          const isLoading = loadingButton === key;
-
+          const label = `AI ${brand} - ${tone}`;
           return (
-            <button
-              key={`${brand}-${tone}`}
-              className={`${
-                selectedKey === `${brand} - ${tone}`
-                  ? "bg-black text-white"
-                  : "bg-white text-black border"
-              } flex items-center justify-center w-auto text-sm px-3 py-2 rounded-full hover:bg-neutral-200`}
-              onClick={() => {
-                handleStyleSelect(brand, tone);
-                setSelectedKey(`${brand} - ${tone}`);
-              }}
-              disabled={isLoading}
-            >
-              {isLoading ? (
-                <svg
-                  className="animate-spin h-4 w-4 text-gray-700"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  />
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                  />
-                </svg>
-              ) : (
-                `AI ${brand} - ${tone}`
-              )}
-            </button>
+            <FilterButton
+              key={key}
+              label={label}
+              selected={isSelected(`${brand}-${tone}`)}
+              loading={loadingKey === key}
+              onClick={() => handleStyleSelect(brand, tone)}
+              mood={false}
+            />
           );
         })}
       </div>
 
       <div className="flex flex-wrap justify-center gap-2 mb-4 px-10">
         {moodStyles.map(({ title, tone }) => (
-          <button
-            key={`${title}-${tone}`}
-            className={`${
-              selectedKey === `${title}`
-                ? "bg-black text-white"
-                : "bg-white text-black border"
-            } flex items-center justify-center w-auto text-sm px-3 py-2 rounded-full hover:bg-neutral-200`}
-            onClick={() => {
-              setFilter(generateCssFilter(tone));
-              setSelectedKey(title);
-            }}
-          >
-            기본 - {title}
-          </button>
+          <FilterButton
+            key={title}
+            label={`Default - ${title}`}
+            selected={isSelected(title)}
+            onClick={() => handleMoodStyleClick(title, generateCssFilter(tone))}
+            mood={true}
+          />
         ))}
       </div>
 
-      <div className="flex gap-4 justify-center">
+      <div className="flex gap-4 justify-center mt-3">
         <button
           className="bg-gray-200 border-gray-600 text-black px-4 py-2 rounded hover:bg-gray-300 cursor-pointer"
           onClick={() => {
