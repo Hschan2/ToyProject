@@ -1,16 +1,16 @@
 export const styles = [
-  { brand: "Canon", tone: "Warm" },
-  { brand: "Canon", tone: "Cool" },
-  { brand: "Canon", tone: "Soft" },
-  { brand: "Canon", tone: "Bright" },
-  { brand: "Sony", tone: "Warm" },
-  { brand: "Sony", tone: "Cool" },
-  { brand: "Sony", tone: "Soft" },
-  { brand: "Sony", tone: "Bright" },
-  { brand: "Nikon", tone: "Warm" },
-  { brand: "Nikon", tone: "Cool" },
-  { brand: "Nikon", tone: "Soft" },
-  { brand: "Nikon", tone: "Bright" },
+  { brand: "Canon", tone: "따뜻하게", title: "Warm" },
+  { brand: "Canon", tone: "차갑게", title: "Cool" },
+  { brand: "Canon", tone: "은은하게", title: "Soft" },
+  { brand: "Canon", tone: "화사하게", title: "Bright" },
+  { brand: "Sony", tone: "따뜻하게", title: "Warm" },
+  { brand: "Sony", tone: "차갑게", title: "Cool" },
+  { brand: "Sony", tone: "은은하게", title: "Soft" },
+  { brand: "Sony", tone: "화사하게", title: "Bright" },
+  { brand: "Nikon", tone: "따뜻하게", title: "Warm" },
+  { brand: "Nikon", tone: "차갑게", title: "Cool" },
+  { brand: "Nikon", tone: "은은하게", title: "Soft" },
+  { brand: "Nikon", tone: "화사하게", title: "Bright" },
 ];
 
 export const moodStyles = [

@@ -109,9 +109,9 @@ const ImageEditor = ({ imageSrc }: EditProps) => {
       />
 
       <div className="flex flex-wrap justify-center gap-2 mb-4 px-10">
-        {styles.map(({ brand, tone }) => {
+        {styles.map(({ brand, tone, title }) => {
           const key = `${brand}-${tone}`;
-          const label = `AI ${brand} - ${tone}`;
+          const label = `AI ${brand} - ${title}`;
           return (
             <FilterButton
               key={key}
