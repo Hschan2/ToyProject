@@ -8,9 +8,9 @@
 
 `사진 자동 보정`은 사진을 직접 수동으로 보정할 필요없이 상황별, 주제별로 자동으로 보정해주는 서비스입니다.
 
-## 체험 (추가 예정)
+## 체험
 
-[Auto-Photo-Enhancer]()
+[Auto-Photo-Enhancer](https://auto-photo-enhancer.vercel.app/)
 
 <br/>
 
@@ -36,10 +36,7 @@
 
 #### 라이브러리
 
-![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![OpenRouter API](https://img.shields.io/badge/OpenRouter_API-00A67E?style=for-the-badge&logo=openai&logoColor=white)
 ![Eslint](https://img.shields.io/badge/Eslint-4B0082?style=flat-square&logo=Eslint&logoColor=white)
 ![Prettier](https://img.shields.io/badge/prettier-FF69B4?style=flat-square&logo=prettier&logoColor=white)
