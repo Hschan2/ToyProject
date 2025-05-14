@@ -28,11 +28,9 @@
 
 <br/>
 
-## 체험
+## 체험 (재배포 - 2025.05.14)
 
 [Quick-News](https://quick-news-tau.vercel.app/)
-
-- 무료 API 사용으로 배포 시 데이터 확인이 불가능합니다.
 
 <br/>
 
