@@ -47,8 +47,8 @@ const nextConfig = {
           {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
-          }
-        ]
+          },
+        ],
       },
       {
         source: '/icons8-news-doodle-16.png',
@@ -105,15 +105,21 @@ const nextConfig = {
       },
     ]
   },
-  webpack: (config, { isServer }) => {
+  webpack: (originalConfig, { isServer }) => {
+    const config = { ...originalConfig }
+
     if (!isServer) {
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        'core-js/modules': 'core-js-pure/stable',
-      };
-      config.target = 'web';
+      config.resolve = {
+        ...config.resolve,
+        alias: {
+          ...config.resolve?.alias,
+          'core-js/modules': 'core-js-pure/stable',
+        },
+      }
+      config.target = 'web'
     }
-    return config;
+
+    return config
   },
   experimental: {
     optimizeCss: false,
