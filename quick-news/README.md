@@ -14,6 +14,9 @@
 
 <img src="./public/gif/main.gif" width="500" />
    
+* AI 기능 도입 화면
+<img src="./public/gif/ai_version.PNG" width="500" />
+   
 ##### 뉴스 카테고리 & 다크모드
 
 <img src="https://blog.kakaocdn.net/dn/b4sp0n/btsGq99zZIj/LyyLl08bjRnPNrJ0xLGkuk/img.gif" width="500" />
