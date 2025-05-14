@@ -24,8 +24,8 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   try {
     const response = await axios.get(url, {
       headers: {
-        'X-Naver-Client-Id': process.env.NEXT_PUBLIC_CLIENT_ID,
-        'X-Naver-Client-Secret': process.env.NEXT_PUBLIC_CLIENT_SECRET,
+        'X-Naver-Client-Id': process.env.CLIENT_ID,
+        'X-Naver-Client-Secret': process.env.CLIENT_SECRET,
       },
       params: {
         query,
