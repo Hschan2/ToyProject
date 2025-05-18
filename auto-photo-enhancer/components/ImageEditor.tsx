@@ -1,5 +1,4 @@
 import { useCanvasImage } from "@/hooks/useCanvasImage";
-import { EditProps } from "@/types/Edit";
 import { useEffect, useState } from "react";
 import { downloadCanvas } from "@/utils/downloadCanvas";
 import { callOpenRouterAPI } from "@/utils/openRouter";
@@ -70,7 +69,7 @@ const FilterButton = ({
   );
 };
 
-const ImageEditor = ({ imageSrc }: EditProps) => {
+const ImageEditor = ({ imageSrc }: {imageSrc: string}) => {
   const [filter, setFilter] = useState("none");
   const [loadingKey, setLoadingKey] = useState<string | null>(null);
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
