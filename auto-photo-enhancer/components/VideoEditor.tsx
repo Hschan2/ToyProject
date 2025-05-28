@@ -1,15 +1,10 @@
-"use client"
+"use client";
 
 import { useRef, useState } from "react";
 import { moodStyles, styles } from "@/constants/filterStyles";
 import { generateCssFilter } from "@/utils/generateCssFilter";
 import { Palette, Sparkle } from "lucide-react";
 import { callOpenRouterAPI } from "@/utils/openRouter";
-import * as ffmpeg from '@ffmpeg/ffmpeg';
-
-const ffmpegInstance = ffmpeg.createFFmpeg({ log: true });
-const fetchFile = ffmpeg.fetchFile;
-// const ffmpeg = createFFmpeg({ log: true });
 
 const LoadingSpinner = () => (
   <svg
@@ -74,6 +69,18 @@ const FilterButton = ({
   );
 };
 
+let ffmpegInstance: any = null;
+
+const getFFmpegInstance = async () => {
+  if (!ffmpegInstance) {
+    const { createFFmpeg, fetchFile } = await import("@ffmpeg/ffmpeg");
+    ffmpegInstance = createFFmpeg({ log: true });
+    (ffmpegInstance as any).fetchFile = fetchFile;
+  }
+
+  return ffmpegInstance;
+};
+
 const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
   const [filter, setFilter] = useState("none");
   const [loadingKey, setLoadingKey] = useState<string | null>(null);
@@ -130,10 +137,15 @@ const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
   const convertToMp4 = async (webmBlob: Blob) => {
     setConverting(true);
     try {
-      if (!ffmpegInstance.isLoaded()) await ffmpegInstance.load();
-      ffmpegInstance.FS("writeFile", "input.webm", await fetchFile(webmBlob));
+      const ffmpeg = await getFFmpegInstance();
+      if (!ffmpeg.isLoaded()) await ffmpeg.load();
+      await ffmpeg.FS(
+        "writeFile",
+        "input.webm",
+        await ffmpeg.fetchFile(webmBlob)
+      );
 
-      await ffmpegInstance.run(
+      await ffmpeg.run(
         "-i",
         "input.webm",
         "-c:v",
@@ -143,7 +155,7 @@ const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
         "output.mp4"
       );
 
-      const data = ffmpegInstance.FS("readFile", "output.mp4");
+      const data = ffmpeg.FS("readFile", "output.mp4");
       const mp4Blob = new Blob([data.buffer], { type: "video/mp4" });
       const url = URL.createObjectURL(mp4Blob);
       setMp4Url(url);
