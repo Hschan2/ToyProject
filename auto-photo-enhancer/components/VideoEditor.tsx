@@ -35,12 +35,14 @@ const FilterButton = ({
   loading,
   onClick,
   mood,
+  disabled,
 }: {
   label: string;
   selected: boolean;
   loading?: boolean;
   onClick: () => void;
   mood: boolean;
+  disabled?: boolean;
 }) => {
   const base =
     "flex items-center justify-center w-auto text-sm px-3 py-2 rounded-full";
@@ -51,7 +53,7 @@ const FilterButton = ({
     <button
       className={`${base} ${selected ? selectedStyle : unselectedStyle}`}
       onClick={onClick}
-      disabled={loading}
+      disabled={loading || disabled}
     >
       {loading ? (
         <LoadingSpinner />
@@ -67,18 +69,6 @@ const FilterButton = ({
       )}
     </button>
   );
-};
-
-let ffmpegInstance: any = null;
-
-const getFFmpegInstance = async () => {
-  if (!ffmpegInstance) {
-    const { createFFmpeg, fetchFile } = await import("@ffmpeg/ffmpeg");
-    ffmpegInstance = createFFmpeg({ log: true });
-    (ffmpegInstance as any).fetchFile = fetchFile;
-  }
-
-  return ffmpegInstance;
 };
 
 const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
@@ -137,30 +127,22 @@ const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
   const convertToMp4 = async (webmBlob: Blob) => {
     setConverting(true);
     try {
-      const ffmpeg = await getFFmpegInstance();
-      if (!ffmpeg.isLoaded()) await ffmpeg.load();
-      await ffmpeg.FS(
-        "writeFile",
-        "input.webm",
-        await ffmpeg.fetchFile(webmBlob)
-      );
+      const formData = new FormData();
+      formData.append("file", webmBlob, "input.webm");
 
-      await ffmpeg.run(
-        "-i",
-        "input.webm",
-        "-c:v",
-        "libx264",
-        "-c:a",
-        "aac",
-        "output.mp4"
-      );
+      const response = await fetch("/api/convert", {
+        method: "POST",
+        body: formData,
+      });
 
-      const data = ffmpeg.FS("readFile", "output.mp4");
-      const mp4Blob = new Blob([data.buffer], { type: "video/mp4" });
+      if (!response.ok) throw new Error("변환 실패");
+
+      const mp4Blob = await response.blob();
       const url = URL.createObjectURL(mp4Blob);
       setMp4Url(url);
     } catch (error) {
-      console.error("MP4 변환 오류:", error);
+      console.error("서버 변환 실패:", error);
+      alert("MP4 변환에 실패했습니다. 다시 시도해 주세요.");
     } finally {
       setConverting(false);
     }
@@ -179,14 +161,16 @@ const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
       const video = videoRef.current;
       if (!video) return;
 
+      await new Promise((resolve) => {
+        if (video.readyState >= 1) resolve(true);
+        else video.onloadedmetadata = () => resolve(true);
+      });
+
       video.currentTime = 0;
       await video.play();
-
       startRecording();
-      await new Promise((resolve) =>
-        setTimeout(resolve, video.duration * 1000)
-      );
-      stopRecording();
+
+      video.onended = () => stopRecording();
     } catch (err) {
       console.error("API 오류:", err);
     } finally {
@@ -224,6 +208,7 @@ const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
               loading={loadingKey === key}
               onClick={() => handleStyleSelect(brand, tone)}
               mood={false}
+              disabled={converting}
             />
           );
         })}
@@ -237,6 +222,7 @@ const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
             selected={isSelected(title)}
             onClick={() => handleMoodStyleClick(title, generateCssFilter(tone))}
             mood={true}
+            disabled={converting}
           />
         ))}
       </div>
