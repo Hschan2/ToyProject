@@ -178,9 +178,24 @@ const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
     }
   };
 
-  const handleMoodStyleClick = (title: string, tone: string) => {
+  const handleMoodStyleClick = async (title: string, tone: string) => {
     setSelectedKey(title);
     setFilter(tone);
+    setMp4Url(null);
+
+    const video = videoRef.current;
+    if (!video) return;
+
+    await new Promise((resolve) => {
+      if (video.readyState >= 1) resolve(true);
+      else video.onloadedmetadata = () => resolve(true);
+    });
+
+    video.currentTime = 0;
+    await video.play();
+    startRecording();
+
+    video.onended = () => stopRecording();
   };
 
   const isSelected = (key: string) => selectedKey === key;

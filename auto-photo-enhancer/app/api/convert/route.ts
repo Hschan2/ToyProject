@@ -1,62 +1,67 @@
+import { writeFile, mkdir, unlink, readFile } from "fs/promises";
+import path from "path";
+import { v4 as uuidv4 } from "uuid";
+import ffmpegPath from "ffmpeg-static";
 import { spawn } from "child_process";
-import { randomUUID } from "crypto";
-import { readFile, unlink, writeFile } from "fs/promises";
-import { NextRequest, NextResponse } from "next/server";
-import { join } from "path";
+import os from "os";
 
-const TMP_DIR = "/tmp";
-
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
   const formData = await req.formData();
   const file = formData.get("file") as File;
-
-  if (!file || file.type !== "video/webm") {
-    return NextResponse.json(
-      { error: "Invalid or missing file" },
-      { status: 400 }
-    );
-  }
-
-  const id = randomUUID();
-  const inputPath = join(TMP_DIR, `${id}.webm`);
-  const outputPath = join(TMP_DIR, `${id}.mp4`);
-
-  const arrayBuffer = await file.arrayBuffer();
-  await writeFile(inputPath, Buffer.from(arrayBuffer));
+  const id = uuidv4();
+  const tmpDir = path.join(os.tmpdir());
+  const inputPath = path.join(tmpDir, `${id}.webm`);
+  const outputPath = path.join(tmpDir, `${id}.mp4`);
 
   try {
-    await new Promise((resolve, reject) => {
-      const ffmpeg = spawn("ffmpeg", [
-        "-y",
+    await mkdir(tmpDir, { recursive: true });
+    const arrayBuffer = await file.arrayBuffer();
+    await writeFile(inputPath, Buffer.from(arrayBuffer));
+
+    await new Promise<void>((resolve, reject) => {
+      const ffmpeg = spawn(ffmpegPath!, [
         "-i",
         inputPath,
         "-c:v",
         "libx264",
+        "-preset",
+        "fast",
+        "-crf",
+        "23",
         "-c:a",
         "aac",
+        "-b:a",
+        "128k",
+        "-movflags",
+        "+faststart",
         outputPath,
       ]);
 
-      ffmpeg.stderr.on("data", (data) =>
-        console.log("ffmpeg:", data.toString())
-      );
+      ffmpeg.stderr.on("data", (data) => console.error(data.toString()));
+      ffmpeg.on("error", reject);
       ffmpeg.on("close", (code) => {
-        if (code === 0) resolve(true);
+        if (code === 0) resolve();
         else reject(new Error(`FFmpeg exited with code ${code}`));
       });
     });
 
-    const outputBuffer = await readFile(outputPath);
+    const mp4Buffer = await readFile(outputPath);
 
-    return new NextResponse(outputBuffer, {
-      status: 200,
+    return new Response(mp4Buffer, {
       headers: {
         "Content-Type": "video/mp4",
         "Content-Disposition": "attachment; filename=converted.mp4",
       },
     });
+  } catch (error) {
+    console.error(error);
+    return new Response("Failed to convert video", { status: 500 });
   } finally {
-    await unlink(inputPath).catch(() => {});
-    await unlink(outputPath).catch(() => {});
+    try {
+      await unlink(inputPath);
+      await unlink(outputPath);
+    } catch (err) {
+      console.warn("Cleanup failed", err);
+    }
   }
 }
