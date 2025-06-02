@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { spawn } from "child_process";
 import os from "os";
 import { NextResponse } from "next/server";
+import ffmpegPath from "ffmpeg-static";
 
 export async function POST(req: Request) {
   const tmpDir = path.join(os.tmpdir());
@@ -16,25 +17,16 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "파일없음" }, { status: 400 });
     }
 
-    const arrayBuffer = await file.arrayBuffer();
-    const inputBuffer = Buffer.from(arrayBuffer);
-
-    console.log("파일 수신: ", file.name, "크기: ", inputBuffer.length);
-
-    if (inputBuffer.length === 0) {
-      return NextResponse.json({ error: "빈 파일" }, { status: 400 });
-    }
-
     await mkdir(tmpDir, { recursive: true });
 
     const id = uuidv4();
     const inputPath = path.join(tmpDir, `${id}.webm`);
     const outputPath = path.join(tmpDir, `${id}.mp4`);
 
+    const arrayBuffer = await file.arrayBuffer();
     await writeFile(inputPath, Buffer.from(arrayBuffer));
-
     await new Promise<void>((resolve, reject) => {
-      const ffmpeg = spawn("ffmpeg", [
+      const ffmpeg = spawn(ffmpegPath!, [
         "-i",
         inputPath,
         "-c:v",
@@ -44,11 +36,8 @@ export async function POST(req: Request) {
         outputPath,
       ]);
 
-      ffmpeg.stdout?.on("data", (data) =>
-        console.log("FFmpeg stdout: ", data.toString())
-      );
       ffmpeg.stderr.on("data", (data) =>
-        console.error("FFepeg stderr: ", data.toString())
+        console.error("FFmpeg stderr: ", data.toString())
       );
       ffmpeg.on("close", (code) => {
         if (code === 0) resolve();
