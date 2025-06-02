@@ -1,53 +1,68 @@
 import { writeFile, mkdir, unlink, readFile } from "fs/promises";
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
-import ffmpegPath from "ffmpeg-static";
 import { spawn } from "child_process";
 import os from "os";
+import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-  const formData = await req.formData();
-  const file = formData.get("file") as File;
-  const id = uuidv4();
   const tmpDir = path.join(os.tmpdir());
-  const inputPath = path.join(tmpDir, `${id}.webm`);
-  const outputPath = path.join(tmpDir, `${id}.mp4`);
 
   try {
-    await mkdir(tmpDir, { recursive: true });
+    const formData = await req.formData();
+    const file = formData.get("file") as File;
+
+    if (!file) {
+      return NextResponse.json({ error: "파일없음" }, { status: 400 });
+    }
+
     const arrayBuffer = await file.arrayBuffer();
+    const inputBuffer = Buffer.from(arrayBuffer);
+
+    console.log("파일 수신: ", file.name, "크기: ", inputBuffer.length);
+
+    if (inputBuffer.length === 0) {
+      return NextResponse.json({ error: "빈 파일" }, { status: 400 });
+    }
+
+    await mkdir(tmpDir, { recursive: true });
+
+    const id = uuidv4();
+    const inputPath = path.join(tmpDir, `${id}.webm`);
+    const outputPath = path.join(tmpDir, `${id}.mp4`);
+
     await writeFile(inputPath, Buffer.from(arrayBuffer));
 
     await new Promise<void>((resolve, reject) => {
-      const ffmpeg = spawn(ffmpegPath!, [
+      const ffmpeg = spawn("ffmpeg", [
         "-i",
         inputPath,
         "-c:v",
         "libx264",
-        "-preset",
-        "fast",
-        "-crf",
-        "23",
         "-c:a",
         "aac",
-        "-b:a",
-        "128k",
-        "-movflags",
-        "+faststart",
         outputPath,
       ]);
 
-      ffmpeg.stderr.on("data", (data) => console.error(data.toString()));
-      ffmpeg.on("error", reject);
+      ffmpeg.stdout?.on("data", (data) =>
+        console.log("FFmpeg stdout: ", data.toString())
+      );
+      ffmpeg.stderr.on("data", (data) =>
+        console.error("FFepeg stderr: ", data.toString())
+      );
       ffmpeg.on("close", (code) => {
         if (code === 0) resolve();
-        else reject(new Error(`FFmpeg exited with code ${code}`));
+        else reject(new Error(`FFmpeg 종료 코드: ${code}`));
       });
     });
 
-    const mp4Buffer = await readFile(outputPath);
+    const outputBuffer = await readFile(outputPath);
 
-    return new Response(mp4Buffer, {
+    await unlink(inputPath).catch(() => {});
+    await unlink(outputPath).catch(() => {});
+
+    return new Response(outputBuffer, {
+      status: 200,
       headers: {
         "Content-Type": "video/mp4",
         "Content-Disposition": "attachment; filename=converted.mp4",
@@ -55,13 +70,6 @@ export async function POST(req: Request) {
     });
   } catch (error) {
     console.error(error);
-    return new Response("Failed to convert video", { status: 500 });
-  } finally {
-    try {
-      await unlink(inputPath);
-      await unlink(outputPath);
-    } catch (err) {
-      console.warn("Cleanup failed", err);
-    }
+    return NextResponse.json({ error: "Conversion 실패" }, { status: 500 });
   }
 }

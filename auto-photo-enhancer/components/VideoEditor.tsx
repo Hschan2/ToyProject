@@ -107,6 +107,11 @@ const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
       chunksRef.current.push(e.data);
     mediaRecorderRef.current.onstop = () => {
       const blob = new Blob(chunksRef.current, { type: "video/webm" });
+      if (blob.size === 0) {
+        alert("녹화된 영상이 비어 있습니다.");
+        setConverting(false);
+        return;
+      }
       convertToMp4(blob);
     };
 
@@ -148,41 +153,7 @@ const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
     }
   };
 
-  const handleStyleSelect = async (brand: string, tone: string) => {
-    const key = `${brand}-${tone}`;
-    setSelectedKey(key);
-    setLoadingKey(key);
-    setMp4Url(null);
-
-    try {
-      const values = await callOpenRouterAPI(brand, tone);
-      setFilter(generateCssFilter(values));
-
-      const video = videoRef.current;
-      if (!video) return;
-
-      await new Promise((resolve) => {
-        if (video.readyState >= 1) resolve(true);
-        else video.onloadedmetadata = () => resolve(true);
-      });
-
-      video.currentTime = 0;
-      await video.play();
-      startRecording();
-
-      video.onended = () => stopRecording();
-    } catch (err) {
-      console.error("API 오류:", err);
-    } finally {
-      setLoadingKey(null);
-    }
-  };
-
-  const handleMoodStyleClick = async (title: string, tone: string) => {
-    setSelectedKey(title);
-    setFilter(tone);
-    setMp4Url(null);
-
+  const prepareAndStart = async () => {
     const video = videoRef.current;
     if (!video) return;
 
@@ -196,6 +167,37 @@ const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
     startRecording();
 
     video.onended = () => stopRecording();
+
+    setTimeout(() => {
+      if (mediaRecorderRef.current?.state === "recording") {
+        console.warn("레코딩 타임아웃 실패");
+        stopRecording();
+      }
+    }, (video.duration || 5) * 1000 + 500);
+  };
+
+  const handleStyleSelect = async (brand: string, tone: string) => {
+    const key = `${brand}-${tone}`;
+    setSelectedKey(key);
+    setLoadingKey(key);
+    setMp4Url(null);
+
+    try {
+      const values = await callOpenRouterAPI(brand, tone);
+      setFilter(generateCssFilter(values));
+      await prepareAndStart();
+    } catch (err) {
+      console.error("API 오류:", err);
+    } finally {
+      setLoadingKey(null);
+    }
+  };
+
+  const handleMoodStyleClick = async (title: string, tone: string) => {
+    setSelectedKey(title);
+    setFilter(tone);
+    setMp4Url(null);
+    await prepareAndStart();
   };
 
   const isSelected = (key: string) => selectedKey === key;
