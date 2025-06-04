@@ -1,10 +1,15 @@
+export const runtime = "nodejs";
+
 import { writeFile, mkdir, unlink, readFile } from "fs/promises";
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
 import { spawn } from "child_process";
 import os from "os";
 import { NextResponse } from "next/server";
-import ffmpegPath from "ffmpeg-static";
+
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const ffmpegPath = require("ffmpeg-static") as string;
 
 export async function POST(req: Request) {
   const tmpDir = path.join(os.tmpdir());
@@ -26,7 +31,7 @@ export async function POST(req: Request) {
     const arrayBuffer = await file.arrayBuffer();
     await writeFile(inputPath, Buffer.from(arrayBuffer));
     await new Promise<void>((resolve, reject) => {
-      const ffmpeg = spawn(ffmpegPath!, [
+      const ffmpeg = spawn(ffmpegPath, [
         "-i",
         inputPath,
         "-c:v",
