@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { moodStyles, styles } from "@/constants/filterStyles";
 import { generateCssFilter } from "@/utils/generateCssFilter";
 import { Palette, Sparkle } from "lucide-react";
@@ -82,6 +82,11 @@ const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const chunksRef = useRef<Blob[]>([]);
+  const filterRef = useRef<string>("none");
+
+  useEffect(() => {
+    filterRef.current = filter;
+  }, [filter])
 
   const startRecording = () => {
     const video = videoRef.current;
@@ -118,7 +123,7 @@ const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
     mediaRecorderRef.current.start();
 
     const draw = () => {
-      ctx.filter = filter;
+      ctx.filter = filterRef.current;
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
       requestAnimationFrame(draw);
     };
