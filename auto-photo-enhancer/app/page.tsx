@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ImageEditor from "../components/ImageEditor";
 import VideoEditor from "@/components/VideoEditor";
 
 export default function Home() {
   const [imageSrc, setImageSrc] = useState("");
   const [videoSrc, setVideoSrc] = useState<string | null>(null);
+  const previousRef = useRef<string | null>(null);
 
   const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -16,8 +17,18 @@ export default function Home() {
       const reader = new FileReader();
       reader.onload = () => setImageSrc(reader.result as string);
       reader.readAsDataURL(file);
+
+      if (previousRef.current) {
+        URL.revokeObjectURL(previousRef.current);
+        previousRef.current = null;
+      }
+
       setVideoSrc(null);
     } else if (file.type.startsWith("video/")) {
+      if (previousRef.current) {
+        URL.revokeObjectURL(previousRef.current);
+      }
+
       const videoUrl = URL.createObjectURL(file);
       setVideoSrc(videoUrl);
       setImageSrc("");

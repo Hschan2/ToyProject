@@ -77,6 +77,7 @@ const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
   const [converting, setConverting] = useState(false);
   const [mp4Url, setMp4Url] = useState<string | null>(null);
+  const [isRecording, setIsRecording] = useState(false);
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -84,9 +85,28 @@ const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
   const chunksRef = useRef<Blob[]>([]);
   const filterRef = useRef<string>("none");
 
+  let animationFrameId: number;
+
   useEffect(() => {
     filterRef.current = filter;
-  }, [filter])
+  }, [filter]);
+
+  useEffect(() => {
+    return () => {
+      if (mp4Url) {
+        URL.revokeObjectURL(mp4Url);
+      }
+    };
+  }, [mp4Url]);
+
+  useEffect(() => {
+    return () => {
+      if (canvasRef.current) {
+        const ctx = canvasRef.current.getContext("2d");
+        ctx?.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+      }
+    };
+  });
 
   const startRecording = () => {
     const video = videoRef.current;
@@ -123,15 +143,27 @@ const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
     mediaRecorderRef.current.start();
 
     const draw = () => {
+      if (!filterRef.current || filterRef.current === "none") {
+        alert("필터 적용없이 녹화됩니다.");
+        stopRecording();
+        return;
+      }
+
       ctx.filter = filterRef.current;
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-      requestAnimationFrame(draw);
+      animationFrameId = requestAnimationFrame(draw);
     };
     draw();
   };
 
   const stopRecording = () => {
-    mediaRecorderRef.current?.stop();
+    if (mediaRecorderRef.current) {
+      mediaRecorderRef.current?.stop();
+      mediaRecorderRef.current = null;
+    }
+    chunksRef.current = [];
+    cancelAnimationFrame(animationFrameId);
+    setIsRecording(false);
   };
 
   const convertToMp4 = async (webmBlob: Blob) => {
@@ -159,8 +191,14 @@ const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
   };
 
   const prepareAndStart = async () => {
+    if (isRecording) return;
+    setIsRecording(true);
+
     const video = videoRef.current;
-    if (!video) return;
+    if (!video) {
+      setIsRecording(false);
+      return;
+    }
 
     await new Promise((resolve) => {
       if (video.readyState >= 1) resolve(true);
@@ -171,13 +209,17 @@ const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
     await video.play();
     startRecording();
 
-    video.onended = () => stopRecording();
+    video.onended = () => {
+      stopRecording();
+      setIsRecording(false);
+    };
 
     setTimeout(() => {
       if (mediaRecorderRef.current?.state === "recording") {
-        console.warn("레코딩 타임아웃 실패");
+        console.log("레코딩 타임아웃 실패");
         stopRecording();
       }
+      setIsRecording(false);
     }, (video.duration || 5) * 1000 + 500);
   };
 
@@ -190,6 +232,7 @@ const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
     try {
       const values = await callOpenRouterAPI(brand, tone);
       setFilter(generateCssFilter(values));
+      filterRef.current = generateCssFilter(values);
       await prepareAndStart();
     } catch (err) {
       console.error("API 오류:", err);
@@ -200,8 +243,9 @@ const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
 
   const handleMoodStyleClick = async (title: string, tone: string) => {
     setSelectedKey(title);
-    setFilter(tone);
     setMp4Url(null);
+    setFilter(tone);
+    filterRef.current = tone;
     await prepareAndStart();
   };
 
@@ -230,7 +274,7 @@ const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
               loading={loadingKey === key}
               onClick={() => handleStyleSelect(brand, tone)}
               mood={false}
-              disabled={converting}
+              disabled={converting || isRecording}
             />
           );
         })}
@@ -258,6 +302,14 @@ const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
             href={mp4Url}
             download="filtered-video.mp4"
             className="bg-black text-white px-4 py-2 rounded hover:bg-neutral-700"
+            onClick={() => {
+              setTimeout(() => {
+                if (mp4Url) {
+                  URL.revokeObjectURL(mp4Url);
+                  setMp4Url(null);
+                }
+              }, 500);
+            }}
           >
             MP4 다운로드
           </a>
