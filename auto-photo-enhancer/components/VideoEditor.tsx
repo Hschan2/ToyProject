@@ -288,7 +288,7 @@ const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
             selected={isSelected(title)}
             onClick={() => handleMoodStyleClick(title, generateCssFilter(tone))}
             mood={true}
-            disabled={converting}
+            disabled={converting || isRecording}
           />
         ))}
       </div>
