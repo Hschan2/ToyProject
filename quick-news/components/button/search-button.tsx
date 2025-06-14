@@ -30,7 +30,7 @@ export default function SearchButton() {
   }
 
   const handleSearch = () => {
-    router.push(`/page/search/search?q=${searchTerm}`, undefined, {
+    router.push(`/search?q=${searchTerm}`, undefined, {
       shallow: true,
     })
     setInputVisible(false)
@@ -49,7 +49,7 @@ export default function SearchButton() {
   }
 
   useEffect(() => {
-    if (router.pathname !== '/page/search/search') prevSearchTerm.current = ''
+    if (router.pathname !== '/search') prevSearchTerm.current = ''
   }, [router.pathname])
 
   return (

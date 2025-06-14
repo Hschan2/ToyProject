@@ -12,7 +12,7 @@ function SearchInput() {
 
   const handleSearch = () => {
     if (!searchTerm.trim()) return
-    router.push(`/page/search/search?q=${searchTerm}`, undefined, {
+    router.push(`/search?q=${searchTerm}`, undefined, {
       shallow: true,
     })
   }
