@@ -1,104 +1,18 @@
-import { useCanvasImage } from "@/hooks/useCanvasImage";
-import { useEffect, useState } from "react";
 import { downloadCanvas } from "@/utils/downloadCanvas";
-import { callOpenRouterAPI } from "@/utils/openRouter";
 import { moodStyles, styles } from "@/constants/filterStyles";
 import { generateCssFilter } from "@/utils/generateCssFilter";
-import { Palette, Sparkle } from "lucide-react";
+import { useImageFilter } from "@/hooks/useImageFilter";
+import FilterButton from "./ui/FilterButton";
 
-const LoadingSpinner = () => (
-  <svg
-    className="animate-spin h-4 w-4 text-gray-700"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-  >
-    <circle
-      className="opacity-25"
-      cx="12"
-      cy="12"
-      r="10"
-      stroke="currentColor"
-      strokeWidth="4"
-    />
-    <path
-      className="opacity-75"
-      fill="currentColor"
-      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-    />
-  </svg>
-);
-
-const FilterButton = ({
-  label,
-  selected,
-  loading,
-  onClick,
-  mood,
-}: {
-  label: string;
-  selected: boolean;
-  loading?: boolean;
-  onClick: () => void;
-  mood: boolean;
-}) => {
-  const base =
-    "flex items-center justify-center w-auto text-sm px-3 py-2 rounded-full";
-  const selectedStyle = "bg-black text-white border hover:bg-neutral-700";
-  const unselectedStyle = "bg-white text-black border hover:bg-neutral-200";
-
-  return (
-    <button
-      className={`${base} ${selected ? selectedStyle : unselectedStyle}`}
-      onClick={onClick}
-      disabled={loading}
-    >
-      {loading ? (
-        <LoadingSpinner />
-      ) : (
-        <>
-          {mood === true ? (
-            <Palette className="w-4 h-4 mr-1" />
-          ) : (
-            <Sparkle className="w-4 h-4 mr-1" />
-          )}
-          {label}
-        </>
-      )}
-    </button>
-  );
-};
-
-const ImageEditor = ({ imageSrc }: {imageSrc: string}) => {
-  const [filter, setFilter] = useState("none");
-  const [loadingKey, setLoadingKey] = useState<string | null>(null);
-  const [selectedKey, setSelectedKey] = useState<string | null>(null);
-  const { canvasRef, drawImage } = useCanvasImage(imageSrc);
-
-  useEffect(() => {
-    drawImage(filter);
-  }, [drawImage, filter]);
-
-  const handleStyleSelect = async (brand: string, tone: string) => {
-    const key = `${brand}-${tone}`;
-    setSelectedKey(`${brand}-${tone}`);
-    setLoadingKey(key);
-    try {
-      const values = await callOpenRouterAPI(brand, tone);
-      setFilter(generateCssFilter(values));
-    } catch (error) {
-      console.error("API 오류:", error);
-    } finally {
-      setLoadingKey(null);
-    }
-  };
-
-  const handleMoodStyleClick = (title: string, tone: string) => {
-    setSelectedKey(title);
-    setFilter(tone);
-  };
-
-  const isSelected = (key: string) => selectedKey === key;
+const ImageEditor = ({ imageSrc }: { imageSrc: string }) => {
+  const {
+    canvasRef,
+    loadingKey,
+    selectedKey,
+    selectAIStyle,
+    selectMoodStyle,
+    resetFilter,
+  } = useImageFilter(imageSrc);
 
   return (
     <div className="flex flex-col items-center mt-6">
@@ -115,9 +29,9 @@ const ImageEditor = ({ imageSrc }: {imageSrc: string}) => {
             <FilterButton
               key={key}
               label={label}
-              selected={isSelected(`${brand}-${tone}`)}
+              selected={selectedKey === `${brand}-${tone}`}
               loading={loadingKey === key}
-              onClick={() => handleStyleSelect(brand, tone)}
+              onClick={() => selectAIStyle(brand, tone)}
               mood={false}
             />
           );
@@ -129,8 +43,8 @@ const ImageEditor = ({ imageSrc }: {imageSrc: string}) => {
           <FilterButton
             key={title}
             label={`Default - ${title}`}
-            selected={isSelected(title)}
-            onClick={() => handleMoodStyleClick(title, generateCssFilter(tone))}
+            selected={selectedKey === title}
+            onClick={() => selectMoodStyle(title, generateCssFilter(tone))}
             mood={true}
           />
         ))}
@@ -139,9 +53,7 @@ const ImageEditor = ({ imageSrc }: {imageSrc: string}) => {
       <div className="flex gap-4 justify-center mt-3">
         <button
           className="bg-gray-200 border-gray-600 text-black px-4 py-2 rounded hover:bg-gray-300 cursor-pointer"
-          onClick={() => {
-            setFilter("none");
-          }}
+          onClick={resetFilter}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
