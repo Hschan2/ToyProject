@@ -7,7 +7,7 @@ import { spawn } from "child_process";
 import os from "os";
 import { NextResponse } from "next/server";
 
-import { createRequire } from 'module';
+import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 const ffmpegPath = require("ffmpeg-static") as string;
 
@@ -36,6 +36,10 @@ export async function POST(req: Request) {
         inputPath,
         "-c:v",
         "libx264",
+        "-preset",
+        "veryfast",
+        "-crf",
+        "28",
         "-c:a",
         "aac",
         outputPath,
