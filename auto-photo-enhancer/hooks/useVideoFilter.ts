@@ -31,7 +31,7 @@ export const useVideoFilter = () => {
       const currentTime = video.currentTime;
       if (currentTime !== prevTime) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.filter = filter;
+        ctx.filter = filterRef.current || "none";
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
         prevTime = currentTime;
       }
@@ -40,7 +40,7 @@ export const useVideoFilter = () => {
     };
 
     drawFrame();
-  }, [filter]);
+  }, []);
 
   const stopDrawing = () => {
     if (drawLoopRef.current) {
