@@ -8,6 +8,13 @@ import { translateText } from "~/utils/translateText";
 import path from "path";
 import { parseSMI, SmiSubtitle, stringifySMI } from "~/utils/parseSMI";
 
+const langNameMap: Record<string, string> = {
+  ko: "한국어",
+  en: "영어",
+  ja: "일본어",
+  zh: "중국어",
+};
+
 export const action = async ({ request }: ActionFunctionArgs) => {
   if (request.method !== "POST") {
     return new Response("허용되지 않은 메소드입니다.", { status: 405 });
@@ -26,26 +33,24 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   const buffer = await file.arrayBuffer();
   const content = new TextDecoder().decode(buffer);
   const ext = path.extname(file.name).toLowerCase();
+  const targetLangName = langNameMap[lang] || lang;
 
   let output: string;
-  const batchSize = 10;
 
   if (ext === ".srt") {
     const parsed: Subtitle[] = parseSRT(content);
     const translated: Subtitle[] = [];
 
-    for (let i = 0; i < parsed.length; i += batchSize) {
-      const batch = parsed.slice(i, i + batchSize);
-      const joined = batch.map((s, j) => `[${j}]: ${s.text}`).join("\n");
-      const result = await translateText(joined, lang);
-      const lines = result.split("\n");
+    for (const subtitle of parsed) {
+      const prompt = `다음은 영상 자막의 한 줄입니다. 괄호, 기호, 효과음 등 자막 형식은 그대로 두고, 안의 텍스트만 ${targetLangName}로 번역해 주세요.\n\n"${subtitle.text}"\n\n출력 (형식 유지, 번역된 문장만 반환):`;
 
-      for (let j = 0; j < batch.length; j++) {
-        const original = batch[j];
-        const line = lines[j] || "[번역 실패]";
-        const clean = line.replace(/^\[\d+\]:\s*/, "");
-        translated.push({ ...original, text: clean });
+      let result = await translateText(prompt);
+      if (!result || result === "[번역 실패]") {
+        result = "[번역 실패]";
       }
+
+      translated.push({ ...subtitle, text: result });
+      await new Promise((r) => setTimeout(r, 500));
     }
 
     output = stringifySRT(translated);
@@ -53,18 +58,16 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const parsed: SmiSubtitle[] = parseSMI(content);
     const translated: SmiSubtitle[] = [];
 
-    for (let i = 0; i < parsed.length; i += batchSize) {
-      const batch = parsed.slice(i, i + batchSize);
-      const joined = batch.map((s, j) => `[${j}]: ${s.text}`).join("\n");
-      const result = await translateText(joined, lang);
-      const lines = result.split("\n");
+    for (const subtitle of parsed) {
+      const prompt = `다음은 영상 자막의 한 줄입니다. 괄호, 기호, 효과음 등 자막 형식은 그대로 두고, 안의 텍스트만 ${targetLangName}로 번역해 주세요.\n\n"${subtitle.text}"\n\n출력 (형식 유지, 번역된 문장만 반환):`;
 
-      for (let j = 0; j < batch.length; j++) {
-        const original = batch[j];
-        const line = lines[j] || "[번역 실패]";
-        const clean = line.replace(/^\[\d+\]:\s*/, "");
-        translated.push({ ...original, text: clean });
+      let result = await translateText(prompt);
+      if (!result || result === "[번역 실패]") {
+        result = "[번역 실패]";
       }
+
+      translated.push({ ...subtitle, text: result });
+      await new Promise((r) => setTimeout(r, 500));
     }
 
     output = stringifySMI(translated);

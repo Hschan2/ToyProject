@@ -1,12 +1,9 @@
 import { OPENROUTER_API_KEY } from "./env.server";
 
-export async function translateText(
-  text: string,
-  targetLang: string
-): Promise<string> {
+export async function translateText(text: string): Promise<string> {
   if (!text.trim()) return "";
 
-  const prompt = `다음 문장을 ${targetLang}로 번역해 주세요:\n\n"${text}"`;
+  const prompt = text;
 
   try {
     const response = await fetch(
@@ -22,7 +19,8 @@ export async function translateText(
           messages: [
             {
               role: "system",
-              content: "You are a professional subtitle translator.",
+              content:
+                "You are a professional subtitle translator. Keep formatting (brackets, punctuation, symbols) and translate only the dialogue.",
             },
             { role: "user", content: prompt },
           ],
@@ -36,9 +34,7 @@ export async function translateText(
     }
 
     const data = await response.json();
-    const result = data.choices?.[0]?.message?.content?.trim();
-
-    return result || "[번역 실패]";
+    return data.choices?.[0]?.message?.content?.trim() || "[번역 실패]";
   } catch (err) {
     console.error("번역 오류:", err);
     return "[번역 실패]";
