@@ -40,6 +40,7 @@
 ![OpenRouter API](https://img.shields.io/badge/OpenRouter_API-00A67E?style=for-the-badge&logo=openai&logoColor=white)
 ![Eslint](https://img.shields.io/badge/Eslint-4B0082?style=flat-square&logo=Eslint&logoColor=white)
 ![Prettier](https://img.shields.io/badge/prettier-FF69B4?style=flat-square&logo=prettier&logoColor=white)
+![FFmpeg](https://img.shields.io/badge/FFmpeg-FF69B4?style=flat-square&logo=FFmpeg&logoColor=white)
 
 #### 개발 도구
 
@@ -61,8 +62,10 @@
 src
 │
 ├─ app
+│   └─ api
 │
 ├─ components
+│   └─ ui
 ├─ constants
 ├─ hooks
 ├─ types
@@ -107,6 +110,13 @@ src
 또한, 단순하면서도 트렌디한 느낌의 UI 디자인을 구현하기 위해 노력하였습니다. 적절한 아이콘을 사용하고, 각 필터 조정 버튼마다 알맞는 텍스트로 나타냈습니다.   
 
 그리고 최대한 스크롤이 없이 한 화면에서 이용할 수 있도록 하였으며, 스크롤이 발생하더라도 불편함이 없이 최대한 적은 스크롤로 사용할 수 있도록 사이즈를 조절하였습니다.   
+
+#### 동영상 보정 (FFmpeg 라이브러리를 클라이언트 측에서 서버 측으로 호출)
+이미지 보정에서 범위를 넓혀 동영상 보정을 추가하였습니다. 이 과정에서 `FFmpeg` 라이브러리를 알게 되었고, 기존 방식을 유지하여 클라이언트 방식으로 요청하여 보정된 동영상을 다운로드할 수 있도록 시도하였습니다.   
+
+그러나, 클라이언트 방식으로는 요청이 계속 실패되었고, 이 때, `FFmpeg` 라이브러리를 서버 측에 요청하여 처리해야 한다는 것을 배웠습니다. 이 후, `openRouter API`를 서버에서 호출했던 방식을 그대로 `FFmpeg` 라이브러리에도 적용하였고, 첨부된 동영상을 녹화한 내용본을 그대로 다운로드를 할 수 있도록 문제를 해결하였습니다.   
+
+또한, 기존 동영상 보정을 위한 필터값을 변수에 담아 CSS Filter에 담는 방식으로 시도하였으나, 다운로드된 동영상이 필터가 적용되지 않는 문제가 발생했습니다. 이는, useState의 비동기적 업데이트로 최신 값이 적용되기 전의 이전 값이 적용될 수 있는 문제로 인해 발생하는 것으로, `useRef`를 활용함으로써 항상 최신 값이 적용되도록 하여 필터를 적용시킬 수 있었습니다.   
 
 ## 이 프로젝트를 개발한 이유
 매번 직접 사진을 보정하면서 귀찮을 때가 종종 발생하였습니다. 이러한 경우, 클릭 한 번으로 원하는 사진으로 보정해주는 기능을 원하는 마음으로 구현하였습니다.
