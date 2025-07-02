@@ -29,6 +29,16 @@ export default function Index() {
     setFileName(file.name);
     setTargetLang(formData.get("language") as string);
     setIsTranslating(true);
+
+    try {
+      await fetch("/resources/translate", {
+        method: "POST",
+        body: formData,
+      });
+    } catch (err) {
+      alert("번역 요청에 실패했습니다. 다시 시도해 주세요.");
+      console.error("번역 에러: ", err);
+    }
   };
 
   return (
