@@ -1,7 +1,9 @@
 import { type MetaFunction } from "@remix-run/node";
 import { Form } from "@remix-run/react";
 import { useState } from "react";
-import TranslateProgressAutoDownload from "~/components/TranslateProgressAutoDownload";
+import { applyCacheToSubtitles } from "~/utils/applyCacheToSubtitles";
+import { parseSMI, SmiSubtitle, stringifySMI } from "~/utils/parseSMI";
+import { parseSRT, stringifySRT, Subtitle } from "~/utils/parseSRT";
 
 export const meta: MetaFunction = () => {
   return [
@@ -18,27 +20,78 @@ export default function Index() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const form = e.currentTarget;
     const formData = new FormData(form);
-
     const file = formData.get("file") as File;
-    const session = crypto.randomUUID();
+    const language = formData.get("language") as string;
 
-    formData.append("session", session);
+    const session = crypto.randomUUID();
     setSessionId(session);
     setFileName(file.name);
-    setTargetLang(formData.get("language") as string);
+    setTargetLang(language);
     setIsTranslating(true);
 
-    try {
-      await fetch("/resources/translate", {
-        method: "POST",
-        body: formData,
-      });
-    } catch (err) {
-      alert("번역 요청에 실패했습니다. 다시 시도해 주세요.");
-      console.error("번역 에러: ", err);
+    const buffer = await file.arrayBuffer();
+    const content = new TextDecoder().decode(buffer);
+    const ext = file.name.split(".").pop()?.toLowerCase();
+    const isSRT = ext === "srt";
+    const isSMI = ext === "smi";
+
+    if (!isSRT && !isSMI) {
+      alert("지원하지 않는 파일 형식입니다.");
+      return;
     }
+
+    const parsed = isSRT ? parseSRT(content) : parseSMI(content);
+    const chunkSize = 50;
+    const chunkCount = Math.ceil(parsed.length / chunkSize);
+    const cache: Record<number, string> = {};
+
+    for (let i = 0; i < chunkCount; i++) {
+      const start = i * chunkSize;
+      const end = Math.min(start + chunkSize, parsed.length);
+      const chunk = parsed.slice(start, end);
+
+      const chunkFormData = new FormData();
+      chunkFormData.append("session", session);
+      chunkFormData.append("language", language);
+      chunkFormData.append("chunkIndex", i.toString());
+      chunkFormData.append("startIndex", start.toString());
+      chunkFormData.append("subtitles", JSON.stringify(chunk));
+      chunkFormData.append("fileName", file.name);
+
+      const res = await fetch("/resources/translate/chunk", {
+        method: "POST",
+        body: chunkFormData,
+      });
+
+      if (!res.ok) {
+        alert("❌ 번역 중 문제가 발생했습니다.");
+        setIsTranslating(false);
+        return;
+      }
+
+      const result = await res.json();
+      Object.assign(cache, result.translated);
+    }
+
+    const finalOutput = isSRT
+      ? stringifySRT(
+          applyCacheToSubtitles<Subtitle>(parsed as Subtitle[], cache)
+        )
+      : stringifySMI(
+          applyCacheToSubtitles<SmiSubtitle>(parsed as SmiSubtitle[], cache)
+        );
+
+    const blob = new Blob([finalOutput], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `translated_${file.name}`;
+    a.click();
+    URL.revokeObjectURL(url);
+    setIsTranslating(false);
   };
 
   return (
@@ -54,14 +107,7 @@ export default function Index() {
         </select>
         <button type="submit">번역 시작</button>
       </Form>
-
-      {isTranslating && sessionId && fileName && (
-        <TranslateProgressAutoDownload
-          session={sessionId}
-          filename={fileName}
-          language={targetLang}
-        />
-      )}
+      {isTranslating && <p>⏳ 번역 중입니다...</p>}
     </main>
   );
 }
