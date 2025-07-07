@@ -1,18 +1,27 @@
 import { SubtitleItem } from "@/types/subtitle";
 import axios from "axios";
 
+const API_URL = "https://libretranslate.de/translate";
+
 export class SubtitleTranslator {
   static async translate(text: string, targetLang: string): Promise<string> {
+    if (!text || text.trim().length === 0) {
+      return text;
+    }
+
     const response = await axios.post(
-      "https://libretranslate.com/translate",
+      API_URL,
       {
         q: text,
-        source: "auto",
+        source: "ko",
         target: targetLang,
         format: "text",
       },
       {
-        headers: { accept: "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
       }
     );
 
