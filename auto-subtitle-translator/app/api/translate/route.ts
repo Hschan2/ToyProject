@@ -1,35 +1,30 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
+  const body = await req.json();
+  const { q, source, target } = body;
+
+  const encodedText = encodeURIComponent(q);
+  const src = source === "auto" ? "auto" : source;
+  const url = `https://lingva.ml/api/v1/${src}/${target}/${encodedText}`;
+
   try {
-    const body = await req.json();
+    const res = await fetch(url);
 
-    const response = await fetch("https://libretranslate.de/translate", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(body),
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      return NextResponse.json(errorData, { status: response.status });
+    if (!res.ok) {
+      const text = await res.text();
+      return NextResponse.json(
+        { error: "번역 요청 실패", detail: text },
+        { status: res.status }
+      );
     }
 
-    const data = await response.json();
-    return NextResponse.json(data);
-  } catch (error: unknown) {
-    let errorMessage = "서버 오류: 번역에 실패했습니다.";
-
-    if (error instanceof Error) {
-      console.error("⚠️ 서버 프록시 에러:", error.message);
-      errorMessage = error.message;
-    } else {
-      console.error("⚠️ 서버 프록시 에러:", error);
-    }
-
-    return NextResponse.json({ error: errorMessage }, { status: 500 });
+    const data = await res.json();
+    return NextResponse.json({ translatedText: data.translation });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "서버 오류", detail: String(error) },
+      { status: 500 }
+    );
   }
 }

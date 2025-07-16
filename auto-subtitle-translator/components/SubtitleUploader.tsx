@@ -4,14 +4,16 @@ import { SubtitleFormatter } from "@/lib/SubtitleFormatter";
 import { SubtitleParser } from "@/lib/SubtitleParser";
 import React, { useState } from "react";
 import { SubtitleItem } from "@/types/subtitle";
-import { detectLang } from "@/utils/DetectLang";
 import axios from "axios";
-import pLimit from "p-limit";
+
+const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
 export default function SubtitleUploader() {
   const [targetLang, setTargetLang] = useState("en");
   const [sourceLang, setSourceLang] = useState("auto");
   const [loading, setLoading] = useState(false);
+
+  const translationCache = new Map<string, string>();
 
   const translateText = async (
     text: string,
@@ -20,20 +22,24 @@ export default function SubtitleUploader() {
   ) => {
     if (!text || text.trim().length === 0) return text;
 
-    const actualSource = source === "auto" ? detectLang(text) : source;
+    // 캐시 hit
+    if (translationCache.has(text)) {
+      return translationCache.get(text)!;
+    }
 
     try {
       const res = await axios.post("/api/translate", {
         q: text,
-        source: actualSource,
-        target: target,
-        format: "text",
+        source,
+        target,
       });
 
-      return res.data.translatedText;
+      const translated = res.data.translatedText;
+      translationCache.set(text, translated);
+      await delay(800); // 요청 사이 딜레이
+      return translated;
     } catch (error) {
-      console.error("Unknown error:", error);
-      alert("⚠️ 번역 실패: 일부 자막 문장을 번역할 수 없습니다.");
+      console.error("번역 실패:", error);
       return `[번역 실패] ${text}`;
     }
   };
@@ -43,37 +49,24 @@ export default function SubtitleUploader() {
     targetLang: string,
     sourceLang: string
   ) => {
-    const limit = pLimit(3);
-    let hasFailure = false;
-    const failedLines: string[] = [];
+    const result: SubtitleItem[] = [];
+    let failedCount = 0;
 
-    const translatedSubtitles = await Promise.all(
-      parsed.map((item) =>
-        limit(async () => {
-          const translated = await translateText(
-            item.text,
-            targetLang,
-            sourceLang
-          );
-          if (translated.startsWith("[번역 실패]")) {
-            hasFailure = true;
-            failedLines.push(item.text);
-          }
-          return { ...item, text: translated };
-        })
-      )
-    );
+    for (const item of parsed) {
+      const translated = await translateText(item.text, targetLang, sourceLang);
 
-    if (hasFailure) {
-      alert(
-        `⚠️ ${
-          failedLines.length
-        }개의 문장이 번역되지 않았습니다.\n예시:\n${failedLines
-          .slice(0, 3)
-          .join("\n")}`
-      );
+      if (translated.startsWith("[번역 실패]")) {
+        failedCount++;
+      }
+
+      result.push({ ...item, text: translated });
     }
-    return translatedSubtitles;
+
+    if (failedCount > 0) {
+      alert(`⚠️ ${failedCount}개의 문장이 번역되지 않았습니다.`);
+    }
+
+    return result;
   };
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -108,7 +101,7 @@ export default function SubtitleUploader() {
       URL.revokeObjectURL(a.href);
     } catch (error) {
       console.error(error);
-      alert("⚠️ 자막 처리 중 오류가 발생했습니다.");
+      alert("파일 처리 중 오류가 발생했습니다.");
     } finally {
       setLoading(false);
     }
