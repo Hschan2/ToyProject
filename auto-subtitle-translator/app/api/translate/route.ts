@@ -4,26 +4,30 @@ export async function POST(req: NextRequest) {
   const body = await req.json();
   const { q, source, target } = body;
 
-  const encodedText = encodeURIComponent(q);
-  const src = source === "auto" ? "auto" : source;
-  const url = `https://lingva.ml/api/v1/${src}/${target}/${encodedText}`;
-
   try {
-    const res = await fetch(url);
+    const res = await fetch("https://papago.naver.com/apis/n2mt/translate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        "User-Agent": "Mozilla/5.0",
+        Accept: "*/*",
+      },
+      body: `source=${source}&target=${target}&text=${encodeURIComponent(q)}`,
+    });
 
     if (!res.ok) {
-      const text = await res.text();
+      const errorText = await res.text();
       return NextResponse.json(
-        { error: "번역 요청 실패", detail: text },
+        { error: "Papago 응답 실패", detail: errorText },
         { status: res.status }
       );
     }
 
-    const data = await res.json();
-    return NextResponse.json({ translatedText: data.translation });
+    const json = await res.json();
+    return NextResponse.json({ translatedText: json.translatedText });
   } catch (error) {
     return NextResponse.json(
-      { error: "서버 오류", detail: String(error) },
+      { error: "Papago 요청 실패", detail: String(error) },
       { status: 500 }
     );
   }

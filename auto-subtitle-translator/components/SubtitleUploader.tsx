@@ -22,7 +22,6 @@ export default function SubtitleUploader() {
   ) => {
     if (!text || text.trim().length === 0) return text;
 
-    // 캐시 hit
     if (translationCache.has(text)) {
       return translationCache.get(text)!;
     }
@@ -36,7 +35,7 @@ export default function SubtitleUploader() {
 
       const translated = res.data.translatedText;
       translationCache.set(text, translated);
-      await delay(800); // 요청 사이 딜레이
+      await delay(800); // 딜레이 유지
       return translated;
     } catch (error) {
       console.error("번역 실패:", error);
@@ -144,7 +143,11 @@ export default function SubtitleUploader() {
         <option value="zh">중국어</option>
       </select>
 
-      {loading && <p className="mt-4 text-blue-600">🔄 번역 중입니다...</p>}
+      {loading && (
+        <p className="mt-4 text-blue-600">
+          🔄 번역 중입니다. 많은 시간이 소요됩니다. 종료하지 말고 기다려 주세요.
+        </p>
+      )}
     </div>
   );
 }
