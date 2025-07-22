@@ -1,72 +1,15 @@
 "use client";
 
-import { SubtitleFormatter } from "@/lib/SubtitleFormatter";
-import { SubtitleParser } from "@/lib/SubtitleParser";
 import React, { useState } from "react";
 import { SubtitleItem } from "@/types/subtitle";
-import axios from "axios";
-
-const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
+import { SubtitleParser } from "@/lib/SubtitleParser";
+import { SubtitleFormatter } from "@/lib/SubtitleFormatter";
+import { translateSubtitles } from "@/utils/translateSubtitles";
 
 export default function SubtitleUploader() {
   const [targetLang, setTargetLang] = useState("en");
   const [sourceLang, setSourceLang] = useState("auto");
   const [loading, setLoading] = useState(false);
-
-  const translationCache = new Map<string, string>();
-
-  const translateText = async (
-    text: string,
-    target: string,
-    source: string
-  ) => {
-    if (!text || text.trim().length === 0) return text;
-
-    if (translationCache.has(text)) {
-      return translationCache.get(text)!;
-    }
-
-    try {
-      const res = await axios.post("/api/translate", {
-        q: text,
-        source,
-        target,
-      });
-
-      const translated = res.data.translatedText;
-      translationCache.set(text, translated);
-      await delay(800); // 딜레이 유지
-      return translated;
-    } catch (error) {
-      console.error("번역 실패:", error);
-      return `[번역 실패] ${text}`;
-    }
-  };
-
-  const translateSubtitles = async (
-    parsed: SubtitleItem[],
-    targetLang: string,
-    sourceLang: string
-  ) => {
-    const result: SubtitleItem[] = [];
-    let failedCount = 0;
-
-    for (const item of parsed) {
-      const translated = await translateText(item.text, targetLang, sourceLang);
-
-      if (translated.startsWith("[번역 실패]")) {
-        failedCount++;
-      }
-
-      result.push({ ...item, text: translated });
-    }
-
-    if (failedCount > 0) {
-      alert(`⚠️ ${failedCount}개의 문장이 번역되지 않았습니다.`);
-    }
-
-    return result;
-  };
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -77,7 +20,8 @@ export default function SubtitleUploader() {
     try {
       const content = await file.text();
       const isSMI = SubtitleParser.isSMI(content);
-      const parsed = isSMI
+
+      const parsed: SubtitleItem[] = isSMI
         ? SubtitleParser.parseSMI(content)
         : SubtitleParser.parseSRT(content);
 
@@ -98,9 +42,9 @@ export default function SubtitleUploader() {
       a.download = `translated_${file.name.replace(/\.[^/.]+$/, ext)}`;
       a.click();
       URL.revokeObjectURL(a.href);
-    } catch (error) {
-      console.error(error);
-      alert("파일 처리 중 오류가 발생했습니다.");
+    } catch (err) {
+      console.error(err);
+      alert("❌ 파일 처리 또는 번역 중 오류가 발생했습니다.");
     } finally {
       setLoading(false);
     }
