@@ -9,7 +9,7 @@ const cache = new Map<string, string>();
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-async function translateViaPapago(
+export async function translateViaPapago(
   text: string,
   source: string,
   target: string
@@ -66,7 +66,7 @@ async function translateViaLingva(
   }
 }
 
-async function translateLine(
+export async function translateLine(
   text: string,
   source: string,
   target: string
