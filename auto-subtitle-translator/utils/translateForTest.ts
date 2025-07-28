@@ -1,8 +1,8 @@
 import { SubtitleItem } from "@/types/subtitle";
-import { translateLine } from "./translateSubtitles";
+import { translateViaPapago, translateViaLingva } from "./translateSubtitles";
 
 /**
- * p-limit 없이 간단히 순차적으로 처리하는 테스트 전용 함수
+ * Papago 실패 시 Lingva로 fallback하는 테스트 전용 함수 (p-limit 제거)
  */
 export async function translateSubtitlesForTest(
   parsedSubtitles: SubtitleItem[],
@@ -12,7 +12,15 @@ export async function translateSubtitlesForTest(
   const results: SubtitleItem[] = [];
 
   for (const item of parsedSubtitles) {
-    const translated = await translateLine(item.text, sourceLang, targetLang);
+    let translated: string;
+
+    try {
+      translated = await translateViaPapago(item.text, sourceLang, targetLang);
+    } catch (error) {
+      translated = await translateViaLingva(item.text, sourceLang, targetLang);
+      console.error(`파파고 번역 실패 뒤 Lingva 번역 시도: ${error}`);
+    }
+
     results.push({
       ...item,
       text: translated,
