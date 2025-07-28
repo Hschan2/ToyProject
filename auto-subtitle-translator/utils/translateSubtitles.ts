@@ -44,7 +44,7 @@ export async function translateViaPapago(
   }
 }
 
-async function translateViaLingva(
+export async function translateViaLingva(
   text: string,
   source: string,
   target: string
