@@ -8,7 +8,7 @@ const config: Config = {
     "^@/(.*)$": "<rootDir>/$1", // tsconfig paths 호환
   },
   transformIgnorePatterns: [
-    "/node_modules/(?!p-limit|yocto-queue)", // ESM으로 배포된 외부 모듈도 변환
+    "node_modules/(?!(p-limit|yocto-queue)/)", // ESM으로 배포된 외부 모듈도 변환
   ],
 };
 
