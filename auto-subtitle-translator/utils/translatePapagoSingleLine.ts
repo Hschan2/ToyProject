@@ -1,4 +1,3 @@
-// src/utils/translatePapagoSingleLine.ts
 import axios from "axios";
 
 // 실제 Papago 호출 함수
