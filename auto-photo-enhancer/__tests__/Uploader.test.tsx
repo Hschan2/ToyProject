@@ -6,10 +6,11 @@ describe("Uploader", () => {
     const mockFn = jest.fn();
     render(<Uploader onFileSelect={mockFn} />);
 
-    const input = screen.getByLabelText("사진/동영상 첨부");
+    const input = screen.getByLabelText("사진/동영상 첨부") as HTMLInputElement;
+
     const file = new File(["dummy"], "test.png", { type: "image/png" });
 
-    fireEvent.change(input.querySelector("input")!, {
+    fireEvent.change(input, {
       target: { files: [file] },
     });
 
