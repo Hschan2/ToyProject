@@ -1,9 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { moodStyles, styles } from "@/constants/filterStyles";
-import { generateCssFilter } from "@/utils/generateCssFilter";
-import FilterButton from "./ui/FilterButton";
+import FilterButtonList from "./FilterButtonList";
 import { useVideoFilter } from "@/hooks/useVideoFilter";
 
 const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
@@ -60,33 +58,12 @@ const VideoEditor = ({ videoSrc }: { videoSrc: string }) => {
         }}
       />
 
-      <div className="flex flex-wrap justify-center gap-2 mb-4 px-10">
-        {styles.map(({ brand, tone, title }) => {
-          const key = `${brand}-${tone}`;
-          return (
-            <FilterButton
-              key={key}
-              label={`AI ${brand} - ${title}`}
-              selected={selectedKey === key}
-              loading={loadingKey === key}
-              onClick={() => applyAIStyle(brand, tone, key)}
-              mood={false}
-            />
-          );
-        })}
-      </div>
-
-      <div className="flex flex-wrap justify-center gap-2 mb-4 px-10">
-        {moodStyles.map(({ title, tone }) => (
-          <FilterButton
-            key={title}
-            label={`Default - ${title}`}
-            selected={selectedKey === title}
-            onClick={() => applyMoodStyle(title, generateCssFilter(tone))}
-            mood={true}
-          />
-        ))}
-      </div>
+      <FilterButtonList
+        selectedKey={selectedKey}
+        loadingKey={loadingKey}
+        onSelectAIStyle={applyAIStyle}
+        onSelectMoodStyle={applyMoodStyle}
+      />
 
       <div className="flex gap-4 mt-3">
         <button

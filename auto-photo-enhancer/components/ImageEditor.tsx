@@ -1,8 +1,6 @@
 import { downloadCanvas } from "@/utils/downloadCanvas";
-import { moodStyles, styles } from "@/constants/filterStyles";
-import { generateCssFilter } from "@/utils/generateCssFilter";
 import { useImageFilter } from "@/hooks/useImageFilter";
-import FilterButton from "./ui/FilterButton";
+import FilterButtonList from "./FilterButtonList";
 
 const ImageEditor = ({ imageSrc }: { imageSrc: string }) => {
   const {
@@ -21,34 +19,12 @@ const ImageEditor = ({ imageSrc }: { imageSrc: string }) => {
         className="border shadow-md mb-4 max-w-[50%] h-auto"
       />
 
-      <div className="flex flex-wrap justify-center gap-2 mb-4 px-10">
-        {styles.map(({ brand, tone, title }) => {
-          const key = `${brand}-${tone}`;
-          const label = `AI ${brand} - ${title}`;
-          return (
-            <FilterButton
-              key={key}
-              label={label}
-              selected={selectedKey === `${brand}-${tone}`}
-              loading={loadingKey === key}
-              onClick={() => selectAIStyle(brand, tone)}
-              mood={false}
-            />
-          );
-        })}
-      </div>
-
-      <div className="flex flex-wrap justify-center gap-2 mb-4 px-10">
-        {moodStyles.map(({ title, tone }) => (
-          <FilterButton
-            key={title}
-            label={`Default - ${title}`}
-            selected={selectedKey === title}
-            onClick={() => selectMoodStyle(title, generateCssFilter(tone))}
-            mood={true}
-          />
-        ))}
-      </div>
+      <FilterButtonList
+        selectedKey={selectedKey}
+        loadingKey={loadingKey}
+        onSelectAIStyle={(brand, tone, key) => selectAIStyle(brand, tone)}
+        onSelectMoodStyle={selectMoodStyle}
+      />
 
       <div className="flex gap-4 justify-center mt-3">
         <button

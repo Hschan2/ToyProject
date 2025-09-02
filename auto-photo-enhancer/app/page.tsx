@@ -2,11 +2,11 @@
 
 import ImageEditor from "../components/ImageEditor";
 import VideoEditor from "@/components/VideoEditor";
-import { useUploader } from "@/hooks/useUploader";
+import { useMediaStore } from "@/store/mediaStore";
 import Uploader from "@/components/Uploader";
 
 export default function Home() {
-  const { imageSrc, videoSrc, handleUpload } = useUploader();
+  const { imageSrc, videoSrc, handleUpload } = useMediaStore();
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4">
