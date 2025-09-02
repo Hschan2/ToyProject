@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import axios from "axios";
+import { generateOpenRouterPrompt } from "@/utils/prompts";
 import { OpenRouterResponse } from "@/types/api";
 
 export async function POST(req: NextRequest) {
@@ -7,56 +7,54 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { brand, tone } = body;
 
-    const prompt = `
-      당신은 이미지 색감 보정 전문가입니다. pillter_, 5gilsu, picn2k의 사진 스타일을 참고하여, ${brand} 카메라의 ${tone}한 분위기의 사진을 만들고 싶습니다.
-      CSS filter로 사용할 수 있도록 아래와 같은 JSON 형식으로 필터 조정값만 반환해주세요. 설명은 포함하지 마세요.
+    if (!brand || !tone) {
+      return NextResponse.json(
+        { error: "'brand' and 'tone' are required" },
+        { status: 400 }
+      );
+    }
 
-      예시.
-      {
-        brightness?: number;
-        contrast?: number;
-        saturation?: number;
-        saturate?: number;
-        grayscale?: number;
-        sepia?: number;
-        invert?: number;
-        "hue-rotate"?: number;
-        opacity?: number;
-        blur?: number;
-      }
-    `;
+    const prompt = generateOpenRouterPrompt(brand, tone);
 
-    const response = await axios.post<OpenRouterResponse>(
-      "https://openrouter.ai/api/v1/chat/completions",
-      {
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        "Content-Type": "application/json",
+        "X-Title": "Auto Photo Enhancer", // Or a project-specific title
+      },
+      body: JSON.stringify({
         model: "mistralai/mistral-7b-instruct:free",
         messages: [
-          { role: "system", content: "이미지 필터 조정값 추천 AI입니다." },
+          { role: "system", content: "You are an AI that recommends image filter adjustment values." },
           { role: "user", content: prompt },
         ],
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
-          "Content-Type": "application/json",
-          "X-Title": "PhotoEditor",
-        },
-      }
-    );
+      }),
+    });
 
-    const content = response.data.choices[0].message.content.trim();
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("OpenRouter API Error:", errorText);
+      return NextResponse.json(
+        { error: `API error: ${response.statusText}` },
+        { status: response.status }
+      );
+    }
+
+    const data: OpenRouterResponse = await response.json();
+    const content = data.choices[0].message.content.trim();
     const jsonMatch = content.match(/\{[\s\S]*?\}/);
 
     if (!jsonMatch) {
       return NextResponse.json(
-        { error: "Invalid response format" },
-        { status: 400 }
+        { error: "Invalid response format from AI" },
+        { status: 500 }
       );
     }
 
     return NextResponse.json(JSON.parse(jsonMatch[0]));
   } catch (err) {
-    console.error("OpenRouter 호출 오류:", err);
-    return NextResponse.json({ error: "API 호출 실패" }, { status: 500 });
+    console.error("Error in OpenRouter route:", err);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }

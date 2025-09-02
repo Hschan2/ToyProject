@@ -1,5 +1,5 @@
 import { generateCssFilter } from "@/utils/generateCssFilter";
-import { callOpenRouterAPI } from "@/utils/openRouter";
+import { callOpenRouterAPI } from "@/utils/api";
 import { useRef, useState } from "react";
 import { useCanvasDrawer } from "./useCanvasDrawer";
 import { useMediaRecorder } from "./useMediaRecorder";

@@ -1,8 +1,9 @@
 import { useCallback, useRef, useState } from 'react';
+import { convertWebMToMP4 } from '@/utils/api';
 
 export const useMediaRecorder = (
-  canvasRef: React.RefObject<HTMLCanvasElement>,
-  videoRef: React.RefObject<HTMLVideoElement>,
+  canvasRef: React.RefObject<HTMLCanvasElement | null>,
+  videoRef: React.RefObject<HTMLVideoElement | null>,
   onRecordingStop: () => void
 ) => {
   const recorderRef = useRef<MediaRecorder | null>(null);
@@ -40,17 +41,7 @@ export const useMediaRecorder = (
 
       try {
         const webmBlob = new Blob(chunksRef.current, { type: 'video/webm' });
-        const formData = new FormData();
-        formData.append('file', webmBlob, 'input.webm');
-
-        const response = await fetch('/api/convert', {
-          method: 'POST',
-          body: formData,
-        });
-
-        if (!response.ok) throw new Error('MP4 변환 실패');
-
-        const mp4Blob = await response.blob();
+        const mp4Blob = await convertWebMToMP4(webmBlob);
 
         if (downloadUrl) {
           URL.revokeObjectURL(downloadUrl);

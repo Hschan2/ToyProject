@@ -1,9 +1,9 @@
 import { useCallback, useRef } from 'react';
 
 export const useCanvasDrawer = (
-  videoRef: React.RefObject<HTMLVideoElement>,
-  canvasRef: React.RefObject<HTMLCanvasElement>,
-  filterRef: React.RefObject<string>
+  videoRef: React.RefObject<HTMLVideoElement | null>,
+  canvasRef: React.RefObject<HTMLCanvasElement | null>,
+  filterRef: React.RefObject<string | null>
 ) => {
   const drawLoopRef = useRef<number | null>(null);
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useCanvasImage } from "./useCanvasImage";
-import { callOpenRouterAPI } from "@/utils/openRouter";
+import { callOpenRouterAPI } from "@/utils/api";
 import { generateCssFilter } from "@/utils/generateCssFilter";
 
 export const useImageFilter = (imageSrc: string) => {
