@@ -4,11 +4,9 @@ import { lazy } from 'react'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { Provider } from 'react-redux'
 import { RecoilRoot } from 'recoil'
 import { createGlobalStyle } from 'styled-components'
 import dynamic from 'next/dynamic'
-import { store } from '../store'
 import useScrollRestoration from '../hooks/useScrollRestoration'
 
 const LazyMoveUp = lazy(() => import('../components/button/to-up-button'))
@@ -61,20 +59,18 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
-        <Provider store={store}>
-          <div
-            ref={scrollableDivRef}
-            style={{ overflow: 'auto', height: '100vh' }}
-          >
-            <Layout>
-              <>
-                <GlobalStyle />
-                <Component {...pageProps} />
-                <LazyMoveUp scrollableDivRef={scrollableDivRef} />
-              </>
-            </Layout>
-          </div>
-        </Provider>
+        <div
+          ref={scrollableDivRef}
+          style={{ overflow: 'auto', height: '100vh' }}
+        >
+          <Layout>
+            <>
+              <GlobalStyle />
+              <Component {...pageProps} />
+              <LazyMoveUp scrollableDivRef={scrollableDivRef} />
+            </>
+          </Layout>
+        </div>
       </RecoilRoot>
     </QueryClientProvider>
   )

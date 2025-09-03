@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import axios from 'axios'
+import apiClient from '../../lib/apiClient'
 import { BasicNewsProps, RecommendNewsRequest } from '../../types/type'
 
 let cachedRecommendedNews: BasicNewsProps | null = null
@@ -38,9 +38,7 @@ export default async function handler(
 ${newsList
   .map(
     (n, i) =>
-      `${i + 1}. 제목: ${n.title}, 링크: ${n.link}, 설명: ${
-        n.description
-      }, 날짜: ${n.pubDate || n.publishedAt}`,
+      `${i + 1}. 제목: ${n.title}, 링크: ${n.link}, 설명: ${n.description}, 날짜: ${n.pubDate || n.publishedAt}`,
   )
   .join('\n')}
 `
@@ -51,7 +49,7 @@ ${newsList
         ? 'http://localhost:3000'
         : 'https://quick-news-tau.vercel.app/'
 
-    const response = await axios.post(
+    const response = await apiClient.post(
       'https://openrouter.ai/api/v1/chat/completions',
       {
         model: 'mistralai/mistral-7b-instruct:free',
@@ -67,7 +65,6 @@ ${newsList
           Referer: referer,
           'X-Title': 'Quick-News',
         },
-        timeout: 5000,
       },
     )
 
@@ -80,7 +77,7 @@ ${newsList
     const { pubDate, ...rest } = parsed
 
     const safePared = !Number.isNaN(new Date(pubDate).getTime())
-      ? { ...rest, pubDate }
+      ? { ...rest, pubDate } 
       : { ...rest }
 
     if (sourceType === 'main') cachedRecommendedNews = safePared

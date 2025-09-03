@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import axios from 'axios'
+import apiClient from '../../lib/apiClient'
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,7 +12,7 @@ export default async function handler(
     'public, max-age=300, stale-while-revalidate=59',
   )
   try {
-    const apiResponse = await axios.get(
+    const apiResponse = await apiClient.get(
       `https://openapi.naver.com/v1/search/news.json`,
       {
         headers: {
