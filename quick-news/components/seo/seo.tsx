@@ -2,15 +2,15 @@ import Head from 'next/head'
 import { useState } from 'react'
 import useCurrentUrl from '../../hooks/useCurrentUrl'
 import { SEOProps } from '../../types/type'
-import useHTMLParse from '../../hooks/news/useHTMLParse'
-import useCheckEffect from '../../hooks/useCheckEffect'
+import { StripHtmlTags } from '../../utils/html'
+import useIsomorphicLayoutEffect from '../../hooks/useIsomorphicLayoutEffect'
 
 export default function SEO({ title, description }: SEOProps) {
   const nowLocation = useCurrentUrl()
   const [isPageLoaded, setIsPageLoaded] = useState(false)
-  const parseTitle = useHTMLParse(title)
+  const parseTitle = StripHtmlTags(title)
 
-  useCheckEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     setIsPageLoaded(true)
   }, [])
 

@@ -1,8 +1,9 @@
-export const StripHtmlTags = (html: string) => {
-  if (typeof html !== 'string') return ''
+export const StripHtmlTags = (html: string): string => {
+  if (typeof window === 'undefined' || typeof html !== 'string') {
+    return html
+  }
 
-  const replaceHtmlTags = html.replace(/<\/?[^>]+>/gi, '')
-  const txt = document.createElement('textarea')
-  txt.innerHTML = replaceHtmlTags
-  return txt.value
+  const doc = new DOMParser().parseFromString(html, 'text/html')
+  return doc.body.textContent || ''
 }
+

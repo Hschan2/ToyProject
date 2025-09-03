@@ -24,9 +24,7 @@ function NewsCategoryItem({ article }: CategoryNewsList) {
     }
   }, [article])
 
-  const onClickNews = () => {
-    localStorage.setItem(`article-${article.link}`, JSON.stringify(article))
-  }
+  const articleData = btoa(encodeURIComponent(JSON.stringify(article)))
 
   return (
     <NewsContainer key={article.id}>
@@ -35,10 +33,8 @@ function NewsCategoryItem({ article }: CategoryNewsList) {
           <Link
             href={{
               pathname: '/page/detail',
-              query: { key: encodeURIComponent(article.link) },
+              query: { data: articleData },
             }}
-            onClick={onClickNews}
-            as={`/page/detail/${article.title}`}
             title={`${article.title} 페이지로 이동`}
           >
             <LimitLineTitle>{article.title.split(' - ')[0]}</LimitLineTitle>

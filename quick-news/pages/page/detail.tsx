@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react'
+import React, { memo } from 'react'
 import { useRouter } from 'next/router'
 import { format } from 'date-fns'
 import Image from 'next/image'
@@ -18,27 +18,25 @@ import { BasicNewsProps } from '../../types/type'
 
 function Detail() {
   const router = useRouter()
-  const { key } = router.query
-  const [articleData, setArticleData] = useState<BasicNewsProps | null>(null)
-  const publishedDate = articleData?.pubDate || articleData?.publishedAt
+  const { data } = router.query
 
-  useEffect(() => {
-    if (key) {
-      const decodedKey = decodeURIComponent(key as string)
-      const storedArticle = localStorage.getItem(`article-${decodedKey}`)
-      if (storedArticle) {
-        try {
-          setArticleData(JSON.parse(storedArticle))
-        } catch (error) {
-          if (process.env.NODE_ENV !== 'production') {
-            console.error('데이터 가져오기 실패', error)
-          }
-        }
+  let articleData: BasicNewsProps | null = null
+
+  if (data && typeof data === 'string') {
+    try {
+      articleData = JSON.parse(decodeURIComponent(atob(data)))
+    } catch (error) {
+      if (process.env.NODE_ENV !== 'production') {
+        console.error('Failed to parse article data from URL:', error)
       }
     }
-  }, [key])
+  }
 
-  if (!articleData) return <div>데이터를 가져오지 못했습니다.</div>
+  if (!articleData) {
+    return <div>유효하지 않은 기사 데이터입니다.</div>
+  }
+
+  const publishedDate = articleData.pubDate || articleData.publishedAt
 
   return (
     <DetailWrapper>
