@@ -11,7 +11,8 @@
     "example": {
       "english": "She ate a red apple.",
       "japanese": "彼女は赤いりんごを食べました。",
-      "chinese": "她吃了一个红苹果。"
+      "chinese": "她吃了一个红苹果。",
+      "korean": "그녀는 빨간 사과를 먹었다."
     }
   },
   {
@@ -26,7 +27,8 @@
     "example": {
       "english": "I am reading a fascinating book.",
       "japanese": "私は魅力的な本を読んでいます。",
-      "chinese": "我正在读一本引人入胜的书。"
+      "chinese": "我正在读一本引人入胜的书。",
+      "korean": "나는 매혹적인 책을 읽고 있다."
     }
   },
   {
@@ -41,7 +43,8 @@
     "example": {
       "english": "Please drink plenty of water.",
       "japanese": "水をたくさん飲んでください。",
-      "chinese": "请多喝水。"
+      "chinese": "请多喝水。",
+      "korean": "물을 충분히 마시세요."
     }
   },
   {
@@ -56,7 +59,8 @@
     "example": {
       "english": "A good friend is a treasure.",
       "japanese": "良い友達は宝物です。",
-      "chinese": "好朋友是财富。"
+      "chinese": "好朋友是财富。",
+      "korean": "좋은 친구는 보물이다."
     }
   },
   {
@@ -71,7 +75,8 @@
     "example": {
       "english": "The children are going to school.",
       "japanese": "子供たちは学校に行きます。",
-      "chinese": "孩子们要去上学了。"
+      "chinese": "孩子们要去上学了。",
+      "korean": "아이들이 학교에 가고 있다."
     }
   },
   {
@@ -86,7 +91,8 @@
     "example": {
       "english": "Love is a beautiful feeling.",
       "japanese": "愛は美しい感情です。",
-      "chinese": "爱是一种美好的感觉。"
+      "chinese": "爱是一种美好的感觉。",
+      "korean": "사랑은 아름다운 감정이다."
     }
   },
   {
@@ -101,7 +107,8 @@
     "example": {
       "english": "She looks very happy today.",
       "japanese": "彼女は今日とても幸せそうです。",
-      "chinese": "她今天看起来很开心。"
+      "chinese": "她今天看起来很开心。",
+      "korean": "그녀는 오늘 매우 행복해 보인다."
     }
   },
   {
@@ -116,7 +123,8 @@
     "example": {
       "english": "He is working on his computer.",
       "japanese": "彼はコンピューターで作業しています。",
-      "chinese": "他正在用电脑工作。"
+      "chinese": "他正在用电脑工作。",
+      "korean": "그는 컴퓨터로 작업하고 있다."
     }
   },
   {
@@ -131,7 +139,8 @@
     "example": {
       "english": "I enjoy listening to classical music.",
       "japanese": "私はクラシック音楽を聴くのが好きです。",
-      "chinese": "我喜欢听古典音乐。"
+      "chinese": "我喜欢听古典音乐。",
+      "korean": "나는 클래식 음악 듣는 것을 즐긴다."
     }
   },
   {
@@ -146,7 +155,8 @@
     "example": {
       "english": "The sky is so blue and clear.",
       "japanese": "空はとても青く澄んでいます。",
-      "chinese": "天空如此湛蓝清澈。"
+      "chinese": "天空如此湛蓝清澈。",
+      "korean": "하늘이 매우 파랗고 맑다."
     }
   },
   {
@@ -161,7 +171,8 @@
     "example": {
       "english": "That is a very old tree.",
       "japanese": "それはとても古い木です。",
-      "chinese": "那是一棵很老的树。"
+      "chinese": "那是一棵很老的树。",
+      "korean": "저것은 매우 오래된 나무이다."
     }
   },
   {
@@ -176,7 +187,8 @@
     "example": {
       "english": "Follow this road for two miles.",
       "japanese": "この道を2マイル進んでください。",
-      "chinese": "沿着这条路走两英里。"
+      "chinese": "沿着这条路走两英里。",
+      "korean": "이 길을 따라 2마일 가세요."
     }
   },
   {
@@ -191,7 +203,8 @@
     "example": {
       "english": "I need a cup of coffee in the morning.",
       "japanese": "朝はコーヒーが一杯必要です。",
-      "chinese": "我早上需要一杯咖啡。"
+      "chinese": "我早上需要一杯咖啡。",
+      "korean": "나는 아침에 커피 한 잔이 필요하다."
     }
   },
   {
@@ -206,7 +219,8 @@
     "example": {
       "english": "Let's watch a movie tonight.",
       "japanese": "今夜、映画を見ましょう。",
-      "chinese": "我们今晚看电影吧。"
+      "chinese": "我们今晚看电影吧。",
+      "korean": "오늘 밤 영화 보자."
     }
   },
   {
@@ -221,7 +235,8 @@
     "example": {
       "english": "My family is very important to me.",
       "japanese": "私の家族は私にとってとても大切です。",
-      "chinese": "我的家人对我很重要。"
+      "chinese": "我的家人对我很重要。",
+      "korean": "나의 가족은 나에게 매우 중요하다."
     }
   },
   {
@@ -236,7 +251,8 @@
     "example": {
       "english": "The sun is shining brightly.",
       "japanese": "太陽が明るく輝いています。",
-      "chinese": "阳光灿烂。"
+      "chinese": "阳光灿烂。",
+      "korean": "태양이 밝게 빛나고 있다."
     }
   },
   {
@@ -251,7 +267,8 @@
     "example": {
       "english": "The moon is full tonight.",
       "japanese": "今夜は満月です。",
-      "chinese": "今晚是满月。"
+      "chinese": "今晚是满月。",
+      "korean": "오늘 밤은 보름달이다."
     }
   },
   {
@@ -266,7 +283,8 @@
     "example": {
       "english": "Time is the most valuable thing.",
       "japanese": "時間は最も貴重なものです。",
-      "chinese": "时间是最宝贵的东西。"
+      "chinese": "时间是最宝贵的东西。",
+      "korean": "시간은 가장 소중한 것이다."
     }
   },
   {
@@ -281,7 +299,8 @@
     "example": {
       "english": "I have to work late today.",
       "japanese": "今日は遅くまで働かなければなりません。",
-      "chinese": "我今天得加班。"
+      "chinese": "我今天得加班。",
+      "korean": "나는 오늘 늦게까지 일해야 한다."
     }
   },
   {
@@ -296,7 +315,8 @@
     "example": {
       "english": "Money can't buy happiness.",
       "japanese": "お金で幸せは買えません。",
-      "chinese": "金钱买不到幸福。"
+      "chinese": "金钱买不到幸福。",
+      "korean": "돈으로 행복을 살 수는 없다."
     }
   },
   {
@@ -311,7 +331,8 @@
     "example": {
       "english": "The company will develop a new product.",
       "japanese": "その会社は新製品を開発します。",
-      "chinese": "公司将开发新产品。"
+      "chinese": "公司将开发新产品。",
+      "korean": "그 회사는 새로운 제품을 개발할 것이다."
     }
   },
   {
@@ -326,7 +347,8 @@
     "example": {
       "english": "We need to protect the environment.",
       "japanese": "私たちは環境を守る必要があります。",
-      "chinese": "我们需要保护环境。"
+      "chinese": "我们需要保护环境。",
+      "korean": "우리는 환경을 보호해야 한다."
     }
   },
   {
@@ -341,7 +363,8 @@
     "example": {
       "english": "The government announced new policies.",
       "japanese": "政府は新しい政策を発表しました。",
-      "chinese": "政府宣布了新政策。"
+      "chinese": "政府宣布了新政策。",
+      "korean": "정부는 새로운 정책을 발표했다."
     }
   },
   {
@@ -356,7 +379,8 @@
     "example": {
       "english": "Knowledge is power.",
       "japanese": "知識は力なり。",
-      "chinese": "知识就是力量。"
+      "chinese": "知识就是力量。",
+      "korean": "아는 것이 힘이다."
     }
   },
   {
@@ -371,7 +395,8 @@
     "example": {
       "english": "The tech industry is growing rapidly.",
       "japanese": "テクノロジー産業は急速に成長しています。",
-      "chinese": "科技产业正在迅速发展。"
+      "chinese": "科技产业正在迅速发展。",
+      "korean": "기술 산업이 빠르게 성장하고 있다."
     }
   },
   {
@@ -386,7 +411,8 @@
     "example": {
       "english": "The report provides a detailed analysis.",
       "japanese": "そのレポートは詳細な分析を提供します。",
-      "chinese": "该报告提供了详细的分析。"
+      "chinese": "该报告提供了详细的分析。",
+      "korean": "그 보고서는 상세한 분석을 제공한다."
     }
   },
   {
@@ -401,7 +427,8 @@
     "example": {
       "english": "I am interested in Japanese culture.",
       "japanese": "私は日本の文化に興味があります。",
-      "chinese": "我对日本文化很感兴趣。"
+      "chinese": "我对日本文化很感兴趣。",
+      "korean": "나는 일본 문화에 관심이 있다."
     }
   },
   {
@@ -416,7 +443,8 @@
     "example": {
       "english": "The country's economy is improving.",
       "japanese": "その国の経済は改善しています。",
-      "chinese": "该国经济正在改善。"
+      "chinese": "该国经济正在改善。",
+      "korean": "그 나라의 경제가 개선되고 있다."
     }
   },
   {
@@ -431,7 +459,8 @@
     "example": {
       "english": "There is no evidence to support his claim.",
       "japanese": "彼の主張を裏付ける証拠はありません。",
-      "chinese": "没有证据支持他的说法。"
+      "chinese": "没有证据支持他的说法。",
+      "korean": "그의 주장을 뒷받침할 증거가 없다."
     }
   },
   {
@@ -446,7 +475,8 @@
     "example": {
       "english": "We need a new marketing strategy.",
       "japanese": "私たちは新しいマーケティング戦略が必要です。",
-      "chinese": "我们需要一个新的营销策略。"
+      "chinese": "我们需要一个新的营销策略。",
+      "korean": "우리는 새로운 마케팅 전략이 필요하다."
     }
   },
   {
@@ -461,7 +491,8 @@
     "example": {
       "english": "Technology has changed our lives.",
       "japanese": "技術は私たちの生活を変えました。",
-      "chinese": "技术改变了我们的生活。"
+      "chinese": "技术改变了我们的生活。",
+      "korean": "기술은 우리의 삶을 변화시켰다."
     }
   },
   {
@@ -476,7 +507,8 @@
     "example": {
       "english": "He is an active member of the community.",
       "japanese": "彼はコミュニティの積極的なメンバーです。",
-      "chinese": "他是社区的活跃成员。"
+      "chinese": "他是社区的活跃成员。",
+      "korean": "그는 지역 사회의 적극적인 구성원이다."
     }
   },
   {
@@ -491,7 +523,8 @@
     "example": {
       "english": "She works for a non-profit organization.",
       "japanese": "彼女は非営利組織で働いています。",
-      "chinese": "她在一家非营利组织工作。"
+      "chinese": "她在一家非营利组织工作。",
+      "korean": "그녀는 비영리 단체에서 일한다."
     }
   },
   {
@@ -506,7 +539,8 @@
     "example": {
       "english": "The company has a strict privacy policy.",
       "japanese": "その会社には厳格なプライバシーポリシーがあります。",
-      "chinese": "该公司有严格的隐私政策。"
+      "chinese": "该公司有严格的隐私政策。",
+      "korean": "그 회사는 엄격한 개인 정보 보호 정책을 가지고 있다."
     }
   },
   {
@@ -521,7 +555,8 @@
     "example": {
       "english": "He is conducting research on climate change.",
       "japanese": "彼は気候変動に関する研究を行っています。",
-      "chinese": "他正在进行气候变化的研究。"
+      "chinese": "他正在进行气候变化的研究。",
+      "korean": "그는 기후 변화에 대한 연구를 수행하고 있다."
     }
   },
   {
@@ -536,7 +571,8 @@
     "example": {
       "english": "The library is a great resource for students.",
       "japanese": "図書館は学生にとって素晴らしいリソースです。",
-      "chinese": "图书馆是学生的重要资源。"
+      "chinese": "图书馆是学生的重要资源。",
+      "korean": "도서관은 학생들에게 훌륭한 자료이다."
     }
   },
   {
@@ -551,7 +587,8 @@
     "example": {
       "english": "The building has tight security.",
       "japanese": "その建物は厳重なセキュリティが施されています。",
-      "chinese": "这座建筑有严密保安。"
+      "chinese": "这座建筑有严密保安。",
+      "korean": "그 건물은 보안이 철저하다."
     }
   },
   {
@@ -566,7 +603,8 @@
     "example": {
       "english": "He proposed a new theory of evolution.",
       "japanese": "彼は新しい進化論を提唱しました。",
-      "chinese": "他提出了新的进化论。"
+      "chinese": "他提出了新的进化论。",
+      "korean": "그는 새로운 진화론을 제안했다."
     }
   },
   {
@@ -581,7 +619,8 @@
     "example": {
       "english": "The value of this painting is very high.",
       "japanese": "この絵の価値は非常に高いです。",
-      "chinese": "这幅画的价值很高。"
+      "chinese": "这幅画的价值很高。",
+      "korean": "이 그림의 가치는 매우 높다."
     }
   },
   {
@@ -596,7 +635,8 @@
     "example": {
       "english": "What are the benefits of this new system?",
       "japanese": "この新しいシステムの利点は何ですか？",
-      "chinese": "这个新系统有什么好处？"
+      "chinese": "这个新系统有什么好处？",
+      "korean": "이 새로운 시스템의 이점은 무엇입니까?"
     }
   },
   {
@@ -611,7 +651,8 @@
     "example": {
       "english": "Smartphones are now ubiquitous.",
       "japanese": "スマートフォンは今やどこにでもあります。",
-      "chinese": "智能手机现在无处不在。"
+      "chinese": "智能手机现在无处不在。",
+      "korean": "스마트폰은 이제 어디에나 있다."
     }
   },
   {
@@ -626,7 +667,8 @@
     "example": {
       "english": "Fashion is by nature ephemeral.",
       "japanese": "ファッションは本質的に儚いものです。",
-      "chinese": "时尚本质上是短暂的。"
+      "chinese": "时尚本质上是短暂的。",
+      "korean": "패션은 본질적으로 덧없다."
     }
   },
   {
@@ -641,7 +683,8 @@
     "example": {
       "english": "The king was surrounded by sycophants.",
       "japanese": "王はおべっか使いに囲まれていました。",
-      "chinese": "国王被马屁精包围着。"
+      "chinese": "国王被马屁精包围着。",
+      "korean": "왕은 아첨꾼들에게 둘러싸여 있었다."
     }
   },
   {
@@ -656,7 +699,8 @@
     "example": {
       "english": "The instructions were ambiguous.",
       "japanese": "指示は曖昧でした。",
-      "chinese": "说明含糊不清。"
+      "chinese": "说明含糊不清。",
+      "korean": "지시사항이 모호했다."
     }
   },
   {
@@ -671,7 +715,8 @@
     "example": {
       "english": "They took action to mitigate the damage.",
       "japanese": "彼らは損害を緩和するための措置を講じました。",
-      "chinese": "他们采取行动以减轻损害。"
+      "chinese": "他们采取行动以减轻损害。",
+      "korean": "그들은 피해를 완화하기 위해 조치를 취했다."
     }
   },
   {
@@ -686,7 +731,8 @@
     "example": {
       "english": "He was a prolific writer of novels and short stories.",
       "japanese": "彼は小説や短編小説を多作な作家でした。",
-      "chinese": "他是一位多产的小说和短篇故事作家。"
+      "chinese": "他是一位多产的小说和短篇故事作家。",
+      "korean": "그는 소설과 단편 소설을 다작한 작가였다."
     }
   },
   {
@@ -701,7 +747,8 @@
     "example": {
       "english": "She gave an eloquent speech at the conference.",
       "japanese": "彼女は会議で雄弁なスピーチをしました。",
-      "chinese": "她在会议上发表了雄辩的演讲。"
+      "chinese": "她在会议上发表了雄辩的演讲。",
+      "korean": "그녀는 컨퍼런스에서 설득력 있는 연설을 했다."
     }
   },
   {
@@ -716,7 +763,8 @@
     "example": {
       "english": "He is a gregarious and outgoing person.",
       "japanese": "彼は社交的で外向的な人です。",
-      "chinese": "他是一个合群外向的人。"
+      "chinese": "他是一个合群外向的人。",
+      "korean": "그는 사교적이고 외향적인 사람이다."
     }
   },
   {
@@ -731,7 +779,8 @@
     "example": {
       "english": "Change is an inevitable part of life.",
       "japanese": "変化は人生の避けられない部分です。",
-      "chinese": "变化是生活中不可避免的一部分。"
+      "chinese": "变化是生活中不可避免的一部分。",
+      "korean": "변화는 삶의 피할 수 없는 부분이다."
     }
   },
   {
@@ -746,7 +795,8 @@
     "example": {
       "english": "The juxtaposition of old and new buildings was striking.",
       "japanese": "新旧の建物の並置は印象的でした。",
-      "chinese": "新旧建筑的并列令人印象深刻。"
+      "chinese": "新旧建筑的并列令人印象深刻。",
+      "korean": "오래된 건물과 새로운 건물의 병치가 인상적이었다."
     }
   },
   {
@@ -761,7 +811,8 @@
     "example": {
       "english": "The politician tried to obfuscate the issue.",
       "japanese": "その政治家は問題を難読化しようとしました。",
-      "chinese": "政客试图混淆这个问题。"
+      "chinese": "政客试图混淆这个问题。",
+      "korean": "그 정치인은 문제의 본질을 흐리려고 했다."
     }
   },
   {
@@ -776,7 +827,8 @@
     "example": {
       "english": "This discovery shifted the paradigm in physics.",
       "japanese": "この発見は物理学のパラダイムをシフトさせました。",
-      "chinese": "这一发现改变了物理学的范式。"
+      "chinese": "这一发现改变了物理学的范式。",
+      "korean": "이 발견은 물리학의 패러다임을 바꾸었다."
     }
   },
   {
@@ -791,7 +843,8 @@
     "example": {
       "english": "He is the quintessential gentleman.",
       "japanese": "彼は典型的な紳士です。",
-      "chinese": "他是典型的绅士。"
+      "chinese": "他是典型的绅士。",
+      "korean": "그는 전형적인 신사이다."
     }
   },
   {
@@ -806,7 +859,8 @@
     "example": {
       "english": "The agreement was based on reciprocal respect.",
       "japanese": "その合意は相互の尊重に基づいていました。",
-      "chinese": "该协议基于相互尊重。"
+      "chinese": "该协议基于相互尊重。",
+      "korean": "그 합의는 상호 존중을 기반으로 했다."
     }
   },
   {
@@ -821,7 +875,8 @@
     "example": {
       "english": "You should scrutinize the contract before signing.",
       "japanese": "署名する前に契約を精査する必要があります。",
-      "chinese": "签字前应仔细审查合同。"
+      "chinese": "签字前应仔细审查合同。",
+      "korean": "서명하기 전에 계약서를 면밀히 검토해야 한다."
     }
   },
   {
@@ -836,7 +891,8 @@
     "example": {
       "english": "He has a tenuous grasp of the subject.",
       "japanese": "彼はその主題について希薄な理解しかしていません。",
-      "chinese": "他对这个主题的理解很肤浅。"
+      "chinese": "他对这个主题的理解很肤浅。",
+      "korean": "그는 그 주제에 대해 미미한 이해를 하고 있다."
     }
   },
   {
@@ -851,7 +907,8 @@
     "example": {
       "english": "We questioned the veracity of his story.",
       "japanese": "私たちは彼の話の真実性を疑った。",
-      "chinese": "我们质疑他故事的真实性。"
+      "chinese": "我们质疑他故事的真实性。",
+      "korean": "우리는 그의 이야기의 진실성에 의문을 제기했다."
     }
   },
   {
@@ -866,7 +923,8 @@
     "example": {
       "english": "She is a zealous supporter of the cause.",
       "japanese": "彼女はその大義の熱心な支持者です。",
-      "chinese": "她是这项事业的热心支持者。"
+      "chinese": "她是这项事业的热心支持者。",
+      "korean": "그녀는 그 명분의 열렬한 지지자이다."
     }
   },
   {
@@ -881,7 +939,8 @@
     "example": {
       "english": "She accepted the invitation with alacrity.",
       "japanese": "彼女は敏速に招待を受け入れました。",
-      "chinese": "她欣然接受了邀请。"
+      "chinese": "她欣然接受了邀请。",
+      "korean": "그녀는 그 초대를 흔쾌히 받아들였다."
     }
   },
   {
@@ -896,7 +955,8 @@
     "example": {
       "english": "He was cognizant of the risks.",
       "japanese": "彼はリスクを認識していました。",
-      "chinese": "他认识到了风险。"
+      "chinese": "他认识到了风险。",
+      "korean": "그는 위험을 인지하고 있었다."
     }
   }
 ]
