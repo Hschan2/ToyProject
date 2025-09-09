@@ -59,13 +59,18 @@ export default function Home() {
   const [results, setResults] = useState<Array<{ question: QuizQuestion; answer: string; isCorrect: boolean }>>([]);
   const [quizStarted, setQuizStarted] = useState(false);
   const [quizFinished, setQuizFinished] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState<Language>('english');
+  const [selectedLanguages, setSelectedLanguages] = useState<Language[]>(['english']);
   const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty>('beginner');
   const router = useRouter();
 
   const startQuiz = () => {
+    if (selectedLanguages.length === 0) {
+      alert('Please select at least one language.');
+      return;
+    }
+
     const homeLanguage: keyof Meaning = 'korean';
-    const foreignLanguage = selectedLanguage;
+    const totalQuestions = 20;
 
     const wordsOfSelectedDifficulty = wordsData.filter(word => word.difficulty === selectedDifficulty);
 
@@ -73,9 +78,28 @@ export default function Home() {
     const dateSeed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
 
     const dailyShuffledWords = seededShuffle(wordsOfSelectedDifficulty, dateSeed);
-    const selectedWords = dailyShuffledWords.slice(0, 20);
+    const selectedWords = dailyShuffledWords.slice(0, totalQuestions);
 
-    const generatedQuestions = selectedWords.map((word): QuizQuestion => {
+    if (selectedWords.length < totalQuestions) {
+        // Handle not enough words case if necessary
+        // For now, the quiz will have fewer than 20 questions
+    }
+
+    const questionsPerLanguage = Math.floor(totalQuestions / selectedLanguages.length);
+    const remainder = totalQuestions % selectedLanguages.length;
+
+    let questionLanguages: Language[] = [];
+    selectedLanguages.forEach((lang, index) => {
+        const count = questionsPerLanguage + (index < remainder ? 1 : 0);
+        for (let i = 0; i < count; i++) {
+            questionLanguages.push(lang);
+        }
+    });
+
+    const shuffledQuestionLanguages = seededShuffle(questionLanguages, dateSeed + 1); // Use a different seed
+
+    const generatedQuestions = selectedWords.map((word, index): QuizQuestion => {
+      const foreignLanguage = shuffledQuestionLanguages[index];
       const questionTypeSeed = dateSeed + word.id;
       const isForeignQuestion = seededRandom(questionTypeSeed) > 0.5;
 
@@ -101,6 +125,14 @@ export default function Home() {
     setResults([]);
     setQuizStarted(true);
     setQuizFinished(false);
+  };
+
+  const handleLanguageChange = (language: Language) => {
+    setSelectedLanguages(prev =>
+      prev.includes(language)
+        ? prev.filter(lang => lang !== language)
+        : [...prev, language]
+    );
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -136,15 +168,17 @@ export default function Home() {
           
           <div className="mb-6">
             <label className="block text-lg font-medium text-gray-700 mb-2">1. 언어 선택</label>
-            <select
-              value={selectedLanguage}
-              onChange={(e) => setSelectedLanguage(e.target.value as Language)}
-              className="w-full p-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            >
-              <option value="english">English</option>
-              <option value="japanese">Japanese</option>
-              <option value="chinese">Chinese</option>
-            </select>
+            <div className="flex justify-center gap-2">
+              {(['english', 'japanese', 'chinese'] as Language[]).map(lang => (
+                <button
+                  key={lang}
+                  onClick={() => handleLanguageChange(lang)}
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${selectedLanguages.includes(lang) ? 'bg-indigo-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+                >
+                  {lang.charAt(0).toUpperCase() + lang.slice(1)}
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="mb-8">
@@ -179,6 +213,14 @@ export default function Home() {
   const currentQuestion = quizQuestions[currentQuestionIndex];
   const isKoreanQuestion = currentQuestion.question === currentQuestion.wordData.meaning.korean;
 
+  const languageMap: { [key in Language]: string } = {
+    english: '영어',
+    japanese: '일본어',
+    chinese: '중국어',
+  };
+
+  const languageName = languageMap[currentQuestion.quizLanguage as Language];
+
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4 text-gray-800">
       <div className="w-full max-w-2xl p-8 bg-white rounded-lg shadow-xl">
@@ -194,7 +236,7 @@ export default function Home() {
 
         <div className="text-center mb-8">
           <p className="text-lg font-medium text-gray-600 mb-2">
-            {isKoreanQuestion ? '제시된 단어의 외국어는 무엇인가요?' : '제시된 단어의 한국어 뜻은 무엇인가요?'}
+            {isKoreanQuestion ? `제시된 단어의 ${languageName}는 무엇인가요?` : '제시된 단어의 한국어 뜻은 무엇인가요?'}
           </p>
           <p className="text-4xl font-bold text-indigo-700 break-words">{currentQuestion.question}</p>
         </div>
