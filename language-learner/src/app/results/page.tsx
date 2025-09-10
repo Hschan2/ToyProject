@@ -2,40 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-
-// Updated Types
-type Meaning = {
-  english: string;
-  korean: string;
-  japanese: string;
-  chinese: string;
-};
-
-type Example = {
-  english: string;
-  japanese: string;
-  chinese: string;
-  korean?: string;
-};
-
-type Word = {
-  id: number;
-  meaning: Meaning;
-  example: Example | string; // Handle both old and new example structures
-};
-
-type QuizQuestion = {
-  wordData: Word;
-  question: string;
-  correctAnswer: string;
-  quizLanguage: keyof Meaning;
-};
-
-type Result = {
-  question: QuizQuestion;
-  answer: string;
-  isCorrect: boolean;
-};
+import { Result, Meaning, Example } from "@/types/words";
 
 const langCodeMap = {
   english: "en-US",
@@ -90,10 +57,10 @@ export default function ResultsPage() {
 
   return (
     <div className="min-h-screen bg-gray-100 p-4 sm:p-8">
-      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-xl p-8">
+      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-xl p-4 sm:p-8">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-indigo-700">퀴즈 결과</h1>
-          <p className="text-2xl mt-2 text-gray-800">
+          <h1 className="text-3xl sm:text-4xl font-bold text-indigo-700">퀴즈 결과</h1>
+          <p className="text-xl sm:text-2xl mt-2 text-gray-800">
             총 {results.length}문제 중 {score}개를 맞혔습니다!
           </p>
         </div>
@@ -111,7 +78,7 @@ export default function ResultsPage() {
               typeof result.question.wordData.example === "object" &&
               result.question.wordData.example !== null
             ) {
-              const examples = result.question.wordData.example as any;
+              const examples = result.question.wordData.example as Example;
               exampleSentence =
                 examples[foreignLang as keyof Example] || examples.english;
 
@@ -131,15 +98,15 @@ export default function ResultsPage() {
                     : "border-red-300 bg-red-50"
                 }`}
               >
-                <div className="flex items-start justify-between">
-                  <div>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                  <div className="mb-2 sm:mb-0">
                     <p className="font-semibold text-lg text-gray-800">
                       {koreanWord} / {foreignWord}
                     </p>
                   </div>
                   <button
                     onClick={() => speakWord(foreignWord, foreignLang)}
-                    className="px-3 py-1 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 text-sm whitespace-nowrap"
+                    className="px-3 py-1 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 text-sm whitespace-nowrap self-start sm:self-center"
                   >
                     듣기 ({langNameMap[foreignLang]})
                   </button>
@@ -180,7 +147,7 @@ export default function ResultsPage() {
         <div className="text-center">
           <button
             onClick={handlePlayAgain}
-            className="w-full max-w-xs mx-auto bg-indigo-600 text-white py-3 rounded-md hover:bg-indigo-700 transition-colors duration-300 text-lg font-semibold"
+            className="w-full max-w-xs mx-auto bg-indigo-600 text-white py-3 rounded-md hover:bg-indigo-700 transition-colors duration-300 text-lg font-semibold cursor-pointer"
           >
             다시 풀기
           </button>
