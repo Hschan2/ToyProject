@@ -15,6 +15,15 @@
 - **예문 및 발음:** 각 단어에 대한 예문과 한국어 해석 그리고 원어민 발음 듣기 기능을 제공하여 학습 효과를 높입니다.
 - **손글씨 작성:** 키보드를 입력하는 것 외에 손글씨로 작성해서 답변을 입력할 수 있습니다. 다만, 인식률이 낮습니다.
 
+## 스크린샷
+- **메인 페이지**
+![Main](image.png)
+- **문제 풀이**
+![Quiz](image-1.png)
+![Writing-Quiz](image-2.png)
+- **풀이 결과**
+![Result](image-3.png)
+
 ## 🛠️ 기술 스택
 
 <p>
@@ -23,6 +32,9 @@
   <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/>
   <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS"/>
 </p>
+
+## 문제점
+- **매일 다른 단어 생성의 어려움:** 무료로 매일 다른 단어를 생성해서 문제를 풀 수 있는 방법을 발견하기 어려워 현재 JSON으로 수동적으로 단어 생성해서 처리해야 합니다.
 
 ## 🚀 시작하기
 
