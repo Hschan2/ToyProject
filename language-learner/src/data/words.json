@@ -321,6 +321,646 @@
   },
   {
     "id": 21,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "house",
+      "korean": "집",
+      "japanese": "家",
+      "chinese": "家"
+    },
+    "example": {
+      "english": "This is a big house.",
+      "japanese": "これは大きな家です。",
+      "chinese": "这是一座大房子。",
+      "korean": "이것은 큰 집이다."
+    }
+  },
+  {
+    "id": 22,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "car",
+      "korean": "자동차",
+      "japanese": "車",
+      "chinese": "汽车"
+    },
+    "example": {
+      "english": "He bought a new car.",
+      "japanese": "彼は新しい車を買いました。",
+      "chinese": "他买了一辆新车。",
+      "korean": "그는 새 차를 샀다."
+    }
+  },
+  {
+    "id": 23,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "eat",
+      "korean": "먹다",
+      "japanese": "食べる",
+      "chinese": "吃"
+    },
+    "example": {
+      "english": "Let's eat dinner together.",
+      "japanese": "一緒に夕食を食べましょう。",
+      "chinese": "我们一起吃晚饭吧。",
+      "korean": "우리 저녁 식사 같이 먹자."
+    }
+  },
+  {
+    "id": 24,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "sleep",
+      "korean": "자다",
+      "japanese": "寝る",
+      "chinese": "睡觉"
+    },
+    "example": {
+      "english": "I need to get more sleep.",
+      "japanese": "もっと睡眠をとる必要があります。",
+      "chinese": "我需要多睡一会儿。",
+      "korean": "나는 잠을 더 자야 한다."
+    }
+  },
+  {
+    "id": 25,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "walk",
+      "korean": "걷다",
+      "japanese": "歩く",
+      "chinese": "走路"
+    },
+    "example": {
+      "english": "I like to walk in the park.",
+      "japanese": "私は公園を歩くのが好きです。",
+      "chinese": "我喜欢在公园里散步。",
+      "korean": "나는 공원에서 걷는 것을 좋아한다."
+    }
+  },
+  {
+    "id": 26,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "drink",
+      "korean": "마시다",
+      "japanese": "飲む",
+      "chinese": "喝"
+    },
+    "example": {
+      "english": "He drank a glass of milk.",
+      "japanese": "彼は牛乳を一杯飲みました。",
+      "chinese": "他喝了一杯牛奶。",
+      "korean": "그는 우유 한 잔을 마셨다."
+    }
+  },
+  {
+    "id": 27,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "play",
+      "korean": "놀다",
+      "japanese": "遊ぶ",
+      "chinese": "玩"
+    },
+    "example": {
+      "english": "Children are playing outside.",
+      "japanese": "子供たちは外で遊んでいます。",
+      "chinese": "孩子们在外面玩耍。",
+      "korean": "아이들이 밖에서 놀고 있다."
+    }
+  },
+  {
+    "id": 28,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "run",
+      "korean": "달리다",
+      "japanese": "走る",
+      "chinese": "跑"
+    },
+    "example": {
+      "english": "She can run very fast.",
+      "japanese": "彼女はとても速く走ることができます。",
+      "chinese": "她跑得很快。",
+      "korean": "그녀는 매우 빠르게 달릴 수 있다."
+    }
+  },
+  {
+    "id": 29,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "look",
+      "korean": "보다",
+      "japanese": "見る",
+      "chinese": "看"
+    },
+    "example": {
+      "english": "Look at that beautiful bird.",
+      "japanese": "あの美しい鳥を見てください。",
+      "chinese": "看那只美丽的鸟。",
+      "korean": "저 아름다운 새를 봐라."
+    }
+  },
+  {
+    "id": 30,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "listen",
+      "korean": "듣다",
+      "japanese": "聞く",
+      "chinese": "听"
+    },
+    "example": {
+      "english": "Listen to the sound of the rain.",
+      "japanese": "雨の音を聞いてください。",
+      "chinese": "听雨声。",
+      "korean": "빗소리를 들어봐."
+    }
+  },
+  {
+    "id": 31,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "write",
+      "korean": "쓰다",
+      "japanese": "書く",
+      "chinese": "写"
+    },
+    "example": {
+      "english": "He is writing a letter.",
+      "japanese": "彼は手紙を書いています。",
+      "chinese": "他正在写一封信。",
+      "korean": "그는 편지를 쓰고 있다."
+    }
+  },
+  {
+    "id": 32,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "read",
+      "korean": "읽다",
+      "japanese": "読む",
+      "chinese": "读"
+    },
+    "example": {
+      "english": "She loves to read novels.",
+      "japanese": "彼女は小説を読むのが大好きです。",
+      "chinese": "她喜欢读小说。",
+      "korean": "그녀는 소설 읽는 것을 매우 좋아한다."
+    }
+  },
+  {
+    "id": 33,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "talk",
+      "korean": "이야기하다",
+      "japanese": "話す",
+      "chinese": "说话"
+    },
+    "example": {
+      "english": "Can we talk for a minute?",
+      "japanese": "少し話せますか？",
+      "chinese": "我们能谈一分钟吗？",
+      "korean": "잠깐 이야기 좀 할 수 있을까요?"
+    }
+  },
+  {
+    "id": 34,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "sing",
+      "korean": "노래하다",
+      "japanese": "歌う",
+      "chinese": "唱歌"
+    },
+    "example": {
+      "english": "She can sing very well.",
+      "japanese": "彼女はとても上手に歌うことができます。",
+      "chinese": "她唱歌唱得很好。",
+      "korean": "그녀는 노래를 아주 잘 부른다."
+    }
+  },
+  {
+    "id": 35,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "dance",
+      "korean": "춤추다",
+      "japanese": "踊る",
+      "chinese": "跳舞"
+    },
+    "example": {
+      "english": "Let's dance all night.",
+      "japanese": "一晩中踊りましょう。",
+      "chinese": "我们跳舞跳一整晚吧。",
+      "korean": "우리 밤새도록 춤추자."
+    }
+  },
+  {
+    "id": 36,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "help",
+      "korean": "돕다",
+      "japanese": "助ける",
+      "chinese": "帮助"
+    },
+    "example": {
+      "english": "Can you help me with this?",
+      "japanese": "これを手伝ってもらえますか？",
+      "chinese": "你能帮我这个吗？",
+      "korean": "이것 좀 도와줄 수 있니?"
+    }
+  },
+  {
+    "id": 37,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "think",
+      "korean": "생각하다",
+      "japanese": "考える",
+      "chinese": "想"
+    },
+    "example": {
+      "english": "I need to think about it.",
+      "japanese": "それについて考える必要があります。",
+      "chinese": "我需要好好想想。",
+      "korean": "나는 그것에 대해 생각해봐야 한다."
+    }
+  },
+  {
+    "id": 38,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "know",
+      "korean": "알다",
+      "japanese": "知る",
+      "chinese": "知道"
+    },
+    "example": {
+      "english": "I know the answer.",
+      "japanese": "私は答えを知っています。",
+      "chinese": "我知道答案。",
+      "korean": "나는 답을 안다."
+    }
+  },
+  {
+    "id": 39,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "feel",
+      "korean": "느끼다",
+      "japanese": "感じる",
+      "chinese": "感觉"
+    },
+    "example": {
+      "english": "How do you feel today?",
+      "japanese": "今日は気分はどうですか？",
+      "chinese": "你今天感觉怎么样？",
+      "korean": "오늘 기분이 어떠니?"
+    }
+  },
+  {
+    "id": 40,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "come",
+      "korean": "오다",
+      "japanese": "来る",
+      "chinese": "来"
+    },
+    "example": {
+      "english": "Please come to my party.",
+      "japanese": "私のパーティーに来てください。",
+      "chinese": "请来参加我的派对。",
+      "korean": "내 파티에 와줘."
+    }
+  },
+  {
+    "id": 41,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "go",
+      "korean": "가다",
+      "japanese": "行く",
+      "chinese": "去"
+    },
+    "example": {
+      "english": "Let's go to the park.",
+      "japanese": "公園に行きましょう。",
+      "chinese": "我们去公园吧。",
+      "korean": "공원에 가자."
+    }
+  },
+  {
+    "id": 42,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "make",
+      "korean": "만들다",
+      "japanese": "作る",
+      "chinese": "做"
+    },
+    "example": {
+      "english": "She can make a delicious cake.",
+      "japanese": "彼女は美味しいケーキを作ることができます。",
+      "chinese": "她会做美味的蛋糕。",
+      "korean": "그녀는 맛있는 케이크를 만들 수 있다."
+    }
+  },
+  {
+    "id": 43,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "take",
+      "korean": "가지다",
+      "japanese": "取る",
+      "chinese": "拿"
+    },
+    "example": {
+      "english": "Can I take a photo?",
+      "japanese": "写真を撮ってもいいですか？",
+      "chinese": "我能拍张照片吗？",
+      "korean": "사진 찍어도 될까요?"
+    }
+  },
+  {
+    "id": 44,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "give",
+      "korean": "주다",
+      "japanese": "与える",
+      "chinese": "给"
+    },
+    "example": {
+      "english": "He gave me a gift.",
+      "japanese": "彼が私に贈り物をくれました。",
+      "chinese": "他送了我一份礼物。",
+      "korean": "그가 나에게 선물을 주었다."
+    }
+  },
+  {
+    "id": 45,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "find",
+      "korean": "찾다",
+      "japanese": "見つける",
+      "chinese": "找到"
+    },
+    "example": {
+      "english": "I need to find my keys.",
+      "japanese": "鍵を見つける必要があります。",
+      "chinese": "我需要找到我的钥匙。",
+      "korean": "나는 내 열쇠를 찾아야 한다."
+    }
+  },
+  {
+    "id": 46,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "tell",
+      "korean": "말하다",
+      "japanese": "伝える",
+      "chinese": "告诉"
+    },
+    "example": {
+      "english": "Please tell me the truth.",
+      "japanese": "真実を教えてください。",
+      "chinese": "请告诉我真相。",
+      "korean": "나에게 진실을 말해줘."
+    }
+  },
+  {
+    "id": 47,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "ask",
+      "korean": "묻다",
+      "japanese": "尋ねる",
+      "chinese": "问"
+    },
+    "example": {
+      "english": "He asked a difficult question.",
+      "japanese": "彼は難しい質問をしました。",
+      "chinese": "他问了一个难题。",
+      "korean": "그는 어려운 질문을 했다."
+    }
+  },
+  {
+    "id": 48,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "try",
+      "korean": "노력하다",
+      "japanese": "試す",
+      "chinese": "尝试"
+    },
+    "example": {
+      "english": "Just try your best.",
+      "japanese": "ただ最善を尽くしてください。",
+      "chinese": "尽力就好。",
+      "korean": "그냥 최선을 다해봐."
+    }
+  },
+  {
+    "id": 49,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "call",
+      "korean": "전화하다",
+      "japanese": "電話する",
+      "chinese": "打电话"
+    },
+    "example": {
+      "english": "I will call you later.",
+      "japanese": "後であなたに電話します。",
+      "chinese": "我稍后给你打电话。",
+      "korean": "나중에 전화할게."
+    }
+  },
+  {
+    "id": 50,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "use",
+      "korean": "사용하다",
+      "japanese": "使う",
+      "chinese": "使用"
+    },
+    "example": {
+      "english": "Can I use your pen?",
+      "japanese": "あなたのペンを使ってもいいですか？",
+      "chinese": "我能用一下你的笔吗？",
+      "korean": "네 펜 좀 사용해도 될까?"
+    }
+  },
+  {
+    "id": 51,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "get",
+      "korean": "얻다",
+      "japanese": "手に入れる",
+      "chinese": "得到"
+    },
+    "example": {
+      "english": "I need to get a new phone.",
+      "japanese": "新しい電話を手に入れる必要があります。",
+      "chinese": "我需要买一部新手机。",
+      "korean": "새 휴대폰을 사야 한다."
+    }
+  },
+  {
+    "id": 52,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "show",
+      "korean": "보여주다",
+      "japanese": "見せる",
+      "chinese": "展示"
+    },
+    "example": {
+      "english": "Please show me your passport.",
+      "japanese": "パスポートを見せてください。",
+      "chinese": "请出示您的护照。",
+      "korean": "여권을 보여주세요."
+    }
+  },
+  {
+    "id": 53,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "feel",
+      "korean": "느끼다",
+      "japanese": "感じる",
+      "chinese": "感觉"
+    },
+    "example": {
+      "english": "I feel much better now.",
+      "japanese": "今は気分がずっといいです。",
+      "chinese": "我现在感觉好多了。",
+      "korean": "지금은 기분이 훨씬 낫다."
+    }
+  },
+  {
+    "id": 54,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "put",
+      "korean": "놓다",
+      "japanese": "置く",
+      "chinese": "放"
+    },
+    "example": {
+      "english": "Put the book on the table.",
+      "japanese": "本をテーブルの上に置いてください。",
+      "chinese": "把书放在桌子上。",
+      "korean": "책을 탁자 위에 놓아라."
+    }
+  },
+  {
+    "id": 55,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "let",
+      "korean": "하게 하다",
+      "japanese": "させる",
+      "chinese": "让"
+    },
+    "example": {
+      "english": "Let me know if you need help.",
+      "japanese": "助けが必要なら教えてください。",
+      "chinese": "如果你需要帮助，请告诉我。",
+      "korean": "도움이 필요하면 알려줘."
+    }
+  },
+  {
+    "id": 56,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "keep",
+      "korean": "유지하다",
+      "japanese": "保つ",
+      "chinese": "保持"
+    },
+    "example": {
+      "english": "Keep the door closed.",
+      "japanese": "ドアを閉めておいてください。",
+      "chinese": "保持门关着。",
+      "korean": "문을 닫아둬라."
+    }
+  },
+  {
+    "id": 57,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "begin",
+      "korean": "시작하다",
+      "japanese": "始める",
+      "chinese": "开始"
+    },
+    "example": {
+      "english": "Let's begin the meeting.",
+      "japanese": "会議を始めましょう。",
+      "chinese": "我们开始会议吧。",
+      "korean": "회의를 시작하자."
+    }
+  },
+  {
+    "id": 58,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "live",
+      "korean": "살다",
+      "japanese": "住む",
+      "chinese": "生活"
+    },
+    "example": {
+      "english": "I live in a small town.",
+      "japanese": "私は小さな町に住んでいます。",
+      "chinese": "我住在一个小镇。",
+      "korean": "나는 작은 마을에 산다."
+    }
+  },
+  {
+    "id": 59,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "seem",
+      "korean": "보이다",
+      "japanese": "～のように見える",
+      "chinese": "似乎"
+    },
+    "example": {
+      "english": "He seems very tired.",
+      "japanese": "彼はとても疲れているように見えます。",
+      "chinese": "他似乎很累。",
+      "korean": "그는 매우 피곤해 보인다."
+    }
+  },
+  {
+    "id": 60,
+    "difficulty": "beginner",
+    "meaning": {
+      "english": "turn",
+      "korean": "돌다",
+      "japanese": "回す",
+      "chinese": "转弯"
+    },
+    "example": {
+      "english": "Turn left at the corner.",
+      "japanese": "角を左に曲がってください。",
+      "chinese": "在拐角处左转。",
+      "korean": "모퉁이에서 왼쪽으로 돌아라."
+    }
+  },
+  {
+    "id": 61,
     "difficulty": "intermediate",
     "meaning": {
       "english": "develop",
@@ -336,7 +976,7 @@
     }
   },
   {
-    "id": 22,
+    "id": 62,
     "difficulty": "intermediate",
     "meaning": {
       "english": "environment",
@@ -352,7 +992,7 @@
     }
   },
   {
-    "id": 23,
+    "id": 63,
     "difficulty": "intermediate",
     "meaning": {
       "english": "government",
@@ -368,7 +1008,7 @@
     }
   },
   {
-    "id": 24,
+    "id": 64,
     "difficulty": "intermediate",
     "meaning": {
       "english": "knowledge",
@@ -384,7 +1024,7 @@
     }
   },
   {
-    "id": 25,
+    "id": 65,
     "difficulty": "intermediate",
     "meaning": {
       "english": "industry",
@@ -400,7 +1040,7 @@
     }
   },
   {
-    "id": 26,
+    "id": 66,
     "difficulty": "intermediate",
     "meaning": {
       "english": "analysis",
@@ -416,7 +1056,7 @@
     }
   },
   {
-    "id": 27,
+    "id": 67,
     "difficulty": "intermediate",
     "meaning": {
       "english": "culture",
@@ -432,7 +1072,7 @@
     }
   },
   {
-    "id": 28,
+    "id": 68,
     "difficulty": "intermediate",
     "meaning": {
       "english": "economy",
@@ -448,7 +1088,7 @@
     }
   },
   {
-    "id": 29,
+    "id": 69,
     "difficulty": "intermediate",
     "meaning": {
       "english": "evidence",
@@ -464,7 +1104,7 @@
     }
   },
   {
-    "id": 30,
+    "id": 70,
     "difficulty": "intermediate",
     "meaning": {
       "english": "strategy",
@@ -480,7 +1120,7 @@
     }
   },
   {
-    "id": 31,
+    "id": 71,
     "difficulty": "intermediate",
     "meaning": {
       "english": "technology",
@@ -496,7 +1136,7 @@
     }
   },
   {
-    "id": 32,
+    "id": 72,
     "difficulty": "intermediate",
     "meaning": {
       "english": "community",
@@ -512,7 +1152,7 @@
     }
   },
   {
-    "id": 33,
+    "id": 73,
     "difficulty": "intermediate",
     "meaning": {
       "english": "organization",
@@ -528,7 +1168,7 @@
     }
   },
   {
-    "id": 34,
+    "id": 74,
     "difficulty": "intermediate",
     "meaning": {
       "english": "policy",
@@ -544,7 +1184,7 @@
     }
   },
   {
-    "id": 35,
+    "id": 75,
     "difficulty": "intermediate",
     "meaning": {
       "english": "research",
@@ -560,7 +1200,7 @@
     }
   },
   {
-    "id": 36,
+    "id": 76,
     "difficulty": "intermediate",
     "meaning": {
       "english": "resource",
@@ -576,7 +1216,7 @@
     }
   },
   {
-    "id": 37,
+    "id": 77,
     "difficulty": "intermediate",
     "meaning": {
       "english": "security",
@@ -592,7 +1232,7 @@
     }
   },
   {
-    "id": 38,
+    "id": 78,
     "difficulty": "intermediate",
     "meaning": {
       "english": "theory",
@@ -608,7 +1248,7 @@
     }
   },
   {
-    "id": 39,
+    "id": 79,
     "difficulty": "intermediate",
     "meaning": {
       "english": "value",
@@ -624,7 +1264,7 @@
     }
   },
   {
-    "id": 40,
+    "id": 80,
     "difficulty": "intermediate",
     "meaning": {
       "english": "benefit",
@@ -640,7 +1280,647 @@
     }
   },
   {
-    "id": 41,
+    "id": 81,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "impact",
+      "korean": "영향",
+      "japanese": "影響",
+      "chinese": "影响"
+    },
+    "example": {
+      "english": "Climate change has a global impact.",
+      "japanese": "気候変動は世界的な影響を及ぼします。",
+      "chinese": "气候变化对全球有影响。",
+      "korean": "기후 변화는 전 세계적인 영향을 미친다."
+    }
+  },
+  {
+    "id": 82,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "feature",
+      "korean": "특징",
+      "japanese": "特徴",
+      "chinese": "特点"
+    },
+    "example": {
+      "english": "The new phone has many new features.",
+      "japanese": "新しい電話には多くの新機能があります。",
+      "chinese": "这款新手机有许多新功能。",
+      "korean": "새로운 전화기는 많은 새로운 특징들을 가지고 있다."
+    }
+  },
+  {
+    "id": 83,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "method",
+      "korean": "방법",
+      "japanese": "方法",
+      "chinese": "方法"
+    },
+    "example": {
+      "english": "We need to find a new method.",
+      "japanese": "私たちは新しい方法を見つける必要があります。",
+      "chinese": "我们需要找到一个新的方法。",
+      "korean": "우리는 새로운 방법을 찾아야 한다."
+    }
+  },
+  {
+    "id": 84,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "process",
+      "korean": "과정",
+      "japanese": "プロセス",
+      "chinese": "过程"
+    },
+    "example": {
+      "english": "The process of learning is important.",
+      "japanese": "学習のプロセスは重要です。",
+      "chinese": "学习的过程很重要。",
+      "korean": "학습 과정은 중요하다."
+    }
+  },
+  {
+    "id": 85,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "system",
+      "korean": "시스템",
+      "japanese": "システム",
+      "chinese": "系统"
+    },
+    "example": {
+      "english": "This new system is very efficient.",
+      "japanese": "この新しいシステムは非常に効率的です。",
+      "chinese": "这个新系统非常高效。",
+      "korean": "이 새로운 시스템은 매우 효율적이다."
+    }
+  },
+  {
+    "id": 86,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "solution",
+      "korean": "해결책",
+      "japanese": "解決策",
+      "chinese": "解决方案"
+    },
+    "example": {
+      "english": "We need to find a solution to the problem.",
+      "japanese": "問題の解決策を見つける必要があります。",
+      "chinese": "我们需要找到问题的解决方案。",
+      "korean": "우리는 문제에 대한 해결책을 찾아야 한다."
+    }
+  },
+  {
+    "id": 87,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "responsibility",
+      "korean": "책임",
+      "japanese": "責任",
+      "chinese": "责任"
+    },
+    "example": {
+      "english": "It is our responsibility to help others.",
+      "japanese": "他人を助けるのは私たちの責任です。",
+      "chinese": "帮助别人是我们的责任。",
+      "korean": "타인을 돕는 것은 우리의 책임이다."
+    }
+  },
+  {
+    "id": 88,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "communication",
+      "korean": "소통",
+      "japanese": "コミュニケーション",
+      "chinese": "沟通"
+    },
+    "example": {
+      "english": "Good communication is key to a good relationship.",
+      "japanese": "良いコミュニケーションが良い関係の鍵です。",
+      "chinese": "良好的沟通是良好关系的关键。",
+      "korean": "좋은 소통은 좋은 관계의 핵심이다."
+    }
+  },
+  {
+    "id": 89,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "influence",
+      "korean": "영향",
+      "japanese": "影響",
+      "chinese": "影响"
+    },
+    "example": {
+      "english": "Her work has a great influence on young artists.",
+      "japanese": "彼女の作品は若い芸術家に大きな影響を与えています。",
+      "chinese": "她的作品对年轻艺术家有很大的影响。",
+      "korean": "그녀의 작품은 젊은 예술가들에게 큰 영향을 준다."
+    }
+  },
+  {
+    "id": 90,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "challenge",
+      "korean": "도전",
+      "japanese": "挑戦",
+      "chinese": "挑战"
+    },
+    "example": {
+      "english": "The project was a big challenge for us.",
+      "japanese": "そのプロジェクトは私たちにとって大きな挑戦でした。",
+      "chinese": "这个项目对我们来说是一个巨大的挑战。",
+      "korean": "그 프로젝트는 우리에게 큰 도전이었다."
+    }
+  },
+  {
+    "id": 91,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "growth",
+      "korean": "성장",
+      "japanese": "成長",
+      "chinese": "成长"
+    },
+    "example": {
+      "english": "The company's growth was remarkable.",
+      "japanese": "会社の成長は目覚ましいものでした。",
+      "chinese": "公司的成长非常显著。",
+      "korean": "그 회사의 성장은 놀라웠다."
+    }
+  },
+  {
+    "id": 92,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "concept",
+      "korean": "개념",
+      "japanese": "概念",
+      "chinese": "概念"
+    },
+    "example": {
+      "english": "It's a difficult concept to understand.",
+      "japanese": "それは理解するのが難しい概念です。",
+      "chinese": "这是一个很难理解的概念。",
+      "korean": "그것은 이해하기 어려운 개념이다."
+    }
+  },
+  {
+    "id": 93,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "approach",
+      "korean": "접근법",
+      "japanese": "アプローチ",
+      "chinese": "方法"
+    },
+    "example": {
+      "english": "We need a different approach to this problem.",
+      "japanese": "この問題には異なるアプローチが必要です。",
+      "chinese": "我们需要用不同的方法来解决这个问题。",
+      "korean": "우리는 이 문제에 대해 다른 접근법이 필요하다."
+    }
+  },
+  {
+    "id": 94,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "perspective",
+      "korean": "관점",
+      "japanese": "視点",
+      "chinese": "角度"
+    },
+    "example": {
+      "english": "Try to see it from a different perspective.",
+      "japanese": "別の視点から見てみてください。",
+      "chinese": "试着从不同的角度来看待它。",
+      "korean": "다른 관점에서 그것을 보려고 노력해라."
+    }
+  },
+  {
+    "id": 95,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "potential",
+      "korean": "잠재력",
+      "japanese": "潜在能力",
+      "chinese": "潜力"
+    },
+    "example": {
+      "english": "He has the potential to be a great leader.",
+      "japanese": "彼には素晴らしいリーダーになる潜在能力があります。",
+      "chinese": "他有成为一名伟大领袖的潜力。",
+      "korean": "그는 위대한 리더가 될 잠재력이 있다."
+    }
+  },
+  {
+    "id": 96,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "innovation",
+      "korean": "혁신",
+      "japanese": "革新",
+      "chinese": "创新"
+    },
+    "example": {
+      "english": "Innovation is key to a company's success.",
+      "japanese": "革新は会社の成功の鍵です。",
+      "chinese": "创新是公司成功的关键。",
+      "korean": "혁신은 회사의 성공의 핵심이다."
+    }
+  },
+  {
+    "id": 97,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "efficiency",
+      "korean": "효율성",
+      "japanese": "効率",
+      "chinese": "效率"
+    },
+    "example": {
+      "english": "We need to improve our work efficiency.",
+      "japanese": "私たちは仕事の効率を改善する必要があります。",
+      "chinese": "我们需要提高工作效率。",
+      "korean": "우리는 업무 효율성을 향상시켜야 한다."
+    }
+  },
+  {
+    "id": 98,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "global",
+      "korean": "글로벌",
+      "japanese": "グローバル",
+      "chinese": "全球的"
+    },
+    "example": {
+      "english": "The company has a global presence.",
+      "japanese": "その会社は世界的な存在感があります。",
+      "chinese": "该公司在全球都有业务。",
+      "korean": "그 회사는 전 세계적인 존재감을 가지고 있다."
+    }
+  },
+  {
+    "id": 99,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "contribute",
+      "korean": "기여하다",
+      "japanese": "貢献する",
+      "chinese": "贡献"
+    },
+    "example": {
+      "english": "He contributed to the success of the team.",
+      "japanese": "彼はチームの成功に貢献しました。",
+      "chinese": "他为团队的成功做出了贡献。",
+      "korean": "그는 팀의 성공에 기여했다."
+    }
+  },
+  {
+    "id": 100,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "evaluate",
+      "korean": "평가하다",
+      "japanese": "評価する",
+      "chinese": "评估"
+    },
+    "example": {
+      "english": "We need to evaluate the results.",
+      "japanese": "私たちは結果を評価する必要があります。",
+      "chinese": "我们需要评估结果。",
+      "korean": "우리는 결과를 평가해야 한다."
+    }
+  },
+  {
+    "id": 101,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "financial",
+      "korean": "재정의, 금융의",
+      "japanese": "財政の",
+      "chinese": "金融的"
+    },
+    "example": {
+      "english": "He has a strong financial background.",
+      "japanese": "彼は強い財政的背景を持っています。",
+      "chinese": "他有很强的金融背景。",
+      "korean": "그는 강력한 재정적 배경을 가지고 있다."
+    }
+  },
+  {
+    "id": 102,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "sustain",
+      "korean": "지속하다",
+      "japanese": "維持する",
+      "chinese": "维持"
+    },
+    "example": {
+      "english": "We need to sustain our efforts.",
+      "japanese": "私たちは努力を維持する必要があります。",
+      "chinese": "我们需要保持努力。",
+      "korean": "우리는 노력을 지속해야 한다."
+    }
+  },
+  {
+    "id": 103,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "determine",
+      "korean": "결정하다",
+      "japanese": "決定する",
+      "chinese": "决定"
+    },
+    "example": {
+      "english": "The test will determine your level.",
+      "japanese": "そのテストがあなたのレベルを決定します。",
+      "chinese": "这项测试将决定你的水平。",
+      "korean": "그 시험이 당신의 수준을 결정할 것이다."
+    }
+  },
+  {
+    "id": 104,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "interpret",
+      "korean": "해석하다",
+      "japanese": "解釈する",
+      "chinese": "解释"
+    },
+    "example": {
+      "english": "He tried to interpret the data.",
+      "japanese": "彼はデータを解釈しようとしました。",
+      "chinese": "他试图解释这些数据。",
+      "korean": "그는 그 자료를 해석하려고 노력했다."
+    }
+  },
+  {
+    "id": 105,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "illustrate",
+      "korean": "설명하다, 예시를 들다",
+      "japanese": "説明する",
+      "chinese": "举例说明"
+    },
+    "example": {
+      "english": "The graph illustrates the trend.",
+      "japanese": "このグラフは傾向を説明しています。",
+      "chinese": "这个图表说明了趋势。",
+      "korean": "이 그래프는 그 추세를 설명해준다."
+    }
+  },
+  {
+    "id": 106,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "consequence",
+      "korean": "결과",
+      "japanese": "結果",
+      "chinese": "后果"
+    },
+    "example": {
+      "english": "Actions have consequences.",
+      "japanese": "行動には結果が伴います。",
+      "chinese": "行动有后果。",
+      "korean": "행동에는 결과가 따른다."
+    }
+  },
+  {
+    "id": 107,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "distribute",
+      "korean": "배포하다",
+      "japanese": "配布する",
+      "chinese": "分发"
+    },
+    "example": {
+      "english": "Please distribute the flyers.",
+      "japanese": "チラシを配布してください。",
+      "chinese": "请分发这些传单。",
+      "korean": "전단지를 배포해주세요."
+    }
+  },
+  {
+    "id": 108,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "significant",
+      "korean": "중요한, 상당한",
+      "japanese": "重要な",
+      "chinese": "重要的"
+    },
+    "example": {
+      "english": "This is a significant discovery.",
+      "japanese": "これは重要な発見です。",
+      "chinese": "这是一个重要的发现。",
+      "korean": "이것은 중요한 발견이다."
+    }
+  },
+  {
+    "id": 109,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "major",
+      "korean": "주요한",
+      "japanese": "主要な",
+      "chinese": "主要的"
+    },
+    "example": {
+      "english": "He is a major figure in the industry.",
+      "japanese": "彼はその産業の主要な人物です。",
+      "chinese": "他是这个行业的主要人物。",
+      "korean": "그는 그 산업의 주요 인물이다."
+    }
+  },
+  {
+    "id": 110,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "investigate",
+      "korean": "조사하다",
+      "japanese": "調査する",
+      "chinese": "调查"
+    },
+    "example": {
+      "english": "The police will investigate the case.",
+      "japanese": "警察がその事件を調査します。",
+      "chinese": "警方将调查此案。",
+      "korean": "경찰이 그 사건을 조사할 것이다."
+    }
+  },
+  {
+    "id": 111,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "coordinate",
+      "korean": "조정하다",
+      "japanese": "調整する",
+      "chinese": "协调"
+    },
+    "example": {
+      "english": "We need to coordinate our schedules.",
+      "japanese": "私たちはスケジュールを調整する必要があります。",
+      "chinese": "我们需要协调我们的时间表。",
+      "korean": "우리는 일정을 조정해야 한다."
+    }
+  },
+  {
+    "id": 112,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "establish",
+      "korean": "설립하다, 확립하다",
+      "japanese": "設立する",
+      "chinese": "建立"
+    },
+    "example": {
+      "english": "The company was established in 2005.",
+      "japanese": "その会社は2005年に設立されました。",
+      "chinese": "该公司成立于2005年。",
+      "korean": "그 회사는 2005년에 설립되었다."
+    }
+  },
+  {
+    "id": 113,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "acquire",
+      "korean": "획득하다",
+      "japanese": "取得する",
+      "chinese": "获得"
+    },
+    "example": {
+      "english": "He acquired a lot of new skills.",
+      "japanese": "彼は多くの新しいスキルを習得しました。",
+      "chinese": "他获得了许多新技能。",
+      "korean": "그는 많은 새로운 기술을 획득했다."
+    }
+  },
+  {
+    "id": 114,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "implement",
+      "korean": "실행하다",
+      "japanese": "実行する",
+      "chinese": "实施"
+    },
+    "example": {
+      "english": "The company decided to implement the new plan.",
+      "japanese": "会社は新しい計画を実行することを決定しました。",
+      "chinese": "公司决定实施新计划。",
+      "korean": "회사는 새로운 계획을 실행하기로 결정했다."
+    }
+  },
+  {
+    "id": 115,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "monitor",
+      "korean": "감시하다",
+      "japanese": "監視する",
+      "chinese": "监控"
+    },
+    "example": {
+      "english": "We need to monitor the situation closely.",
+      "japanese": "私たちは状況を注意深く監視する必要があります。",
+      "chinese": "我们需要密切监控情况。",
+      "korean": "우리는 상황을 면밀히 감시해야 한다."
+    }
+  },
+  {
+    "id": 116,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "facilitate",
+      "korean": "촉진하다",
+      "japanese": "促進する",
+      "chinese": "促进"
+    },
+    "example": {
+      "english": "The new tool will facilitate our work.",
+      "japanese": "新しいツールは私たちの仕事を促進します。",
+      "chinese": "新工具将促进我们的工作。",
+      "korean": "새로운 도구가 우리의 작업을 촉진할 것이다."
+    }
+  },
+  {
+    "id": 117,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "resolve",
+      "korean": "해결하다",
+      "japanese": "解決する",
+      "chinese": "解决"
+    },
+    "example": {
+      "english": "We need to resolve this conflict.",
+      "japanese": "私たちはこの対立を解決する必要があります。",
+      "chinese": "我们需要解决这场冲突。",
+      "korean": "우리는 이 갈등을 해결해야 한다."
+    }
+  },
+  {
+    "id": 118,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "negotiate",
+      "korean": "협상하다",
+      "japanese": "交渉する",
+      "chinese": "谈判"
+    },
+    "example": {
+      "english": "They are trying to negotiate a new deal.",
+      "japanese": "彼らは新しい契約を交渉しようとしています。",
+      "chinese": "他们正在尝试谈判一项新协议。",
+      "korean": "그들은 새로운 거래를 협상하려고 노력하고 있다."
+    }
+  },
+  {
+    "id": 119,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "regulate",
+      "korean": "규제하다",
+      "japanese": "規制する",
+      "chinese": "监管"
+    },
+    "example": {
+      "english": "The government regulates the industry.",
+      "japanese": "政府はその産業を規制しています。",
+      "chinese": "政府监管这个行业。",
+      "korean": "정부는 그 산업을 규제한다."
+    }
+  },
+  {
+    "id": 120,
+    "difficulty": "intermediate",
+    "meaning": {
+      "english": "prohibit",
+      "korean": "금지하다",
+      "japanese": "禁止する",
+      "chinese": "禁止"
+    },
+    "example": {
+      "english": "Smoking is prohibited in this area.",
+      "japanese": "このエリアでは喫煙が禁止されています。",
+      "chinese": "该区域禁止吸烟。",
+      "korean": "이 구역에서는 흡연이 금지된다."
+    }
+  },
+  {
+    "id": 121,
     "difficulty": "advanced",
     "meaning": {
       "english": "ubiquitous",
@@ -656,7 +1936,7 @@
     }
   },
   {
-    "id": 42,
+    "id": 122,
     "difficulty": "advanced",
     "meaning": {
       "english": "ephemeral",
@@ -672,7 +1952,7 @@
     }
   },
   {
-    "id": 43,
+    "id": 123,
     "difficulty": "advanced",
     "meaning": {
       "english": "sycophant",
@@ -688,7 +1968,7 @@
     }
   },
   {
-    "id": 44,
+    "id": 124,
     "difficulty": "advanced",
     "meaning": {
       "english": "ambiguous",
@@ -704,7 +1984,7 @@
     }
   },
   {
-    "id": 45,
+    "id": 125,
     "difficulty": "advanced",
     "meaning": {
       "english": "mitigate",
@@ -720,7 +2000,7 @@
     }
   },
   {
-    "id": 46,
+    "id": 126,
     "difficulty": "advanced",
     "meaning": {
       "english": "prolific",
@@ -736,7 +2016,7 @@
     }
   },
   {
-    "id": 47,
+    "id": 127,
     "difficulty": "advanced",
     "meaning": {
       "english": "eloquent",
@@ -752,7 +2032,7 @@
     }
   },
   {
-    "id": 48,
+    "id": 128,
     "difficulty": "advanced",
     "meaning": {
       "english": "gregarious",
@@ -768,7 +2048,7 @@
     }
   },
   {
-    "id": 49,
+    "id": 129,
     "difficulty": "advanced",
     "meaning": {
       "english": "inevitable",
@@ -784,7 +2064,7 @@
     }
   },
   {
-    "id": 50,
+    "id": 130,
     "difficulty": "advanced",
     "meaning": {
       "english": "juxtaposition",
@@ -800,7 +2080,7 @@
     }
   },
   {
-    "id": 51,
+    "id": 131,
     "difficulty": "advanced",
     "meaning": {
       "english": "obfuscate",
@@ -816,7 +2096,7 @@
     }
   },
   {
-    "id": 52,
+    "id": 132,
     "difficulty": "advanced",
     "meaning": {
       "english": "paradigm",
@@ -832,7 +2112,7 @@
     }
   },
   {
-    "id": 53,
+    "id": 133,
     "difficulty": "advanced",
     "meaning": {
       "english": "quintessential",
@@ -848,7 +2128,7 @@
     }
   },
   {
-    "id": 54,
+    "id": 134,
     "difficulty": "advanced",
     "meaning": {
       "english": "reciprocal",
@@ -864,7 +2144,7 @@
     }
   },
   {
-    "id": 55,
+    "id": 135,
     "difficulty": "advanced",
     "meaning": {
       "english": "scrutinize",
@@ -880,7 +2160,7 @@
     }
   },
   {
-    "id": 56,
+    "id": 136,
     "difficulty": "advanced",
     "meaning": {
       "english": "tenuous",
@@ -896,7 +2176,7 @@
     }
   },
   {
-    "id": 57,
+    "id": 137,
     "difficulty": "advanced",
     "meaning": {
       "english": "veracity",
@@ -912,7 +2192,7 @@
     }
   },
   {
-    "id": 58,
+    "id": 138,
     "difficulty": "advanced",
     "meaning": {
       "english": "zealous",
@@ -928,7 +2208,7 @@
     }
   },
   {
-    "id": 59,
+    "id": 139,
     "difficulty": "advanced",
     "meaning": {
       "english": "alacrity",
@@ -944,7 +2224,7 @@
     }
   },
   {
-    "id": 60,
+    "id": 140,
     "difficulty": "advanced",
     "meaning": {
       "english": "cognizant",
@@ -957,6 +2237,646 @@
       "japanese": "彼はリスクを認識していました。",
       "chinese": "他认识到了风险。",
       "korean": "그는 위험을 인지하고 있었다."
+    }
+  },
+  {
+    "id": 141,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "conundrum",
+      "korean": "어려운 문제",
+      "japanese": "難題",
+      "chinese": "难题"
+    },
+    "example": {
+      "english": "The issue presents a complex conundrum.",
+      "japanese": "この問題は複雑な難題を提起します。",
+      "chinese": "这个问题提出了一个复杂的难题。",
+      "korean": "이 문제는 복잡한 난제를 제시한다."
+    }
+  },
+  {
+    "id": 142,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "delineate",
+      "korean": "윤곽을 그리다",
+      "japanese": "輪郭を描く",
+      "chinese": "描绘"
+    },
+    "example": {
+      "english": "The artist delineated the figure with a few lines.",
+      "japanese": "その芸術家は数本の線で人物の輪郭を描きました。",
+      "chinese": "这位艺术家用几笔线条勾勒出了人物的轮廓。",
+      "korean": "그 예술가는 몇 개의 선으로 인물의 윤곽을 그렸다."
+    }
+  },
+  {
+    "id": 143,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "esoteric",
+      "korean": "난해한",
+      "japanese": "難解な",
+      "chinese": "深奥的"
+    },
+    "example": {
+      "english": "He has a collection of esoteric books.",
+      "japanese": "彼は難解な本を収集しています。",
+      "chinese": "他收藏了一些深奥的书籍。",
+      "korean": "그는 난해한 책들을 수집한다."
+    }
+  },
+  {
+    "id": 144,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "fatuous",
+      "korean": "어리석은",
+      "japanese": "愚かな",
+      "chinese": "愚蠢的"
+    },
+    "example": {
+      "english": "The politician's fatuous remarks drew criticism.",
+      "japanese": "その政治家の愚かな発言は批判を浴びました。",
+      "chinese": "这位政客愚蠢的言论招致了批评。",
+      "korean": "그 정치인의 어리석은 발언은 비난을 샀다."
+    }
+  },
+  {
+    "id": 145,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "indefatigable",
+      "korean": "지칠 줄 모르는",
+      "japanese": "不屈の",
+      "chinese": "不知疲倦的"
+    },
+    "example": {
+      "english": "She is an indefatigable worker.",
+      "japanese": "彼女は不屈の働き者です。",
+      "chinese": "她是一个不知疲倦的工作者。",
+      "korean": "그녀는 지칠 줄 모르는 일꾼이다."
+    }
+  },
+  {
+    "id": 146,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "laconic",
+      "korean": "간결한",
+      "japanese": "簡潔な",
+      "chinese": "简洁的"
+    },
+    "example": {
+      "english": "His laconic response was surprising.",
+      "japanese": "彼の簡潔な返答は驚くべきものでした。",
+      "chinese": "他那简洁的回答令人惊讶。",
+      "korean": "그의 간결한 대답은 놀라웠다."
+    }
+  },
+  {
+    "id": 147,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "magnanimous",
+      "korean": "관대한",
+      "japanese": "寛大な",
+      "chinese": "宽宏大量的"
+    },
+    "example": {
+      "english": "The magnanimous king forgave his enemies.",
+      "japanese": "寛大な王は敵を許しました。",
+      "chinese": "那位宽宏大量的国王原谅了他的敌人。",
+      "korean": "그 관대한 왕은 그의 적들을 용서했다."
+    }
+  },
+  {
+    "id": 148,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "obsequious",
+      "korean": "아부하는",
+      "japanese": "へつらう",
+      "chinese": "谄媚的"
+    },
+    "example": {
+      "english": "He was a very obsequious assistant.",
+      "japanese": "彼は非常におべっか使いのアシスタントでした。",
+      "chinese": "他是一个非常谄媚的助手。",
+      "korean": "그는 매우 아부하는 조수였다."
+    }
+  },
+  {
+    "id": 149,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "pugnacious",
+      "korean": "싸우기 좋아하는",
+      "japanese": "好戦的な",
+      "chinese": "好斗的"
+    },
+    "example": {
+      "english": "The pugnacious politician was always looking for a fight.",
+      "japanese": "好戦的な政治家はいつも争いを求めていました。",
+      "chinese": "这位好斗的政客总是在寻找争吵。",
+      "korean": "그 싸우기 좋아하는 정치인은 항상 싸움을 찾고 있었다."
+    }
+  },
+  {
+    "id": 150,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "resplendent",
+      "korean": "눈부시게 빛나는",
+      "japanese": "光り輝く",
+      "chinese": "华丽的"
+    },
+    "example": {
+      "english": "She was resplendent in a red dress.",
+      "japanese": "彼女は赤いドレスで光り輝いていました。",
+      "chinese": "她穿着一身华丽的红色礼服。",
+      "korean": "그녀는 빨간 드레스를 입고 눈부시게 빛났다."
+    }
+  },
+  {
+    "id": 151,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "sanctimonious",
+      "korean": "위선적인",
+      "japanese": "偽善的な",
+      "chinese": "假装虔诚的"
+    },
+    "example": {
+      "english": "He delivered a sanctimonious lecture on morality.",
+      "japanese": "彼は道徳についての偽善的な講義をしました。",
+      "chinese": "他发表了一场假装虔诚的道德演讲。",
+      "korean": "그는 도덕에 대해 위선적인 강연을 했다."
+    }
+  },
+  {
+    "id": 152,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "sagacious",
+      "korean": "현명한",
+      "japanese": "賢明な",
+      "chinese": "睿智的"
+    },
+    "example": {
+      "english": "The sagacious leader made a wise decision.",
+      "japanese": "賢明なリーダーは賢い決断をしました。",
+      "chinese": "这位睿智的领导人做出了明智的决定。",
+      "korean": "그 현명한 지도자는 현명한 결정을 내렸다."
+    }
+  },
+  {
+    "id": 153,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "trenchant",
+      "korean": "날카로운, 신랄한",
+      "japanese": "鋭い",
+      "chinese": "尖锐的"
+    },
+    "example": {
+      "english": "He made a trenchant analysis of the situation.",
+      "japanese": "彼は状況について鋭い分析をしました。",
+      "chinese": "他对形势做出了尖锐的分析。",
+      "korean": "그는 상황에 대한 날카로운 분석을 했다."
+    }
+  },
+  {
+    "id": 154,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "vicissitude",
+      "korean": "변천, 우여곡절",
+      "japanese": "変遷",
+      "chinese": "变迁"
+    },
+    "example": {
+      "english": "We must endure the vicissitudes of life.",
+      "japanese": "私たちは人生の変遷に耐えなければなりません。",
+      "chinese": "我们必须忍受生活的变迁。",
+      "korean": "우리는 삶의 우여곡절을 견뎌야 한다."
+    }
+  },
+  {
+    "id": 155,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "wanton",
+      "korean": "무자비한, 방종한",
+      "japanese": "無慈悲な",
+      "chinese": "肆意的"
+    },
+    "example": {
+      "english": "The movie portrayed a wanton act of violence.",
+      "japanese": "その映画は無慈悲な暴力行為を描写していました。",
+      "chinese": "这部电影描绘了一场肆意的暴力行为。",
+      "korean": "그 영화는 무자비한 폭력 행위를 묘사했다."
+    }
+  },
+  {
+    "id": 156,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "xenophobic",
+      "korean": "외국인 혐오의",
+      "japanese": "外国人嫌いの",
+      "chinese": "排外的"
+    },
+    "example": {
+      "english": "The xenophobic remarks caused a lot of controversy.",
+      "japanese": "外国人嫌いの発言は多くの論争を引き起こしました。",
+      "chinese": "排外的言论引起了很大的争议。",
+      "korean": "외국인 혐오 발언은 많은 논란을 불러일으켰다."
+    }
+  },
+  {
+    "id": 157,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "yoke",
+      "korean": "멍에, 속박",
+      "japanese": "くびき",
+      "chinese": "枷锁"
+    },
+    "example": {
+      "english": "They escaped the yoke of oppression.",
+      "japanese": "彼らは抑圧のくびきから逃れました。",
+      "chinese": "他们摆脱了压迫的枷锁。",
+      "korean": "그들은 억압의 멍에에서 벗어났다."
+    }
+  },
+  {
+    "id": 158,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "abscond",
+      "korean": "도망치다",
+      "japanese": "逃亡する",
+      "chinese": "潜逃"
+    },
+    "example": {
+      "english": "The thief absconded with the stolen goods.",
+      "japanese": "泥棒は盗品を持って逃亡しました。",
+      "chinese": "小偷带着赃物潜逃了。",
+      "korean": "그 도둑은 훔친 물건을 가지고 도망쳤다."
+    }
+  },
+  {
+    "id": 159,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "bilk",
+      "korean": "사기 치다",
+      "japanese": "だます",
+      "chinese": "欺骗"
+    },
+    "example": {
+      "english": "He bilked the elderly out of their savings.",
+      "japanese": "彼は高齢者から貯蓄をだまし取りました。",
+      "chinese": "他骗取了老年人的积蓄。",
+      "korean": "그는 노인들에게 사기를 쳐서 저축한 돈을 빼앗았다."
+    }
+  },
+  {
+    "id": 160,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "candor",
+      "korean": "솔직함",
+      "japanese": "率直さ",
+      "chinese": "坦率"
+    },
+    "example": {
+      "english": "I appreciate your candor on this issue.",
+      "japanese": "この問題についてのあなたの率直さに感謝します。",
+      "chinese": "我很欣赏你在这个问题上的坦率。",
+      "korean": "이 문제에 대한 당신의 솔직함에 감사합니다."
+    }
+  },
+  {
+    "id": 161,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "debacle",
+      "korean": "대실패, 붕괴",
+      "japanese": "大失敗",
+      "chinese": "大失败"
+    },
+    "example": {
+      "english": "The project was a complete debacle.",
+      "japanese": "そのプロジェクトは完全な大失敗でした。",
+      "chinese": "这个项目完全是个大失败。",
+      "korean": "그 프로젝트는 완전히 대실패였다."
+    }
+  },
+  {
+    "id": 162,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "effrontery",
+      "korean": "뻔뻔스러움",
+      "japanese": "厚かましさ",
+      "chinese": "厚颜无耻"
+    },
+    "example": {
+      "english": "He had the effrontery to ask for more money.",
+      "japanese": "彼にはもっとお金を求める厚かましさがありました。",
+      "chinese": "他竟然厚颜无耻地要求更多的钱。",
+      "korean": "그는 더 많은 돈을 요구할 만큼 뻔뻔스러웠다."
+    }
+  },
+  {
+    "id": 163,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "garrulous",
+      "korean": "수다스러운",
+      "japanese": "おしゃべりな",
+      "chinese": "喋喋不休的"
+    },
+    "example": {
+      "english": "The garrulous man talked for hours.",
+      "japanese": "そのおしゃべりな男は数時間話し続けました。",
+      "chinese": "那个喋喋不休的人说了好几个小时。",
+      "korean": "그 수다스러운 남자는 몇 시간 동안 이야기했다."
+    }
+  },
+  {
+    "id": 164,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "hirsute",
+      "korean": "털이 많은",
+      "japanese": "毛深い",
+      "chinese": "多毛的"
+    },
+    "example": {
+      "english": "The hirsute man had a thick beard.",
+      "japanese": "その毛深い男には太いひげがありました。",
+      "chinese": "那个多毛的男人有一把浓密的胡子。",
+      "korean": "그 털이 많은 남자는 굵은 수염을 가지고 있었다."
+    }
+  },
+  {
+    "id": 165,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "ignominious",
+      "korean": "불명예스러운",
+      "japanese": "不名誉な",
+      "chinese": "可耻的"
+    },
+    "example": {
+      "english": "The team suffered an ignominious defeat.",
+      "japanese": "そのチームは不名誉な敗北を喫しました。",
+      "chinese": "这支球队遭受了可耻的失败。",
+      "korean": "그 팀은 불명예스러운 패배를 당했다."
+    }
+  },
+  {
+    "id": 166,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "kismet",
+      "korean": "운명",
+      "japanese": "運命",
+      "chinese": "命运"
+    },
+    "example": {
+      "english": "It must have been kismet that we met.",
+      "japanese": "私たちが会ったのは運命だったに違いありません。",
+      "chinese": "我们相遇一定是命运。",
+      "korean": "우리가 만난 것은 운명이었음에 틀림없다."
+    }
+  },
+  {
+    "id": 167,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "limpid",
+      "korean": "맑은",
+      "japanese": "澄んだ",
+      "chinese": "清澈的"
+    },
+    "example": {
+      "english": "The limpid stream was full of fish.",
+      "japanese": "その澄んだ小川は魚でいっぱいでした。",
+      "chinese": "清澈的小溪里满是鱼。",
+      "korean": "그 맑은 시냇물은 물고기로 가득했다."
+    }
+  },
+  {
+    "id": 168,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "misanthrope",
+      "korean": "인간 혐오자",
+      "japanese": "人間嫌い",
+      "chinese": "厌世者"
+    },
+    "example": {
+      "english": "He became a misanthrope after years of disappointment.",
+      "japanese": "彼は長年の失望の後に人間嫌いになりました。",
+      "chinese": "在多年的失望之后，他成了一个厌世者。",
+      "korean": "그는 몇 년간의 실망 후에 인간 혐오자가 되었다."
+    }
+  },
+  {
+    "id": 169,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "nonplussed",
+      "korean": "당황한",
+      "japanese": "困惑した",
+      "chinese": "不知所措的"
+    },
+    "example": {
+      "english": "He was nonplussed by her strange question.",
+      "japanese": "彼は彼女の奇妙な質問に困惑しました。",
+      "chinese": "他对她的奇怪问题感到不知所措。",
+      "korean": "그는 그녀의 이상한 질문에 당황했다."
+    }
+  },
+  {
+    "id": 170,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "obdurate",
+      "korean": "고집 센",
+      "japanese": "頑固な",
+      "chinese": "顽固不化的"
+    },
+    "example": {
+      "english": "The obdurate child refused to eat his vegetables.",
+      "japanese": "その頑固な子供は野菜を食べるのを拒否しました。",
+      "chinese": "那个顽固不化的孩子拒绝吃蔬菜。",
+      "korean": "그 고집 센 아이는 야채 먹기를 거부했다."
+    }
+  },
+  {
+    "id": 171,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "perfidious",
+      "korean": "불성실한, 배신하는",
+      "japanese": "不誠実な",
+      "chinese": "不忠的"
+    },
+    "example": {
+      "english": "He was accused of perfidious acts against his country.",
+      "japanese": "彼は自国に対する不誠実な行為で告発されました。",
+      "chinese": "他被指控对国家不忠。",
+      "korean": "그는 조국에 대한 불성실한 행위로 고발되었다."
+    }
+  },
+  {
+    "id": 172,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "quixotic",
+      "korean": "비현실적인, 공상적인",
+      "japanese": "空想的な",
+      "chinese": "堂吉诃德式的"
+    },
+    "example": {
+      "english": "He pursued a quixotic dream of living on Mars.",
+      "japanese": "彼は火星に住むという空想的な夢を追い求めました。",
+      "chinese": "他追求着一个堂吉诃德式的火星生活梦想。",
+      "korean": "그는 화성에서 사는 비현실적인 꿈을 추구했다."
+    }
+  },
+  {
+    "id": 173,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "rancorous",
+      "korean": "원한이 있는",
+      "japanese": "怨恨のある",
+      "chinese": "充满怨恨的"
+    },
+    "example": {
+      "english": "The debate was filled with rancorous insults.",
+      "japanese": "その討論は怨恨に満ちた侮辱でいっぱいでした。",
+      "chinese": "这场辩论充满了怨恨的侮辱。",
+      "korean": "그 토론은 원한이 담긴 모욕으로 가득했다."
+    }
+  },
+  {
+    "id": 174,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "sardonic",
+      "korean": "냉소적인",
+      "japanese": "皮肉な",
+      "chinese": "嘲讽的"
+    },
+    "example": {
+      "english": "He gave a sardonic smile.",
+      "japanese": "彼は皮肉な笑顔を浮かべました。",
+      "chinese": "他露出了一个嘲讽的微笑。",
+      "korean": "그는 냉소적인 미소를 지었다."
+    }
+  },
+  {
+    "id": 175,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "tepid",
+      "korean": "미지근한",
+      "japanese": "ぬるい",
+      "chinese": "温热的"
+    },
+    "example": {
+      "english": "The soup was tepid and unappealing.",
+      "japanese": "そのスープはぬるくて食欲をそそりませんでした。",
+      "chinese": "这汤温热且不吸引人。",
+      "korean": "그 수프는 미지근하고 매력이 없었다."
+    }
+  },
+  {
+    "id": 176,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "ubris",
+      "korean": "오만",
+      "japanese": "傲慢",
+      "chinese": "傲慢"
+    },
+    "example": {
+      "english": "His ubris led to his downfall.",
+      "japanese": "彼の傲慢が彼の失墜につながりました。",
+      "chinese": "他的傲慢导致了他的垮台。",
+      "korean": "그의 오만이 그의 몰락으로 이어졌다."
+    }
+  },
+  {
+    "id": 177,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "vacillate",
+      "korean": "흔들리다, 동요하다",
+      "japanese": "揺れる",
+      "chinese": "犹豫不决"
+    },
+    "example": {
+      "english": "He continued to vacillate between the two options.",
+      "japanese": "彼は二つの選択肢の間で揺れ続けました。",
+      "chinese": "他在这两个选择之间犹豫不决。",
+      "korean": "그는 두 가지 선택지 사이에서 계속 흔들렸다."
+    }
+  },
+  {
+    "id": 178,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "wary",
+      "korean": "경계하는",
+      "japanese": "用心深い",
+      "chinese": "警惕的"
+    },
+    "example": {
+      "english": "The rabbit was wary of the fox.",
+      "japanese": "そのウサギはキツネを警戒していました。",
+      "chinese": "兔子对狐狸保持警惕。",
+      "korean": "그 토끼는 여우를 경계했다."
+    }
+  },
+  {
+    "id": 179,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "yare",
+      "korean": "민첩한",
+      "japanese": "素早い",
+      "chinese": "敏捷的"
+    },
+    "example": {
+      "english": "The yare sailor quickly climbed the mast.",
+      "japanese": "素早い船員はすぐにマストを登りました。",
+      "chinese": "敏捷的水手迅速爬上了桅杆。",
+      "korean": "그 민첩한 선원은 재빨리 돛대에 올라갔다."
+    }
+  },
+  {
+    "id": 180,
+    "difficulty": "advanced",
+    "meaning": {
+      "english": "zenith",
+      "korean": "정점",
+      "japanese": "頂点",
+      "chinese": "顶点"
+    },
+    "example": {
+      "english": "He was at the zenith of his career.",
+      "japanese": "彼はキャリアの頂点にいました。",
+      "chinese": "他正处于事业的巅峰。",
+      "korean": "그는 그의 경력의 정점에 있었다."
     }
   }
 ]
