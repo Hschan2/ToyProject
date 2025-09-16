@@ -1,73 +1,78 @@
-export const runtime = "nodejs";
+import { NextRequest, NextResponse } from 'next/server';
+import { promises as fs } from 'fs';
+import path from 'path';
+import { spawn } from 'child_process';
 
-import { writeFile, mkdir, unlink, readFile } from "fs/promises";
-import path from "path";
-import { v4 as uuidv4 } from "uuid";
-import { spawn } from "child_process";
-import os from "os";
-import { NextResponse } from "next/server";
+// 수동 생성
+const ffmpegPath = path.join(process.cwd(), 'node_modules', 'ffmpeg-static', 'ffmpeg.exe');
 
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
-const ffmpegPath = require("ffmpeg-static") as string;
-
-export async function POST(req: Request) {
-  const tmpDir = path.join(os.tmpdir());
-
+export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
-    const file = formData.get("file") as File;
+    const file = formData.get('file') as File | null;
 
     if (!file) {
-      return NextResponse.json({ error: "파일없음" }, { status: 400 });
+      return NextResponse.json({ error: '파일이 없습니다.' }, { status: 400 });
     }
 
-    await mkdir(tmpDir, { recursive: true });
+    const tempDir = path.join(process.cwd(), 'temp');
+    await fs.mkdir(tempDir, { recursive: true });
 
-    const id = uuidv4();
-    const inputPath = path.join(tmpDir, `${id}.webm`);
-    const outputPath = path.join(tmpDir, `${id}.mp4`);
+    const inputFileName = `input-${Date.now()}.webm`;
+    const outputFileName = `output-${Date.now()}.mp4`;
+    const inputPath = path.join(tempDir, inputFileName);
+    const outputPath = path.join(tempDir, outputFileName);
 
-    const arrayBuffer = await file.arrayBuffer();
-    await writeFile(inputPath, Buffer.from(arrayBuffer));
+    const fileBuffer = Buffer.from(await file.arrayBuffer());
+    await fs.writeFile(inputPath, fileBuffer);
+
+    // 수동 생성 사용
+    const ffmpegProcess = spawn(ffmpegPath, [
+      '-i', inputPath,
+      '-c:v', 'libx264',
+      '-preset', 'ultrafast',
+      '-crf', '22',
+      '-c:a', 'aac',
+      '-b:a', '128k',
+      outputPath
+    ]);
+
     await new Promise<void>((resolve, reject) => {
-      const ffmpeg = spawn(ffmpegPath, [
-        "-i",
-        inputPath,
-        "-c:v",
-        "libx264",
-        "-preset",
-        "veryfast",
-        "-crf",
-        "28",
-        "-c:a",
-        "aac",
-        outputPath,
-      ]);
+      const stderrChunks: Buffer[] = [];
+      ffmpegProcess.stderr.on('data', (data) => {
+        stderrChunks.push(data);
+      });
 
-      ffmpeg.stderr.on("data", (data) =>
-        console.error("FFmpeg stderr: ", data.toString())
-      );
-      ffmpeg.on("close", (code) => {
-        if (code === 0) resolve();
-        else reject(new Error(`FFmpeg 종료 코드: ${code}`));
+      ffmpegProcess.on('close', (code) => {
+        if (code === 0) {
+          resolve();
+        } else {
+          const stderr = Buffer.concat(stderrChunks).toString('utf8');
+          reject(new Error(`FFmpeg 진행 종료 코드 ${code}: ${stderr}`));
+        }
+      });
+
+      ffmpegProcess.on('error', (err) => {
+        reject(err);
       });
     });
 
-    const outputBuffer = await readFile(outputPath);
+    const convertedFileBuffer = await fs.readFile(outputPath);
 
-    await unlink(inputPath).catch(() => {});
-    await unlink(outputPath).catch(() => {});
+    // 임시 파일 삭제
+    await fs.unlink(inputPath);
+    await fs.unlink(outputPath);
 
-    return new Response(outputBuffer, {
+    return new NextResponse(convertedFileBuffer, {
       status: 200,
       headers: {
-        "Content-Type": "video/mp4",
-        "Content-Disposition": "attachment; filename=converted.mp4",
+        'Content-Type': 'video/mp4',
+        'Content-Disposition': `attachment; filename="converted.mp4"`,
       },
     });
-  } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: "Conversion 실패" }, { status: 500 });
+
+  } catch (error: any) {
+    console.error('비디오 변환 중 에러:', error);
+    return NextResponse.json({ error: '동영상 변환 중 오류가 발생했습니다.', details: error.message }, { status: 500 });
   }
 }

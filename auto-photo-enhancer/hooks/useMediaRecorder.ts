@@ -1,5 +1,4 @@
 import { useCallback, useRef, useState } from 'react';
-import { convertWebMToMP4 } from '@/utils/api';
 
 export const useMediaRecorder = (
   canvasRef: React.RefObject<HTMLCanvasElement | null>,
@@ -13,6 +12,37 @@ export const useMediaRecorder = (
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
   const [isConverting, setIsConverting] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const uploadAndConvert = async (webmBlob: Blob) => {
+    setIsConverting(true);
+    setErrorMessage(null);
+    setDownloadUrl(null);
+
+    const formData = new FormData();
+    formData.append('file', webmBlob, 'video.webm');
+
+    try {
+      const response = await fetch('/api/convert', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || '서버에서 변환에 실패했습니다.', { cause: errorData.details });
+      }
+
+      const mp4Blob = await response.blob();
+      const url = URL.createObjectURL(mp4Blob);
+      setDownloadUrl(url);
+    } catch (err: any) {
+      console.error(err);
+      const errorMessage = err.cause ? `${err.message}: ${err.cause}` : err.message;
+      setErrorMessage(errorMessage || 'MP4 변환에 실패했습니다. 다시 시도해 주세요.');
+    } finally {
+      setIsConverting(false);
+    }
+  };
 
   const startRecording = () => {
     const canvas = canvasRef.current;
@@ -36,25 +66,8 @@ export const useMediaRecorder = (
     recorder.ondataavailable = (e) => chunksRef.current.push(e.data);
     recorder.onstop = async () => {
       onRecordingStop();
-      setIsConverting(true);
-      setErrorMessage(null);
-
-      try {
-        const webmBlob = new Blob(chunksRef.current, { type: 'video/webm' });
-        const mp4Blob = await convertWebMToMP4(webmBlob);
-
-        if (downloadUrl) {
-          URL.revokeObjectURL(downloadUrl);
-        }
-
-        const url = URL.createObjectURL(mp4Blob);
-        setDownloadUrl(url);
-      } catch (err) {
-        console.error(err);
-        setErrorMessage('MP4 변환에 실패했습니다. 다시 시도해 주세요.');
-      } finally {
-        setIsConverting(false);
-      }
+      const webmBlob = new Blob(chunksRef.current, { type: 'video/webm' });
+      await uploadAndConvert(webmBlob);
     };
 
     recorderRef.current = recorder;
