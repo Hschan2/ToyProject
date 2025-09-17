@@ -5,3 +5,8 @@ export interface OpenRouterResponse {
     };
   }[];
 }
+
+export interface OpenRouterRequestBody {
+  brand: string;
+  tone: string;
+}

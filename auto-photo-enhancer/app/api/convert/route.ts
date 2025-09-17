@@ -71,8 +71,9 @@ export async function POST(req: NextRequest) {
       },
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('비디오 변환 중 에러:', error);
-    return NextResponse.json({ error: '동영상 변환 중 오류가 발생했습니다.', details: error.message }, { status: 500 });
+    const errorMessage = error instanceof Error ? error.message : '알 수 없는 오류가 발생했습니다.';
+    return NextResponse.json({ error: '동영상 변환 중 오류가 발생했습니다.', details: errorMessage }, { status: 500 });
   }
 }

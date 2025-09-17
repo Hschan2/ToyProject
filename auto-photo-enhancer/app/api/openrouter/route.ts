@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { generateOpenRouterPrompt } from "@/utils/prompts";
-import { OpenRouterResponse } from "@/types/api";
+import { OpenRouterResponse, OpenRouterRequestBody } from "@/types/api";
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
+    const body: OpenRouterRequestBody = await req.json();
     const { brand, tone } = body;
 
     if (!brand || !tone) {
@@ -53,8 +53,9 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json(JSON.parse(jsonMatch[0]));
-  } catch (err) {
+  } catch (err: unknown) {
     console.error("Error in OpenRouter route:", err);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    const errorMessage = err instanceof Error ? err.message : "An unknown error occurred";
+    return NextResponse.json({ error: "Internal Server Error", details: errorMessage }, { status: 500 });
   }
 }
