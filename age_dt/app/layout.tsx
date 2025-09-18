@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Your Age Date&Time from Now',
+  title: '살아온 시간',
   description: '태어난 날부터 지금까지 당신의 시간',
   icons: {
     icon: '/public/images/icons8-age-office-16.png',
