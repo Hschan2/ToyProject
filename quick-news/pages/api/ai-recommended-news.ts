@@ -38,7 +38,9 @@ export default async function handler(
 ${newsList
   .map(
     (n, i) =>
-      `${i + 1}. 제목: ${n.title}, 링크: ${n.link}, 설명: ${n.description}, 날짜: ${n.pubDate || n.publishedAt}`,
+      `${i + 1}. 제목: ${n.title}, 링크: ${n.link}, 설명: ${
+        n.description
+      }, 날짜: ${n.pubDate || n.publishedAt}`,
   )
   .join('\n')}
 `
@@ -77,7 +79,7 @@ ${newsList
     const { pubDate, ...rest } = parsed
 
     const safePared = !Number.isNaN(new Date(pubDate).getTime())
-      ? { ...rest, pubDate } 
+      ? { ...rest, pubDate }
       : { ...rest }
 
     if (sourceType === 'main') cachedRecommendedNews = safePared
