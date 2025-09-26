@@ -19,6 +19,13 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types/**/*.d.ts", "styles/styledComponents.tsx", "next.config.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "types/**/*.d.ts",
+    "styles/styledComponents.tsx",
+    "next.config.js"
+  ],
   "exclude": ["node_modules"]
 }

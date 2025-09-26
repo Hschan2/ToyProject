@@ -28,9 +28,6 @@
     "no-useless-catch": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "prettier/prettier": [
-      "error",
-      { "endOfLine": "auto" }
-    ]
+    "prettier/prettier": ["error", { "endOfLine": "auto" }]
   }
 }
