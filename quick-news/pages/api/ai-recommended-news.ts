@@ -85,7 +85,10 @@ ${newsList
     if (sourceType === 'main') cachedRecommendedNews = safePared
 
     return res.status(200).json(safePared)
-  } catch (error) {
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return res.status(500).json({ message: error.message })
+    }
     return res.status(500).json({ message: '추천 뉴스 요청 실패' })
   }
 }

@@ -48,7 +48,10 @@ export const fetchNewsFromRSS = async (
       pubDate: item.pubDate ? new Date(item.pubDate).getTime() : Date.now(),
       source: 'newswire',
     }))
-  } catch (error) {
-    throw new Error(`RSS 파싱 실패 (${category})`)
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      throw new Error(`RSS 파싱 실패 (${categoryStr}): ${error.message}`)
+    }
+    throw new Error(`RSS 파싱 실패 (${categoryStr})`)
   }
 }

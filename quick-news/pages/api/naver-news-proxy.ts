@@ -28,7 +28,11 @@ export default async function handler(
       },
     )
     res.status(200).json(apiResponse.data)
-  } catch (error) {
-    res.status(500).json({ message: 'Internal Server Error' })
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      res.status(500).json({ message: error.message })
+    } else {
+      res.status(500).json({ message: 'Internal Server Error' })
+    }
   }
 }
