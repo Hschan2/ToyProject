@@ -22,7 +22,7 @@ const ImageEditor = ({ imageSrc }: { imageSrc: string }) => {
       <FilterButtonList
         selectedKey={selectedKey}
         loadingKey={loadingKey}
-        onSelectAIStyle={(brand, tone, key) => selectAIStyle(brand, tone)}
+        onSelectAIStyle={(brand, tone) => selectAIStyle(brand, tone)}
         onSelectMoodStyle={selectMoodStyle}
       />
 
