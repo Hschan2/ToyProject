@@ -4,6 +4,16 @@ import { GetLocationButton } from '../../../styles/button-style'
 import useGeolocation from '../utils/geolocation'
 import ConfirmModal from '../../modal/confirm-modal'
 
+interface WeatherApiResponse {
+  name: string
+  weather: {
+    description: string
+  }[]
+  main: {
+    temp: number
+  }
+}
+
 export default function Weather() {
   const { latitude, longitude, error, requestLocation }: ILocation =
     useGeolocation()
@@ -36,13 +46,16 @@ export default function Weather() {
           return
         }
 
-        const { name, weather, main } = await response.json()
+        const data: WeatherApiResponse = await response.json()
         setWeatherData({
-          name,
-          description: weather[0].description,
-          temp: main.temp,
+          name: data.name,
+          description: data.weather[0].description,
+          temp: data.main.temp,
         })
-      } catch (err) {
+      } catch (err: unknown) {
+        if (err instanceof Error && err.name === 'AbortError') {
+          return
+        }
         setFetchError('날씨 정보가 없습니다')
       } finally {
         setLoading(false)
