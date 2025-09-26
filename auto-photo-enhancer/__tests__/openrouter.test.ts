@@ -1,4 +1,4 @@
-import { callOpenRouterAPI } from "@/utils/openRouter";
+import { callOpenRouterAPI } from "@/utils/api";
 
 global.fetch = jest.fn(() =>
   Promise.resolve({
