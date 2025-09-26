@@ -7,8 +7,8 @@ function DarkModeButton() {
   const [isDarkMode, setIsDarkMode] = useRecoilState(DARK_MODE_VALUE)
 
   const changeDarkMode = useCallback(() => {
-    setIsDarkMode(!isDarkMode)
-  }, [isDarkMode])
+    setIsDarkMode((isDark) => !isDark)
+  }, [setIsDarkMode])
 
   return (
     <SideButton

@@ -86,7 +86,6 @@ ${newsList
 
     return res.status(200).json(safePared)
   } catch (error) {
-    console.error('추천 뉴스 파싱 실패:', error)
     return res.status(500).json({ message: '추천 뉴스 요청 실패' })
   }
 }

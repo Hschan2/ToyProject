@@ -18,9 +18,7 @@ function NewsItem({ article }: NaverNewsList) {
       const { SaveNewsInStorage } = await import('../../utils/storage')
       SaveNewsInStorage({ article })
     } catch (error) {
-      if (process.env.NODE_ENV !== 'production') {
-        console.error('뉴스 저장 에러', error)
-      }
+      /* empty */
     }
   }, [article])
 

@@ -26,9 +26,7 @@ function Detail() {
     try {
       articleData = JSON.parse(decodeURIComponent(atob(data)))
     } catch (error) {
-      if (process.env.NODE_ENV !== 'production') {
-        console.error('Failed to parse article data from URL:', error)
-      }
+      /* empty */
     }
   }
 

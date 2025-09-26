@@ -32,12 +32,12 @@ export default function RecommendedNews({
         const data = await res.json()
         setRecommendedNews(data)
       } catch (error) {
-        console.error(`AI 추천 뉴스 호출 실패 ${error}`)
+        /* empty */
       }
     }
 
     if (newsList) fetchRecommendedNews()
-  }, [newsList])
+  }, [newsList, sourceType])
 
   if (!recommendedNews) {
     return <RecommendedSection>AI가 뉴스를 추천하고 있어요.</RecommendedSection>

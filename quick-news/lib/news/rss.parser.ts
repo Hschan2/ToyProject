@@ -49,7 +49,6 @@ export const fetchNewsFromRSS = async (
       source: 'newswire',
     }))
   } catch (error) {
-    console.error(`RSS 파싱 실패 - ${category}`, error)
     throw new Error(`RSS 파싱 실패 (${category})`)
   }
 }

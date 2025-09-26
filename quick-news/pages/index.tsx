@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { GetStaticPropsContext } from 'next'
 import { BasicNewsProps, NewsProps } from '../types/type'
 import RecommendedNews from '../components/news/recommended-news'
 import NewsLists from '../components/news/news-list'
@@ -17,7 +16,7 @@ export default function Home({ news }: NewsProps) {
   )
 }
 
-export async function getStaticProps(context: GetStaticPropsContext) {
+export async function getStaticProps() {
   const query = '오늘의주요뉴스'
   const url = 'https://openapi.naver.com/v1/search/news.json'
 
@@ -44,7 +43,6 @@ export async function getStaticProps(context: GetStaticPropsContext) {
       revalidate: 3600,
     }
   } catch (error) {
-    console.error('API 호출 에러: ', error)
     return {
       props: {
         news: [],

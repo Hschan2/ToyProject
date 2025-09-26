@@ -29,9 +29,6 @@ export default async function handler(
     )
     res.status(200).json(apiResponse.data)
   } catch (error) {
-    if (process.env.NODE_ENV !== 'production') {
-      console.error('네이버 뉴스 데이터 불러오기 에러', error)
-    }
     res.status(500).json({ message: 'Internal Server Error' })
   }
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { ILocation, IWeather } from '../../../types/type'
 import { GetLocationButton } from '../../../styles/button-style'
 import useGeolocation from '../utils/geolocation'
+import ConfirmModal from '../../modal/confirm-modal'
 
 export default function Weather() {
   const { latitude, longitude, error, requestLocation }: ILocation =
@@ -9,12 +10,11 @@ export default function Weather() {
   const [weatherData, setWeatherData] = useState<IWeather | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const [fetchError, setFetchError] = useState<string | null>(null)
+  const [isModalOpen, setModalOpen] = useState(false)
 
   const getLocation = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    if (window.confirm('현재 위치를 가져올까요?')) {
-      requestLocation()
-    }
+    setModalOpen(true)
   }
 
   useEffect(() => {
@@ -44,9 +44,6 @@ export default function Weather() {
         })
       } catch (err) {
         setFetchError('날씨 정보가 없습니다')
-        if (process.env.NODE_ENV !== 'production') {
-          console.error(`날씨를 가져오지 못했습니다. : ${err}`)
-        }
       } finally {
         setLoading(false)
       }
@@ -62,7 +59,17 @@ export default function Weather() {
 
   if (!latitude || !longitude) {
     return (
-      <GetLocationButton onClick={getLocation}>날씨 가져오기</GetLocationButton>
+      <>
+        <GetLocationButton onClick={getLocation}>
+          날씨 가져오기
+        </GetLocationButton>
+        <ConfirmModal
+          isOpen={isModalOpen}
+          onClose={() => setModalOpen(false)}
+          onConfirm={requestLocation}
+          message="현재 위치를 가져올까요?"
+        />
+      </>
     )
   }
 

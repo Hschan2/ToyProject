@@ -11,7 +11,6 @@ export default async function handler(
     const news = await fetchNewsFromRSS(category as string)
     res.status(200).json(news)
   } catch (error) {
-    console.error('네이버 뉴스 데이터 불러오기 에러', error)
     res.status(500).json({ error: '뉴스 데이터를 불러오지 못했습니다.' })
   }
 }
