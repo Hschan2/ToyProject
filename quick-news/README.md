@@ -184,12 +184,12 @@ Recoil로 검색 값을 저장해 활용하는 방식에서 NextJS의 Navigation
 Example
 
 const media = {
-  tablet: (styles: TemplateStringsArray, ...interpolations: any[]) => css`
+  tablet: (styles: TemplateStringsArray, ...interpolations: Interpolation<object>[]) => css`
     @media screen and (max-width: 768px) {
       ${css(styles, ...interpolations)}
     }
   `,
-  mobile: (styles: TemplateStringsArray, ...interpolations: any[]) => css`
+  mobile: (styles: TemplateStringsArray, ...interpolations: Interpolation<object>[]) => css`
     @media screen and (max-width: 480px) {
       ${css(styles, ...interpolations)}
     }

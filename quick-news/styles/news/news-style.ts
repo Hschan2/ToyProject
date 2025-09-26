@@ -1,15 +1,21 @@
-import styled, { css } from 'styled-components'
+import styled, { css, Interpolation } from 'styled-components'
 import Link from 'next/link'
 import React from 'react'
 import { COMMON_COLOR } from '../../constants/theme'
 
 const media = {
-  tablet: (styles: TemplateStringsArray, ...interpolations: any[]) => css`
+  tablet: (
+    styles: TemplateStringsArray,
+    ...interpolations: Interpolation<object>[]
+  ) => css`
     @media screen and (max-width: 768px) {
       ${css(styles, ...interpolations)}
     }
   `,
-  mobile: (styles: TemplateStringsArray, ...interpolations: any[]) => css`
+  mobile: (
+    styles: TemplateStringsArray,
+    ...interpolations: Interpolation<object>[]
+  ) => css`
     @media screen and (max-width: 480px) {
       ${css(styles, ...interpolations)}
     }

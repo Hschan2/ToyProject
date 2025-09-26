@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from 'styled-components'
+import styled, { css, keyframes, Interpolation } from 'styled-components'
 
 interface SideButtonProps {
   purpose: 'Up' | 'DarkMode' | 'SavedNews' | 'Search'
@@ -35,12 +35,18 @@ const getVisibleValue = (purpose: SideButtonProps['purpose']) => {
 }
 
 const media = {
-  tablet: (styles: TemplateStringsArray, ...interpolations: any[]) => css`
+  tablet: (
+    styles: TemplateStringsArray,
+    ...interpolations: Interpolation<object>[]
+  ) => css`
     @media screen and (max-width: 768px) {
       ${css(styles, ...interpolations)}
     }
   `,
-  mobile: (styles: TemplateStringsArray, ...interpolations: any[]) => css`
+  mobile: (
+    styles: TemplateStringsArray,
+    ...interpolations: Interpolation<object>[]
+  ) => css`
     @media screen and (max-width: 480px) {
       ${css(styles, ...interpolations)}
     }
