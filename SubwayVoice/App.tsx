@@ -12,14 +12,19 @@ import NaverMapView, {Marker, Polyline} from 'react-native-nmap';
 import {PERMISSIONS, request, RESULTS} from 'react-native-permissions';
 import Geolocation from '@react-native-community/geolocation';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createStackNavigator, StackScreenProps} from '@react-navigation/stack';
 import RouteSearch from './RouteSearch';
 import BackgroundTimer from 'react-native-background-timer';
 import PushNotification from 'react-native-push-notification';
 import Tts from 'react-native-tts';
 
 // --- Haversine 공식으로 두 좌표 간의 거리를 계산하는 함수 (미터 단위) ---
-const getDistance = (lat1, lon1, lat2, lon2) => {
+const getDistance = (
+  lat1: number,
+  lon1: number,
+  lat2: number,
+  lon2: number,
+) => {
   const R = 6371; // 지구 반지름 (km)
   const dLat = (lat2 - lat1) * (Math.PI / 180);
   const dLon = (lon2 - lon1) * (Math.PI / 180);
@@ -38,15 +43,22 @@ type Location = {
   longitude: number;
 };
 
-type Station = {
+export type Station = {
   name: string;
   latitude: number;
   longitude: number;
 };
 
-const Stack = createStackNavigator();
+export type RootStackParamList = {
+  Home: {newRoute?: Station[]};
+  RouteSearch: undefined;
+};
 
-const HomeScreen = ({navigation, route: navRoute}) => {
+const Stack = createStackNavigator<RootStackParamList>();
+
+type HomeScreenProps = StackScreenProps<RootStackParamList, 'Home'>;
+
+const HomeScreen = ({navigation, route: navRoute}: HomeScreenProps) => {
   const [location, setLocation] = useState<Location | null>(null);
   const [permissionGranted, setPermissionGranted] = useState(false);
 
@@ -94,7 +106,7 @@ const HomeScreen = ({navigation, route: navRoute}) => {
       if (nextStationIndex >= route.length) {
         setStatus('경로 탐색 완료');
         setIsSearching(false);
-        BackgroundTimer.stopBackgroundTimer(timerId);
+        (BackgroundTimer.stopBackgroundTimer as any)(timerId);
         return;
       }
 
@@ -123,12 +135,12 @@ const HomeScreen = ({navigation, route: navRoute}) => {
             setNextStationIndex(prev => prev + 1);
           }
         },
-        error => setStatus('현재 위치를 가져올 수 없습니다.'),
+        error => setStatus(`현재 위치를 가져올 수 없습니다: ${error}`),
         {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
       );
     }, 15000);
 
-    return () => BackgroundTimer.stopBackgroundTimer(timerId);
+    return () => (BackgroundTimer.stopBackgroundTimer as any)(timerId);
   }, [isSearching, nextStationIndex, route]);
 
   const requestLocationPermission = async () => {
@@ -178,9 +190,11 @@ const HomeScreen = ({navigation, route: navRoute}) => {
     }
   };
 
+  const NaverMapViewComponent = NaverMapView as any;
+
   return (
     <View style={{flex: 1}}>
-      <NaverMapView
+      <NaverMapViewComponent
         style={{flex: 1}}
         center={
           location
@@ -211,7 +225,7 @@ const HomeScreen = ({navigation, route: navRoute}) => {
             ))}
           </>
         )}
-      </NaverMapView>
+      </NaverMapViewComponent>
       {isSearching && (
          <View style={styles.statusContainer}>
             <Text style={styles.statusText}>{status}</Text>

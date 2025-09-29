@@ -9,6 +9,8 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RootStackParamList} from './App';
 
 // ===================================================================
 // !! 중요 !!
@@ -16,15 +18,20 @@ import {useNavigation} from '@react-navigation/native';
 const ODsayApiKey = 'YOUR_ODSAY_API_KEY';
 // ===================================================================
 
+type RouteSearchNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'RouteSearch'
+>;
+
 const RouteSearch = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<RouteSearchNavigationProp>();
   const [startStation, setStartStation] = useState('');
   const [endStation, setEndStation] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchRouteFromODsay = async (start, end) => {
+  const fetchRouteFromODsay = async (start: string, end: string) => {
     try {
-      const stationToId = async stationName => {
+      const stationToId = async (stationName: string) => {
         const url = `https://api.odsay.com/v1/api/searchStation?lang=0&stationName=${encodeURIComponent(
           stationName,
         )}&apiKey=${encodeURIComponent(ODsayApiKey)}`;
@@ -48,15 +55,23 @@ const RouteSearch = () => {
       const pathData = await pathResponse.json();
       if (pathData.error) throw new Error(pathData.error.message);
 
-      const formattedRoute = pathData.result.stationSet.stations.map(st => ({
-        name: st.stationName,
-        latitude: parseFloat(st.y),
-        longitude: parseFloat(st.x),
-      }));
+      type OdsayStation = {stationName: string; y: string; x: string};
+
+      const formattedRoute = pathData.result.stationSet.stations.map(
+        (st: OdsayStation) => ({
+          name: st.stationName,
+          latitude: parseFloat(st.y),
+          longitude: parseFloat(st.x),
+        }),
+      );
 
       return formattedRoute;
     } catch (error) {
-      Alert.alert('API 오류', error.message);
+      if (error instanceof Error) {
+        Alert.alert('API 오류', error.message);
+      } else {
+        Alert.alert('API 오류', '알 수 없는 오류가 발생했습니다.');
+      }
       return null;
     }
   };
