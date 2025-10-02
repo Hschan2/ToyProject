@@ -32,7 +32,7 @@ export default function Home() {
 
   const startQuiz = async () => {
     if (selectedLanguages.length === 0) {
-      alert("Please select at least one language.");
+      alert("언어를 하나 이상 선택해주세요.");
       return;
     }
 
