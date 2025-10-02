@@ -21,6 +21,7 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const languages = searchParams.getAll("lang");
   const level = searchParams.get("level");
+  const TOTAL_QUESTIONS = 20;
 
   if (!languages.length || !level) {
     return NextResponse.json(
@@ -31,67 +32,78 @@ export async function GET(request: Request) {
 
   const typedWordsData: Word[] = wordsData as Word[];
 
-  // 선택된 난이도에 맞는 단어 필터링
+  // 1. 난이도에 맞는 단어 필터링
   const filteredWords = typedWordsData.filter(
     (word) => word.difficulty === level
   );
 
-  // 날짜를 기반으로 시드 생성 (매일 같은 문제 세트 제공)
+  // 2. 날짜 기반 시드로 단어 목록을 매일 동일하게 섞기
   const today = new Date();
   const dateSeed =
     today.getFullYear() * 10000 +
     (today.getMonth() + 1) * 100 +
     today.getDate();
-
-  // 시드 기반으로 단어 섞기
   const dailyShuffledWords = seededShuffle(filteredWords, dateSeed);
 
-  const questions = [];
-  let wordIndex = 0;
+  // 3. 문제 유형 비율 고정 (단어->뜻 10개, 뜻->단어 10개)
+  const questionTypes = Array(TOTAL_QUESTIONS / 2)
+    .fill(true)
+    .concat(Array(TOTAL_QUESTIONS / 2).fill(false));
+  const shuffledQuestionTypes = seededShuffle(questionTypes, dateSeed + 1); // 다른 시드 사용
 
-  // 20개의 유효한 질문을 찾을 때까지 반복
-  while (questions.length < 20 && wordIndex < dailyShuffledWords.length) {
-    const word = dailyShuffledWords[wordIndex];
-    wordIndex++;
+  // 4. 언어별 문제 수 균등 분배
+  const questionsPerLang = Math.floor(TOTAL_QUESTIONS / languages.length);
+  const remainder = TOTAL_QUESTIONS % languages.length;
+  
+  const langDistribution = languages.map((lang, index) => ({
+    lang,
+    count: questionsPerLang + (index < remainder ? 1 : 0),
+  }));
 
-    // 단어에 대해 사용자가 선택한 언어 중 유효한(뜻이 비어있지 않은) 언어 목록 필터링
-    const availableLanguages = languages.filter(
-      (lang) => word.meaning[lang as keyof Meaning]
+  let allQuestions = [];
+  let usedWordIds = new Set();
+
+  for (const dist of langDistribution) {
+    const { lang, count } = dist;
+    const langSpecificQuestions = [];
+    
+    // 해당 언어의 뜻이 있는 단어만 필터링
+    const availableWordsForLang = dailyShuffledWords.filter(word => 
+        word.meaning[lang as keyof Meaning] && !usedWordIds.has(word.id)
     );
 
-    // 유효한 언어가 없거나, 한국어 뜻이 없으면 해당 단어는 건너뛰기
-    if (availableLanguages.length === 0 || !word.meaning.korean) {
-      continue;
+    for (let i = 0; i < count && i < availableWordsForLang.length; i++) {
+      const word = availableWordsForLang[i];
+      usedWordIds.add(word.id); // 중복 사용 방지
+
+      const koreanMeaning = word.meaning.korean;
+      const foreignMeaning = word.meaning[lang as keyof Meaning];
+      
+      if (!koreanMeaning || !foreignMeaning) continue;
+
+      // 미리 섞어둔 문제 유형 배열에서 하나씩 꺼내 사용
+      const isForeignQuestion = shuffledQuestionTypes.pop() ?? false;
+
+      langSpecificQuestions.push({
+        wordData: word,
+        question: isForeignQuestion ? foreignMeaning : koreanMeaning,
+        correctAnswer: isForeignQuestion ? koreanMeaning : foreignMeaning,
+        quizLanguage: lang,
+      });
     }
-
-    // 유효한 언어 중 하나를 랜덤으로 선택
-    const langIndex = Math.floor(
-      seededRandom(dateSeed + word.id) * availableLanguages.length
-    );
-    const foreignLanguage = availableLanguages[langIndex];
-
-    const koreanMeaning = word.meaning.korean;
-    const foreignMeaning = word.meaning[foreignLanguage as keyof Meaning];
-
-    // 문제 유형 결정 (뜻 -> 단어 or 단어 -> 뜻)
-    const isForeignQuestion: boolean =
-      seededRandom(dateSeed + word.id + questions.length) > 0.5;
-
-    questions.push({
-      wordData: word,
-      question: isForeignQuestion ? foreignMeaning : koreanMeaning,
-      correctAnswer: isForeignQuestion ? koreanMeaning : foreignMeaning,
-      quizLanguage: foreignLanguage,
-    });
+    allQuestions.push(...langSpecificQuestions);
   }
 
-  // 유효한 질문이 20개 미만일 경우 에러 응답
-  if (questions.length < 20) {
+  // 5. 최종 문제 목록이 20개가 안되면 에러 처리
+  if (allQuestions.length < TOTAL_QUESTIONS) {
     return NextResponse.json(
-      { error: "퀴즈를 풀기 위한 충분한 단어가 없습니다." },
+      { error: "퀴즈를 만들기에 단어 수가 부족합니다. 다른 난이도나 언어를 선택해주세요." },
       { status: 404 }
     );
   }
 
-  return NextResponse.json(questions);
+  // 6. 최종 문제 목록을 다시 섞어서 언어가 섞여서 나오도록 함
+  const finalShuffledQuestions = seededShuffle(allQuestions, dateSeed + 2);
+
+  return NextResponse.json(finalShuffledQuestions);
 }
