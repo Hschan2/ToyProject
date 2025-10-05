@@ -53,3 +53,6 @@ npm run dev
 **애플리케이션 접속**
 
 웹 브라우저를 열고 [http://localhost:3000](http://localhost:3000)으로 접속하세요.
+
+**블로그**
+[정리글](https://hseongchan2.tistory.com/203)
