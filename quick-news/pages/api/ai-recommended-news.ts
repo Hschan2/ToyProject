@@ -54,7 +54,7 @@ ${newsList
     const response = await apiClient.post(
       'https://openrouter.ai/api/v1/chat/completions',
       {
-        model: 'mistralai/mistral-7b-instruct:free',
+        model: 'google/gemma-3-27b-it:free',
         messages: [
           { role: 'system', content: '당신은 중요한 뉴스를 고르는 AI입니다.' },
           { role: 'user', content: prompt },
