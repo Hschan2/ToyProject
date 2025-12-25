@@ -21,10 +21,10 @@ export async function POST(req: NextRequest) {
       headers: {
         Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
         "Content-Type": "application/json",
-        "X-Title": "Auto Photo Enhancer", // Or a project-specific title
+        "X-Title": "Auto Photo Enhancer",
       },
       body: JSON.stringify({
-        model: "mistralai/mistral-7b-instruct:free",
+        model: "google/gemma-3-27b-it:free",
         messages: [
           { role: "system", content: "You are an AI that recommends image filter adjustment values." },
           { role: "user", content: prompt },
