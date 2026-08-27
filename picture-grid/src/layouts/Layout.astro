@@ -1,0 +1,28 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { 
+  title = "Picture Grid (픽그) - 원클릭 소셜미디어 사진 그리드 생성기", 
+  description = "인스타그램, 스토리, 피드용 사진 그리드 및 레이아웃을 원클릭으로 손쉽게 생성하세요. 100% 무료 브라우저 처리 서비스." 
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
