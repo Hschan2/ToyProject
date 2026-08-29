@@ -398,7 +398,7 @@ import Layout from '../layouts/Layout.astro';
 
   .layout-btn {
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--border-color);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: var(--radius-md);
     padding: 12px;
     display: flex;
@@ -413,15 +413,18 @@ import Layout from '../layouts/Layout.astro';
     transition: all 0.2s ease;
   }
   .layout-btn:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(139, 92, 246, 0.08);
+    border-color: var(--accent-purple);
     color: var(--text-main);
+  }
+  .layout-btn:hover .layout-icon {
+    border-color: var(--accent-purple);
   }
   .layout-btn.active {
     background: rgba(99, 102, 241, 0.15);
-    border-color: #6366f1;
+    border-color: var(--accent-purple);
     color: #fff;
-    box-shadow: 0 0 15px rgba(99, 102, 241, 0.25);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.25);
   }
 
   /* Layout Icons Visual Representation */
@@ -432,6 +435,7 @@ import Layout from '../layouts/Layout.astro';
     border-radius: 6px;
     position: relative;
     border: 1px dashed rgba(255, 255, 255, 0.2);
+    transition: border-color 0.2s ease;
   }
 
   .icon-overlay::before {
@@ -478,18 +482,24 @@ import Layout from '../layouts/Layout.astro';
 
   /* Dropzone */
   .upload-dropzone {
-    border: 2px dashed rgba(99, 102, 241, 0.4);
+    border: 2px dashed rgba(255, 255, 255, 0.18);
     border-radius: var(--radius-md);
     padding: 20px;
     text-align: center;
     cursor: pointer;
-    background: rgba(99, 102, 241, 0.04);
+    background: rgba(255, 255, 255, 0.02);
     transition: all 0.2s ease;
     position: relative;
   }
   .upload-dropzone:hover {
-    background: rgba(99, 102, 241, 0.1);
-    border-color: #6366f1;
+    background: rgba(139, 92, 246, 0.08);
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+  }
+  .upload-dropzone:hover .dropzone-content svg {
+    color: var(--accent-purple);
+    stroke: var(--accent-purple);
+    transform: translateY(-2px);
   }
   .file-input-hidden {
     position: absolute;
@@ -504,6 +514,10 @@ import Layout from '../layouts/Layout.astro';
     gap: 6px;
     color: var(--text-muted);
   }
+  .dropzone-content svg {
+    color: var(--text-dim);
+    transition: all 0.2s ease;
+  }
   .dropzone-content p {
     font-size: 0.85rem;
     font-weight: 500;
@@ -517,22 +531,35 @@ import Layout from '../layouts/Layout.astro';
   /* Slot Thumbnails Bar */
   .slots-container {
     display: flex;
-    gap: 8px;
-    overflow-x: auto;
-    padding: 6px 0;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 8px 0 4px 0;
+    max-height: 190px;
+    overflow-y: auto;
   }
-  .slot-thumb {
-    width: 60px;
-    height: 60px;
-    border-radius: var(--radius-sm);
-    object-fit: cover;
-    border: 2px solid var(--border-color);
-    position: relative;
-    flex-shrink: 0;
+  :global(.slot-thumb) {
+    width: 80px !important;
+    height: 80px !important;
+    min-width: 80px !important;
+    min-height: 80px !important;
+    max-width: 80px !important;
+    max-height: 80px !important;
+    aspect-ratio: 1 / 1 !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    border-radius: 16px !important;
+    border: 2px solid rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4) !important;
+    flex-shrink: 0 !important;
+    box-sizing: border-box !important;
+    display: block !important;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .slot-thumb.active {
-    border-color: #ec4899;
-    box-shadow: 0 0 10px rgba(236, 72, 153, 0.5);
+  :global(.slot-thumb:hover) {
+    transform: translateY(-2px) scale(1.03);
+    border-color: #8b5cf6 !important;
+    box-shadow: 0 8px 22px rgba(139, 92, 246, 0.4) !important;
   }
 
   /* Controls Styling */
@@ -565,7 +592,7 @@ import Layout from '../layouts/Layout.astro';
   }
   .chip-btn {
     background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--border-color);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     color: var(--text-muted);
     padding: 8px;
     border-radius: var(--radius-sm);
@@ -576,12 +603,15 @@ import Layout from '../layouts/Layout.astro';
     transition: all 0.2s ease;
   }
   .chip-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(139, 92, 246, 0.1);
+    border-color: var(--accent-purple);
+    color: #fff;
   }
   .chip-btn.active {
-    background: var(--border-active);
+    background: rgba(139, 92, 246, 0.25);
     color: #fff;
-    border-color: var(--border-active);
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 12px rgba(139, 92, 246, 0.3);
   }
 
   .bg-style-picker {
@@ -599,16 +629,21 @@ import Layout from '../layouts/Layout.astro';
 
   .styled-select, .styled-input {
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border-color);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     color: var(--text-main);
     padding: 10px 14px;
     border-radius: var(--radius-sm);
     font-family: inherit;
     font-size: 0.85rem;
     outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .styled-select:hover, .styled-input:hover {
+    border-color: rgba(139, 92, 246, 0.6);
   }
   .styled-select:focus, .styled-input:focus {
-    border-color: var(--border-active);
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
   }
   .styled-select option {
     background: #0f172a;
@@ -811,7 +846,7 @@ import Layout from '../layouts/Layout.astro';
       images.forEach((img, idx) => {
         const thumb = document.createElement('img');
         thumb.src = img.src;
-        thumb.className = `slot-thumb ${idx === 0 ? 'active' : ''}`;
+        thumb.className = 'slot-thumb';
         thumb.title = `사진 #${idx + 1}`;
         container.appendChild(thumb);
       });
