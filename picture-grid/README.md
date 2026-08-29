@@ -48,7 +48,7 @@
 ```text
 picture-grid/
 ├── public/                # 파비콘 및 정적 자산 (샘플 이미지 등)
-│   ├── favicon.svg
+│   ├── favicon.ico
 │   └── samples/
 ├── src/
 │   ├── layouts/
