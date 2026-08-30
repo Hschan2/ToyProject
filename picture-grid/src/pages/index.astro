@@ -453,17 +453,43 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .icon-vert10 {
-    display: flex; flex-direction: column; gap: 2px; padding: 3px; overflow: hidden;
+    display: flex; gap: 2px; padding: 4px; overflow: hidden;
   }
   .icon-vert10::before {
-    content: ''; height: 100%; background: linear-gradient(to bottom, #6366f1, #a855f7, #ec4899); border-radius: 2px;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      90deg,
+      #6366f1 0px,
+      #6366f1 3px,
+      #a855f7 3px,
+      #a855f7 5px,
+      #ec4899 5px,
+      #ec4899 7px,
+      #06b6d4 7px,
+      #06b6d4 9px,
+      #10b981 9px,
+      #10b981 11px
+    );
+    border-radius: 2px;
   }
 
   .icon-horiz3 {
-    display: flex; gap: 2px; padding: 4px;
+    display: flex; flex-direction: column; gap: 2px; padding: 4px;
   }
   .icon-horiz3::before {
-    content: ''; width: 100%; background: #8b5cf6; border-radius: 2px;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      180deg,
+      #8b5cf6 0px,
+      #8b5cf6 6px,
+      transparent 6px,
+      transparent 8px
+    );
+    border-radius: 2px;
   }
 
   .icon-polaroid {
@@ -990,20 +1016,37 @@ import Layout from '../layouts/Layout.astro';
         });
       }
       else if (currentLayout === 'vert10') {
-        // Layout 3: 10 Vertical Strip (2 Columns x 5 Rows)
-        const cols = 2;
-        const rows = 5;
-        const cellW = (dims.width - pad * (cols + 1)) / cols;
-        const cellH = (dims.height - pad * (rows + 1)) / rows;
+        // Layout 3: 10 Vertical Strips (10 columns side-by-side in 1 row)
+        const cols = 10;
+        const totalW = dims.width - pad * 2;
+        const totalH = dims.height - pad * 2;
+        const startX = pad;
+        const startY = pad;
 
-        for (let i = 0; i < 10; i++) {
-          const c = i % cols;
-          const rIdx = Math.floor(i / cols);
-          const x = pad + c * (cellW + pad);
-          const y = pad + rIdx * (cellH + pad);
-          const img = images[i % images.length];
-          drawImageCover(ctx, img, x, y, cellW, cellH, r);
+        // Draw shadow base for the card
+        if (shadowIntensity > 0) {
+          ctx.save();
+          ctx.fillStyle = '#0f172a';
+          roundRect(ctx, startX, startY, totalW, totalH, r);
+          ctx.fill();
+          ctx.restore();
         }
+
+        // Clip the entire card with rounded corners
+        ctx.save();
+        if (r > 0) {
+          roundRect(ctx, startX, startY, totalW, totalH, r);
+          ctx.clip();
+        }
+
+        for (let i = 0; i < cols; i++) {
+          const x1 = startX + (i * totalW) / cols;
+          const x2 = startX + ((i + 1) * totalW) / cols;
+          const stripW = x2 - x1;
+          const img = images[i % images.length];
+          drawImageCover(ctx, img, x1, startY, stripW + 0.5, totalH, 0);
+        }
+        ctx.restore();
       }
       else if (currentLayout === 'horiz3') {
         // Layout 4: 3 Horizontal Grid Stack
