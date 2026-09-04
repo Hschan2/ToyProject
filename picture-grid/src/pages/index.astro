@@ -159,12 +159,28 @@ import Layout from '../layouts/Layout.astro';
             <label>사진 필터</label>
             <select id="filterSelect" class="styled-select">
               <option value="none">원본 (None)</option>
-              <option value="warm">감성 워머 (Warm Vintage)</option>
-              <option value="cool">쿨 사이버 (Cool Blue)</option>
-              <option value="bw">클래식 흑백 (Monochrome)</option>
-              <option value="vivid">비비드 팝 (High Contrast)</option>
-              <option value="soft">파스텔 소프트 (Soft Glow)</option>
+              <optgroup label="🎞️ 아날로그 필름 효과 (노이즈+비네팅)">
+                <option value="kodak">🎞️ 코닥 웜 골드 (Kodak 35mm)</option>
+                <option value="fuji">🎞️ 후지 클래식 (Fuji Chrome)</option>
+                <option value="vintage">🎞️ 빈티지 80s (Vintage Film)</option>
+                <option value="noir">🎞️ 필름 누아르 (B&W Tri-X)</option>
+                <option value="cinematic">🎞️ 시네마틱 틸&오렌지 (Cinematic)</option>
+              </optgroup>
+              <optgroup label="🎨 일반 감성 필터">
+                <option value="warm">감성 워머 (Warm Vintage)</option>
+                <option value="cool">쿨 사이버 (Cool Blue)</option>
+                <option value="bw">클래식 흑백 (Monochrome)</option>
+                <option value="vivid">비비드 팝 (High Contrast)</option>
+                <option value="soft">파스텔 소프트 (Soft Glow)</option>
+              </optgroup>
             </select>
+          </div>
+
+          <div class="control-group">
+            <label class="checkbox-container">
+              <input type="checkbox" id="dateStampCheckbox" />
+              <span class="checkbox-label">📅 필름 카메라 날짜 스탬프 ('26 09 04)</span>
+            </label>
           </div>
 
           <div class="control-group">
@@ -662,6 +678,7 @@ import Layout from '../layouts/Layout.astro';
     font-family: inherit;
     font-size: 0.85rem;
     outline: none;
+    color-scheme: dark;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
   .styled-select:hover, .styled-input:hover {
@@ -671,9 +688,44 @@ import Layout from '../layouts/Layout.astro';
     border-color: var(--accent-purple);
     box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
   }
+  .styled-select optgroup {
+    background-color: #1e1b4b;
+    color: #38bdf8;
+    font-weight: 700;
+    font-style: normal;
+    padding: 6px 4px;
+  }
   .styled-select option {
-    background: #0f172a;
-    color: #fff;
+    background-color: #0f172a;
+    color: #f8fafc;
+    padding: 6px 10px;
+  }
+
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 9px 12px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.2s ease;
+  }
+  .checkbox-container:hover {
+    background: rgba(139, 92, 246, 0.08);
+    border-color: rgba(139, 92, 246, 0.3);
+  }
+  .checkbox-container input[type="checkbox"] {
+    cursor: pointer;
+    accent-color: #f59e0b;
+    width: 16px;
+    height: 16px;
+  }
+  .checkbox-label {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-muted);
   }
 
   /* Stage Workspace */
@@ -830,6 +882,7 @@ import Layout from '../layouts/Layout.astro';
     let bgType = 'color';
     let bgColor = '#0f172a';
     let currentFilter = 'none';
+    let showDateStamp = false;
     let watermarkText = '';
 
     // Sample Images
@@ -837,6 +890,35 @@ import Layout from '../layouts/Layout.astro';
       '/samples/sample1.jpg',
       '/samples/sample2.jpg'
     ];
+
+    // Film grain pattern generator (cached canvas pattern for performance)
+    let grainPattern: CanvasPattern | null = null;
+    function getGrainPattern(): CanvasPattern | null {
+      if (grainPattern) return grainPattern;
+      const pCanvas = document.createElement('canvas');
+      pCanvas.width = 160;
+      pCanvas.height = 160;
+      const pCtx = pCanvas.getContext('2d');
+      if (!pCtx) return null;
+      const imgData = pCtx.createImageData(160, 160);
+      const data = imgData.data;
+      for (let i = 0; i < data.length; i += 4) {
+        // High-contrast authentic film grain grain particles (Silver Halide effect)
+        const isDark = Math.random() < 0.5;
+        const val = isDark ? Math.floor(Math.random() * 80) : Math.floor(175 + Math.random() * 80);
+        data[i] = val;
+        data[i + 1] = val;
+        data[i + 2] = val;
+        data[i + 3] = 58; // Enhanced grain opacity for visible organic film texture
+      }
+      pCtx.putImageData(imgData, 0, 0);
+      grainPattern = ctx.createPattern(pCanvas, 'repeat');
+      return grainPattern;
+    }
+
+    function isFilmFilter(filter: string): boolean {
+      return ['kodak', 'fuji', 'vintage', 'noir', 'cinematic'].includes(filter);
+    }
 
     // Initialize Canvas Dimensions based on Aspect Ratio
     function getCanvasDimensions() {
@@ -910,15 +992,81 @@ import Layout from '../layouts/Layout.astro';
         ny = y - (nh - h) / 2;
       }
 
-      // Apply Filter
+      // 1. Apply Filter and Draw Image
       applyCanvasFilter(ctx);
       ctx.drawImage(img, nx, ny, nw, nh);
+      ctx.filter = 'none';
+
+      // 2. Apply Film Effects (Vignette & Grain) if film filter is selected
+      if (isFilmFilter(currentFilter)) {
+        // Classic Vignetting
+        const radiusDist = Math.max(w, h) * 0.72;
+        const vignette = ctx.createRadialGradient(
+          x + w / 2, y + h / 2, Math.min(w, h) * 0.28,
+          x + w / 2, y + h / 2, radiusDist
+        );
+        vignette.addColorStop(0, 'rgba(0, 0, 0, 0)');
+        vignette.addColorStop(0.7, 'rgba(0, 0, 0, 0.12)');
+        vignette.addColorStop(1, currentFilter === 'noir' ? 'rgba(0, 0, 0, 0.45)' : 'rgba(35, 18, 5, 0.32)');
+
+        ctx.fillStyle = vignette;
+        ctx.fillRect(x, y, w, h);
+
+        // Film Grain Texture (Overlay blend)
+        const pattern = getGrainPattern();
+        if (pattern) {
+          ctx.save();
+          ctx.globalCompositeOperation = 'overlay';
+          ctx.fillStyle = pattern;
+          ctx.fillRect(x, y, w, h);
+          ctx.restore();
+        }
+      }
+
+      // 3. Vintage Film Date Stamp Overlay ('26 09 04)
+      if (showDateStamp) {
+        ctx.save();
+        const fontSize = Math.max(14, Math.round(w * 0.04));
+        ctx.font = `bold ${fontSize}px "Courier New", monospace`;
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'bottom';
+        ctx.fillStyle = '#ff8800';
+        ctx.shadowColor = 'rgba(255, 120, 0, 0.85)';
+        ctx.shadowBlur = 4;
+        
+        const today = new Date();
+        const yy = String(today.getFullYear()).slice(-2);
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const dd = String(today.getDate()).padStart(2, '0');
+        const dateStr = `'${yy} ${mm} ${dd}`;
+
+        ctx.fillText(dateStr, x + w - Math.max(12, w * 0.035), y + h - Math.max(10, h * 0.03));
+        ctx.restore();
+      }
+
       ctx.restore();
     }
 
     // Filter Switcher
     function applyCanvasFilter(ctx: CanvasRenderingContext2D) {
       switch (currentFilter) {
+        // Film Presets
+        case 'kodak':
+          ctx.filter = 'sepia(0.32) contrast(1.15) brightness(1.03) saturate(1.25) hue-rotate(-5deg)';
+          break;
+        case 'fuji':
+          ctx.filter = 'sepia(0.18) contrast(1.18) brightness(1.02) saturate(0.95) hue-rotate(15deg)';
+          break;
+        case 'vintage':
+          ctx.filter = 'sepia(0.46) contrast(0.95) brightness(1.06) saturate(0.85) hue-rotate(-10deg)';
+          break;
+        case 'noir':
+          ctx.filter = 'grayscale(1) contrast(1.45) brightness(0.92)';
+          break;
+        case 'cinematic':
+          ctx.filter = 'contrast(1.22) saturate(1.32) hue-rotate(-15deg) brightness(0.96)';
+          break;
+        // Standard Presets
         case 'warm':
           ctx.filter = 'sepia(0.25) saturate(1.2) contrast(1.05)';
           break;
@@ -1195,6 +1343,13 @@ import Layout from '../layouts/Layout.astro';
       drawCanvas();
     });
 
+    // Film Date Stamp Checkbox
+    const dateStampCheckbox = document.getElementById('dateStampCheckbox') as HTMLInputElement;
+    dateStampCheckbox.addEventListener('change', (e) => {
+      showDateStamp = (e.target as HTMLInputElement).checked;
+      drawCanvas();
+    });
+
     // Watermark
     const watermarkInput = document.getElementById('watermarkInput') as HTMLInputElement;
     watermarkInput.addEventListener('input', (e) => {
@@ -1215,6 +1370,7 @@ import Layout from '../layouts/Layout.astro';
       radiusRange.value = '16'; document.getElementById('radiusVal')!.textContent = '16px';
       shadowRange.value = '40'; document.getElementById('shadowVal')!.textContent = '40%';
       currentFilter = 'none'; filterSelect.value = 'none';
+      showDateStamp = false; dateStampCheckbox.checked = false;
       watermarkText = ''; watermarkInput.value = '';
       drawCanvas();
     });
