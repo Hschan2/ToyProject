@@ -1,0 +1,79 @@
+---
+// Header Component for PicGrid
+---
+
+<header class="header">
+  <div class="brand">
+    <div class="logo-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="3" y="3" width="8" height="8" rx="2" fill="url(#logo-grad-1)"/>
+        <rect x="13" y="3" width="8" height="8" rx="2" fill="url(#logo-grad-2)" opacity="0.8"/>
+        <rect x="3" y="13" width="8" height="8" rx="2" fill="url(#logo-grad-2)" opacity="0.8"/>
+        <rect x="13" y="13" width="8" height="8" rx="2" fill="url(#logo-grad-1)"/>
+        <defs>
+          <linearGradient id="logo-grad-1" x1="3" y1="3" x2="11" y2="11" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#6366F1"/>
+            <stop stop-color="#EC4899"/>
+          </linearGradient>
+          <linearGradient id="logo-grad-2" x1="13" y1="3" x2="21" y2="11" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#A855F7"/>
+            <stop stop-color="#6366F1"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <div class="brand-text">
+      <h1>PicGrid <span class="gradient-text">픽그</span></h1>
+      <p class="subtitle">소셜미디어 사진 그리드 & 레이아웃 원클릭 생성기</p>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 18px;
+    min-height: 48px;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo-icon {
+    width: 34px;
+    height: 34px;
+    background: rgba(99, 102, 241, 0.15);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .brand-text h1 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .subtitle {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+  }
+</style>
