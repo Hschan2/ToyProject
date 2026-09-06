@@ -1,0 +1,75 @@
+---
+// Stage Toolbar Component
+---
+
+<div class="stage-toolbar glass-panel">
+  <div class="toolbar-left">
+    <span class="stage-title">📷 라이브 프리뷰</span>
+    <span class="canvas-info" id="canvasSizeInfo">1080 x 1080px</span>
+  </div>
+  <div class="toolbar-right">
+    <button id="btnShuffle" class="btn-secondary" title="사진 위치 무작위 섞기">
+      <span>🎲 섞기</span>
+    </button>
+    <button id="btnReset" class="btn-secondary" title="설정 초기화">
+      <span>🔄 초기화</span>
+    </button>
+    <button id="btnDownload" class="btn-primary">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+        <polyline points="7 10 12 15 17 10" />
+        <line x1="12" y1="15" x2="12" y2="3" />
+      </svg>
+      <span>고화질 다운로드</span>
+    </button>
+  </div>
+</div>
+
+<style>
+  .stage-toolbar {
+    padding: 8px 16px;
+    min-height: 48px;
+    border-radius: var(--radius-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .stage-title {
+    font-weight: 700;
+    font-size: 0.88rem;
+  }
+
+  .canvas-info {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    background: rgba(255, 255, 255, 0.06);
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+
+  .toolbar-right {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .toolbar-right :global(.btn-secondary) {
+    padding: 6px 12px;
+    font-size: 0.78rem;
+    border-radius: 8px;
+  }
+
+  .toolbar-right :global(.btn-primary) {
+    padding: 7px 16px;
+    font-size: 0.8rem;
+    border-radius: 8px;
+  }
+</style>
