@@ -41,7 +41,7 @@ export default function NewsSourceList({ category }: NewsSourceListProps) {
 
   return (
     <>
-      <RecommendedNews newsList={articles} sourceType="category" />
+      <RecommendedNews newsList={articles ?? []} sourceType="category" />
       <RenderNewsPage visibleNews={visibleNews} itemRenderer={renderNewsItem} />
       {!isAllLoaded && <div ref={targetRef} />}
     </>
