@@ -8,10 +8,10 @@ import { StripHtmlTags } from '../../utils/html'
 import { useFormattedDate } from '../../hooks/useFormattedDate'
 
 export default function RecommendedNews({
-  newsList,
+  newsList = [],
   sourceType,
 }: {
-  newsList: BasicNewsProps[]
+  newsList?: BasicNewsProps[]
   sourceType: string
 }) {
   const [recommendedNews, setRecommendedNews] = useState<BasicNewsProps | null>(
@@ -36,7 +36,7 @@ export default function RecommendedNews({
       }
     }
 
-    if (newsList) fetchRecommendedNews()
+    if (newsList.length > 0) fetchRecommendedNews()
   }, [newsList, sourceType])
 
   if (!recommendedNews) {
