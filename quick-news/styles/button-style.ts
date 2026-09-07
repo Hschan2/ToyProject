@@ -37,7 +37,7 @@ const getVisibleValue = (purpose: SideButtonProps['purpose']) => {
 const media = {
   tablet: (
     styles: TemplateStringsArray,
-    ...interpolations: Interpolation<object>[]
+    ...interpolations: Interpolation<any>[]
   ) => css`
     @media screen and (max-width: 768px) {
       ${css(styles, ...interpolations)}
@@ -45,7 +45,7 @@ const media = {
   `,
   mobile: (
     styles: TemplateStringsArray,
-    ...interpolations: Interpolation<object>[]
+    ...interpolations: Interpolation<any>[]
   ) => css`
     @media screen and (max-width: 480px) {
       ${css(styles, ...interpolations)}
