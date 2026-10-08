@@ -1,4 +1,4 @@
-export type LayoutType = 'overlay' | 'grid4' | 'vert10' | 'horiz3' | 'polaroid' | 'blurSingle';
+export type LayoutType = 'overlay' | 'grid4' | 'vert10' | 'horiz3' | 'polaroid' | 'blurSingle' | 'splitInvert';
 export type RatioType = '1:1' | '4:5' | '9:16' | '16:9';
 export type BgType = 'color' | 'gradient' | 'blur';
 export type FilterType =
