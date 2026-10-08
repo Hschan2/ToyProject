@@ -5,6 +5,7 @@ import { renderVert10 } from './vert10';
 import { renderHoriz3 } from './horiz3';
 import { renderPolaroid } from './polaroid';
 import { renderBlurSingle } from './blurSingle';
+import { renderSplitInvert } from './splitInvert';
 
 export type LayoutRenderer = (context: LayoutRenderContext) => void;
 
@@ -15,6 +16,7 @@ export const layoutRegistry: Record<LayoutType, LayoutRenderer> = {
   horiz3: renderHoriz3,
   polaroid: renderPolaroid,
   blurSingle: renderBlurSingle,
+  splitInvert: renderSplitInvert,
 };
 
 export function renderLayout(type: LayoutType, context: LayoutRenderContext): void {
