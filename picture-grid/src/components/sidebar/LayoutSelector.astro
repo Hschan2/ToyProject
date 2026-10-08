@@ -7,6 +7,7 @@ const layouts = [
   { id: 'horiz3', name: '3개 가로', iconClass: 'icon-horiz3', title: '3개 가로 그리드', active: false },
   { id: 'polaroid', name: '폴라로이드', iconClass: 'icon-polaroid', title: '폴라로이드 프레임', active: false },
   { id: 'blurSingle', name: '블러 배경', iconClass: 'icon-blurSingle', title: '블러 배경 모드', active: false },
+  { id: 'splitInvert', name: '반전 분할', iconClass: 'icon-splitInvert', title: '반전 분할 (2장 교차 오버레이)', active: false },
 ];
 ---
 
@@ -211,5 +212,19 @@ const layouts = [
     inset: 4px;
     background: #6366f1;
     border-radius: 2px;
+  }
+
+  .icon-splitInvert {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(90deg, #f97316 50%, #0284c7 50%);
+  }
+  .icon-splitInvert::before {
+    content: '';
+    position: absolute;
+    inset: 4px 7px;
+    background: linear-gradient(90deg, #0284c7 50%, #f97316 50%);
+    border-radius: 1px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
   }
 </style>
