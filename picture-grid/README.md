@@ -66,6 +66,12 @@ picture-grid/
 
 ---
 
+## 🖵 실행 화면
+
+![Running Screen](/public/samples/running.png)
+
+---
+
 ## 🚀 시작하기 (Getting Started)
 
 ### 1. 패키지 설치
