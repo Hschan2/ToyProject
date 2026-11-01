@@ -28,6 +28,7 @@
     "no-useless-catch": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
+    "react/require-default-props": "off",
     "prettier/prettier": ["error", { "endOfLine": "auto" }]
   }
 }
