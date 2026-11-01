@@ -1,5 +1,4 @@
 import styled, { css, Interpolation, keyframes } from 'styled-components'
-import Lottie from 'react-lottie-player'
 
 const media = {
   tablet: (
@@ -55,7 +54,7 @@ export const LoadingMessage = styled.div`
   `}
 `
 
-export const LoadingLottie = styled(Lottie)`
+export const LoadingLottie = styled.div`
   display: inline-block;
   width: 15.625rem;
   height: 15.625rem;
