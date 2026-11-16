@@ -1,15 +1,19 @@
 import assert from "assert";
 import { ColyseusTestServer, boot } from "@colyseus/testing";
-
 import appConfig from "../src/app.config.js";
 import { MyRoomState, type MoveInput } from "../src/rooms/schema/MyRoomState.js";
-import { PLAYER_SPEED, TICK_RATE } from "../src/shared/constants.js";
+import { PLAYER_SPEED, TICK_RATE, PLAYER_STATES, WORLD_BOUNDS } from "../src/shared/constants.js";
 
-describe("testing your Colyseus app", () => {
+describe("Bosingak Colyseus Server Test Suite", () => {
   let colyseus: ColyseusTestServer<typeof appConfig>;
 
-  before(async () => colyseus = await boot(appConfig));
-  after(async () => colyseus.shutdown());
+  before(async () => {
+    colyseus = await boot(appConfig);
+  });
+
+  after(async () => {
+    await colyseus.shutdown();
+  });
 
   beforeEach(async () => {
     await colyseus.cleanup();
@@ -41,7 +45,6 @@ describe("testing your Colyseus app", () => {
     const player = room.state.players.get(client1.sessionId);
     const startX = player.x;
 
-    // A modified client claiming a huge axis value: sanitize clamps it to 1.
     const input = client1.input<MoveInput>({ mode: "reliable" });
     input.data.moveX = 100 as any;
     input.send();
@@ -49,8 +52,70 @@ describe("testing your Colyseus app", () => {
     await room.waitForNextMessage();
     await room.waitForNextTimestep();
 
-    // The room steps once per received input, so one input is exactly one step
-    // of travel — at moveX clamped to 1, not the 100 the client asked for.
     assert.strictEqual(player.x, startX + PLAYER_SPEED * (1 / TICK_RATE));
+  });
+
+  it("sanitizes malicious nicknames to prevent XSS", async () => {
+    const room = await colyseus.createRoom<MyRoomState>("my_room", {});
+    const client = await colyseus.connectTo(room, {
+      nickname: "<script>alert('xss')</script>보신각",
+    });
+
+    const player = room.state.players.get(client.sessionId);
+    assert.ok(player, "Player is present in room");
+    assert.ok(!player.nickname.includes("<script>"), "Tags are completely removed");
+    assert.ok(player.nickname.includes("보신각"), "Valid Korean text is preserved");
+  });
+
+  it("updates and clamps 3D position safely", async () => {
+    const room = await colyseus.createRoom<MyRoomState>("my_room", {});
+    const client = await colyseus.connectTo(room, { nickname: "테스터" });
+
+    const player = room.state.players.get(client.sessionId);
+    assert.ok(player, "Player exists");
+
+    // Send valid 3D coordinates
+    client.send("update_position", {
+      x: 12.5,
+      y: 0,
+      z: -18.2,
+      rotationY: Math.PI / 4,
+      state: PLAYER_STATES.WALKING,
+    });
+
+    await room.waitForNextMessage();
+
+    assert.strictEqual(player.x, 12.5);
+    assert.strictEqual(player.y, 0);
+    assert.strictEqual(player.z, -18.2);
+    assert.strictEqual(player.rotationY, Math.PI / 4);
+    assert.strictEqual(player.state, PLAYER_STATES.WALKING);
+
+    // Send extreme out-of-world coordinates (anti-exploit test)
+    client.send("update_position", {
+      x: 999999,
+      z: -999999,
+    });
+
+    await room.waitForNextMessage();
+
+    assert.strictEqual(player.x, WORLD_BOUNDS.maxX);
+    assert.strictEqual(player.z, WORLD_BOUNDS.minZ);
+  });
+
+  it("handles player state updates and leave events", async () => {
+    const room = await colyseus.createRoom<MyRoomState>("my_room", {});
+    const client = await colyseus.connectTo(room, { nickname: "기도자" });
+
+    const player = room.state.players.get(client.sessionId);
+    assert.ok(player);
+
+    client.send("set_state", PLAYER_STATES.PRAYING);
+    await room.waitForNextMessage();
+    assert.strictEqual(player.state, PLAYER_STATES.PRAYING);
+
+    assert.strictEqual(room.state.players.size, 1);
+    await client.leave();
+    assert.strictEqual(room.state.players.size, 0);
   });
 });
