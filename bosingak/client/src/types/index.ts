@@ -25,7 +25,7 @@ export type PlayerActionState =
 
 export type WeatherType = "CLEAR" | "CLOUDY" | "RAIN" | "SNOW";
 
-export type CameraViewMode = "FREE" | "FRONT" | "BELL_CLOSEUP" | "OVERHEAD";
+export type CameraViewMode = "PLAYER" | "FREE" | "FRONT" | "BELL_CLOSEUP" | "OVERHEAD";
 
 export interface AudioSettings {
   ambientVolume: number;

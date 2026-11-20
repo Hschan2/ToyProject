@@ -3,9 +3,13 @@ import type { CameraViewMode } from "../types";
 /**
  * Server connection settings
  */
+const isBrowser = typeof window !== "undefined";
+const defaultHost = isBrowser ? window.location.hostname : "localhost";
+const defaultProtocol = isBrowser && window.location.protocol === "https:" ? "wss" : "ws";
+
 export const SERVER_ENDPOINT =
-  import.meta.env.VITE_SERVER_URL ||
-  `${window.location.protocol === "https:" ? "wss" : "ws"}://${window.location.hostname}:2567`;
+  (typeof import.meta !== "undefined" && import.meta.env?.VITE_SERVER_URL) ||
+  `${defaultProtocol}://${defaultHost}:2567`;
 
 export const ROOM_NAME = "my_room";
 
@@ -16,6 +20,10 @@ export const CAMERA_PRESETS: Record<
   CameraViewMode,
   { position: [number, number, number]; target: [number, number, number] }
 > = {
+  PLAYER: {
+    position: [0, 4.5, 24.5],
+    target: [0, 1.4, 18],
+  },
   FREE: {
     position: [0, 8, 26],
     target: [0, 4, 0],
@@ -33,6 +41,21 @@ export const CAMERA_PRESETS: Record<
     target: [0, 2, 0],
   },
 };
+
+/**
+ * Player Physical and Gameplay Constants
+ */
+export const PLAYER_CONFIG = {
+  spawnPosition: [0, 0, 18] as [number, number, number],
+  walkSpeed: 4.8,
+  sprintSpeed: 7.6,
+  turnSpeed: 14.0,
+  colliderRadius: 0.45,
+  cameraDistance: 6.2,
+  cameraHeight: 2.6,
+  minCameraDistance: 2.5,
+  maxCameraDistance: 16.0,
+} as const;
 
 /**
  * Architectural Dimensions (Korean Traditional Belfry Proportions in Meters)
