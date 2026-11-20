@@ -67,6 +67,41 @@ const MILESTONES: DayItem[] = [
       "한국 범종 고유의 맥놀이(Acoustic beat) & 10초 잔향 타종음",
     ],
   },
+  {
+    day: "DAY 6",
+    title: "플레이어 생성",
+    status: "completed",
+    items: [
+      "한국 전통미를 살린 3D 갓(Gat) & 두루마기 캐릭터 모델링",
+      "보신각 전면 광장(0, 0, 18) 기본 스폰 좌표 및 라이프사이클",
+      "글래스모피즘 3D 닉네임 명패 및 상태 뱃지 (나/타 플레이어 구분)",
+      "3인칭 플레이어 추적 카메라 (3rd-Person Follow Camera Rig)",
+    ],
+  },
+  {
+    day: "DAY 7",
+    title: "플레이어 이동",
+    status: "completed",
+    items: [
+      "카메라 시점 연동 WASD & 화살표 키 부드러운 가감속 이동",
+      "마우스 드래그 3인칭 궤도 시점 회전 및 줌 인/아웃 컨트롤",
+      "기본 걷기(4.8m/s) 및 Shift 키를 이용한 전력 질주(7.6m/s)",
+      "2단 화강암 기단 및 중앙 돌계단 고도 보간 (Terrain Elevation)",
+      "12개 기둥, 팔각석등, 소나무, 대범종 충돌 감지 및 월드 경계 제한",
+    ],
+  },
+  {
+    day: "DAY 8",
+    title: "플레이어 애니메이션",
+    status: "completed",
+    items: [
+      "자연스러운 팔/다리 상호 진폭 보행 사이클 (Walk Cycle) 애니메이션",
+      "정지 시 차분한 호흡 및 머리 미세 움직임 대기 (Idle) 애니메이션",
+      "이동 방향에 맞춘 부드러운 회전 보간 (Slerp / Yaw Smoothing)",
+      "Colyseus 실시간 세션 연동 타 플레이어(Remote Players) 렌더링",
+      "세션 ID 기반 고유 전통 색상 팔레트 및 행동 상태(State) 동기화",
+    ],
+  },
 ];
 
 export const DayProgressHUD: React.FC = () => {
@@ -77,7 +112,7 @@ export const DayProgressHUD: React.FC = () => {
   return (
     <div className="milestone-hud-card">
       <div className="hud-header">
-        <h3 className="hud-title">📜 보신각 개발 일정 현황 (DAY 1 ~ DAY 5)</h3>
+        <h3 className="hud-title">📜 보신각 개발 일정 현황 (DAY 1 ~ DAY 8)</h3>
         <button className="hud-close-btn" onClick={() => setIsHelpOpen(false)}>
           ✕
         </button>
