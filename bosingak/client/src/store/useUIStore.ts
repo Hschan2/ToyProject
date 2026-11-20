@@ -14,7 +14,7 @@ interface UIState {
 }
 
 export const useUIStore = create<UIState>((set) => ({
-  cameraMode: "FREE",
+  cameraMode: "PLAYER",
   showHUD: true,
   showNicknameModal: false,
   isHelpOpen: false,

@@ -41,23 +41,32 @@ class ColyseusClientManager {
 
       const callbacks = Callbacks.get(this.room);
 
-      // Listen for player additions
+      // Listen for player additions and property changes
       callbacks.onAdd("players", (player: any, key: any) => {
         const sessionId = String(key);
-        const remotePlayer: RemotePlayer = {
-          sessionId,
-          nickname: player.nickname || "관람객",
-          x: player.x || 0,
-          y: player.y || 0,
-          z: player.z || 0,
-          rotationY: player.rotationY || 0,
-          state: player.state || "IDLE",
-          isHoldingRope: !!player.isHoldingRope,
-          ropeIndex: player.ropeIndex ?? -1,
-          hasCandle: !!player.hasCandle,
-          joinedAt: player.joinedAt || Date.now(),
+        const syncPlayer = () => {
+          const remotePlayer: RemotePlayer = {
+            sessionId,
+            nickname: player.nickname || "관람객",
+            x: player.x || 0,
+            y: player.y || 0,
+            z: player.z || 0,
+            rotationY: player.rotationY || 0,
+            state: player.state || "IDLE",
+            isHoldingRope: !!player.isHoldingRope,
+            ropeIndex: player.ropeIndex ?? -1,
+            hasCandle: !!player.hasCandle,
+            joinedAt: player.joinedAt || Date.now(),
+          };
+          useNetworkStore.getState().upsertPlayer(sessionId, remotePlayer);
         };
-        useNetworkStore.getState().upsertPlayer(sessionId, remotePlayer);
+
+        syncPlayer();
+
+        // Listen for realtime position and state property updates
+        callbacks.onChange(player, () => {
+          syncPlayer();
+        });
       });
 
       // Listen for player removals

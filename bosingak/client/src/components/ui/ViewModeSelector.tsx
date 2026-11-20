@@ -3,6 +3,7 @@ import { useUIStore } from "../../store/useUIStore";
 import type { CameraViewMode } from "../../types";
 
 const MODES: { id: CameraViewMode; label: string; icon: string }[] = [
+  { id: "PLAYER", label: "3인칭 플레이어", icon: "👤" },
   { id: "FREE", label: "자유 시점", icon: "🌐" },
   { id: "FRONT", label: "보신각 정면", icon: "🏛️" },
   { id: "BELL_CLOSEUP", label: "대범종 시점", icon: "🔔" },
